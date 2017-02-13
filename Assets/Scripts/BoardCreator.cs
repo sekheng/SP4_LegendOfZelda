@@ -39,6 +39,16 @@ public class BoardCreator : MonoBehaviour
 
         InstantiateTiles();
         InstantiateOuterWalls();
+
+        for (int i = 0; i < rooms.Length; i++)
+        {
+            if (i == 0)
+            {
+                Vector3 playerPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); //spawns roughly in the middle of the room
+                Instantiate(player, playerPos, Quaternion.identity);
+                break;
+            }
+        }
     }
 
     void SetupTilesArray()
@@ -90,14 +100,7 @@ public class BoardCreator : MonoBehaviour
                 // Setup the corridor based on the room that was just created.
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
             }
-
-            if (i == Mathf.Floor(rooms.Length * .5f))
-            {
-                Vector3 playerPos = new Vector3(rooms[i].xPos, rooms[i].yPos, 0);
-                Instantiate(player, playerPos, Quaternion.identity);
-            }
         }
-
     }
 
 
