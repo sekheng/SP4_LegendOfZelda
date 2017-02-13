@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour {
 
         //transform.position += new Vector3(sumOfHorizontal * 5, sumOfVertical * 5, 0) * Time.deltaTime;
 
+#if UNITY_ANDROID
+
+#else
         if (Input.GetKey(KeyCode.UpArrow))
         {
             theOnlyHero.moveDirection(new Vector2(0, 1));
@@ -58,6 +61,7 @@ public class PlayerController : MonoBehaviour {
             theOnlyHero.moveDirection(new Vector2(1, 0));
             checkPlayerMoved = true;
         }
+#endif
     }
 
     void LateUpdate()
