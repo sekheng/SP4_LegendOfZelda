@@ -12,8 +12,6 @@ public class HeroesMovement : MonoBehaviour {
     // Every hero has a rigid body for collision!
     private Rigidbody2D heroPhysics;
 
-
-
 	// Use this for initialization
 	void Start () {
         heroPhysics = GetComponent<Rigidbody2D>();
