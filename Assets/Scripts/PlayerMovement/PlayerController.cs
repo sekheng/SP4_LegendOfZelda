@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour {
                     break;
             }
             checkPlayerMoved = true;
-            Debug.Log("Moving Player");
+            //Debug.Log("Moving Player");
         }
     }
 
