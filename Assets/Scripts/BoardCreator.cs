@@ -9,7 +9,6 @@ public class BoardCreator : MonoBehaviour
         Wall, Floor,
     }
 
-
     public int columns = 100;                                 // The number of columns on the board (how wide it will be).
     public int rows = 100;                                    // The number of rows on the board (how tall it will be).
     public IntRange numRooms = new IntRange(15, 20);         // The range of the number of rooms there can be.
@@ -26,7 +25,6 @@ public class BoardCreator : MonoBehaviour
     private Corridor[] corridors;                             // All the corridors that connect the rooms.
     private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
 
-
     private void Start()
     {
         // Create the board holder.
@@ -42,7 +40,6 @@ public class BoardCreator : MonoBehaviour
         InstantiateTiles();
         InstantiateOuterWalls();
     }
-
 
     void SetupTilesArray()
     {
@@ -94,11 +91,11 @@ public class BoardCreator : MonoBehaviour
                 corridors[i].SetupCorridor(rooms[i], corridorLength, roomWidth, roomHeight, columns, rows, false);
             }
 
-            //if (i == Mathf.Floor(rooms.Length * .5f))
-            //{
-            //    Vector3 playerPos = new Vector3(rooms[i].xPos, rooms[i].yPos, 0);
-            //    Instantiate(player, playerPos, Quaternion.identity);
-            //}
+            if (i == Mathf.Floor(rooms.Length * .5f))
+            {
+                Vector3 playerPos = new Vector3(rooms[i].xPos, rooms[i].yPos, 0);
+                Instantiate(player, playerPos, Quaternion.identity);
+            }
         }
 
     }
