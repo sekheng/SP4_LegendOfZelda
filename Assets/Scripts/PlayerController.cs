@@ -22,12 +22,14 @@ public class PlayerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //up = down = left = right = 0;
-        theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        if(theOnlyHero == null)
+        {
+            theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        }
         //up = Input.GetKey("w") ? 1 : 0;
         //down = Input.GetKey("s") ? -1 : 0;
         //left = Input.GetKey("a") ? -1 : 0;
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour {
         //sumOfVertical = up + down;
 
         //transform.position += new Vector3(sumOfHorizontal * 5, sumOfVertical * 5, 0) * Time.deltaTime;
-
+    
         if (Input.GetKey(KeyCode.UpArrow))
         {
             theOnlyHero.moveDirection(new Vector2(0, 1));
@@ -71,7 +73,6 @@ public class PlayerController : MonoBehaviour {
             case true:
                 // Then initialized it to be false!
                 checkPlayerMoved = false;
-                //Debug.Log("Reinitializing");
                 break;
         }
     }

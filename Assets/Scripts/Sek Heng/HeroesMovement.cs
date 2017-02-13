@@ -36,7 +36,6 @@ public class HeroesMovement : MonoBehaviour {
         if (!Mathf.Approximately(0, heroPhysics.velocity.sqrMagnitude))
         {
             heroPhysics.velocity = new Vector2(0, 0);
-            //Debug.Log("Hero has stop moving!");
         }
     }
 }
