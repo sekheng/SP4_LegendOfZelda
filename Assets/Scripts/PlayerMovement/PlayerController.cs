@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour {
     private HeroesMovement theOnlyHero;
     // This is to check if the player is not moving the character, then stop the movement!
     private bool checkPlayerMoved = false;
+    // We will need this to check which key is pressed!
+    private KeyCode currentKeyPressed;
 
 	// Use this for initialization
 	void Start () {
@@ -39,25 +41,39 @@ public class PlayerController : MonoBehaviour {
 
         //transform.position += new Vector3(sumOfHorizontal * 5, sumOfVertical * 5, 0) * Time.deltaTime;
     
-        if (Input.GetKey(KeyCode.UpArrow))
+        // Here we shall check which key is pressed so that interception can happen!
+        if (Input.GetKeyDown(KeyCode.UpArrow))
+            currentKeyPressed = KeyCode.UpArrow;
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            currentKeyPressed = KeyCode.DownArrow;
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            currentKeyPressed = KeyCode.RightArrow;
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            currentKeyPressed = KeyCode.LeftArrow;
+ 
+        // Here we check whether the player has continuously press it for movement
+        if (Input.GetKey(currentKeyPressed))
         {
-            theOnlyHero.moveDirection(new Vector2(0, 1));
+            switch (currentKeyPressed)
+            {
+                case KeyCode.UpArrow:
+                    theOnlyHero.moveDirection(new Vector2(0, 1));
+                    break;
+                case KeyCode.DownArrow:
+                    theOnlyHero.moveDirection(new Vector2(0, -1));
+                    break;
+                case KeyCode.RightArrow:
+                    theOnlyHero.moveDirection(new Vector2(1, 0));
+                    break;
+                case KeyCode.LeftArrow:
+                    theOnlyHero.moveDirection(new Vector2(-1, 0));
+                    break;
+                default:
+                    Debug.Log("Something is wrong with current keypressed");
+                    break;
+            }
             checkPlayerMoved = true;
-        }
-        if (Input.GetKey(KeyCode.DownArrow))
-        {
-            theOnlyHero.moveDirection(new Vector2(0, -1));
-            checkPlayerMoved = true;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            theOnlyHero.moveDirection(new Vector2(-1, 0));
-            checkPlayerMoved = true;
-        }
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            theOnlyHero.moveDirection(new Vector2(1, 0));
-            checkPlayerMoved = true;
+            Debug.Log("Moving Player");
         }
     }
 
