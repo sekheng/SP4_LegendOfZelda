@@ -7,8 +7,7 @@ using System.Collections;
 /// Will add for mobile soon!
 /// </summary>
 public class PlayerController : MonoBehaviour {
-
-
+#if UNITY_STANDALONE
     //private int sumOfHorizontal = 0;
     //private int sumOfVertical = 0;
 
@@ -76,4 +75,5 @@ public class PlayerController : MonoBehaviour {
                 break;
         }
     }
+#endif
 }

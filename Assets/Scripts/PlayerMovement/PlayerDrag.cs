@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 /// To handle the drag movement of the player from Android mobile
 /// </summary>
 public class PlayerDrag : MonoBehaviour {
-
+#if UNITY_ANDROID
     private Image ImgFG;
     // joystick bg
     private Image ImgBG;
@@ -16,12 +16,15 @@ public class PlayerDrag : MonoBehaviour {
     // There will only be 1 hero throughout the entire game!
     private HeroesMovement theOnlyHero;
 
+    [Tooltip("The offset between the center position of background and the joystick so that the hero can start moving")]
+    public float offsetDistance = 10.0f;
+
     // Use this for initialization
 	void Start () {
         ImgFG = GetComponent<Image>();
         ImgBG = transform.parent.GetComponent<Image>();
         //ImgBG = GetComponentInParent<Image>();
-        Debug.Log("Parent Name: " + ImgBG.gameObject.name);
+        //Debug.Log("Parent Name: " + ImgBG.gameObject.name);
         theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
     }
 	
@@ -47,24 +50,52 @@ public class PlayerDrag : MonoBehaviour {
                     directionOfStick *= ImgBG.rectTransform.sizeDelta.x * 0.5f;
                 }
                 ImgFG.rectTransform.anchoredPosition = directionOfStick;
+                // Since heroes can only move in 4 direction, then we should only do just that!
+                // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+                if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+                {
+                    theOnlyHero.stopMovement();
+                    return; // Otherwise the hero will still be moving!
+                }
+                if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+                {
+                    directionOfStick = new Vector3(directionOfStick.x, 0);
+                }
+                else
+                {
+                    directionOfStick = new Vector3(0, directionOfStick.y);
+                }
                 theOnlyHero.moveDirection(directionOfStick);
                 break;
             }
         }
 
         //Debug.Log("Dragging Position");
-            //{
-            //    // Need to check whether the point is in the square!
-            //    directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
-            //    if (directionOfStick.magnitude > ImgBG.rectTransform.sizeDelta.x * 0.5f)
-            //    {
-            //        directionOfStick.Normalize();
-            //        directionOfStick *= ImgBG.rectTransform.sizeDelta.x * 0.5f;
-            //    }
-            //    ImgFG.rectTransform.anchoredPosition = directionOfStick;
-            //    Debug.Log("Direction: " + directionOfStick);
-            //    theOnlyHero.moveDirection(directionOfStick);
-            //}
+        // Need to check whether the point is in the square!
+        //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
+        //if (directionOfStick.magnitude > ImgBG.rectTransform.sizeDelta.x * 0.5f)
+        //{
+        //    directionOfStick.Normalize();
+        //    directionOfStick *= ImgBG.rectTransform.sizeDelta.x * 0.5f;
+        //}
+        //ImgFG.rectTransform.anchoredPosition = directionOfStick;
+        ////Debug.Log("Direction: " + directionOfStick);
+        //// Since heroes can only move in 4 direction, then we should only do just that!
+        //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+        //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+        //{
+        //    theOnlyHero.stopMovement();
+        //    return;
+        //}
+        //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+        //{
+        //    directionOfStick = new Vector3(directionOfStick.x, 0);
+        //}
+        //else
+        //{
+        //    directionOfStick = new Vector3(0, directionOfStick.y);
+        //}
+        //theOnlyHero.moveDirection(directionOfStick);
     }
     public void ReturnOrigin()
     {
@@ -72,16 +103,12 @@ public class PlayerDrag : MonoBehaviour {
         directionOfStick = new Vector3(0, 0, 1);
         theOnlyHero.stopMovement();
     }   
-    //public void OnDrag(PointerEventData pointer)
-    //{
-    //    Debug.Log("Draggin");
-    //    // We get the direction from Img BG to Img FG
-    //    ImgFG.rectTransform.anchoredPosition = pointer.position;
-    //    theOnlyHero.moveDirection(ImgFG.rectTransform.anchoredPosition);
-    //}
-    //public void OnEndDrag(PointerEventData pointer)
-    //{
-    //    ReturnOrigin();
-    //    theOnlyHero.stopMovement();
-    //}
+
+#else
+    void Start()
+    {
+        transform.parent.gameObject.SetActive(false);
+        gameObject.SetActive(false);
+    }
+#endif
 }
