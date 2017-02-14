@@ -34,29 +34,29 @@ public class SplashScripts : MonoBehaviour {
 
         // Reading from DataBase
         //IDbConnection dbconn;
-        dbconn = (IDbConnection)new SqliteConnection(connectionString);
-        dbconn.Open(); //Open connection to the database.
-        //IDbCommand dbcmd = dbconn.CreateCommand();
-        dbcmd = dbconn.CreateCommand();
-        //string sqlQuery = "SELECT * " + "FROM PlaceSequence";
-        string sqlQuery2 = "SELECT * " + "FROM PlaceSequence";
-        dbcmd.CommandText = sqlQuery2;
-        reader = dbcmd.ExecuteReader();
-        Debug.Log("Reading SQL Table");
-        while (reader.Read())
-        {
-            int value = reader.GetInt32(0);
-             int rand = reader.GetInt32(1);
-           string name = reader.GetString(2);
-            //string allTheStuff = reader.GetString(3)
-            Debug.Log("value= " + value + ", Score=" +rand + ", name=" + name);
-        }
-        reader.Close();
-        reader = null;
-        dbcmd.Dispose();
-        dbcmd = null;
-        dbconn.Close();
-        dbconn = null;
+        //dbconn = (IDbConnection)new SqliteConnection(connectionString);
+        //dbconn.Open(); //Open connection to the database.
+        ////IDbCommand dbcmd = dbconn.CreateCommand();
+        //dbcmd = dbconn.CreateCommand();
+        ////string sqlQuery = "SELECT * " + "FROM PlaceSequence";
+        //string sqlQuery2 = "SELECT * " + "FROM PlaceSequence";
+        //dbcmd.CommandText = sqlQuery2;
+        //reader = dbcmd.ExecuteReader();
+        //Debug.Log("Reading SQL Table");
+        //while (reader.Read())
+        //{
+        //    int value = reader.GetInt32(0);
+        //     int rand = reader.GetInt32(1);
+        //   string name = reader.GetString(2);
+        //    //string allTheStuff = reader.GetString(3)
+        //    Debug.Log("value= " + value + ", Score=" +rand + ", name=" + name);
+        //}
+        //reader.Close();
+        //reader = null;
+        //dbcmd.Dispose();
+        //dbcmd = null;
+        //dbconn.Close();
+        //dbconn = null;
 	}
 	
 	// Update is called once per frame
