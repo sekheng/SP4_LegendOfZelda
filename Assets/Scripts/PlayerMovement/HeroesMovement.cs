@@ -17,16 +17,14 @@ public class HeroesMovement : MonoBehaviour {
         heroPhysics = GetComponent<Rigidbody2D>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     // We will use this to move the player
     public void moveDirection(Vector2 zeDir)
     {
         // Applying the direction then the speed!
         heroPhysics.velocity = zeDir.normalized * m_speed;
+
+        if (GetComponent<MeleeScript>() != null)
+            GetComponent<MeleeScript>().setDirection(zeDir.normalized);
     }
 
     // This will instantly set the velocity of hero to be 0!

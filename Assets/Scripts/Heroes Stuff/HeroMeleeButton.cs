@@ -6,15 +6,34 @@ using System.Collections;
 /// </summary>
 [RequireComponent(typeof(MeleeScript))]
 public class HeroMeleeButton : MonoBehaviour {
+    // Since this is for hero
     private MeleeScript theHeroMeleeSystem;
 
-	// Use this for initialization
+#if UNITY_STANDALONE
+    [Tooltip("The Key pressed for Melee Attack!")]
+    public KeyCode attackButton = KeyCode.Z;
+#endif
+
+    // Use this for initialization
 	void Start () {
         theHeroMeleeSystem = GetComponent<MeleeScript>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+	#if UNITY_STANDALONE
+        // Need to check whether the player has pressed the key and theEnemy is not null
+        if (Input.GetKeyDown(attackButton))
+        {
+            theHeroMeleeSystem.meleeAttack();
+        }
+#endif
 	}
+
+#if UNITY_ANDROID
+    public void doAttack()
+    {
+
+    }
+#endif
 }

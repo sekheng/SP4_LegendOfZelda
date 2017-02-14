@@ -7,12 +7,12 @@ using UnityEngine.EventSystems;
 /// To handle the drag movement of the player from Android mobile
 /// </summary>
 public class PlayerDrag : MonoBehaviour {
-#if UNITY_ANDROID
     [Tooltip("The Joystick background")]
     public Image ImgFG;
     // joystick bg
     [Tooltip("Actual joystick")]
     public Image ImgBG;
+#if UNITY_ANDROID
     private Vector3 directionOfStick;
 
     // There will only be 1 hero throughout the entire game!
@@ -229,8 +229,10 @@ public class PlayerDrag : MonoBehaviour {
 #else
     void Start()
     {
-        transform.parent.gameObject.SetActive(false);
-        gameObject.SetActive(false);
+        //transform.parent.gameObject.SetActive(false);
+        //gameObject.SetActive(false);
+        ImgFG.gameObject.SetActive(false);
+        ImgBG.gameObject.SetActive(false);
     }
 #endif
 }
