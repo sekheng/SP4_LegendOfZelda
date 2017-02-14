@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Increase Magic resistance against some stuff!
-/// </summary>
-public class MagicArmorScript : MonoBehaviour {
+public class MagicDefendScript : MagicTypeScript {
 
 	// Use this for initialization
 	void Start () {
@@ -12,7 +9,8 @@ public class MagicArmorScript : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
 	
 	}
 }

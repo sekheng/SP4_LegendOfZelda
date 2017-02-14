@@ -1,10 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-/// <summary>
-/// Used for attacking the enemy and to boost the attack
-/// </summary>
-public class MagicAttackScript : MonoBehaviour {
+public class MagicAttackScript : MagicTypeScript {
 
 	// Use this for initialization
 	void Start () {
