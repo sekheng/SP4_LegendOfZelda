@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/Forest_Scene.unity
+- path: Assets/Scene/SplashScene.unity
   isLoaded: 1
   isActive: 1
