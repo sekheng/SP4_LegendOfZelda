@@ -22,7 +22,7 @@ public class Slime_RoamState : State {
         directions[2] = Vector3.left;
         directions[3] = Vector3.right;
         rngTime = new IntRange(1, 2);
-        rngDir = new IntRange(0, 3);
+        rngDir = new IntRange(0, 4);
         manager = transform.parent.GetComponent<Slime_Statemanager>();
         roamingTime = 0;
         timeToStopRoaming = rngTime.Random;

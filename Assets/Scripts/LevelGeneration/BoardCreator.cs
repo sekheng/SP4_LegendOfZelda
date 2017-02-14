@@ -20,7 +20,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
     public GameObject player;                                   // Player prefab
     public GameObject PlayerController;                         // PlayerController prefab
-    //public GameObject slime;                                  // Slime prefab, PLEASE DRAG IN LATER
+    public GameObject slime;                                  // Slime prefab, PLEASE DRAG IN LATER
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     //make rooms public if you have to
@@ -52,17 +52,15 @@ public class BoardCreator : MonoBehaviour
                 Vector3 playerPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); //spawns roughly in the middle of the room
                 Instantiate(player, playerPos, Quaternion.identity);
                 Instantiate(PlayerController);
-                break;
             }
             //feel free to instantiate slime here
-            if(i == test.Random) //This is a non invocable member, it's return type is int, but is not a function.
+            if(i == 1) //This is a non invocable member, it's return type is int, but is not a function.
             {
                 // instantiate slime. This provides a ( 1 / numberOfRooms ) chance of spawning a slime PER room.
-                /*
-                 * Vector3 slimePos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); 
+                
+                 Vector3 slimePos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); 
                  //spawns roughly in the middle of the room
-                Instantiate(player, slimePos, Quaternion.identity);
-                 */
+                Instantiate(slime, slimePos, Quaternion.identity);
             }
         }
     }
