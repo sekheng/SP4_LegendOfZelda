@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-    private GameObject player; //drag in prefab thanks
+    private GameObject player;
 
 	// Update is called once per frame
 	void Update () {

@@ -62,12 +62,12 @@ public class exampleUI : MonoBehaviour
             //Scroll through Player dialogue options
             if (!data.pausedAction)
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     if (data.selectedOption < currentOptions.Count - 1)
                         data.selectedOption++;
                 }
-                if (Input.GetKeyDown(KeyCode.W))
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     if (data.selectedOption > 0)
                         data.selectedOption--;
@@ -104,10 +104,10 @@ public class exampleUI : MonoBehaviour
             string name = dialogue.assigned.dialogueName;
             switch (name)
             {
-                case "Crazy Cap":
-                    if (gotItem)
-                    dialogue.nodeData = dialogue.SetNode(17); //SetNode allows you to jump to whichever node you want
-                    break;
+                //case "Crazy Cap":
+                //    if (gotItem)
+                //    dialogue.nodeData = dialogue.SetNode(17); //SetNode allows you to jump to whichever node you want
+                //    break;
             }
         }
 

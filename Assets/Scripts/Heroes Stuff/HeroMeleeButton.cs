@@ -21,7 +21,7 @@ public class HeroMeleeButton : MonoBehaviour {
 	void Start () {
         theHeroMeleeSystem = GetComponent<MeleeScript>();
 	#if UNITY_STANDALONE
-        theAttackButton.SetActive(false);
+        //theAttackButton.SetActive(false);
 #endif
     }
 	

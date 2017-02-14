@@ -33,7 +33,6 @@ public class examplePlayer : MonoBehaviour
         if (Physics.Raycast(transform.position, transform.forward, out rHit, 2))
         {
             //In this example, we will try to interact with any collider the raycast finds
-
             //Lets grab the NPC's DialogueAssign script... if there's any
             VIDE_Assign assigned;
             if (rHit.collider.GetComponent<VIDE_Assign>() != null)

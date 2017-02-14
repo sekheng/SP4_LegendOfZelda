@@ -20,6 +20,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
     public GameObject player;                                   // Player prefab
     public GameObject PlayerController;                         // PlayerController prefab
+    public GameObject testDragon;
     //public GameObject slime;                                  // Slime prefab, PLEASE DRAG IN LATER
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
@@ -52,6 +53,8 @@ public class BoardCreator : MonoBehaviour
                 Vector3 playerPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); //spawns roughly in the middle of the room
                 Instantiate(player, playerPos, Quaternion.identity);
                 Instantiate(PlayerController);
+
+                Instantiate(testDragon, playerPos + new Vector3(1,0,0), Quaternion.identity);
                 break;
             }
             //feel free to instantiate slime here
@@ -124,7 +127,7 @@ public class BoardCreator : MonoBehaviour
     {
         // Go through all the rooms...
         for (int i = 0; i < rooms.Length; i++)
-        {
+        {   
             Room currentRoom = rooms[i];
 
             // ... and for each room go through it's width.
