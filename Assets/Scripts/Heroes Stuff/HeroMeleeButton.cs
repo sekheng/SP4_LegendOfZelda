@@ -9,6 +9,9 @@ public class HeroMeleeButton : MonoBehaviour {
     // Since this is for hero
     private MeleeScript theHeroMeleeSystem;
 
+    [Tooltip("The Melee Button for mobile")]
+    public GameObject theAttackButton;
+
 #if UNITY_STANDALONE
     [Tooltip("The Key pressed for Melee Attack!")]
     public KeyCode attackButton = KeyCode.Z;
@@ -17,7 +20,10 @@ public class HeroMeleeButton : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         theHeroMeleeSystem = GetComponent<MeleeScript>();
-	}
+	#if UNITY_STANDALONE
+        theAttackButton.SetActive(false);
+#endif
+    }
 	
 	// Update is called once per frame
 	void Update () {
