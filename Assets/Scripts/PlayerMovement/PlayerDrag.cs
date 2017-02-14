@@ -65,7 +65,7 @@ public class PlayerDrag : MonoBehaviour {
                     ImgFG.rectTransform.anchoredPosition = directionOfStick;
                     // Since heroes can only move in 4 direction, then we should only do just that!
                     // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-                    if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+                    if (directionOfStick.sqrMagnitude < ImgBG.rectTransform.sizeDelta.y * 0.25f)
                     {
                         theOnlyHero.stopMovement();
                         return; // Otherwise the hero will still be moving!

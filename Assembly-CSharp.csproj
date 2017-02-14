@@ -63,11 +63,13 @@
      <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\IntRange.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\Room.cs" />
-     <Compile Include="Assets\Scripts\Magic Stuff\MagicArmorScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicAttackScript.cs" />
+     <Compile Include="Assets\Scripts\Magic Stuff\MagicDefendScript.cs" />
+     <Compile Include="Assets\Scripts\Magic Stuff\MagicTypeScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
+     <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\Examples\Example1\examplePlayer.cs" />
