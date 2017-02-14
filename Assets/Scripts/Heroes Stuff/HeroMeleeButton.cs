@@ -33,7 +33,7 @@ public class HeroMeleeButton : MonoBehaviour {
 #if UNITY_ANDROID
     public void doAttack()
     {
-
+        theHeroMeleeSystem.meleeAttack();
     }
 #endif
 }

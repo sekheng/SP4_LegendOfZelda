@@ -58,7 +58,7 @@ public class MeleeScript : MonoBehaviour {
         {
             //Debug.Log("Successful attack");
             //theEnemyCollider.GetComponent<HealthScript>().modifyHealth(-m_damage_);
-            //timeCounter = 0;
+            timeCounter = 0;
             AttackSystemScript.instance.ManageMeleeAttack(this, theEnemyCollider.GetComponent<HealthScript>());
         }
         //Debug.Log("Raycasted Object: " + theHitObject.collider.gameObject.name);
