@@ -53,20 +53,20 @@
      <Compile Include="Assets\Scripts\AI\Slime\Slime_RoamState.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_Statemanager.cs" />
      <Compile Include="Assets\Scripts\AI\State.cs" />
-     <Compile Include="Assets\Scripts\BoardCreator.cs" />
-     <Compile Include="Assets\Scripts\CSVReader.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Corridor.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
-     <Compile Include="Assets\Scripts\IntRange.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\IntRange.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\Room.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicArmorScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicAttackScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
-     <Compile Include="Assets\Scripts\Room.cs" />
      <None Include="Assets\ForestLevel.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -12,6 +12,7 @@ public class CSVReader : MonoBehaviour {
     public GameObject TreasurePrefab;
     public GameObject EnemyPrefab;
     public GameObject floorPrefab;
+    public GameObject PlayerController;
 
     private string[,] LevelLayoutArray;
     private string [] textRow;
@@ -42,6 +43,7 @@ public class CSVReader : MonoBehaviour {
                 else if (LevelLayoutArray[x, y] == "3")
                 {
                     result = Instantiate(PlayerPrefab, objPos, Quaternion.identity) as GameObject;
+                    Instantiate(PlayerController, objPos, Quaternion.identity);
                 }
                 //else if (LevelLayoutArray[x, y] == "4")
                 //{
