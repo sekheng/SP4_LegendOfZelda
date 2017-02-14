@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\AI\Grid.cs" />
+     <Compile Include="Assets\Scripts\AI\MonsterInfomation.cs" />
      <Compile Include="Assets\Scripts\AI\Node.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_DeadState.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_IdleState.cs" />
@@ -53,6 +54,7 @@
      <Compile Include="Assets\Scripts\AI\Slime\Slime_Statemanager.cs" />
      <Compile Include="Assets\Scripts\AI\State.cs" />
      <Compile Include="Assets\Scripts\BoardCreator.cs" />
+     <Compile Include="Assets\Scripts\CSVReader.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Corridor.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
@@ -63,6 +65,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
      <Compile Include="Assets\Scripts\Room.cs" />
+     <None Include="Assets\ForestLevel.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
