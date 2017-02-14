@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{F6AFA009-4CBB-5834-914B-D0DE8B94695A}") = "SP4_LegendOfZelda", "Assembly-CSharp.csproj", "{607E1302-19C8-772E-3BA6-C04F1FDE88FF}"
 EndProject
+Project("{F6AFA009-4CBB-5834-914B-D0DE8B94695A}") = "SP4_LegendOfZelda", "Assembly-CSharp-Editor.csproj", "{86780246-C23A-F9D9-284B-CA2735A1C7DD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{607E1302-19C8-772E-3BA6-C04F1FDE88FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{607E1302-19C8-772E-3BA6-C04F1FDE88FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{607E1302-19C8-772E-3BA6-C04F1FDE88FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86780246-C23A-F9D9-284B-CA2735A1C7DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86780246-C23A-F9D9-284B-CA2735A1C7DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86780246-C23A-F9D9-284B-CA2735A1C7DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86780246-C23A-F9D9-284B-CA2735A1C7DD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

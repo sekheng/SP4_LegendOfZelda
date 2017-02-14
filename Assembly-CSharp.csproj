@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6C1D2FB0-F598-8142-D759-02BBA614783F}</ProjectGuid>
+    <ProjectGuid>{607E1302-19C8-772E-3BA6-C04F1FDE88FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -53,25 +53,34 @@
      <Compile Include="Assets\Scripts\AI\Slime\Slime_RoamState.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_Statemanager.cs" />
      <Compile Include="Assets\Scripts\AI\State.cs" />
-     <Compile Include="Assets\Scripts\BoardCreator.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
-     <Compile Include="Assets\Scripts\Corridor.cs" />
-     <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
-     <Compile Include="Assets\Scripts\IntRange.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\IntRange.cs" />
+     <Compile Include="Assets\Scripts\LevelGeneration\Room.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicArmorScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicAttackScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
-     <Compile Include="Assets\Scripts\Room.cs" />
+     <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
+     <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
+     <Compile Include="Assets\VIDE\Examples\Example1\examplePlayer.cs" />
+     <Compile Include="Assets\VIDE\Examples\Example1\exampleUI.cs" />
+     <Compile Include="Assets\VIDE\Examples\Example1\witchExample.cs" />
+     <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
+     <Compile Include="Assets\VIDE\VIDE_Data.cs" />
+     <None Include="Assets\VIDE\license.txt" />
+     <None Include="Assets\ForestLevel.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

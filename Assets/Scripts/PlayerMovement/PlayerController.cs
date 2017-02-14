@@ -79,16 +79,19 @@ public class PlayerController : MonoBehaviour {
 
     void LateUpdate()
     {
-        switch (checkPlayerMoved)
+        if(theOnlyHero != null)
         {
-            case false:
-                // If player hasn't move, stop the hero's movement!
-                theOnlyHero.stopMovement();
-                break;
-            case true:
-                // Then initialized it to be false!
-                checkPlayerMoved = false;
-                break;
+            switch (checkPlayerMoved)
+            {
+                case false:
+                    // If player hasn't move, stop the hero's movement!
+                    theOnlyHero.stopMovement();
+                    break;
+                case true:
+                    // Then initialized it to be false!
+                    checkPlayerMoved = false;
+                    break;
+            }
         }
     }
 #endif
