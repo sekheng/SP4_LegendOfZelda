@@ -72,9 +72,11 @@
      <Compile Include="Assets\VIDE\Examples\Example1\examplePlayer.cs" />
      <Compile Include="Assets\VIDE\Examples\Example1\exampleUI.cs" />
      <Compile Include="Assets\VIDE\Examples\Example1\witchExample.cs" />
+     <Compile Include="Assets\VIDE\Examples\Example2\minUIExample.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
      <Compile Include="Assets\VIDE\VIDE_Data.cs" />
      <None Include="Assets\VIDE\license.txt" />
+     <None Include="Assets\VIDE\Resources\ReadMe.txt" />
      <None Include="Assets\ForestLevel.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

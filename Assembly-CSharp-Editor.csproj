@@ -48,6 +48,7 @@
      <Compile Include="Assets\VIDE\Editor\VIDE_AssignC.cs" />
      <Compile Include="Assets\VIDE\Editor\VIDE_Editor.cs" />
      <None Include="Assets\VIDE\license.txt" />
+     <None Include="Assets\VIDE\Resources\ReadMe.txt" />
      <None Include="Assets\ForestLevel.txt" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
