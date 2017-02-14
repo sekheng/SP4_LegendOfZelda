@@ -18,6 +18,10 @@ public class PlayerDrag : MonoBehaviour {
 
     [Tooltip("The offset between the center position of background and the joystick so that the hero can start moving")]
     public float offsetDistance = 10.0f;
+    // The finger that pressed the joystick!
+    private Touch theFingerTouched;
+    // Check for any finger that has pressed the joystick!
+    private bool fingerHasPressedIt = false;
 
     // Use this for initialization
 	void Start () {
@@ -30,45 +34,71 @@ public class PlayerDrag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	    if (fingerHasPressedIt)
+        {
+            Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
+            directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
+            if (directionOfStick.magnitude > ImgBG.rectTransform.sizeDelta.x * 0.5f)
+            {
+                directionOfStick.Normalize();
+                directionOfStick *= ImgBG.rectTransform.sizeDelta.x * 0.5f;
+            }
+            ImgFG.rectTransform.anchoredPosition = directionOfStick;
+            // Since heroes can only move in 4 direction, then we should only do just that!
+            // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+            if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+            {
+                theOnlyHero.stopMovement();
+                return; // Otherwise the hero will still be moving!
+            }
+            if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+            {
+                directionOfStick = new Vector3(directionOfStick.x, 0);
+            }
+            else
+            {
+                directionOfStick = new Vector3(0, directionOfStick.y);
+            }
+            theOnlyHero.moveDirection(directionOfStick);
+        }
 	}
 
     public void Dragging()
     {
-        Touch[] allZeTouch = Input.touches;
-        foreach (Touch zeTouch in allZeTouch)
-        {
-            if (zeTouch.position.x < (ImgBG.rectTransform.position.x + ImgBG.rectTransform.sizeDelta.x * 0.5f) && zeTouch.position.x > (ImgBG.rectTransform.position.x - ImgBG.rectTransform.sizeDelta.x * 0.5f)
-                && zeTouch.position.y < (ImgBG.rectTransform.position.y + ImgBG.rectTransform.sizeDelta.y * 0.5f) && zeTouch.position.y > (ImgBG.rectTransform.position.y - ImgBG.rectTransform.sizeDelta.y * 0.5f))
-            {
-                // Need to check whether the point is in the square!
-                Vector3 ze3DTouch = new Vector3(zeTouch.position.x, zeTouch.position.y, ImgBG.rectTransform.position.z);
-                directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
-                if (directionOfStick.magnitude > ImgBG.rectTransform.sizeDelta.x * 0.5f)
-                {
-                    directionOfStick.Normalize();
-                    directionOfStick *= ImgBG.rectTransform.sizeDelta.x * 0.5f;
-                }
-                ImgFG.rectTransform.anchoredPosition = directionOfStick;
-                // Since heroes can only move in 4 direction, then we should only do just that!
-                // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-                if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
-                {
-                    theOnlyHero.stopMovement();
-                    return; // Otherwise the hero will still be moving!
-                }
-                if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-                {
-                    directionOfStick = new Vector3(directionOfStick.x, 0);
-                }
-                else
-                {
-                    directionOfStick = new Vector3(0, directionOfStick.y);
-                }
-                theOnlyHero.moveDirection(directionOfStick);
-                break;
-            }
-        }
+        //Touch[] allZeTouch = Input.touches;
+        //foreach (Touch zeTouch in allZeTouch)
+        //{
+        //    if (zeTouch.position.x < (ImgBG.rectTransform.position.x + ImgBG.rectTransform.sizeDelta.x * 0.5f) && zeTouch.position.x > (ImgBG.rectTransform.position.x - ImgBG.rectTransform.sizeDelta.x * 0.5f)
+        //        && zeTouch.position.y < (ImgBG.rectTransform.position.y + ImgBG.rectTransform.sizeDelta.y * 0.5f) && zeTouch.position.y > (ImgBG.rectTransform.position.y - (ImgBG.rectTransform.sizeDelta.y * 0.5f)))
+        //    {
+        //        // Need to check whether the point is in the square!
+        //        Vector3 ze3DTouch = new Vector3(zeTouch.position.x, zeTouch.position.y, ImgBG.rectTransform.position.z);
+        //        directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
+        //        if (directionOfStick.magnitude > ImgBG.rectTransform.sizeDelta.x * 0.5f)
+        //        {
+        //            directionOfStick.Normalize();
+        //            directionOfStick *= ImgBG.rectTransform.sizeDelta.x * 0.5f;
+        //        }
+        //        ImgFG.rectTransform.anchoredPosition = directionOfStick;
+        //        // Since heroes can only move in 4 direction, then we should only do just that!
+        //        // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+        //        if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+        //        {
+        //            theOnlyHero.stopMovement();
+        //            return; // Otherwise the hero will still be moving!
+        //        }
+        //        if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+        //        {
+        //            directionOfStick = new Vector3(directionOfStick.x, 0);
+        //        }
+        //        else
+        //        {
+        //            directionOfStick = new Vector3(0, directionOfStick.y);
+        //        }
+        //        theOnlyHero.moveDirection(directionOfStick);
+        //        break;
+        //    }
+        //}
 
         //Debug.Log("Dragging Position");
         // Need to check whether the point is in the square!
@@ -102,8 +132,22 @@ public class PlayerDrag : MonoBehaviour {
         ImgFG.rectTransform.anchoredPosition = new Vector3(0, 0, 1);
         directionOfStick = new Vector3(0, 0, 1);
         theOnlyHero.stopMovement();
-    }   
-
+        fingerHasPressedIt = false;
+    }
+    public void FingerPressed()
+    {
+        Touch[] allZeTouch = Input.touches;
+        foreach (Touch zeTouch in allZeTouch)
+        {
+            if (zeTouch.position.x < (ImgBG.rectTransform.position.x + ImgBG.rectTransform.sizeDelta.x * 0.5f) && zeTouch.position.x > (ImgBG.rectTransform.position.x - ImgBG.rectTransform.sizeDelta.x * 0.5f)
+                && zeTouch.position.y < (ImgBG.rectTransform.position.y + ImgBG.rectTransform.sizeDelta.y * 0.5f) && zeTouch.position.y > (ImgBG.rectTransform.position.y - (ImgBG.rectTransform.sizeDelta.y * 0.5f)))
+            {
+                theFingerTouched = zeTouch;
+                fingerHasPressedIt = true;
+                break;
+            }
+        }
+    }
 #else
     void Start()
     {
