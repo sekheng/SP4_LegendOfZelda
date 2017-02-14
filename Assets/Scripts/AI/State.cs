@@ -14,8 +14,7 @@ public class State : MonoBehaviour {
     public virtual bool checkForCollision()
     {
         Vector3 dir = transform.TransformDirection(Vector3.up);
-        Physics2D.Raycast(monsterTransform.position, -Vector3.up, monsterSprite.bounds.size.x);
-        RaycastHit2D[] hit = Physics2D.BoxCastAll(monsterTransform.position, monsterSprite.bounds.size * 1.5f,0,Vector2.zero);
+        RaycastHit2D[] hit = Physics2D.BoxCastAll(monsterTransform.position, monsterSprite.bounds.size,0,Vector2.zero);
 
         foreach (RaycastHit2D temp in hit)
         {
@@ -25,9 +24,7 @@ public class State : MonoBehaviour {
                 {
                     temp.collider.gameObject.GetComponent<HealthScript>().m_health -= monsterInfo.dps;
                     return true;
-                    //Debug.Log(temp.collider.gameObject.tag);
                 }
-                // Debug.Log(temp.collider.gameObject.name);
             }
         }
         return false;
