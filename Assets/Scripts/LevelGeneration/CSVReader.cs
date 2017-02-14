@@ -57,7 +57,7 @@ public class CSVReader : MonoBehaviour {
                 {
                     result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
                 }
-                if(!result.CompareTag("Player"))
+                if(!result.CompareTag("Player") && !result.CompareTag("Environment"))   
                 {
                     result.transform.SetParent(lvlHolder.transform);
                 }
