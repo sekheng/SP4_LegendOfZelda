@@ -9,18 +9,20 @@ public class BoardCreator : MonoBehaviour
         Wall, Floor,
     }
 
-    public int columns = 100;                                 // The number of columns on the board (how wide it will be).
-    public int rows = 100;                                    // The number of rows on the board (how tall it will be).
-    public IntRange numRooms = new IntRange(15, 20);         // The range of the number of rooms there can be.
-    public IntRange roomWidth = new IntRange(3, 10);         // The range of widths rooms can have.
-    public IntRange roomHeight = new IntRange(3, 10);        // The range of heights rooms can have.
-    public IntRange corridorLength = new IntRange(6, 10);    // The range of lengths corridors between rooms can have.
-    public GameObject[] floorTiles;                           // An array of floor tile prefabs.
-    public GameObject[] wallTiles;                            // An array of wall tile prefabs.
-    public GameObject[] outerWallTiles;                       // An array of outer wall tile prefabs.
-    public GameObject player;
+    public int columns = 100;                                   // The number of columns on the board (how wide it will be).
+    public int rows = 100;                                      // The number of rows on the board (how tall it will be).
+    public IntRange numRooms = new IntRange(15, 20);            // The range of the number of rooms there can be.
+    public IntRange roomWidth = new IntRange(3, 10);            // The range of widths rooms can have.
+    public IntRange roomHeight = new IntRange(3, 10);           // The range of heights rooms can have.
+    public IntRange corridorLength = new IntRange(6, 10);       // The range of lengths corridors between rooms can have.
+    public GameObject[] floorTiles;                             // An array of floor tile prefabs.
+    public GameObject[] wallTiles;                              // An array of wall tile prefabs.
+    public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
+    public GameObject player;                                   // Player prefab
+    //public GameObject slime;                                  // Slime prefab, PLEASE DRAG IN LATER
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
+    //make rooms public if you have to
     private Room[] rooms;                                     // All the rooms that are created for this board.
     private Corridor[] corridors;                             // All the corridors that connect the rooms.
     private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
@@ -40,6 +42,8 @@ public class BoardCreator : MonoBehaviour
         InstantiateTiles();
         InstantiateOuterWalls();
 
+        IntRange test = new IntRange(0, rooms.Length);
+
         for (int i = 0; i < rooms.Length; i++)
         {
             if (i == 0)
@@ -47,6 +51,16 @@ public class BoardCreator : MonoBehaviour
                 Vector3 playerPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); //spawns roughly in the middle of the room
                 Instantiate(player, playerPos, Quaternion.identity);
                 break;
+            }
+            //feel free to instantiate slime here
+            if(i == test.Random) //This is a non invocable member, it's return type is int, but is not a function.
+            {
+                // instantiate slime. This provides a ( 1 / numberOfRooms ) chance of spawning a slime PER room.
+                /*
+                 * Vector3 slimePos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); 
+                 //spawns roughly in the middle of the room
+                Instantiate(player, slimePos, Quaternion.identity);
+                 */
             }
         }
     }
@@ -251,6 +265,6 @@ public class BoardCreator : MonoBehaviour
         GameObject tileInstance = Instantiate(prefabs[randomIndex], position, Quaternion.identity) as GameObject;
 
         // Set the tile's parent to the board holder.
-        tileInstance.transform.parent = boardHolder.transform;
+        tileInstance.transform.SetParent(boardHolder.transform);
     }
 }
