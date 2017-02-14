@@ -18,6 +18,8 @@ public class PlayerDrag : MonoBehaviour {
 
     [Tooltip("The offset between the center position of background and the joystick so that the hero can start moving")]
     public float offsetDistance = 10.0f;
+    // The finger that pressed the joystick!
+    private Touch theFingerTouched;
 
     // Use this for initialization
 	void Start () {
@@ -39,7 +41,7 @@ public class PlayerDrag : MonoBehaviour {
         foreach (Touch zeTouch in allZeTouch)
         {
             if (zeTouch.position.x < (ImgBG.rectTransform.position.x + ImgBG.rectTransform.sizeDelta.x * 0.5f) && zeTouch.position.x > (ImgBG.rectTransform.position.x - ImgBG.rectTransform.sizeDelta.x * 0.5f)
-                && zeTouch.position.y < (ImgBG.rectTransform.position.y + ImgBG.rectTransform.sizeDelta.y * 0.5f) && zeTouch.position.y > (ImgBG.rectTransform.position.y - ImgBG.rectTransform.sizeDelta.y * 0.5f))
+                && zeTouch.position.y < (ImgBG.rectTransform.position.y + ImgBG.rectTransform.sizeDelta.y * 0.5f) && zeTouch.position.y > (ImgBG.rectTransform.position.y - (ImgBG.rectTransform.sizeDelta.y * 0.5f)))
             {
                 // Need to check whether the point is in the square!
                 Vector3 ze3DTouch = new Vector3(zeTouch.position.x, zeTouch.position.y, ImgBG.rectTransform.position.z);
@@ -103,7 +105,6 @@ public class PlayerDrag : MonoBehaviour {
         directionOfStick = new Vector3(0, 0, 1);
         theOnlyHero.stopMovement();
     }   
-
 #else
     void Start()
     {

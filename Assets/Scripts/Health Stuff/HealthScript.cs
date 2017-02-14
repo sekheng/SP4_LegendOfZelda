@@ -13,5 +13,13 @@ public class HealthScript : MonoBehaviour {
 	
 	}
 	
+    public void modifyHealth(float zeNum)
+    {
+        m_health += zeNum;
+    }
+    public void modifyHealth(int zeNum)
+    {
+        m_health += zeNum;
+    }
 
 }
