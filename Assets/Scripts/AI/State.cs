@@ -13,7 +13,6 @@ public class State : MonoBehaviour {
 
     public virtual bool checkForCollision()
     {
-        Vector3 dir = transform.TransformDirection(Vector3.up);
         RaycastHit2D[] hit = Physics2D.BoxCastAll(monsterTransform.position, monsterSprite.bounds.size,0,Vector2.zero);
 
         foreach (RaycastHit2D temp in hit)
