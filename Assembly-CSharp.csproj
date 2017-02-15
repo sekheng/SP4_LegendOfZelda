@@ -69,8 +69,10 @@
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
+     <Compile Include="Assets\Scripts\RoomInit.cs" />
      <Compile Include="Assets\Scripts\SceneTransition Scripts\GoSceneScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
+     <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SplashScripts.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
