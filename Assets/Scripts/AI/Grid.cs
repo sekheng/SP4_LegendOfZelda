@@ -66,7 +66,7 @@ public class Grid : MonoBehaviour{
 
         //make sure the percent is in the grid
         percentX = Mathf.Clamp01(percentX);
-        percentX = Mathf.Clamp01(percentY);
+        percentY = Mathf.Clamp01(percentY);
 
         //convert the percentage to a position in the grid
         int x = Mathf.RoundToInt((gridSizeX - 1) * percentX);
