@@ -42,7 +42,7 @@ public class LoadPlayerScript : MonoBehaviour {
             zeDebugMesh.GetComponent<TextMesh>().text = "Successful Writing";
         }
 #else
-        actualDBFilePath = Application.dataPath + "/DataBase/AllData.db";
+        actualDBFilePath = Application.dataPath + "/AllData.db";
 #endif
         connectionString = "URI=file:" + actualDBFilePath;
         GameObject thePlayer = GameObject.FindGameObjectWithTag("Player");

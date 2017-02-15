@@ -18,60 +18,66 @@ public class MeleeScript : MonoBehaviour {
     // Count the timer!
     private float timeCounter = 0;
     // To track the enemy
-    private Collider2D theEnemyCollider = null;
+    //private Collider2D theEnemyCollider = null;
     // The melee range of the character!
-    private BoxCollider2D theMeleeAttackCollide;
+    //private BoxCollider2D theMeleeAttackCollide;
     // The raycast of the ray!
     private Vector3 directionOfRay = new Vector3(1, 0, 0);
 
 	// Use this for initialization
 	void Start () {
-        BoxCollider2D[] AllTheCollider = GetComponents<BoxCollider2D>();
-        foreach (BoxCollider2D zeBox in AllTheCollider)
-        {
-            // If the collider isTrigger
-            if (zeBox.isTrigger)
-            {
-                theMeleeAttackCollide = zeBox;
-                break;
-            }
-        }
+        //BoxCollider2D[] AllTheCollider = GetComponents<BoxCollider2D>();
+        //foreach (BoxCollider2D zeBox in AllTheCollider)
+        //{
+        //    // If the collider isTrigger
+        //    if (zeBox.isTrigger)
+        //    {
+        //        theMeleeAttackCollide = zeBox;
+        //        break;
+        //    }
+        //}
 	}
 	
 	// Update is called once per frame
 	void Update () {
         timeCounter += Time.deltaTime;
-        Debug.DrawRay(transform.position, directionOfRay * m_range, Color.black);
+        //Debug.DrawRay(transform.position, directionOfRay * m_range, Color.black);
         //Debug.Log(gameObject.name + ": " + directionOfRay);
 	}
 
     // Use call this function to attack the enemy!
     public void meleeAttack()
     {
-        //Debug.Log("Trying to attack");
-        RaycastHit2D theHitObject;
+        Debug.Log("Trying to attack");
+        //RaycastHit2D theHitObject;
         //Debug.Log("Time Counter: " + timeCounter);
-        theHitObject = Physics2D.Raycast(transform.position, directionOfRay * m_range);
-        if (timeCounter > m_time && theEnemyCollider != null && theEnemyCollider.GetComponent<HealthScript>() != null 
-            && theHitObject != null
-            )
+        //theHitObject = Physics2D.Raycast(transform.position, directionOfRay * m_range);
+        //if (timeCounter > m_time && theEnemyCollider != null && theEnemyCollider.GetComponent<HealthScript>() != null 
+        //    && theHitObject != null
+        //    )
+        //{
+        //    //Debug.Log("Successful attack");
+        //    //theEnemyCollider.GetComponent<HealthScript>().modifyHealth(-m_damage_);
+        //    timeCounter = 0;
+        //    AttackSystemScript.instance.ManageMeleeAttack(this, theEnemyCollider.GetComponent<HealthScript>());
+        //}
+
+        // TODO: Will change the dimension to sprite bounds if everything is sprite!
+        Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
+        Debug.Log("Position of Box: " + (transform.position + transform.localScale));
+        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
+            , transform.localScale, 0, Vector2.zero);
+        foreach (RaycastHit2D attacked in hits)
         {
-            //Debug.Log("Successful attack");
-            //theEnemyCollider.GetComponent<HealthScript>().modifyHealth(-m_damage_);
-            timeCounter = 0;
-            AttackSystemScript.instance.ManageMeleeAttack(this, theEnemyCollider.GetComponent<HealthScript>());
+            // This is so that it is not attackin itself!
+            if (!attacked.collider.gameObject.Equals(gameObject))
+            {
+                Debug.Log("Successful attack");
+                timeCounter = 0;
+                AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
+            }
         }
         //Debug.Log("Raycasted Object: " + theHitObject.collider.gameObject.name);
-    }
-
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        theEnemyCollider = other;
-        //Debug.Log("Enemy: " + other.gameObject.name);
-    }
-    void OnTriggerExit2D(Collider2D other)
-    {
-        theEnemyCollider = null;
     }
 
     public void setDirection(Vector3 zeDir)
