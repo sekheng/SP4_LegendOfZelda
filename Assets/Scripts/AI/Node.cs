@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Node {
     public bool m_bWalkable;
-    public Vector3 m_v3_worldPosition;
+    public Vector2 m_v2_worldPosition;
 
 
-    public Node(bool zeWalkable, Vector3 zeWoldPos)
+    public Node(bool zeWalkable, Vector2 zeWoldPos)
     {
         m_bWalkable = zeWalkable;
-        m_v3_worldPosition = zeWoldPos;
+        m_v2_worldPosition = zeWoldPos;
     }
 	
 }

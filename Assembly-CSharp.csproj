@@ -78,6 +78,7 @@
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
      <Compile Include="Assets\VIDE\VIDE_Data.cs" />
+     <None Include="Assets\CaveLevel.txt" />
      <None Include="Assets\VIDE\license.txt" />
      <None Include="Assets\VIDE\Resources\ReadMe.txt" />
      <None Include="Assets\ForestLevel.txt" />
