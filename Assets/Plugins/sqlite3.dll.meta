@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: a740072c95c53c14489e674e37aa760d
-timeCreated: 1487064417
+timeCreated: 1487120511
 licenseType: Free
 PluginImporter:
   serializedVersion: 1
@@ -11,10 +11,6 @@ PluginImporter:
     Any:
       enabled: 1
       settings: {}
-    Editor:
-      enabled: 0
-      settings:
-        DefaultValueInitialized: true
   userData: 
   assetBundleName: 
   assetBundleVariant: 

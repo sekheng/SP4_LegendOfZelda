@@ -93,7 +93,4 @@ public class VIDE_Assign : MonoBehaviour
         diags.Sort();
 
     }
-
-
-
 }
