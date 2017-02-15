@@ -21,7 +21,6 @@ public class BoardCreator : MonoBehaviour
     public GameObject player;                                   // Player prefab
     public GameObject PlayerController;                         // PlayerController prefab
     public GameObject slime;                                    // Slime prefab, PLEASE DRAG IN LATER
-    public GameObject Dragon;                                   // Dragon prefab, PLEASE DRAG IN LATER
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     //make rooms public if you have to
@@ -48,19 +47,16 @@ public class BoardCreator : MonoBehaviour
 
         for (int i = 0; i < rooms.Length; i++)
         {
+            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); //spawns roughly in the middle of the room
             if (i == 0)
             {
-                Vector3 playerPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); //spawns roughly in the middle of the room
-                Instantiate(player, playerPos, Quaternion.identity);
+                Instantiate(player, objPos, Quaternion.identity);
                 Instantiate(PlayerController);
-                Instantiate(Dragon, playerPos + new Vector3(1, 0, 0), Quaternion.identity);
             }
             //feel free to instantiate slime here
-            if(i == 1) //This is a non invocable member, it's return type is int, but is not a function.
+            if(i %  5 == 0) //spawns 1 slime every 5 rooms.
             {
-                // instantiate slime. This provides a ( 1 / numberOfRooms ) chance of spawning a slime PER room.
-                
-                 Vector3 slimePos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f), 0); 
+                 Instantiate(slime, objPos, Quaternion.identity);
                  //spawns roughly in the middle of the room
             }
         }
