@@ -47,7 +47,7 @@ public class BoardCreator : MonoBehaviour
 
         for (int i = 0; i < rooms.Length; i++)
         {
-            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f) - (rows / 2), rooms[i].yPos + (rooms[i].roomHeight * 0.5f) - (columns / 2), 0); //spawns roughly in the middle of the room
+            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f) - ((rows / 2)  - 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f) - ((rows / 2)  - 0.5f), 0); //spawns roughly in the middle of the room
             if (i == 0)
             {
                 Instantiate(player, objPos, Quaternion.identity);
@@ -187,13 +187,13 @@ public class BoardCreator : MonoBehaviour
             for (int j = 0; j < tiles[i].Length; j++)
             {
                 // ... and instantiate a floor tile for it.
-                InstantiateFromArray(floorTiles, i - (rows / 2), j - (columns / 2));
+                InstantiateFromArray(floorTiles, i - ((rows / 2)  - 0.5f), j - ((rows / 2)  - 0.5f));
 
                 // If the tile type is Wall...
                 if (tiles[i][j] == TileType.Wall)
                 {
                     // ... instantiate a wall over the top.
-                    InstantiateFromArray(wallTiles, i - (rows / 2), j - (columns / 2));
+                    InstantiateFromArray(wallTiles, i - ((rows / 2)  - 0.5f), j - ((rows / 2)  - 0.5f));
                 }
             }
         }
@@ -209,12 +209,12 @@ public class BoardCreator : MonoBehaviour
         float topEdgeY = rows + 0f;
 
         // Instantiate both vertical walls (one on each side).
-        InstantiateVerticalOuterWall(leftEdgeX - (rows / 2), bottomEdgeY - (rows / 2), topEdgeY - (columns / 2));
-        InstantiateVerticalOuterWall(rightEdgeX - (rows / 2), bottomEdgeY - (rows / 2), topEdgeY - (columns / 2));
+        InstantiateVerticalOuterWall(leftEdgeX - ((rows / 2)  - 0.5f), bottomEdgeY - ((rows / 2)  - 0.5f), topEdgeY - ((rows / 2)  - 0.5f));
+        InstantiateVerticalOuterWall(rightEdgeX - ((rows / 2)  - 0.5f), bottomEdgeY - ((rows / 2)  - 0.5f), topEdgeY - ((rows / 2)  - 0.5f));
 
         // Instantiate both horizontal walls, these are one in left and right from the outer walls.
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - (rows / 2), rightEdgeX - 1f - (rows / 2), bottomEdgeY - (columns / 2));
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - (rows / 2), rightEdgeX - 1f - (rows / 2), topEdgeY - (columns / 2));
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2)  - 0.5f), rightEdgeX - 1f - ((rows / 2)  - 0.5f), bottomEdgeY - ((rows / 2)  - 0.5f));
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2)  - 0.5f), rightEdgeX - 1f - ((rows / 2)  - 0.5f), topEdgeY - ((rows / 2)  - 0.5f));
     }
 
 

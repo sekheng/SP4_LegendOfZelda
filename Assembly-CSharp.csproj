@@ -48,6 +48,7 @@
      <Compile Include="Assets\Scripts\AI\Grid.cs" />
      <Compile Include="Assets\Scripts\AI\MonsterInfomation.cs" />
      <Compile Include="Assets\Scripts\AI\Node.cs" />
+     <Compile Include="Assets\Scripts\AI\Pathfinding.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_DeadState.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_IdleState.cs" />
      <Compile Include="Assets\Scripts\AI\Slime\Slime_RoamState.cs" />
