@@ -24,6 +24,7 @@ public class LoadPlayerScript : MonoBehaviour {
 #if UNITY_ANDROID
         Debug.Log(Application.persistentDataPath);
         actualDBFilePath = Application.persistentDataPath + "/AllData.db";
+        connectionString = "URI=file:" + actualDBFilePath;
         if (!File.Exists(actualDBFilePath))
         {
             //int countLoop = 0;
@@ -40,20 +41,24 @@ public class LoadPlayerScript : MonoBehaviour {
             zeDebugMesh.GetComponent<TextMesh>().text = "Successful loading";
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
             zeDebugMesh.GetComponent<TextMesh>().text = "Successful Writing";
+            CreateTable();
+            InitStuffInitTable();
         }
 #else
         actualDBFilePath = Application.dataPath + "/AllData.db";
-#endif
         connectionString = "URI=file:" + actualDBFilePath;
+#endif
         GameObject thePlayer = GameObject.FindGameObjectWithTag("Player");
 
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(connectionString);
         dbconn.Open(); //Open connection to the database.
         IDbCommand dbcmd = dbconn.CreateCommand();
-        zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
-        string sqlQuery2 = "SELECT * FROM " + playerTableStr + " WHERE PlayerID = " + playerID;
+        //zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
+
+        string sqlQuery2 = String.Format("SELECT * FROM " + playerTableStr + " WHERE PlayerID = " + playerID);
         dbcmd.CommandText = sqlQuery2;
+        zeDebugMesh.GetComponent<TextMesh>().text = connectionString;
         IDataReader reader = dbcmd.ExecuteReader();
         //Debug.Log("Reading SQL Table");
         zeDebugMesh.GetComponent<TextMesh>().text = "Reading SQL Table";
@@ -76,4 +81,40 @@ public class LoadPlayerScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void CreateTable()
+    {
+        IDbConnection dbconn;
+        string sqlQuery = "CREATE TABLE if not exists " + playerTableStr + " (PlayerID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,PlayerHealth REAL,PlayerName TEXT )";
+        dbconn = (IDbConnection)new SqliteConnection(connectionString);
+        dbconn.Open(); //Open connection to the database.
+        IDbCommand dbcmd = dbconn.CreateCommand();
+        //zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
+
+        dbcmd.CommandText = sqlQuery;
+        dbcmd.ExecuteScalar();
+
+        dbcmd.Dispose();
+        dbcmd = null;
+        dbconn.Close();
+        dbconn = null;
+    }
+    void InitStuffInitTable()
+    {
+        IDbConnection dbconn;
+        string sqlQuery = String.Format("INSERT INTO " + playerTableStr + "(PlayerID,PlayerHealth,PlayerName) VALUES (\"{0}\",\"{1}\",\"{2}\")", 1, 75.0f,"TROLL");
+
+        dbconn = (IDbConnection)new SqliteConnection(connectionString);
+        dbconn.Open(); //Open connection to the database.
+        IDbCommand dbcmd = dbconn.CreateCommand();
+        //zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
+
+        dbcmd.CommandText = sqlQuery;
+        dbcmd.ExecuteScalar();
+
+        dbcmd.Dispose();
+        dbcmd = null;
+        dbconn.Close();
+        dbconn = null;
+    }
 }
