@@ -34,7 +34,7 @@ public class PlayerDrag : MonoBehaviour {
         ImgBG.gameObject.SetActive(false);
         ImgFG.gameObject.SetActive(false);
         //ImgBG = GetComponentInParent<Image>();
-        Debug.Log("Parent Name: " + ImgBG.gameObject.name);
+        //Debug.Log("Parent Name: " + ImgBG.gameObject.name);
         theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         screenSizeX = Screen.width;
         screenSizeY = Screen.height;
