@@ -22,11 +22,12 @@ public class LoadPlayerScript : MonoBehaviour {
 	void Start () {
         string actualDBFilePath;
 #if UNITY_ANDROID
-        actualDBFilePath = Application.dataPath + "/DataBase/AllData.db";
+        Debug.Log(Application.persistentDataPath);
+        actualDBFilePath = Application.persistentDataPath + "/AllData.db";
         if (!File.Exists(actualDBFilePath))
         {
             //int countLoop = 0;
-            WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/DatabBase/AllData.db");
+            WWW loadDB = new WWW("jar:file://" + Application.dataPath + "!/assets/AllData.db");
             zeDebugMesh.GetComponent<TextMesh>().text = "going into API";
             // Need to make sure it is not stuck forever!
             while (!loadDB.isDone
@@ -36,8 +37,9 @@ public class LoadPlayerScript : MonoBehaviour {
                 //countLoop++;
             }
             // then save to Application.persistentDataPath
+            zeDebugMesh.GetComponent<TextMesh>().text = "Successful loading";
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
-            zeDebugMesh.GetComponent<TextMesh>().text = "Succesful";
+            zeDebugMesh.GetComponent<TextMesh>().text = "Successful Writing";
         }
 #else
         actualDBFilePath = Application.dataPath + "/DataBase/AllData.db";
@@ -46,10 +48,10 @@ public class LoadPlayerScript : MonoBehaviour {
         GameObject thePlayer = GameObject.FindGameObjectWithTag("Player");
 
         IDbConnection dbconn;
-        zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
         dbconn = (IDbConnection)new SqliteConnection(connectionString);
         dbconn.Open(); //Open connection to the database.
         IDbCommand dbcmd = dbconn.CreateCommand();
+        zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
         string sqlQuery2 = "SELECT * FROM " + playerTableStr + " WHERE PlayerID = " + playerID;
         dbcmd.CommandText = sqlQuery2;
         IDataReader reader = dbcmd.ExecuteReader();
@@ -60,6 +62,7 @@ public class LoadPlayerScript : MonoBehaviour {
             // The Order is Important!
             float theHealth = reader.GetFloat(1);
             thePlayer.GetComponent<HealthScript>().m_health = theHealth;
+            zeDebugMesh.GetComponent<TextMesh>().text = "Loaded Health";
         }
         reader.Close();
         reader = null;

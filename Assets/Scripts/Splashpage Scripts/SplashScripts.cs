@@ -17,7 +17,7 @@ public class SplashScripts : MonoBehaviour {
 
     // Use this for initialization
 	void Start () {
-        connectionString = "URI=file:" + Application.dataPath + "/DataBase/AllData.db";
+        connectionString = "URI=file:" + Application.dataPath + "/AllData.db";
         //Debug.Log(Application.dataPath);
         //SaveToDataBase();
         //TryDeleteToDataBase();
