@@ -6,13 +6,24 @@ public class CSVReader : MonoBehaviour {
 
     public TextAsset file;
 
-    public GameObject WallPrefab;
+    //0
     public GameObject PlayerPrefab;
+    
+    //From 1 to 10.
+    public GameObject OuterWallPrefab;
+    public GameObject WallPrefab;
     public GameObject StonePrefab;
-    public GameObject TreasurePrefab;
-    public GameObject EnemyPrefab;
-    public GameObject floorPrefab;
+    public GameObject RelicPrefab;
+
+    //NPC ID will start from 10
+    public GameObject SlimePrefab;
+    
+    //NPC ID will start from 60
+    public GameObject DragonPrefab;
+
+
     public GameObject PlayerController;
+    public GameObject floorPrefab;
 
     private string[,] LevelLayoutArray;
     private string [] textRow;
@@ -32,36 +43,43 @@ public class CSVReader : MonoBehaviour {
                 Vector3 objPos = new Vector3(x, -y, 0);
                 GameObject result;
                 Debug.Log(LevelLayoutArray[x, y]);
-                if (LevelLayoutArray[x, y] == "1")
-                {
-                    result = Instantiate(WallPrefab, objPos, Quaternion.identity) as GameObject;
-                }
-                else if (LevelLayoutArray[x, y] == "2")
-                {
-                    result = Instantiate(StonePrefab, objPos, Quaternion.identity) as GameObject;
-                }
-                else if (LevelLayoutArray[x, y] == "3")
+                if (LevelLayoutArray[x, y] == "0")
                 {
                     result = Instantiate(PlayerPrefab, objPos, Quaternion.identity) as GameObject;
                     Instantiate(PlayerController, objPos, Quaternion.identity);
                 }
+                else if (LevelLayoutArray[x, y] == "1")
+                {
+                    result = Instantiate(OuterWallPrefab, objPos, Quaternion.identity) as GameObject;
+                }
+                else if (LevelLayoutArray[x, y] == "2")
+                {
+                    result = Instantiate(WallPrefab, objPos, Quaternion.identity) as GameObject;
+                }
+                else if (LevelLayoutArray[x, y] == "3")
+                {
+                    result = Instantiate(StonePrefab, objPos, Quaternion.identity) as GameObject;
+                }
                 //else if (LevelLayoutArray[x, y] == "4")
                 //{
-                //    result = Instantiate(TreasurePrefab, objPos, Quaternion.identity) as GameObject;
+                //    result = Instantiate(RelicPrefab, objPos, Quaternion.identity) as GameObject;
                 //}
-                //else if (LevelLayoutArray[x, y] == "5")
-                //{
-                //    result = Instantiate(enemyPrefab, objPos, Quaternion.identity) as GameObject;
-                //}
+                else if(LevelLayoutArray[x, y] == "10")
+                {
+                    result = Instantiate(SlimePrefab, objPos, Quaternion.identity) as GameObject;
+                }
+                else if (LevelLayoutArray[x, y] == "60")
+                {
+                    result = Instantiate(DragonPrefab, objPos, Quaternion.identity) as GameObject;
+                }
                 else
                 {
                     result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
                 }
-                if(!result.CompareTag("Player") && !result.CompareTag("Environment"))   
+                if(result.CompareTag("Untagged")) //Please remember to tag all your objects accordingly lest they be thrown into the holder!
                 {
                     result.transform.SetParent(lvlHolder.transform);
                 }
-                
             }
         }
 	}
