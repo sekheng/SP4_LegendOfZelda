@@ -14,13 +14,12 @@ public class PlayerController : MonoBehaviour {
     private bool checkPlayerMoved = false;
     // We will need this to check which key is pressed!
     private KeyCode currentKeyPressed;
-    public exampleUI diagUI;
+    private exampleUI diagUI;
 
     private Vector2 GeneralDir = Vector2.zero;
-	
-	// Update is called once per frame
-	void Update () {
-        if(theOnlyHero == null)
+    void Start()
+    {
+        if (theOnlyHero == null)
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
@@ -28,7 +27,10 @@ public class PlayerController : MonoBehaviour {
         {
             diagUI = GameObject.Find("dialogueUI").GetComponent<exampleUI>();
         }
-    
+    }
+	
+	// Update is called once per frame
+	void Update () {
         // Here we shall check which key is pressed so that interception can happen!
         if (!diagUI.dialogue.isLoaded)
         {
@@ -78,16 +80,19 @@ public class PlayerController : MonoBehaviour {
     void TryInteract()
     {
         RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + GeneralDir, GeneralDir, 1.0f);
-        if (rHit != null)
+        if (rHit.collider != null)
         {
             //In this example, we will try to interact with any collider the raycast finds
             //Lets grab the NPC's DialogueAssign script... if there's any
             VIDE_Assign assigned;
-            if(rHit.collider.GetComponent<VIDE_Assign>() != null)
+            if (rHit.transform.GetComponent<Collider2D>() != null && rHit.collider.GetComponent<VIDE_Assign>() != null)
             {
                 assigned = rHit.collider.GetComponent<VIDE_Assign>();
             }
-            else return;
+            else
+            {
+                return;
+            }
 
             if (!diagUI.dialogue.isLoaded)
             {
@@ -101,11 +106,15 @@ public class PlayerController : MonoBehaviour {
             }
 
         }
+        else
+        {
+            return;
+        }
     }
 
     void LateUpdate()
     {
-        if (theOnlyHero != null && !diagUI.dialogue.isLoaded)
+        if (theOnlyHero != null && diagUI != null)
         {
             switch (checkPlayerMoved)
             {

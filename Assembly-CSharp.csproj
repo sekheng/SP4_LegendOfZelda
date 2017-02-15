@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{6C1D2FB0-F598-8142-D759-02BBA614783F}</ProjectGuid>
+    <ProjectGuid>{607E1302-19C8-772E-3BA6-C04F1FDE88FF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -38,10 +38,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -74,28 +74,25 @@
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SplashScripts.cs" />
+     <Compile Include="Assets\Scripts\exampleUI.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
-     <Compile Include="Assets\VIDE\Examples\Example1\examplePlayer.cs" />
-     <Compile Include="Assets\VIDE\Examples\Example1\exampleUI.cs" />
-     <Compile Include="Assets\VIDE\Examples\Example1\witchExample.cs" />
-     <Compile Include="Assets\VIDE\Examples\Example2\minUIExample.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
      <Compile Include="Assets\VIDE\VIDE_Data.cs" />
      <None Include="Assets\VIDE\license.txt" />
      <None Include="Assets\VIDE\Resources\ReadMe.txt" />
      <None Include="Assets\ForestLevel.txt" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Data.Sqlite">
- <HintPath>C:/Users/lenov/Documents/StudioProject4/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
+ <HintPath>C:/Users/TeiKiyohira/Documents/SP4_LegendOfZelda/Assets/Plugins/Mono.Data.Sqlite.dll</HintPath>
  </Reference>
  <Reference Include="System.Data">
- <HintPath>C:/Users/lenov/Documents/StudioProject4/Assets/Plugins/System.Data.dll</HintPath>
+ <HintPath>C:/Users/TeiKiyohira/Documents/SP4_LegendOfZelda/Assets/Plugins/System.Data.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

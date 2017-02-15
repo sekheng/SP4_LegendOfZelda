@@ -102,13 +102,13 @@ public class exampleUI : MonoBehaviour
         if (dialogue.assigned.interactionCount > 0)
         {
             string name = dialogue.assigned.dialogueName;
-            switch (name)
-            {
-                //case "Crazy Cap":
-                //    if (gotItem)
-                //    dialogue.nodeData = dialogue.SetNode(17); //SetNode allows you to jump to whichever node you want
-                //    break;
-            }
+            //switch (name)
+            //{
+            //    //case "Crazy Cap":
+            //    //    if (gotItem)
+            //    //    dialogue.nodeData = dialogue.SetNode(17); //SetNode allows you to jump to whichever node you want
+            //    //    break;
+            //}
         }
 
         //Let's specifically check for dynamic text change
