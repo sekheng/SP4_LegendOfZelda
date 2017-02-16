@@ -56,17 +56,6 @@ public class MySQLiteHandler : MonoBehaviour {
             dbconn = (IDbConnection)new SqliteConnection(connectionDB);
             dbconn.Open(); //Open connection to the database.
 
-            // We shall begin the hardcoding of writing every single table and data we need for our game here!
-            string sqlQuery = "CREATE TABLE if not exists PlayerStuff (PlayerID INTEGER PRIMARY KEY AUTOINCREMENT UNIQUE,PlayerHealth REAL,PlayerName TEXT); ";
-            sqlQuery += String.Format("INSERT INTO  (PlayerID,PlayerHealth,PlayerName) VALUES (\"{0}\",\"{1}\",\"{2}\")", 1, 75.0f, "TROLL");
-            dbconn = (IDbConnection)new SqliteConnection(connectionDB);
-            dbconn.Open(); //Open connection to the database.
-            IDbCommand dbcmd = dbconn.CreateCommand();
-            //zeDebugMesh.GetComponent<TextMesh>().text = "Trying to read from DB";
-
-            dbcmd.CommandText = sqlQuery;
-            dbcmd.ExecuteScalar();
-
             //dbcmd.Dispose();
             //dbcmd = null;
 
