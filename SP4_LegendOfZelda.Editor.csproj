@@ -133,8 +133,6 @@
     <Compile Include="Assets\VIDE\Editor\VIDE_Editor.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\CaveLevel.txt" />
-    <None Include="Assets\ForestLevel.txt" />
     <None Include="Assets\VIDE\Resources\ReadMe.txt" />
     <None Include="Assets\VIDE\license.txt" />
   </ItemGroup>

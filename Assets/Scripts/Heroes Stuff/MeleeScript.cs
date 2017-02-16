@@ -70,7 +70,7 @@ public class MeleeScript : MonoBehaviour {
         foreach (RaycastHit2D attacked in hits)
         {
             // This is so that it is not attackin itself!
-            if (!attacked.collider.gameObject.Equals(gameObject))
+            if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
             {
                 Debug.Log("Successful attack");
                 timeCounter = 0;

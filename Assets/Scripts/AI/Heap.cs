@@ -52,15 +52,36 @@ public class Heap<T> where T : IHeapItem<T> {
                 {
                     swap(item, items[swapIndex]);
                 }
-                else
+                else//parent in the correct position
                 {
-
+                    return;
                 }
+            }
+            else//parent no child;
+            {
+                return;
             }
 
         }
     }
 
+    public void UpdateItem(T item)
+    {
+        SortUp(item);
+    }
+
+    public int Count
+    {
+        get
+        {
+            return currentItemCount;
+        }
+    }
+
+    public bool Contains(T item)
+    {
+        return Equals(items[item.HeapIndex], item);
+    }
     void SortUp(T item)
     {
         int parentIndex = (item.HeapIndex - 1) / 2;//(n - 1)/2 formula to get parent
