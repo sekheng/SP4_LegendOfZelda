@@ -28,5 +28,20 @@ public class State : MonoBehaviour {
         }
         return false;
     }
+    public virtual bool checkForPlayerInRange()
+    {
+        RaycastHit2D[] hit = Physics2D.CircleCastAll(monsterTransform.position, monsterSprite.bounds.size.x * 3, Vector2.zero, 0);
 
-}
+        foreach (RaycastHit2D temp in hit)
+        {
+            if (temp.collider != null)
+            {
+                if (temp.collider.gameObject.tag == "Player")
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+   }
