@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -88,8 +94,13 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
+    <Compile Include="Assets\Scripts\Heroes Stuff\HeroDataScript.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />
@@ -102,10 +113,13 @@
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ChangeScene.cs" />
+    <Compile Include="Assets\Scripts\SceneManagement\ChangeScene2.cs" />
+    <Compile Include="Assets\Scripts\SceneManagement\LocalDataSingleton.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ToggleActive.cs" />
     <Compile Include="Assets\Scripts\SceneTransition Scripts\GoSceneScript.cs" />
     <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
     <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
+    <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
     <Compile Include="Assets\Scripts\Splashpage Scripts\SplashScripts.cs" />
     <Compile Include="Assets\Scripts\exampleUI.cs" />
     <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
@@ -114,8 +128,6 @@
     <Compile Include="Assets\VIDE\VIDE_Data.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\CaveLevel.txt" />
-    <None Include="Assets\ForestLevel.txt" />
     <None Include="Assets\VIDE\Resources\ReadMe.txt" />
     <None Include="Assets\VIDE\license.txt" />
   </ItemGroup>

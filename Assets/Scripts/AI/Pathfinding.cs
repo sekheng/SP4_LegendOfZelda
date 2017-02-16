@@ -23,7 +23,7 @@ public class Pathfinding : MonoBehaviour {
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
 
-        List<Node> openSet = new List<Node>();
+        Heap<Node> openSet = new Heap<Node>(grid.MaxSize);
         HashSet<Node> closeSet = new HashSet<Node>();
 
         openSet.Add(startNode);
@@ -32,22 +32,23 @@ public class Pathfinding : MonoBehaviour {
 
         while(openSet.Count > 0)
         {
-            Node currNode = openSet[0];
-            for(int i = 1; i < openSet.Count; ++i)
-            {
-                if(openSet[i].fCost < currNode.fCost/*if the openset node's cost is lower*/ || openSet[i].fCost == currNode.fCost && openSet[i].hCost < currNode.hCost/*if same fcost, check which has lower hCost*/)
-                {
-                    currNode = openSet[i];
-                }
-            }
+            //Node currNode = openSet[0];
+            Node currNode = openSet.RemoveFirst();
+            //for (int i = 1; i < openSet.Count; ++i)
+            //{
+            //    if(openSet[i].fCost < currNode.fCost/*if the openset node's cost is lower*/ || openSet[i].fCost == currNode.fCost && openSet[i].hCost < currNode.hCost/*if same fcost, check which has lower hCost*/)
+            //    {
+            //        currNode = openSet[i];
+            //    }
+            //}
 
-            openSet.Remove(currNode);
+            //openSet.Remove(currNode);
             closeSet.Add(currNode);
 
-            if(currNode == targetNode)
+            if(currNode == targetNode)//reached
             {
                 RetracePath(startNode, targetNode);
-                return;//reached
+                return;
             }
 
             foreach(Node neighbour in grid.GetNeighbours(currNode))
@@ -67,6 +68,7 @@ public class Pathfinding : MonoBehaviour {
                     {
                         openSet.Add(neighbour);
                     }
+                    openSet.UpdateItem(neighbour);
                 }
             }
         }
