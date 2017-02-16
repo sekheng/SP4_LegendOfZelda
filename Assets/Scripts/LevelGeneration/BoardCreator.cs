@@ -18,9 +18,11 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] floorTiles;                             // An array of floor tile prefabs.
     public GameObject[] wallTiles;                              // An array of wall tile prefabs.
     public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
+
     public GameObject player;                                   // Player prefab
     public GameObject PlayerController;                         // PlayerController prefab
     public GameObject slime;                                    // Slime prefab, PLEASE DRAG IN LATER
+    public GameObject nextLevelPrefab;                          // for jumping to next level.
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     //make rooms public if you have to
@@ -43,11 +45,10 @@ public class BoardCreator : MonoBehaviour
         InstantiateTiles();
         InstantiateOuterWalls();
 
-        IntRange test = new IntRange(0, rooms.Length);
-
+        float offset = rows % 2 == 0 ? 0.5f : 0.0f;
         for (int i = 0; i < rooms.Length; i++)
         {
-            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f) - ((rows / 2)  - 0.5f), rooms[i].yPos + (rooms[i].roomHeight * 0.5f) - ((rows / 2)  - 0.5f), 0); //spawns roughly in the middle of the room
+            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f) - ((rows / 2) - offset), rooms[i].yPos + (rooms[i].roomHeight * 0.5f) - ((rows / 2) - offset), 0); //spawns roughly in the middle of the room
             if (i == 0)
             {
                 Instantiate(player, objPos, Quaternion.identity);
@@ -58,6 +59,11 @@ public class BoardCreator : MonoBehaviour
             {
                  Instantiate(slime, objPos, Quaternion.identity);
                  //spawns roughly in the middle of the room
+            }
+
+            if(nextLevelPrefab != null && i == rooms.Length - 1)
+            {
+                Instantiate(nextLevelPrefab, objPos, Quaternion.identity);
             }
         }
     }
@@ -182,18 +188,19 @@ public class BoardCreator : MonoBehaviour
     void InstantiateTiles()
     {
         // Go through all the tiles in the jagged array...
+        float offset = rows % 2 == 0 ? 0.5f : 0.0f;
         for (int i = 0; i < tiles.Length; i++)
         {
             for (int j = 0; j < tiles[i].Length; j++)
             {
                 // ... and instantiate a floor tile for it.
-                InstantiateFromArray(floorTiles, i - ((rows / 2)  - 0.5f), j - ((rows / 2)  - 0.5f));
+                InstantiateFromArray(floorTiles, i - ((rows / 2) - offset), j - ((rows / 2) - offset));
 
                 // If the tile type is Wall...
                 if (tiles[i][j] == TileType.Wall)
                 {
                     // ... instantiate a wall over the top.
-                    InstantiateFromArray(wallTiles, i - ((rows / 2)  - 0.5f), j - ((rows / 2)  - 0.5f));
+                    InstantiateFromArray(wallTiles, i - ((rows / 2) - offset), j - ((rows / 2) - offset));
                 }
             }
         }
@@ -208,13 +215,15 @@ public class BoardCreator : MonoBehaviour
         float bottomEdgeY = -1f;
         float topEdgeY = rows + 0f;
 
+        float offset = rows % 2 == 0 ? 0.5f : 0.0f;
+
         // Instantiate both vertical walls (one on each side).
-        InstantiateVerticalOuterWall(leftEdgeX - ((rows / 2)  - 0.5f), bottomEdgeY - ((rows / 2)  - 0.5f), topEdgeY - ((rows / 2)  - 0.5f));
-        InstantiateVerticalOuterWall(rightEdgeX - ((rows / 2)  - 0.5f), bottomEdgeY - ((rows / 2)  - 0.5f), topEdgeY - ((rows / 2)  - 0.5f));
+        InstantiateVerticalOuterWall(leftEdgeX - ((rows / 2) - offset), bottomEdgeY - ((rows / 2) - offset), topEdgeY - ((rows / 2) - 0.5f));
+        InstantiateVerticalOuterWall(rightEdgeX - ((rows / 2) - offset), bottomEdgeY - ((rows / 2) - offset), topEdgeY - ((rows / 2) - 0.5f));
 
         // Instantiate both horizontal walls, these are one in left and right from the outer walls.
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2)  - 0.5f), rightEdgeX - 1f - ((rows / 2)  - 0.5f), bottomEdgeY - ((rows / 2)  - 0.5f));
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2)  - 0.5f), rightEdgeX - 1f - ((rows / 2)  - 0.5f), topEdgeY - ((rows / 2)  - 0.5f));
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2) - offset), rightEdgeX - 1f - ((rows / 2) - offset), bottomEdgeY - ((rows / 2) - offset));
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2) - offset), rightEdgeX - 1f - ((rows / 2) - offset), topEdgeY - ((rows / 2) - offset));
     }
 
 

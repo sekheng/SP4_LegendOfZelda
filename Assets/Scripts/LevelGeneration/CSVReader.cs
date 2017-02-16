@@ -5,7 +5,7 @@ using System.Linq;
 public class CSVReader : MonoBehaviour {
 
     public TextAsset file;
-
+    public int offset = 0;
     //0
     public GameObject PlayerPrefab;
     
@@ -14,13 +14,13 @@ public class CSVReader : MonoBehaviour {
     public GameObject WallPrefab;
     public GameObject StonePrefab;
     public GameObject RelicPrefab;
+    public GameObject PickableCompassPrefab;
 
-    //NPC ID will start from 10
+    //Enemy ID will start from 10
     public GameObject SlimePrefab;
-    
-    //NPC ID will start from 60
-    public GameObject DragonPrefab;
 
+    //BOSS from 20
+    public GameObject GolemPrefab;
 
     public GameObject PlayerController;
     public GameObject floorPrefab;
@@ -36,13 +36,20 @@ public class CSVReader : MonoBehaviour {
 	    LevelLayoutArray = CSVReader.SplitCsvGrid(file.text);
         textRow = new string[LevelLayoutArray.GetUpperBound(0)];  // Instantiate the textRow array with the number of rows in csvData array.
 
-        for (int y = 0; y < ((LevelLayoutArray.Length / textRow.Length) - 1) ; y++) // height
+        float height = ((LevelLayoutArray.Length / textRow.Length) - 1) + offset;
+        int width = textRow.Length - 1;
+
+        //Debug.Log(width.ToString() + " " + height.ToString());
+
+        float offsetX = width % 2 == 0 ? 0.5f : 0.0f;
+        float offsetY = -0.5f; //compulsory
+
+        for (int y = 0; y < height; y++) // height
         {
-            for (int x = 0; x < textRow.Length - 1; x++)
+            for (int x = 0; x < width; x++)
             {
-                Vector3 objPos = new Vector3(x, -y, 0);
+                Vector3 objPos = new Vector3(x - (width / 2) + offsetX, (-y + (height / 2) + offsetY), 0);
                 GameObject result;
-                Debug.Log(LevelLayoutArray[x, y]);
                 if (LevelLayoutArray[x, y] == "0")
                 {
                     result = Instantiate(PlayerPrefab, objPos, Quaternion.identity) as GameObject;
@@ -64,14 +71,18 @@ public class CSVReader : MonoBehaviour {
                 //{
                 //    result = Instantiate(RelicPrefab, objPos, Quaternion.identity) as GameObject;
                 //}
+                else if (LevelLayoutArray[x, y] == "5")
+                {
+                    result = Instantiate(PickableCompassPrefab, objPos, Quaternion.identity) as GameObject;
+                }
                 else if(LevelLayoutArray[x, y] == "10")
                 {
                     result = Instantiate(SlimePrefab, objPos, Quaternion.identity) as GameObject;
                 }
-                else if (LevelLayoutArray[x, y] == "60")
-                {
-                    result = Instantiate(DragonPrefab, objPos, Quaternion.identity) as GameObject;
-                }
+                //else if (LevelLayoutArray[x, y] == "20")
+                //{
+                //    result = Instantiate(GolemPrefab, objPos, Quaternion.identity) as GameObject;
+                //}
                 else
                 {
                     result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;

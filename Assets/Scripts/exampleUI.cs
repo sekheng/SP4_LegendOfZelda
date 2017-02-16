@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ public class exampleUI : MonoBehaviour
     public GameObject uiContainer;
 
     //We'll use these later
-    bool gotItem = false;
+    //bool gotItem = false;
     bool animatingText = false;
 
     //We'll be using this to store the current player dialogue options
@@ -99,20 +100,32 @@ public class exampleUI : MonoBehaviour
         //If we already talked to this NPC, lets modify the start of the conversation
         //Of course, this will be true for particular cases
         //Here, we are using the dialogueName variable of the VIDE_Assign to compare
+
+        if (dialogue.assigned.dialogueName.Equals("Dragon") && LocalDataSingleton.instance.talkedToDragon)
+        {
+            dialogue.nodeData = dialogue.SetNode(30);
+        }
+
         if (dialogue.assigned.interactionCount > 0)
         {
             string name = dialogue.assigned.dialogueName;
             switch (name)
             {
                 case "Dragon":
-                        dialogue.nodeData = dialogue.SetNode(30); //SetNode allows you to jump to whichever node you want
-                    break;
+                {
+                    dialogue.nodeData = dialogue.SetNode(30); //SetNode allows you to jump to whichever node you want
+                    LocalDataSingleton.instance.talkedToDragon = true;
+                }
+                break;
             }
         }
 
         //Let's specifically check for dynamic text change
         if (!data.currentIsPlayer && data.extraData == "itemLookUp")
             ItemLookUp(data);
+        //Let's specifically check for dynamic text change
+        if (!data.currentIsPlayer && data.extraData == "RelicLookUp" && !data.pausedAction)
+            RelicLookUp(data); 
 
         //Everytime dialogue.nodeData gets updated, we update our UI with the new data
         UpdateUI();
@@ -140,7 +153,10 @@ public class exampleUI : MonoBehaviour
 
         //Let's specifically check for dynamic text change
         if (!data.currentIsPlayer && data.extraData == "itemLookUp" && !data.pausedAction)
-            ItemLookUp(data);      
+            ItemLookUp(data);
+        //Let's specifically check for dynamic text change
+        if (!data.currentIsPlayer && data.extraData == "RelicLookUp" && !data.pausedAction)
+            RelicLookUp(data); 
 
         //This will update the dialogue.nodeData with the next Node's data
         dialogue.Next();
@@ -211,29 +227,12 @@ public class exampleUI : MonoBehaviour
     //Note that it is easier to call methods now with the Action node.
     public bool DoAction(VIDE_Data.NodeData data)
     {
-        bool didAction = false; 
+        bool didAction = false;
         switch (data.extraData)
         {
-            case "item":
-                //npcCommentIndex refers to the current NPC's comment when there are many in a single Node (when you use <br>)
-                didAction = true;
-                if (data.npcCommentIndex == 1)
-                {
-                    if (!itemText.activeSelf)
-                    {
-                        itemText.SetActive(true);
-                        gotItem = true;
-                    }
-                    else
-                    {
-                        itemText.SetActive(false);
-                        dialogue.Next();
-                    }
-                }
-                else
-                {
-                    dialogue.Next();
-                }
+            case "nextScene":
+                LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }
         return didAction;
@@ -244,7 +243,20 @@ public class exampleUI : MonoBehaviour
     {
         if (data.npcCommentIndex == 0)
         {
-            data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[NAME]", dialogue.assigned.gameObject.name);
+            //data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[NAME]", dialogue.assigned.gameObject.name);
+
+            //we will use this next time
+            //data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[RELIC_REMAINING]", (5 - relicCount).ToString());
+        }
+    }
+
+    //This will replace any "[NAME]" with the name of the gameobject holding the VIDE_Assign
+    void RelicLookUp(VIDE_Data.NodeData data)
+    {
+        if (data.npcCommentIndex == 0)
+        {
+            //we will use this next time
+            //data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[RELIC_REMAINING]", (5 - relicCount).ToString());
         }
     }
 
