@@ -18,9 +18,4 @@ public class HeroDataScript : MonoBehaviour {
         string[] zeCondition = {"PlayerID = " + m_playerID};
         herosHealth.m_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

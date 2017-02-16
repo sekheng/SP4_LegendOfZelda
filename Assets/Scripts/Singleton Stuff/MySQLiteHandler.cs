@@ -4,6 +4,7 @@ using Mono.Data.Sqlite;
 using System.Data;
 using System;
 using System.IO;
+using System.Collections.Generic;
 
 /// <summary>
 /// For now, this SQLite will only work for this game!
@@ -34,6 +35,7 @@ public class MySQLiteHandler : MonoBehaviour {
 
 	// Use this for initialization
 	void Awake () {
+        //Debug.Log(String.Format("INSERT INTO PlaceSequence(PlayerDamage,Name) VALUES(\"{0}\",\"{1}\")", 100, String.Format("YOLO")));
         string actualDBFilePath;
 #if UNITY_ANDROID
         Debug.Log(Application.persistentDataPath);
@@ -52,25 +54,13 @@ public class MySQLiteHandler : MonoBehaviour {
             }
             // then save to Application.persistentDataPath
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
-
-            dbconn = (IDbConnection)new SqliteConnection(connectionDB);
-            dbconn.Open(); //Open connection to the database.
-
-            //dbcmd.Dispose();
-            //dbcmd = null;
-
-        }
-        else
-        {
-            dbconn = (IDbConnection)new SqliteConnection(connectionDB);
-            dbconn.Open(); //Open connection to the database.
         }
 #else
         actualDBFilePath = Application.dataPath + "/StreamingAssets/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
+#endif
         dbconn = (IDbConnection)new SqliteConnection(connectionDB);
         dbconn.Open(); //Open connection to the database.
-#endif
     }
 	
     /// <summary>
@@ -146,7 +136,35 @@ public class MySQLiteHandler : MonoBehaviour {
         return zeVal;
     }
 
+    /// <summary>
+    /// Get the whole string array from the table
+    /// </summary>
+    /// <param name="zeTable">
+    ///  The Table to get the string
+    /// </param>
+    /// <returns>
+    /// For every row, there will be a string.
+    /// For every coloumn in the row, it will be separated with a comma
+    /// return the whole string array
+    /// </returns>
+    public string[] getAllStringFromTable(string zeTable)
+    {
+        List<string> AllTheResult = new List<string>();
+        dbcmd = dbconn.CreateCommand();
+        string sqlQuery = "SELECT * FROM " + zeTable;
+        dbcmd.CommandText = sqlQuery;
+        reader = dbcmd.ExecuteReader();
 
+        reader.Close();
+        reader = null;
+        dbcmd.Dispose();
+        dbcmd = null;
+        return AllTheResult.ToArray();
+    }
+
+    /// <summary>
+    /// Destroy the connection to the database after it is over!
+    /// </summary>
     void OnDestroy()
     {
         if (dbconn != null)

@@ -60,6 +60,10 @@
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroDataScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />
