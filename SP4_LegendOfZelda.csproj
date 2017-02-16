@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AI\Grid.cs" />
+    <Compile Include="Assets\Scripts\AI\Heap.cs" />
     <Compile Include="Assets\Scripts\AI\MonsterInfomation.cs" />
     <Compile Include="Assets\Scripts\AI\Node.cs" />
     <Compile Include="Assets\Scripts\AI\Pathfinding.cs" />
@@ -78,6 +79,12 @@
     <Compile Include="Assets\Scripts\AI\Slime\Slime_RoamState.cs" />
     <Compile Include="Assets\Scripts\AI\Slime\Slime_Statemanager.cs" />
     <Compile Include="Assets\Scripts\AI\State.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_AttackState.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_ChaseState.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_DeadState.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_IdleState.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_RoamState.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_Statemanager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />

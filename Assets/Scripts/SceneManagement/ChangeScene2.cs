@@ -3,11 +3,12 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene2 : MonoBehaviour {
 
-    void OnTriggerEnter2D(Collider2D other) //mostly is just for compass
+    void OnTriggerEnter2D(Collider2D other) //go back to previous scene;
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            //LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(LocalDataSingleton.instance.previousSceneFrom);
         }
     }
 }

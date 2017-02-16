@@ -81,7 +81,9 @@ public class Grid : MonoBehaviour{
         {
             for (int y = -1; y <= 1; ++y)
             {
-                if(x == 0 && y == 0)//make sure the if not checking the it self.
+                if((x == 0 && y == 0) 
+                    || (x == -1 && (y == 1|| y== -1))
+                    || (x == 1 && (y == 1 || y == -1)))//make sure the if not checking the it self. and make sure it does not go diagonal
                 {
                     continue;
                 }
