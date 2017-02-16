@@ -100,14 +100,23 @@ public class exampleUI : MonoBehaviour
         //If we already talked to this NPC, lets modify the start of the conversation
         //Of course, this will be true for particular cases
         //Here, we are using the dialogueName variable of the VIDE_Assign to compare
+
+        if (dialogue.assigned.dialogueName.Equals("Dragon") && LocalDataSingleton.instance.talkedToDragon)
+        {
+            dialogue.nodeData = dialogue.SetNode(30);
+        }
+
         if (dialogue.assigned.interactionCount > 0)
         {
             string name = dialogue.assigned.dialogueName;
             switch (name)
             {
                 case "Dragon":
-                        dialogue.nodeData = dialogue.SetNode(30); //SetNode allows you to jump to whichever node you want
-                    break;
+                {
+                    dialogue.nodeData = dialogue.SetNode(30); //SetNode allows you to jump to whichever node you want
+                    LocalDataSingleton.instance.talkedToDragon = true;
+                }
+                break;
             }
         }
 
@@ -222,6 +231,7 @@ public class exampleUI : MonoBehaviour
         switch (data.extraData)
         {
             case "nextScene":
+                LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                 break;
         }

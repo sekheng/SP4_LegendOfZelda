@@ -18,6 +18,7 @@ public class ChangeScene : MonoBehaviour {
 
 	public void ChangeSceneTo(int index)
     {
+        LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(index);
     }
 }

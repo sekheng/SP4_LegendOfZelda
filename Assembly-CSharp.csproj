@@ -72,6 +72,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ChangeScene2.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\LocalDataSingleton.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ToggleActive.cs" />
      <Compile Include="Assets\Scripts\SceneTransition Scripts\GoSceneScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
