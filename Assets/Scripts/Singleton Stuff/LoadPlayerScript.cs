@@ -41,11 +41,9 @@ public class LoadPlayerScript : MonoBehaviour {
             zeDebugMesh.GetComponent<TextMesh>().text = "Successful loading";
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
             zeDebugMesh.GetComponent<TextMesh>().text = "Successful Writing";
-            CreateTable();
-            InitStuffInitTable();
         }
 #else
-        actualDBFilePath = Application.dataPath + "/AllData.db";
+        actualDBFilePath = Application.dataPath + "/StreamingAssets/AllData.db";
         connectionString = "URI=file:" + actualDBFilePath;
 #endif
         GameObject thePlayer = GameObject.FindGameObjectWithTag("Player");
