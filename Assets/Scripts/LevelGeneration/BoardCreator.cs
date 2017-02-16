@@ -48,7 +48,7 @@ public class BoardCreator : MonoBehaviour
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
         for (int i = 0; i < rooms.Length; i++)
         {
-            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth * 0.5f) - ((rows / 2) - offset), rooms[i].yPos + (rooms[i].roomHeight * 0.5f) - ((rows / 2) - offset), 0); //spawns roughly in the middle of the room
+            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((rows >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
             if (i == 0)
             {
                 Instantiate(player, objPos, Quaternion.identity);
@@ -194,18 +194,17 @@ public class BoardCreator : MonoBehaviour
             for (int j = 0; j < tiles[i].Length; j++)
             {
                 // ... and instantiate a floor tile for it.
-                InstantiateFromArray(floorTiles, i - ((rows / 2) - offset), j - ((rows / 2) - offset));
+                InstantiateFromArray(floorTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
 
                 // If the tile type is Wall...
                 if (tiles[i][j] == TileType.Wall)
                 {
                     // ... instantiate a wall over the top.
-                    InstantiateFromArray(wallTiles, i - ((rows / 2) - offset), j - ((rows / 2) - offset));
+                    InstantiateFromArray(wallTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
                 }
             }
         }
     }
-
 
     void InstantiateOuterWalls()
     {
@@ -218,12 +217,12 @@ public class BoardCreator : MonoBehaviour
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
 
         // Instantiate both vertical walls (one on each side).
-        InstantiateVerticalOuterWall(leftEdgeX - ((rows / 2) - offset), bottomEdgeY - ((rows / 2) - offset), topEdgeY - ((rows / 2) - 0.5f));
-        InstantiateVerticalOuterWall(rightEdgeX - ((rows / 2) - offset), bottomEdgeY - ((rows / 2) - offset), topEdgeY - ((rows / 2) - 0.5f));
+        InstantiateVerticalOuterWall(leftEdgeX - ((rows >> 1) - offset), bottomEdgeY - ((rows >> 1) - offset), topEdgeY - ((rows >> 1) - 0.5f));
+        InstantiateVerticalOuterWall(rightEdgeX - ((rows >> 1) - offset), bottomEdgeY - ((rows >> 1) - offset), topEdgeY - ((rows >> 1) - 0.5f));
 
         // Instantiate both horizontal walls, these are one in left and right from the outer walls.
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2) - offset), rightEdgeX - 1f - ((rows / 2) - offset), bottomEdgeY - ((rows / 2) - offset));
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows / 2) - offset), rightEdgeX - 1f - ((rows / 2) - offset), topEdgeY - ((rows / 2) - offset));
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows >> 1) - offset), rightEdgeX - 1f - ((rows >> 1) - offset), bottomEdgeY - ((rows >> 1) - offset));
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows >> 1) - offset), rightEdgeX - 1f - ((rows >> 1) - offset), topEdgeY - ((rows >> 1) - offset));
     }
 
 
@@ -242,7 +241,6 @@ public class BoardCreator : MonoBehaviour
         }
     }
 
-
     void InstantiateHorizontalOuterWall(float startingX, float endingX, float yCoord)
     {
         // Start the loop at the starting value for X.
@@ -257,7 +255,6 @@ public class BoardCreator : MonoBehaviour
             currentX++;
         }
     }
-
 
     void InstantiateFromArray(GameObject[] prefabs, float xCoord, float yCoord)
     {

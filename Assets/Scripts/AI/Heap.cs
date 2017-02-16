@@ -33,8 +33,8 @@ public class Heap<T> where T : IHeapItem<T> {
     {
         while(true)
         {
-            int childIndexLeft = item.HeapIndex * 2 + 1;//formula, look at end of file
-            int childIndexRight = item.HeapIndex * 2 + 2;//formula, look at end of file
+            int childIndexLeft = (item.HeapIndex << 1) + 1;//formula, look at end of file
+            int childIndexRight = (item.HeapIndex << 1) + 2;//formula, look at end of file
             int swapIndex = 0;
 
             if(childIndexLeft < currentItemCount)//check if the child exists
@@ -84,7 +84,7 @@ public class Heap<T> where T : IHeapItem<T> {
     }
     void SortUp(T item)
     {
-        int parentIndex = (item.HeapIndex - 1) / 2;//(n - 1)/2 formula to get parent
+        int parentIndex = (item.HeapIndex - 1) >> 1;//(n - 1)/2 formula to get parent
 
         while(true)
         {
@@ -97,7 +97,7 @@ public class Heap<T> where T : IHeapItem<T> {
             {
                 break;
             }
-            parentIndex = (item.HeapIndex - 1) / 2;
+            parentIndex = (item.HeapIndex - 1) >> 1;
         }
     }
 

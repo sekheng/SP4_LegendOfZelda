@@ -36,7 +36,7 @@ public class CSVReader : MonoBehaviour {
 	    LevelLayoutArray = CSVReader.SplitCsvGrid(file.text);
         textRow = new string[LevelLayoutArray.GetUpperBound(0)];  // Instantiate the textRow array with the number of rows in csvData array.
 
-        float height = ((LevelLayoutArray.Length / textRow.Length) - 1) + offset;
+        int height = ((LevelLayoutArray.Length / textRow.Length) - 1) + offset;
         int width = textRow.Length - 1;
 
         //Debug.Log(width.ToString() + " " + height.ToString());
@@ -48,7 +48,7 @@ public class CSVReader : MonoBehaviour {
         {
             for (int x = 0; x < width; x++)
             {
-                Vector3 objPos = new Vector3(x - (width / 2) + offsetX, (-y + (height / 2) + offsetY), 0);
+                Vector3 objPos = new Vector3(x - (width >> 1) + offsetX, (-y + (height >> 1) + offsetY), 0);
                 GameObject result;
                 if (LevelLayoutArray[x, y] == "0")
                 {
