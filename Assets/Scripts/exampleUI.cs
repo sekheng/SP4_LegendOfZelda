@@ -231,8 +231,7 @@ public class exampleUI : MonoBehaviour
         switch (data.extraData)
         {
             case "nextScene":
-                LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                LocalDataSingleton.instance.GoNext();
                 break;
         }
         return didAction;

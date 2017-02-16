@@ -1,14 +1,26 @@
 ﻿using UnityEngine;
+using System.Collections;
 using UnityEngine.SceneManagement;
 
 public class ChangeScene2 : MonoBehaviour {
 
-    void OnTriggerEnter2D(Collider2D other) //go back to previous scene;
+    IEnumerator test;
+
+    void OnTriggerEnter2D(Collider2D other) //mostly is just for compass
     {
         if (other.CompareTag("Player"))
         {
-            //LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(LocalDataSingleton.instance.previousSceneFrom);
+            test = ChangeLevel(SceneManager.GetActiveScene().buildIndex - 1);
+            StartCoroutine(test);
         }
+    }
+
+    IEnumerator ChangeLevel(int index)
+    {
+        LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
+
+        float fadeTime = LocalDataSingleton.instance.GetComponent<Fading>().BeginFade(1);
+        yield return new WaitForSeconds(fadeTime);
+        SceneManager.LoadScene(index);
     }
 }

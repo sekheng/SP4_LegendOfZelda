@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class LocalDataSingleton : MonoBehaviour {
 
@@ -7,6 +8,8 @@ public class LocalDataSingleton : MonoBehaviour {
 
     public int previousSceneFrom = -1;
     public bool talkedToDragon = false;
+
+    IEnumerator test;
 
     // Earlier than start
     void Awake()
@@ -22,9 +25,19 @@ public class LocalDataSingleton : MonoBehaviour {
 
         DontDestroyOnLoad(transform.gameObject);
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
+    public void GoNext()
+    {
+        test = ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(test);
+    }
+
+    IEnumerator ChangeLevel(int index)
+    {
+        LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
+
+        float fadeTime = LocalDataSingleton.instance.GetComponent<Fading>().BeginFade(1);
+        yield return new WaitForSeconds(fadeTime);
+        SceneManager.LoadScene(index);
+    }
 }
