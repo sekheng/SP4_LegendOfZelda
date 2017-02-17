@@ -4,16 +4,20 @@ using System.Collections;
 public class Wolf_Statemanager : MonoBehaviour {
 
     public Wolf_IdleState idle;
+    public Wolf_SearchState search;
     public Wolf_RoamState roam;
     public Wolf_DeadState dead;
     public Wolf_ChaseState chase;
     public Wolf_AttackState attack;
+    public Animator anim;
+    public Rigidbody2D wolf_RB;
 
     public State currState;
 
     void Start()
     {
-        currState = idle;
+        currState = roam;
+        anim.Play("wolf_walk_left");
     }
 
     void Update()
@@ -26,6 +30,10 @@ public class Wolf_Statemanager : MonoBehaviour {
         if (str == "idle")
         {
             currState = idle;
+        }
+        else if (str == "search")
+        {
+            currState = search;
         }
         else if (str == "roam")
         {
@@ -42,6 +50,26 @@ public class Wolf_Statemanager : MonoBehaviour {
         else if (str == "attack")
         {
             currState = attack;
+        }
+    }
+
+    public void changeAnim(int dir)
+    {
+        if (dir == 3)
+        {
+            anim.Play("wolf_walk_right");
+        }
+        else if (dir == 2)
+        {
+            anim.Play("wolf_walk_left");
+        }
+        else if (dir == 0)
+        {
+            anim.Play("wolf_walk_up");
+        }
+        else if (dir == 1)
+        {
+            anim.Play("wolf_walk_down");
         }
     }
 }

@@ -7,8 +7,10 @@ public class Wolf_RoamState : State
     private Vector3[] directions;
     private IntRange rngTime;
     private IntRange rngDir;
+    private IntRange rngChangeState;
     private Wolf_Statemanager manager;
     private int whichDir;
+    private int toChangeState;
     private float roamingTime;
     private float timeToStopRoaming;
     private float damageTimer;
@@ -24,11 +26,14 @@ public class Wolf_RoamState : State
         directions[3] = Vector3.right;
         rngTime = new IntRange(1, 2);
         rngDir = new IntRange(0, 4);
+        rngChangeState = new IntRange(0, 2);
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
         roamingTime = 0;
         timeToStopRoaming = rngTime.Random;
         whichDir = rngDir.Random;
+        toChangeState = rngChangeState.Random;
         damageTimer = 0;
+        manager.changeAnim(whichDir);
     }
 
     public override void UpdateState()
@@ -51,13 +56,24 @@ public class Wolf_RoamState : State
         //    monsterRigidbody2D.velocity = tempToCheckCollision;
         //    //monsterTransform.position += tempToCheckCollision;
         //}
-        if (roamingTime > timeToStopRoaming)
+        if (roamingTime > timeToStopRoaming && toChangeState == 0)
         {
             whichDir = rngDir.Random;
             roamingTime = 0;//reset the time
             timeToStopRoaming = rngTime.Random;
+            toChangeState = rngChangeState.Random;
             monsterRigidbody2D.velocity = Vector3.zero;
-            manager.changeState("idle");//change state
+            manager.changeAnim(whichDir);
+            manager.changeState("search");//change state
+        }
+        else if(roamingTime > timeToStopRoaming && toChangeState == 1)
+        {
+            whichDir = rngDir.Random;
+            roamingTime = 0;//reset the time
+            timeToStopRoaming = rngTime.Random;
+            toChangeState = rngChangeState.Random;
+            monsterRigidbody2D.velocity = Vector3.zero;
+            manager.changeAnim(whichDir);
         }
 
         //When Health < 0, change to dead state

@@ -6,11 +6,13 @@ public class Slime_Statemanager : MonoBehaviour {
     public Slime_IdleState idle;
     public Slime_RoamState roam;
     public Slime_DeadState dead;
+    public Animator anim;
     
     public State currState;
 
     void Start(){
         currState = idle;
+        anim.Play("slime_idle");
     }
     
     void Update()
@@ -23,10 +25,12 @@ public class Slime_Statemanager : MonoBehaviour {
         if(str == "idle")
         {
             currState = idle;
+            anim.Play("slime_idle");
         }
         else if(str == "roam")
         {
             currState = roam;
+            anim.Play("slime_walk");
         }
         else if(str == "dead")
         {

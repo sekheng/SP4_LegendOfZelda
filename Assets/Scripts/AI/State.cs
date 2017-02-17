@@ -7,6 +7,7 @@ public class State : MonoBehaviour {
     public Transform monsterTransform;
     public Rigidbody2D monsterRigidbody2D;
     public Sprite monsterSprite;
+    public SpriteRenderer monsterSpriteRenderer;
     public HealthScript health;
 	public virtual void UpdateState () {
 	}
@@ -44,4 +45,5 @@ public class State : MonoBehaviour {
         }
         return false;
     }
-   }
+
+}
