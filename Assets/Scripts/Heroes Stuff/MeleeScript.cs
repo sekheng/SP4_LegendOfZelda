@@ -29,6 +29,11 @@ public class MeleeScript : MonoBehaviour {
     private HeroAnimateScript heroMeleeAnim;
     private bool playerIsAttacking = false;
 
+    [Tooltip("The delay time for the player to deal damage to the enemy")]
+    public float m_delayInitialAttack = 0.3f;
+    //Count the timer for the initial attack
+    private float m_delayCounter = 0;
+
 	// Use this for initialization
 	void Start () {
         //BoxCollider2D[] AllTheCollider = GetComponents<BoxCollider2D>();
@@ -49,8 +54,35 @@ public class MeleeScript : MonoBehaviour {
         timeCounter += Time.deltaTime;
         //Debug.DrawRay(transform.position, directionOfRay * m_range, Color.black);
         //Debug.Log(gameObject.name + ": " + directionOfRay);
-        if (timeCounter > m_time && heroMeleeAnim != null && playerIsAttacking)
+        if (timeCounter > m_time && heroMeleeAnim != null)
             heroMeleeAnim.stopMeleeAttack();
+        if (playerIsAttacking)
+        {
+            {
+                // If the player is attacking, then we delay the attack before dealing the damage!
+                m_delayCounter += Time.deltaTime;
+                // If the player is able to attack!
+                if (m_delayCounter > m_delayInitialAttack)
+                {
+                    //heroMeleeAnim.stopMeleeAttack();
+                    m_delayCounter = 0;
+                    playerIsAttacking = false;
+                    Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
+                    //Debug.Log("Position of Box: " + (transform.position + transform.localScale));
+                    RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
+                        , transform.localScale, 0, Vector2.zero);
+                    foreach (RaycastHit2D attacked in hits)
+                    {
+                        // This is so that it is not attackin itself!
+                        if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
+                        {
+                            //Debug.Log("Successful attack");
+                            AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
+                        }
+                    }
+                }
+            }
+        }
 	}
 
     // Use call this function to attack the enemy!
@@ -76,19 +108,19 @@ public class MeleeScript : MonoBehaviour {
             playerIsAttacking = true;
             heroMeleeAnim.meleeAttackAnimation();
             timeCounter = 0;
-            Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
-            //Debug.Log("Position of Box: " + (transform.position + transform.localScale));
-            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
-                , transform.localScale, 0, Vector2.zero);
-            foreach (RaycastHit2D attacked in hits)
-            {
-                // This is so that it is not attackin itself!
-                if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
-                {
-                    //Debug.Log("Successful attack");
-                    AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
-                }
-            }
+            //Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
+            ////Debug.Log("Position of Box: " + (transform.position + transform.localScale));
+            //RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
+            //    , transform.localScale, 0, Vector2.zero);
+            //foreach (RaycastHit2D attacked in hits)
+            //{
+            //    // This is so that it is not attackin itself!
+            //    if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
+            //    {
+            //        //Debug.Log("Successful attack");
+            //        AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
+            //    }
+            //}
         }
         //Debug.Log("Raycasted Object: " + theHitObject.collider.gameObject.name);
     }
@@ -96,5 +128,13 @@ public class MeleeScript : MonoBehaviour {
     public void setDirection(Vector3 zeDir)
     {
         directionOfRay = zeDir;
+        // If player is trying to attack then move, cancel the attack!
+        if (playerIsAttacking)
+        {
+            playerIsAttacking = false;
+            timeCounter = 0;
+            m_delayCounter = 0;
+            heroMeleeAnim.stopMeleeAttack();
+        }
     }
 }
