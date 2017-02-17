@@ -13,8 +13,8 @@ public class HeroMeleeButton : MonoBehaviour {
     private PlayerDrag thePlayerJoystick;
 #endif
 
-    [Tooltip("The Melee Button for mobile")]
-    public GameObject theAttackButton;
+    //[Tooltip("The Melee Button for mobile")]
+    private GameObject theAttackButton;
 
 #if UNITY_STANDALONE
     [Tooltip("The Key pressed for Melee Attack!")]
@@ -28,6 +28,7 @@ public class HeroMeleeButton : MonoBehaviour {
         //theAttackButton.SetActive(false);
 #else
         thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
+        theAttackButton = GameObject.Find("AttackButton");
 #endif
     }
 	
