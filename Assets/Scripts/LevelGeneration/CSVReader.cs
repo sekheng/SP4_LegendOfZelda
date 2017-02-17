@@ -87,7 +87,7 @@ public class CSVReader : MonoBehaviour {
                 {
                     result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
                 }
-                if(result.CompareTag("Untagged")) //Please remember to tag all your objects accordingly lest they be thrown into the holder!
+                if (result.name.Equals("wall(Clone)") || result.name.Equals("OuterWall(Clone)") || result.name.Equals("Floor(Clone)")) //Please remember to tag all your objects accordingly lest they be thrown into the holder!
                 {
                     result.transform.SetParent(lvlHolder.transform);
                 }
