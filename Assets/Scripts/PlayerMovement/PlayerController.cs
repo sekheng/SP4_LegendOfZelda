@@ -7,7 +7,6 @@ using System.Collections;
 /// Will add for mobile soon!
 /// </summary>
 public class PlayerController : MonoBehaviour {
-#if UNITY_STANDALONE
     // There will only be 1 hero throughout the entire game!
     private HeroesMovement theOnlyHero;
     // This is to check if the player is not moving the character, then stop the movement!
@@ -20,15 +19,20 @@ public class PlayerController : MonoBehaviour {
 
     void Start()
     {
+        //if (theOnlyHero == null)
+        //{
+        //    theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        //}
+    }
+	
+#if UNITY_STANDALONE
+	// Update is called once per frame
+	void Update () {
         if (theOnlyHero == null)
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
-    }
-	
-	// Update is called once per frame
-	void Update () {
-        // Here we shall check which key is pressed so that interception can happen!
+    // Here we shall check which key is pressed so that interception can happen!
         if (!LocalDataSingleton.instance.talking)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
@@ -70,21 +74,6 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    public void TryInteract()
-    {
-        RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + GeneralDir, GeneralDir, 1.0f);
-        if (rHit.collider != null)
-        {
-            //In this example, we will try to interact with any collider the raycast finds
-            //Lets grab the NPC's DialogueAssign script... if there's any
-            if (rHit.collider.GetComponent<minUIExample>() != null && !LocalDataSingleton.instance.talking)
-            {
-                LocalDataSingleton.instance.talking = true;
-                rHit.collider.GetComponent<minUIExample>().dialogue.BeginDialogue(rHit.collider.GetComponent <VIDE_Assign>());
-            }
-        }
-    }
-
     void LateUpdate()
     {
         if (theOnlyHero != null && !LocalDataSingleton.instance.talking)
@@ -103,4 +92,23 @@ public class PlayerController : MonoBehaviour {
         }
     }
 #endif
+
+    public void TryInteract()
+    {
+        if (theOnlyHero == null)
+        {
+            theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        }
+        RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + GeneralDir, GeneralDir, 1.0f);
+        if (rHit.collider != null)
+        {
+            //In this example, we will try to interact with any collider the raycast finds
+            //Lets grab the NPC's DialogueAssign script... if there's any
+            if (rHit.collider.GetComponent<minUIExample>() != null && !LocalDataSingleton.instance.talking)
+            {
+                LocalDataSingleton.instance.talking = true;
+                rHit.collider.GetComponent<minUIExample>().dialogue.BeginDialogue(rHit.collider.GetComponent <VIDE_Assign>());
+            }
+        }
+    }
 }

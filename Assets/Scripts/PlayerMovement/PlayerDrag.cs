@@ -31,11 +31,9 @@ public class PlayerDrag : MonoBehaviour {
 	void Start () {
         //ImgFG = GetComponent<Image>();
         //ImgBG = transform.parent.GetComponent<Image>();
-        ImgBG.gameObject.SetActive(false);
-        ImgFG.gameObject.SetActive(false);
         //ImgBG = GetComponentInParent<Image>();
         //Debug.Log("Parent Name: " + ImgBG.gameObject.name);
-        theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        
         screenSizeX = Screen.width;
         screenSizeY = Screen.height;
         //Debug.Log("Screen height: " + screenSizeY);
@@ -43,88 +41,81 @@ public class PlayerDrag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (theOnlyHero == null && ImgFG.IsActive() && ImgBG.IsActive())
+        {
+            theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        }
 	    if (fingerHasPressedIt)
         {
            Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
-            switch (theFingerTouched.phase)
-            {
-                case TouchPhase.Canceled:
-                    ReturnOrigin();
-                    break;
-                case TouchPhase.Ended:
-                    ReturnOrigin();
-                    break;
-                default:
-                    Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
-                    directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
-                    if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-                    {
-                        directionOfStick.Normalize();
-                        directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-                    }
-                    ImgFG.rectTransform.anchoredPosition = directionOfStick;
-                    // Since heroes can only move in 4 direction, then we should only do just that!
-                    // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-                    if (directionOfStick.sqrMagnitude < ImgBG.rectTransform.sizeDelta.y * 0.25f)
-                    {
-                        theOnlyHero.stopMovement();
-                        return; // Otherwise the hero will still be moving!
-                    }
-                    if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-                    {
-                        directionOfStick = new Vector3(directionOfStick.x, 0);
-                    }
-                    else
-                    {
-                        directionOfStick = new Vector3(0, directionOfStick.y);
-                    }
-                    theOnlyHero.moveDirection(directionOfStick);
-                    break;
-            }
+           Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
+           directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
+           if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+           {
+               directionOfStick.Normalize();
+               directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+           }
+           ImgFG.rectTransform.anchoredPosition = directionOfStick;
+           // Since heroes can only move in 4 direction, then we should only do just that!
+           // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+           if (directionOfStick.sqrMagnitude < offsetDistance)
+           {
+               theOnlyHero.stopMovement();
+               return; // Otherwise the hero will still be moving!
+           }
+           if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+           {
+               directionOfStick = new Vector3(directionOfStick.x, 0);
+           }
+           else
+           {
+               directionOfStick = new Vector3(0, directionOfStick.y);
+           }
+           theOnlyHero.moveDirection(directionOfStick);
 
-            //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
-            //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-            //{
-            //    directionOfStick.Normalize();
-            //    directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-            //}
-            //ImgFG.rectTransform.anchoredPosition = directionOfStick;
-            ////Debug.Log("Direction: " + directionOfStick);
-            //// Since heroes can only move in 4 direction, then we should only do just that!
-            //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-            //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
-            //{
-            //    theOnlyHero.stopMovement();
-            //    return;
-            //}
-            //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-            //{
-            //    directionOfStick = new Vector3(directionOfStick.x, 0);
-            //}
-            //else
-            //{
-            //    directionOfStick = new Vector3(0, directionOfStick.y);
-            //}
-            //theOnlyHero.moveDirection(directionOfStick);
+           //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
+           //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+           //{
+           //    directionOfStick.Normalize();
+           //    directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+           //}
+           //ImgFG.rectTransform.anchoredPosition = directionOfStick;
+           ////Debug.Log("Direction: " + directionOfStick);
+           //// Since heroes can only move in 4 direction, then we should only do just that!
+           //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+           //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+           //{
+           //    theOnlyHero.stopMovement();
+           //    return;
+           //}
+           //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+           //{
+           //    directionOfStick = new Vector3(directionOfStick.x, 0);
+           //}
+           //else
+           //{
+           //    directionOfStick = new Vector3(0, directionOfStick.y);
+           //}
+           //theOnlyHero.moveDirection(directionOfStick);
         }
-        else if (Input.touchCount > 0)
-        {
-            Touch[] allZeTouch = Input.touches;
-            // Check whether any of the finger is at the bottom of the screen!
-            foreach (Touch zeTouch in allZeTouch)
-            {
-                // Checking whether the finger pressed in at the bottom right of the screen and the finger landed on it!
-                if (zeTouch.position.x < screenSizeX * 0.5f && zeTouch.position.y < screenSizeY * 0.5f && zeTouch.phase == TouchPhase.Began)
-                {
-                    theFingerTouchedID = zeTouch.fingerId;
-                    ImgFG.gameObject.SetActive(true);
-                    ImgBG.gameObject.SetActive(true);
-                    ImgBG.rectTransform.position = new Vector3(zeTouch.position.x, zeTouch.position.y, ImgBG.rectTransform.position.z);
-                    fingerHasPressedIt = true;
-                    break;
-                }
-            }
-        }
+        //else if (Input.touchCount > 0)
+        //{
+        //    Touch[] allZeTouch = Input.touches;
+        //    // Check whether any of the finger is at the bottom of the screen!
+        //    foreach (Touch zeTouch in allZeTouch)
+        //    {
+        //        // Checking whether the finger pressed in at the bottom right of the screen and the finger landed on it!
+        //        if (zeTouch.position.x < screenSizeX * 0.5f && zeTouch.position.y < screenSizeY * 0.5f && zeTouch.phase == TouchPhase.Began)
+        //        {
+        //            theFingerTouchedID = zeTouch.fingerId;
+        //            ImgFG.gameObject.SetActive(true);
+        //            ImgBG.gameObject.SetActive(true);
+        //            ImgBG.rectTransform.position = new Vector3(zeTouch.position.x, zeTouch.position.y, ImgBG.rectTransform.position.z);
+        //            fingerHasPressedIt = true;
+        //            break;
+        //        }
+        //    }
+        //}
         //else
         //{
         //    Debug.Log("Mouse Position: " + Input.mousePosition);
@@ -209,23 +200,24 @@ public class PlayerDrag : MonoBehaviour {
         directionOfStick = new Vector3(0, 0, 1);
         theOnlyHero.stopMovement();
         fingerHasPressedIt = false;
-        ImgBG.gameObject.SetActive(false);
-        ImgFG.gameObject.SetActive(false);
+        //ImgBG.gameObject.SetActive(false);
+        //ImgFG.gameObject.SetActive(false);
     }
-    //public void FingerPressed()
-    //{
-    //    Touch[] allZeTouch = Input.touches;
-    //    foreach (Touch zeTouch in allZeTouch)
-    //    {
-    //        if (zeTouch.position.x < (ImgBG.rectTransform.position.x + Mathf.Abs(ImgBG.rectTransform.sizeDelta.x * 0.5f)) && zeTouch.position.x > (ImgBG.rectTransform.position.x - Mathf.Abs(ImgBG.rectTransform.sizeDelta.x * 0.5f))
-    //            && zeTouch.position.y < (ImgBG.rectTransform.position.y + Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f)) && zeTouch.position.y > (ImgBG.rectTransform.position.y - Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f)))
-    //        {
-    //            theFingerTouchedID = zeTouch.fingerId;
-    //            break;
-    //        }
-    //    }
-    //    fingerHasPressedIt = true;
-    //}
+    public void FingerPressed()
+    {
+        Touch[] allZeTouch = Input.touches;
+        foreach (Touch zeTouch in allZeTouch)
+        {
+            if (zeTouch.position.x < (ImgBG.rectTransform.position.x + Mathf.Abs(ImgBG.rectTransform.sizeDelta.x * 0.5f)) && zeTouch.position.x > (ImgBG.rectTransform.position.x - Mathf.Abs(ImgBG.rectTransform.sizeDelta.x * 0.5f))
+                && zeTouch.position.y < (ImgBG.rectTransform.position.y + Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f)) && zeTouch.position.y > (ImgBG.rectTransform.position.y - Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f)))
+            {
+                theFingerTouchedID = zeTouch.fingerId;
+                break;
+            }
+        }
+        //Debug.Log("Pressing the button");
+        fingerHasPressedIt = true;
+    }
 #else
     void Start()
     {
