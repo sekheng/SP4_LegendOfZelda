@@ -8,6 +8,7 @@ using System.Collections;
 /// This will also check for any magic component too so as not to interfere with HealthScript
 /// We will be using raycast for collision detection!
 /// </summary>
+[RequireComponent(typeof(HeroAnimateScript))]
 public class MeleeScript : MonoBehaviour {
     [Tooltip("Range of the raycast")]
     public float m_range = 5.0f;
@@ -24,6 +25,9 @@ public class MeleeScript : MonoBehaviour {
     // The raycast of the ray!
     private Vector3 directionOfRay = new Vector3(1, 0, 0);
 
+    // To animate Hero melee animation!
+    private HeroAnimateScript heroMeleeAnim;
+
 	// Use this for initialization
 	void Start () {
         //BoxCollider2D[] AllTheCollider = GetComponents<BoxCollider2D>();
@@ -36,6 +40,7 @@ public class MeleeScript : MonoBehaviour {
         //        break;
         //    }
         //}
+        heroMeleeAnim = GetComponent<HeroAnimateScript>();
 	}
 	
 	// Update is called once per frame
@@ -43,12 +48,14 @@ public class MeleeScript : MonoBehaviour {
         timeCounter += Time.deltaTime;
         //Debug.DrawRay(transform.position, directionOfRay * m_range, Color.black);
         //Debug.Log(gameObject.name + ": " + directionOfRay);
+        if (timeCounter > m_time && heroMeleeAnim != null)
+            heroMeleeAnim.stopMeleeAttack();
 	}
 
     // Use call this function to attack the enemy!
     public void meleeAttack()
     {
-        Debug.Log("Trying to attack");
+        //Debug.Log("Trying to attack");
         //RaycastHit2D theHitObject;
         //Debug.Log("Time Counter: " + timeCounter);
         //theHitObject = Physics2D.Raycast(transform.position, directionOfRay * m_range);
@@ -63,18 +70,22 @@ public class MeleeScript : MonoBehaviour {
         //}
 
         // TODO: Will change the dimension to sprite bounds if everything is sprite!
-        Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
-        Debug.Log("Position of Box: " + (transform.position + transform.localScale));
-        RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
-            , transform.localScale, 0, Vector2.zero);
-        foreach (RaycastHit2D attacked in hits)
+        if (timeCounter > m_time)
         {
-            // This is so that it is not attackin itself!
-            if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
+             heroMeleeAnim.meleeAttackAnimation();
+             timeCounter = 0;
+            Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
+            //Debug.Log("Position of Box: " + (transform.position + transform.localScale));
+            RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
+                , transform.localScale, 0, Vector2.zero);
+            foreach (RaycastHit2D attacked in hits)
             {
-                Debug.Log("Successful attack");
-                timeCounter = 0;
-                AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
+                // This is so that it is not attackin itself!
+                if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
+                {
+                    //Debug.Log("Successful attack");
+                    AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
+                }
             }
         }
         //Debug.Log("Raycasted Object: " + theHitObject.collider.gameObject.name);
