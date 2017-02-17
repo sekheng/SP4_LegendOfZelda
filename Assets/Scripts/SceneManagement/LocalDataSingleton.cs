@@ -6,8 +6,16 @@ public class LocalDataSingleton : MonoBehaviour {
 
     public static LocalDataSingleton instance = null;
 
+    [HideInInspector]
     public int previousSceneFrom = -1;
+    [HideInInspector]
     public bool talkedToDragon = false;
+    [HideInInspector]
+    public bool movementDisabled = false;
+    [HideInInspector]
+    public bool talking = false;
+
+    private float Volume { get; set; }
 
     IEnumerator test;
 
@@ -25,6 +33,36 @@ public class LocalDataSingleton : MonoBehaviour {
 
         DontDestroyOnLoad(transform.gameObject);
     }
+
+    void Update()
+    {
+        AudioListener.volume = Volume;
+        if(SceneManager.GetActiveScene().buildIndex != 0 && !transform.GetChild(3).gameObject.activeSelf)
+        {
+            transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
+        }
+#if UNITY_STANDALONE
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(SceneManager.GetActiveScene().buildIndex != 0)
+            {
+                //activate the child canvas
+                transform.GetChild(0).gameObject.SetActive(!transform.GetChild(0).gameObject.activeSelf);
+            }
+        }
+#endif
+#if UNITY_ANDROID
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            transform.GetChild(2).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(2).gameObject.SetActive(false);
+        }
+#endif
+    }
+
 
     public void GoNext()
     {
