@@ -23,7 +23,8 @@ public class PlayerDrag : MonoBehaviour {
     // The finger that pressed the joystick!
     private int theFingerTouchedID;
     // Check for any finger that has pressed the joystick!
-    private bool fingerHasPressedIt = false;
+    [HideInInspector]
+    public bool fingerHasPressedIt = false;
     // Screen resolution!
     private int screenSizeX, screenSizeY;
 

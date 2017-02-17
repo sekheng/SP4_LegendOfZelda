@@ -8,6 +8,10 @@ using System.Collections;
 public class HeroMeleeButton : MonoBehaviour {
     // Since this is for hero
     private MeleeScript theHeroMeleeSystem;
+#if UNITY_ANDROID
+    // have to interrupt player's movement!
+    private PlayerDrag thePlayerJoystick;
+#endif
 
     [Tooltip("The Melee Button for mobile")]
     public GameObject theAttackButton;
@@ -22,6 +26,8 @@ public class HeroMeleeButton : MonoBehaviour {
         theHeroMeleeSystem = GetComponent<MeleeScript>();
 	#if UNITY_STANDALONE
         //theAttackButton.SetActive(false);
+#else
+        thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
 #endif
     }
 	
@@ -40,6 +46,7 @@ public class HeroMeleeButton : MonoBehaviour {
 #if UNITY_ANDROID
     public void doAttack()
     {
+        thePlayerJoystick.fingerHasPressedIt = false;
         theHeroMeleeSystem.meleeAttack();
         GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
     }

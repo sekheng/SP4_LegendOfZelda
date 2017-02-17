@@ -43,6 +43,8 @@ public class PlayerController : MonoBehaviour {
                 currentKeyPressed = KeyCode.RightArrow;
             if (Input.GetKeyDown(KeyCode.LeftArrow))
                 currentKeyPressed = KeyCode.LeftArrow;
+            if (Input.GetKeyDown(KeyCode.Z))
+                currentKeyPressed = KeyCode.Z;
 
             // Here we check whether the player has continuously press it for movement
             if (Input.GetKey(currentKeyPressed))
@@ -66,7 +68,8 @@ public class PlayerController : MonoBehaviour {
                         GeneralDir = new Vector2(-1, 0);
                         break;
                     default:
-                        Debug.Log("Something is wrong with current keypressed");
+                        theOnlyHero.passInKeyPressed(currentKeyPressed);
+                        //Debug.Log("Something is wrong with current keypressed");
                         break;
                 }
                 checkPlayerMoved = true;

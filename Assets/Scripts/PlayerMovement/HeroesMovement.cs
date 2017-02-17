@@ -42,4 +42,17 @@ public class HeroesMovement : MonoBehaviour {
             heroAnimator.stopAnimation();
         }
     }
+
+    public void passInKeyPressed(KeyCode zeKey)
+    {
+        switch (zeKey)
+        {
+            case KeyCode.Z:
+                stopMovement();
+                break;
+            default:
+                Debug.Log("Something is wrong with current keypressed");
+                break;
+        }
+    }
 }

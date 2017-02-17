@@ -27,6 +27,8 @@ public class MeleeScript : MonoBehaviour {
 
     // To animate Hero melee animation!
     private HeroAnimateScript heroMeleeAnim;
+    // Keep track of hero's movement
+    private HeroesMovement heroMove;
     private bool playerIsAttacking = false;
 
     [Tooltip("The delay time for the player to deal damage to the enemy")]
@@ -47,6 +49,7 @@ public class MeleeScript : MonoBehaviour {
         //    }
         //}
         heroMeleeAnim = GetComponent<HeroAnimateScript>();
+        heroMove = GetComponent<HeroesMovement>();
 	}
 	
 	// Update is called once per frame
@@ -108,6 +111,7 @@ public class MeleeScript : MonoBehaviour {
             playerIsAttacking = true;
             heroMeleeAnim.meleeAttackAnimation();
             timeCounter = 0;
+            heroMove.stopMovement();
             //Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
             ////Debug.Log("Position of Box: " + (transform.position + transform.localScale));
             //RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition

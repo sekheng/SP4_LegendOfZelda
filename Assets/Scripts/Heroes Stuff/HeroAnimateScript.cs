@@ -19,6 +19,9 @@ public class HeroAnimateScript : MonoBehaviour {
     private int indexOfPlayerAnimation = 0;
     private bool isAttacking = false;
 
+    // To make slow down so that hero looks idling
+    private bool slowAnimSpeed = false;
+
 	// Use this for initialization
 	void Start () {
         heroAnimationController = GetComponentInChildren<Animator>();
