@@ -48,6 +48,10 @@ public class LocalDataSingleton : MonoBehaviour {
             }
         }
 #endif
+#if UNITY_ANDROID
+
+
+#endif
     }
 
     public void GoNext()

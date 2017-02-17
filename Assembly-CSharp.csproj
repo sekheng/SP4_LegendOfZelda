@@ -91,6 +91,9 @@
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SplashScripts.cs" />
      <Compile Include="Assets\Scripts\minUIExample.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
