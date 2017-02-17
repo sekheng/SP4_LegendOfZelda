@@ -15,7 +15,7 @@ public class MainMenuControl : MonoBehaviour {
     };
 
     public CURRENTBUTTON selected;
-
+#if UNITY_STANDALONE
 	// Use this for initialization
 	void Start () {
         selected = CURRENTBUTTON.PLAY;
@@ -71,5 +71,5 @@ public class MainMenuControl : MonoBehaviour {
             }
         }
     }
-	    
+#endif
 }
