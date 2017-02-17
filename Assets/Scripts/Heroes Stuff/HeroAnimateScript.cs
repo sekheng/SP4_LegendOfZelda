@@ -71,18 +71,18 @@ public class HeroAnimateScript : MonoBehaviour {
 
     public void meleeAttackAnimation()
     {
-        Debug.Log("Melee animation");
+        //Debug.Log("Melee animation");
         //heroAnimationController.Play(m_heroMeleeAnimation[indexOfPlayerAnimation]);
-        heroAnimationController.SetTrigger("Attack");
+        heroAnimationController.SetBool("Attack", true);
         isAttacking = true;
     }
     public void stopMeleeAttack()
     {
-        Debug.Log("Stop melee animation: " + isAttacking);
+        //Debug.Log("Stop melee animation: " + isAttacking);
         switch (isAttacking)
         {
             case true:
-                 heroAnimationController.SetTrigger("Attack");
+                heroAnimationController.SetBool("Attack", false);
                 //heroAnimationController.Play(m_heroAnimationMovement[indexOfPlayerAnimation]);
                 //Debug.Log("Moving the Player");
                 isAttacking = false;

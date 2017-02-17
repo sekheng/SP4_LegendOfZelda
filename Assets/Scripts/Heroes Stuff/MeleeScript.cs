@@ -27,6 +27,7 @@ public class MeleeScript : MonoBehaviour {
 
     // To animate Hero melee animation!
     private HeroAnimateScript heroMeleeAnim;
+    private bool playerIsAttacking = false;
 
 	// Use this for initialization
 	void Start () {
@@ -48,7 +49,7 @@ public class MeleeScript : MonoBehaviour {
         timeCounter += Time.deltaTime;
         //Debug.DrawRay(transform.position, directionOfRay * m_range, Color.black);
         //Debug.Log(gameObject.name + ": " + directionOfRay);
-        if (timeCounter > m_time && heroMeleeAnim != null)
+        if (timeCounter > m_time && heroMeleeAnim != null && playerIsAttacking)
             heroMeleeAnim.stopMeleeAttack();
 	}
 
@@ -72,8 +73,9 @@ public class MeleeScript : MonoBehaviour {
         // TODO: Will change the dimension to sprite bounds if everything is sprite!
         if (timeCounter > m_time)
         {
-             heroMeleeAnim.meleeAttackAnimation();
-             timeCounter = 0;
+            playerIsAttacking = true;
+            heroMeleeAnim.meleeAttackAnimation();
+            timeCounter = 0;
             Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
             //Debug.Log("Position of Box: " + (transform.position + transform.localScale));
             RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition
