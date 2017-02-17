@@ -5,17 +5,24 @@ using System.Collections.Generic;
 public class Pathfinding : MonoBehaviour {
 
     public Transform seeker, target;
+    //public Grid GridForPathfinding;
     Grid grid;
 
     void Start()
-    {
-        grid = GetComponent<Grid>();
+    {//PathfindingAStarGrid
+        grid = GameObject.FindGameObjectWithTag("PathfindingAStarGrid").GetComponent<Grid>();
     }
 
     void Update()
     {
-        FindPath(seeker.position, target.position);
-        
+        while(grid == null)
+        {
+            grid = GameObject.FindGameObjectWithTag("PathfindingAStarGrid").GetComponent<Grid>();
+        }
+        if (seeker != null && target != null)
+        {
+            FindPath(seeker.position, target.position);
+        }
     }
 
 	void FindPath(Vector2 startPos, Vector2 targetPos)
@@ -98,5 +105,33 @@ public class Pathfinding : MonoBehaviour {
         if (distX > distY)
             return 14 * distY + 10 * (distX - distY);
         return 14* distX +10 * (distY - distX);
+    }
+
+    public List<Node> getPath()
+    {
+        return grid.path;
+    }
+
+    public void setSeeker(Transform transform)
+    {
+        seeker = transform;
+    }
+    public void setTarget(Transform transform)
+    {
+        target = transform;
+    }
+
+    public Transform getSeeker()
+    {
+        return seeker ;
+    }
+    public Transform getTarget()
+    {
+        return target;
+    }
+
+    public Grid getGrid()
+    {
+        return grid;
     }
 }

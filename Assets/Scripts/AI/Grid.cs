@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Grid : MonoBehaviour{
+public class Grid : MonoBehaviour {
 
     public LayerMask unwalkableMask;
     public Vector2 gridWorldSize;
@@ -12,6 +12,8 @@ public class Grid : MonoBehaviour{
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
+    public List<Node> path;
+
     void Start()
     {
         nodeDiameter = nodeRadius * 2;
@@ -19,6 +21,22 @@ public class Grid : MonoBehaviour{
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
     }
+
+    public int getGridSizeX()
+    {
+        return gridSizeX;
+    }
+
+    public int getGridSizeY()
+    {
+        return gridSizeY;
+    }
+
+    public Node[,] getGrid()
+    {
+        return grid;
+    }
+
     public int MaxSize
     {
         get
@@ -28,20 +46,20 @@ public class Grid : MonoBehaviour{
     }
     void Update()
     {
-       //// grid = new Node[gridSizeX, gridSizeY];
-       // Vector2 worldBottomLeft = (Vector2)transform.position - Vector2.right * gridWorldSize.x / 2 - Vector2.up * gridWorldSize.y / 2;
+        //// grid = new Node[gridSizeX, gridSizeY];
+        //Vector2 worldBottomLeft = (Vector2)transform.position - Vector2.right * gridWorldSize.x / 2 - Vector2.up * gridWorldSize.y / 2;
 
-       // for (int x = 0; x < gridSizeX; ++x)
-       // {
-       //     for (int y = 0; y < gridSizeY; ++y)
-       //     {
-       //         Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
-       //         //collision check
-       //         bool walkable = (Physics2D.OverlapCircle(worldPoint, nodeRadius - 0.2f, unwalkableMask) == null);//check with the layer mask to see which is collidable.radius - offset to make narrow walkway walkable
+        //for (int x = 0; x < gridSizeX; ++x)
+        //{
+        //    for (int y = 0; y < gridSizeY; ++y)
+        //    {
+        //        Vector2 worldPoint = worldBottomLeft + Vector2.right * (x * nodeDiameter + nodeRadius) + Vector2.up * (y * nodeDiameter + nodeRadius);
+        //        //collision check
+        //        bool walkable = (Physics2D.OverlapCircle(worldPoint, nodeRadius - 0.2f, unwalkableMask) == null);//check with the layer mask to see which is collidable.radius - offset to make narrow walkway walkable
 
-       //         grid[x, y].m_bWalkable = walkable;
-       //     }
-       // }
+        //        grid[x, y].m_bWalkable = walkable;
+        //    }
+        //}
     }
 
     void CreateGrid()
@@ -105,7 +123,7 @@ public class Grid : MonoBehaviour{
         return neighbours;
     }
 
-    public List<Node> path;
+   
     void OnDrawGizmos()
     {
         //draw out the grid to debug and see where can be walk to
