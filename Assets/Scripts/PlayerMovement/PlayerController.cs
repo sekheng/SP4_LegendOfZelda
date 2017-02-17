@@ -14,25 +14,22 @@ public class PlayerController : MonoBehaviour {
     private bool checkPlayerMoved = false;
     // We will need this to check which key is pressed!
     private KeyCode currentKeyPressed;
-    private exampleUI diagUI;
+
 
     private Vector2 GeneralDir = Vector2.zero;
+
     void Start()
     {
         if (theOnlyHero == null)
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
-        if (diagUI == null)
-        {
-            diagUI = GameObject.Find("dialogueUI").GetComponent<exampleUI>();
-        }
     }
 	
 	// Update is called once per frame
 	void Update () {
         // Here we shall check which key is pressed so that interception can happen!
-        if (!diagUI.dialogue.isLoaded)
+        if (!LocalDataSingleton.instance.talking)
         {
             if (Input.GetKeyDown(KeyCode.UpArrow))
                 currentKeyPressed = KeyCode.UpArrow;    
@@ -84,37 +81,17 @@ public class PlayerController : MonoBehaviour {
         {
             //In this example, we will try to interact with any collider the raycast finds
             //Lets grab the NPC's DialogueAssign script... if there's any
-            VIDE_Assign assigned;
-            if (rHit.transform.GetComponent<Collider2D>() != null && rHit.collider.GetComponent<VIDE_Assign>() != null)
+            if (rHit.collider.GetComponent<minUIExample>() != null && !LocalDataSingleton.instance.talking)
             {
-                assigned = rHit.collider.GetComponent<VIDE_Assign>();
+                LocalDataSingleton.instance.talking = true;
+                rHit.collider.GetComponent<minUIExample>().dialogue.BeginDialogue(rHit.collider.GetComponent <VIDE_Assign>());
             }
-            else
-            {
-                return;
-            }
-
-            if (!diagUI.dialogue.isLoaded)
-            {
-                //... and use it to begin the conversation
-                diagUI.Begin(assigned);
-            }
-            else
-            {
-                //If conversation already began, let's just progress through it
-                diagUI.NextNode();
-            }
-
-        }
-        else
-        {
-            return;
         }
     }
 
     void LateUpdate()
     {
-        if (theOnlyHero != null && diagUI != null)
+        if (theOnlyHero != null && !LocalDataSingleton.instance.talking)
         {
             switch (checkPlayerMoved)
             {
