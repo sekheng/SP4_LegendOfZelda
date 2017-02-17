@@ -37,7 +37,10 @@ public class LocalDataSingleton : MonoBehaviour {
     void Update()
     {
         AudioListener.volume = Volume;
-
+        if(SceneManager.GetActiveScene().buildIndex != 0 && !transform.GetChild(3).gameObject.activeSelf)
+        {
+            transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
+        }
 #if UNITY_STANDALONE
         if(Input.GetKeyDown(KeyCode.Escape))
         {
@@ -48,6 +51,7 @@ public class LocalDataSingleton : MonoBehaviour {
             }
         }
 #endif
+#if UNITY_ANDROID
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
             transform.GetChild(2).gameObject.SetActive(true);
@@ -56,7 +60,9 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             transform.GetChild(2).gameObject.SetActive(false);
         }
+#endif
     }
+
 
     public void GoNext()
     {
