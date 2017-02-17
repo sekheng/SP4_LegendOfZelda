@@ -68,13 +68,9 @@ public class PlayerController : MonoBehaviour {
                 checkPlayerMoved = true;
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TryInteract();
-        }
     }
 
-    void TryInteract()
+    public void TryInteract()
     {
         RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + GeneralDir, GeneralDir, 1.0f);
         if (rHit.collider != null)

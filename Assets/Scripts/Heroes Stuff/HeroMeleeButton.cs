@@ -32,6 +32,7 @@ public class HeroMeleeButton : MonoBehaviour {
         if (Input.GetKeyDown(attackButton))
         {
             theHeroMeleeSystem.meleeAttack();
+            GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
         }
 #endif
 	}
@@ -40,6 +41,7 @@ public class HeroMeleeButton : MonoBehaviour {
     public void doAttack()
     {
         theHeroMeleeSystem.meleeAttack();
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
     }
 #endif
 }
