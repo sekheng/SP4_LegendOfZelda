@@ -14,16 +14,7 @@ public class PlayerController : MonoBehaviour {
     // We will need this to check which key is pressed!
     private KeyCode currentKeyPressed;
 
-
     private Vector2 GeneralDir = Vector2.zero;
-
-    void Start()
-    {
-        //if (theOnlyHero == null)
-        //{
-        //    theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
-        //}
-    }
 	
 #if UNITY_STANDALONE
 	// Update is called once per frame
