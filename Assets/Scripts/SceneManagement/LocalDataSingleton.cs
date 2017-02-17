@@ -48,6 +48,14 @@ public class LocalDataSingleton : MonoBehaviour {
             }
         }
 #endif
+        if(SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            transform.GetChild(2).gameObject.SetActive(true);
+        }
+        else
+        {
+            transform.GetChild(2).gameObject.SetActive(false);
+        }
     }
 
     public void GoNext()

@@ -33,7 +33,7 @@ public class PlayerDrag : MonoBehaviour {
         //ImgBG = transform.parent.GetComponent<Image>();
         //ImgBG = GetComponentInParent<Image>();
         //Debug.Log("Parent Name: " + ImgBG.gameObject.name);
-        theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        
         screenSizeX = Screen.width;
         screenSizeY = Screen.height;
         //Debug.Log("Screen height: " + screenSizeY);
@@ -41,69 +41,62 @@ public class PlayerDrag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (theOnlyHero == null && ImgFG.IsActive() && ImgBG.IsActive())
+        {
+            theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
+        }
 	    if (fingerHasPressedIt)
         {
            Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
-            //switch (theFingerTouched.phase)
-            //{
-            //    case TouchPhase.Canceled:
-            //        ReturnOrigin();
-            //        break;
-            //    case TouchPhase.Ended:
-            //        ReturnOrigin();
-            //        break;
-            //    default:
-                    Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
-                    directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
-                    if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-                    {
-                        directionOfStick.Normalize();
-                        directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-                    }
-                    ImgFG.rectTransform.anchoredPosition = directionOfStick;
-                    // Since heroes can only move in 4 direction, then we should only do just that!
-                    // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-                    if (directionOfStick.sqrMagnitude < offsetDistance)
-                    {
-                        theOnlyHero.stopMovement();
-                        return; // Otherwise the hero will still be moving!
-                    }
-                    if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-                    {
-                        directionOfStick = new Vector3(directionOfStick.x, 0);
-                    }
-                    else
-                    {
-                        directionOfStick = new Vector3(0, directionOfStick.y);
-                    }
-                    theOnlyHero.moveDirection(directionOfStick);
-            //        break;
-            //}
+           Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
+           directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
+           if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+           {
+               directionOfStick.Normalize();
+               directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+           }
+           ImgFG.rectTransform.anchoredPosition = directionOfStick;
+           // Since heroes can only move in 4 direction, then we should only do just that!
+           // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+           if (directionOfStick.sqrMagnitude < offsetDistance)
+           {
+               theOnlyHero.stopMovement();
+               return; // Otherwise the hero will still be moving!
+           }
+           if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+           {
+               directionOfStick = new Vector3(directionOfStick.x, 0);
+           }
+           else
+           {
+               directionOfStick = new Vector3(0, directionOfStick.y);
+           }
+           theOnlyHero.moveDirection(directionOfStick);
 
-            //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
-            //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-            //{
-            //    directionOfStick.Normalize();
-            //    directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-            //}
-            //ImgFG.rectTransform.anchoredPosition = directionOfStick;
-            ////Debug.Log("Direction: " + directionOfStick);
-            //// Since heroes can only move in 4 direction, then we should only do just that!
-            //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-            //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
-            //{
-            //    theOnlyHero.stopMovement();
-            //    return;
-            //}
-            //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-            //{
-            //    directionOfStick = new Vector3(directionOfStick.x, 0);
-            //}
-            //else
-            //{
-            //    directionOfStick = new Vector3(0, directionOfStick.y);
-            //}
-            //theOnlyHero.moveDirection(directionOfStick);
+           //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
+           //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+           //{
+           //    directionOfStick.Normalize();
+           //    directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+           //}
+           //ImgFG.rectTransform.anchoredPosition = directionOfStick;
+           ////Debug.Log("Direction: " + directionOfStick);
+           //// Since heroes can only move in 4 direction, then we should only do just that!
+           //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+           //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+           //{
+           //    theOnlyHero.stopMovement();
+           //    return;
+           //}
+           //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+           //{
+           //    directionOfStick = new Vector3(directionOfStick.x, 0);
+           //}
+           //else
+           //{
+           //    directionOfStick = new Vector3(0, directionOfStick.y);
+           //}
+           //theOnlyHero.moveDirection(directionOfStick);
         }
         //else if (Input.touchCount > 0)
         //{
@@ -222,6 +215,7 @@ public class PlayerDrag : MonoBehaviour {
                 break;
             }
         }
+        //Debug.Log("Pressing the button");
         fingerHasPressedIt = true;
     }
 #else
