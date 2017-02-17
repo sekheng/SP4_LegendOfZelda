@@ -22,7 +22,9 @@ public class BoardCreator : MonoBehaviour
     public GameObject player;                                   // Player prefab
     public GameObject PlayerController;                         // PlayerController prefab
     public GameObject slime;                                    // Slime prefab, PLEASE DRAG IN LATER
+    public GameObject wolf;                                    // Slime prefab, PLEASE DRAG IN LATER
     public GameObject nextLevelPrefab;                          // for jumping to next level.
+    public GameObject gridMaker;                                // make the grid for A*
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     //make rooms public if you have to
@@ -61,11 +63,18 @@ public class BoardCreator : MonoBehaviour
                  //spawns roughly in the middle of the room
             }
 
-            if(nextLevelPrefab != null && i == rooms.Length - 1)
+            if (i % 10 == 0) //spawns 1 slime every 5 rooms.
+            {
+                Instantiate(wolf, objPos, Quaternion.identity);
+                //spawns roughly in the middle of the room
+            }
+
+            if (nextLevelPrefab != null && i == rooms.Length - 1)
             {
                 Instantiate(nextLevelPrefab, objPos, Quaternion.identity);
             }
         }
+        Instantiate(gridMaker, Vector3.zero, Quaternion.identity);
     }
 
     void SetupTilesArray()

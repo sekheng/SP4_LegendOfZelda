@@ -1,0 +1,828 @@
+fileFormatVersion: 2
+guid: aa8df9bece5caf246b506f5d6aceb2e1
+timeCreated: 1487298722
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: wolf spritesheet_0
+    21300002: wolf spritesheet_1
+    21300004: wolf spritesheet_2
+    21300006: wolf spritesheet_3
+    21300008: wolf spritesheet_4
+    21300010: wolf spritesheet_5
+    21300012: wolf spritesheet_6
+    21300014: wolf spritesheet_7
+    21300016: wolf spritesheet_8
+    21300018: wolf spritesheet_9
+    21300020: wolf spritesheet_10
+    21300022: wolf spritesheet_11
+    21300024: wolf spritesheet_12
+    21300026: wolf spritesheet_13
+    21300028: wolf spritesheet_14
+    21300030: wolf spritesheet_15
+    21300032: wolf spritesheet_16
+    21300034: wolf spritesheet_17
+    21300036: wolf spritesheet_18
+    21300038: wolf spritesheet_19
+    21300040: wolf spritesheet_20
+    21300042: wolf spritesheet_21
+    21300044: wolf spritesheet_22
+    21300046: wolf spritesheet_23
+    21300048: wolf spritesheet_24
+    21300050: wolf spritesheet_25
+    21300052: wolf spritesheet_26
+    21300054: wolf spritesheet_27
+    21300056: wolf spritesheet_28
+    21300058: wolf spritesheet_29
+    21300060: wolf spritesheet_30
+    21300062: wolf spritesheet_31
+    21300064: wolf spritesheet_32
+    21300066: wolf spritesheet_33
+    21300068: wolf spritesheet_34
+    21300070: wolf spritesheet_35
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: wolf spritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 31}
+        - {x: -10, y: 27}
+        - {x: -10, y: -23}
+        - {x: -5, y: -25}
+        - {x: 7, y: -25}
+        - {x: 11, y: -17}
+        - {x: 11, y: 12}
+        - {x: 1, y: 31}
+    - name: wolf spritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: 31}
+        - {x: -2, y: 31}
+        - {x: -9, y: 21}
+        - {x: -10, y: 13}
+        - {x: -10, y: -24}
+        - {x: 0, y: -31}
+        - {x: 3, y: -32}
+        - {x: 8, y: -32}
+        - {x: 11, y: -30}
+        - {x: 11, y: 10}
+        - {x: 10, y: 25}
+    - name: wolf spritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 31}
+        - {x: -10, y: 31}
+        - {x: -10, y: -32}
+        - {x: 9, y: -32}
+        - {x: 9, y: -30}
+        - {x: 11, y: -20}
+        - {x: 11, y: 20}
+    - name: wolf spritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 512
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 30}
+        - {x: -8, y: 24}
+        - {x: -10, y: 20}
+        - {x: -10, y: -25}
+        - {x: -7, y: -32}
+        - {x: 11, y: -32}
+        - {x: 11, y: 30}
+    - name: wolf spritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 12}
+        - {x: -32, y: -11}
+        - {x: -18, y: -30}
+        - {x: 16, y: -30}
+        - {x: 32, y: -19}
+        - {x: 32, y: 0}
+        - {x: 0, y: 12}
+    - name: wolf spritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 11}
+        - {x: -31, y: 9}
+        - {x: -31, y: -18}
+        - {x: -27, y: -30}
+        - {x: -14, y: -30}
+        - {x: -1, y: -29}
+        - {x: 0, y: -27}
+        - {x: 0, y: -23}
+        - {x: 0, y: -28}
+        - {x: 1, y: -30}
+        - {x: 21, y: -30}
+        - {x: 32, y: -19}
+        - {x: 32, y: 0}
+        - {x: 3, y: 11}
+    - name: wolf spritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 9}
+        - {x: -32, y: 4}
+        - {x: -32, y: -8}
+        - {x: -29, y: -9}
+        - {x: -30, y: -13}
+        - {x: -29, y: -18}
+        - {x: -28, y: -21}
+        - {x: -23, y: -25}
+        - {x: -20, y: -24}
+        - {x: -19, y: -21}
+        - {x: -21, y: -25}
+        - {x: -22, y: -30}
+        - {x: 7, y: -30}
+        - {x: 16, y: -28}
+        - {x: 32, y: -24}
+        - {x: 32, y: 9}
+    - name: wolf spritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: -13}
+        - {x: 32, y: -16}
+        - {x: 32, y: 0}
+        - {x: 25, y: 9}
+        - {x: -4, y: 12}
+        - {x: -26, y: 12}
+        - {x: -32, y: 4}
+        - {x: -32, y: -6}
+        - {x: -17, y: -30}
+        - {x: 22, y: -30}
+        - {x: 24, y: -16}
+        - {x: 22, y: -12}
+        - {x: 19, y: -9}
+    - name: wolf spritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 26}
+        - {x: -9, y: 26}
+        - {x: -9, y: -26}
+        - {x: -7, y: -27}
+        - {x: 1, y: -27}
+        - {x: 9, y: -19}
+        - {x: 9, y: 11}
+        - {x: 8, y: 25}
+    - name: wolf spritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 17}
+        - {x: -9, y: -19}
+        - {x: 0, y: -26}
+        - {x: 10, y: -26}
+        - {x: 10, y: 27}
+        - {x: -7, y: 27}
+        - {x: -8, y: 26}
+    - name: wolf spritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 25}
+        - {x: 6, y: 27}
+        - {x: -10, y: 27}
+        - {x: -10, y: -31}
+        - {x: 4, y: -31}
+        - {x: 9, y: -28}
+        - {x: 10, y: -18}
+        - {x: 10, y: 18}
+    - name: wolf spritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 26}
+        - {x: -10, y: 21}
+        - {x: -10, y: -22}
+        - {x: -9, y: -31}
+        - {x: 2, y: -31}
+        - {x: 10, y: -15}
+        - {x: 10, y: 26}
+    - name: wolf spritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 31}
+        - {x: -10, y: 27}
+        - {x: -10, y: -23}
+        - {x: -5, y: -25}
+        - {x: 7, y: -25}
+        - {x: 11, y: -17}
+        - {x: 11, y: 12}
+        - {x: 1, y: 31}
+    - name: wolf spritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: 31}
+        - {x: -2, y: 31}
+        - {x: -9, y: 21}
+        - {x: -10, y: 13}
+        - {x: -10, y: -24}
+        - {x: 0, y: -31}
+        - {x: 3, y: -32}
+        - {x: 8, y: -32}
+        - {x: 11, y: -30}
+        - {x: 11, y: 10}
+        - {x: 10, y: 25}
+    - name: wolf spritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 31}
+        - {x: -10, y: 31}
+        - {x: -10, y: -32}
+        - {x: 9, y: -32}
+        - {x: 9, y: -30}
+        - {x: 11, y: -20}
+        - {x: 11, y: 20}
+    - name: wolf spritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 30}
+        - {x: -8, y: 24}
+        - {x: -10, y: 20}
+        - {x: -10, y: -25}
+        - {x: -7, y: -32}
+        - {x: 11, y: -32}
+        - {x: 11, y: 30}
+    - name: wolf spritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 12}
+        - {x: -32, y: -11}
+        - {x: -18, y: -30}
+        - {x: 16, y: -30}
+        - {x: 32, y: -19}
+        - {x: 32, y: 0}
+        - {x: 0, y: 12}
+    - name: wolf spritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 11}
+        - {x: -31, y: 9}
+        - {x: -31, y: -18}
+        - {x: -27, y: -30}
+        - {x: -14, y: -30}
+        - {x: -1, y: -29}
+        - {x: 0, y: -27}
+        - {x: 0, y: -23}
+        - {x: 0, y: -28}
+        - {x: 1, y: -30}
+        - {x: 21, y: -30}
+        - {x: 32, y: -19}
+        - {x: 32, y: 0}
+        - {x: 3, y: 11}
+    - name: wolf spritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 9}
+        - {x: -32, y: 4}
+        - {x: -32, y: -8}
+        - {x: -29, y: -9}
+        - {x: -30, y: -13}
+        - {x: -29, y: -18}
+        - {x: -28, y: -21}
+        - {x: -23, y: -25}
+        - {x: -20, y: -24}
+        - {x: -19, y: -21}
+        - {x: -21, y: -25}
+        - {x: -22, y: -30}
+        - {x: 7, y: -30}
+        - {x: 16, y: -28}
+        - {x: 32, y: -24}
+        - {x: 32, y: 9}
+    - name: wolf spritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: -13}
+        - {x: 32, y: -16}
+        - {x: 32, y: 0}
+        - {x: 25, y: 9}
+        - {x: -4, y: 12}
+        - {x: -26, y: 12}
+        - {x: -32, y: 4}
+        - {x: -32, y: -6}
+        - {x: -17, y: -30}
+        - {x: 22, y: -30}
+        - {x: 24, y: -16}
+        - {x: 22, y: -12}
+        - {x: 19, y: -9}
+    - name: wolf spritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 26}
+        - {x: -9, y: 26}
+        - {x: -9, y: -26}
+        - {x: -7, y: -27}
+        - {x: 1, y: -27}
+        - {x: 9, y: -19}
+        - {x: 9, y: 11}
+        - {x: 8, y: 25}
+    - name: wolf spritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 17}
+        - {x: -9, y: -19}
+        - {x: 0, y: -26}
+        - {x: 10, y: -26}
+        - {x: 10, y: 27}
+        - {x: -7, y: 27}
+        - {x: -8, y: 26}
+    - name: wolf spritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 25}
+        - {x: 6, y: 27}
+        - {x: -10, y: 27}
+        - {x: -10, y: -31}
+        - {x: 4, y: -31}
+        - {x: 9, y: -28}
+        - {x: 10, y: -18}
+        - {x: 10, y: 18}
+    - name: wolf spritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 26}
+        - {x: -10, y: 21}
+        - {x: -10, y: -22}
+        - {x: -9, y: -31}
+        - {x: 2, y: -31}
+        - {x: 10, y: -15}
+        - {x: 10, y: 26}
+    - name: wolf spritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 31}
+        - {x: -10, y: 27}
+        - {x: -10, y: -23}
+        - {x: -5, y: -25}
+        - {x: 7, y: -25}
+        - {x: 11, y: -17}
+        - {x: 11, y: 12}
+        - {x: 1, y: 31}
+    - name: wolf spritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 4, y: 31}
+        - {x: -2, y: 31}
+        - {x: -9, y: 21}
+        - {x: -10, y: 13}
+        - {x: -10, y: -24}
+        - {x: 0, y: -31}
+        - {x: 3, y: -32}
+        - {x: 8, y: -32}
+        - {x: 11, y: -30}
+        - {x: 11, y: 10}
+        - {x: 10, y: 25}
+    - name: wolf spritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 5, y: 31}
+        - {x: -10, y: 31}
+        - {x: -10, y: -32}
+        - {x: 9, y: -32}
+        - {x: 9, y: -30}
+        - {x: 11, y: -20}
+        - {x: 11, y: 20}
+    - name: wolf spritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -1, y: 30}
+        - {x: -8, y: 24}
+        - {x: -10, y: 20}
+        - {x: -10, y: -25}
+        - {x: -7, y: -32}
+        - {x: 11, y: -32}
+        - {x: 11, y: 30}
+    - name: wolf spritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -32, y: 12}
+        - {x: -32, y: -11}
+        - {x: -18, y: -30}
+        - {x: 16, y: -30}
+        - {x: 32, y: -19}
+        - {x: 32, y: 0}
+        - {x: 0, y: 12}
+    - name: wolf spritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -28, y: 11}
+        - {x: -31, y: 9}
+        - {x: -31, y: -18}
+        - {x: -27, y: -30}
+        - {x: -14, y: -30}
+        - {x: -1, y: -29}
+        - {x: 0, y: -27}
+        - {x: 0, y: -23}
+        - {x: 0, y: -28}
+        - {x: 1, y: -30}
+        - {x: 21, y: -30}
+        - {x: 32, y: -19}
+        - {x: 32, y: 0}
+        - {x: 3, y: 11}
+    - name: wolf spritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -26, y: 9}
+        - {x: -32, y: 4}
+        - {x: -32, y: -8}
+        - {x: -29, y: -9}
+        - {x: -30, y: -13}
+        - {x: -29, y: -18}
+        - {x: -28, y: -21}
+        - {x: -23, y: -25}
+        - {x: -20, y: -24}
+        - {x: -19, y: -21}
+        - {x: -21, y: -25}
+        - {x: -22, y: -30}
+        - {x: 7, y: -30}
+        - {x: 16, y: -28}
+        - {x: 32, y: -24}
+        - {x: 32, y: 9}
+    - name: wolf spritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 23, y: -13}
+        - {x: 32, y: -16}
+        - {x: 32, y: 0}
+        - {x: 25, y: 9}
+        - {x: -4, y: 12}
+        - {x: -26, y: 12}
+        - {x: -32, y: 4}
+        - {x: -32, y: -6}
+        - {x: -17, y: -30}
+        - {x: 22, y: -30}
+        - {x: 24, y: -16}
+        - {x: 22, y: -12}
+        - {x: 19, y: -9}
+    - name: wolf spritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 26}
+        - {x: -9, y: 26}
+        - {x: -9, y: -26}
+        - {x: -7, y: -27}
+        - {x: 1, y: -27}
+        - {x: 9, y: -19}
+        - {x: 9, y: 11}
+        - {x: 8, y: 25}
+    - name: wolf spritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -9, y: 17}
+        - {x: -9, y: -19}
+        - {x: 0, y: -26}
+        - {x: 10, y: -26}
+        - {x: 10, y: 27}
+        - {x: -7, y: 27}
+        - {x: -8, y: 26}
+    - name: wolf spritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 7, y: 25}
+        - {x: 6, y: 27}
+        - {x: -10, y: 27}
+        - {x: -10, y: -31}
+        - {x: 4, y: -31}
+        - {x: 9, y: -28}
+        - {x: 10, y: -18}
+        - {x: 10, y: 18}
+    - name: wolf spritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -8, y: 26}
+        - {x: -10, y: 21}
+        - {x: -10, y: -22}
+        - {x: -9, y: -31}
+        - {x: 2, y: -31}
+        - {x: 10, y: -15}
+        - {x: 10, y: 26}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
