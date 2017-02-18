@@ -14,7 +14,7 @@ public class Wolf_RoamState : State
     private float roamingTime;
     private float timeToStopRoaming;
     private float damageTimer;
-    private float timeToCheckCollision;
+    //private float timeToCheckCollision;
 
 
     void Start()
@@ -44,6 +44,7 @@ public class Wolf_RoamState : State
         Vector3 tempToCheckCollision = transform.TransformDirection(directions[whichDir]);
         tempToCheckCollision *= monsterInfo.speed * Time.deltaTime;
         monsterRigidbody2D.velocity = tempToCheckCollision;
+        manager.changeAnim(whichDir);
         if (timeToCheckCollision > 1)//check and do damage every one second
         {
             if (checkForCollision())
@@ -63,7 +64,7 @@ public class Wolf_RoamState : State
             timeToStopRoaming = rngTime.Random;
             toChangeState = rngChangeState.Random;
             monsterRigidbody2D.velocity = Vector3.zero;
-            manager.changeAnim(whichDir);
+            //manager.changeAnim(whichDir);
             manager.changeState("search");//change state
         }
         else if(roamingTime > timeToStopRoaming && toChangeState == 1)
@@ -79,9 +80,6 @@ public class Wolf_RoamState : State
         //When Health < 0, change to dead state
         if (health.m_health <= 0)
         {
-            whichDir = rngDir.Random;
-            roamingTime = 0;//change rand time
-            timeToStopRoaming = rngTime.Random;
             monsterRigidbody2D.velocity = Vector3.zero;
             manager.changeState("dead");//change state
         }

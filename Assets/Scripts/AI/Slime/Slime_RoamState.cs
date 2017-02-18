@@ -11,7 +11,7 @@ public class Slime_RoamState : State {
     private float roamingTime;
     private float timeToStopRoaming;
     private float damageTimer;
-    private float timeToCheckCollision;
+    //private float timeToCheckCollision;
     
 
     void Start()
