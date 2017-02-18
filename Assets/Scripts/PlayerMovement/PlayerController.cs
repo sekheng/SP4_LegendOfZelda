@@ -14,9 +14,9 @@ public class PlayerController : MonoBehaviour {
     // We will need this to check which key is pressed!
     private KeyCode currentKeyPressed;
     private Vector2 GeneralDir = Vector2.zero;
-	
+
 #if UNITY_STANDALONE
-    public exampleUI diagUI;
+    private exampleUI diagUI;
     void Start()
     {
         if (diagUI == null)
