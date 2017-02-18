@@ -1,7 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// A system to calculate the attack then pass the attack to it!
+/// </summary>
 public class AttackSystemScript : MonoBehaviour {
+    // The particle system object
+    private GameObject particleSystem;
+    [Tooltip("The name of the particle system")]
+    public string m_NameOfParticleSys = "ParticleFX_Blood";
+
     public static AttackSystemScript instance
     {
         get
@@ -17,6 +25,8 @@ public class AttackSystemScript : MonoBehaviour {
 
     public void ManageMeleeAttack(MeleeScript attacker, HealthScript victim)
     {
+        if (particleSystem == null)
+            particleSystem = GameObject.Find(m_NameOfParticleSys);
         float m_damage_ = attacker.m_damage_;
         // If the enemy has a magic defense
         Debug.Log("Passing to ManageMeleeAttack");
@@ -38,6 +48,8 @@ public class AttackSystemScript : MonoBehaviour {
             m_damage_ *= 1.25f;
         }
         victim.modifyHealth(-m_damage_);
+        if (particleSystem != null)
+            particleSystem.GetComponent<ParticleSystem>().Play();
     }
 
     private static AttackSystemScript cantTouchThis = null;
