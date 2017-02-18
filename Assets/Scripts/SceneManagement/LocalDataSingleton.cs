@@ -74,8 +74,10 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
 
-        float fadeTime = LocalDataSingleton.instance.GetComponent<Fading>().BeginFade(1);
+        float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
+        if (talking)
+            talking = false;
         SceneManager.LoadScene(index);
     }
 }

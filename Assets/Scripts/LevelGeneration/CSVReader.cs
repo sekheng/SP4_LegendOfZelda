@@ -22,6 +22,10 @@ public class CSVReader : MonoBehaviour {
     //BOSS from 20
     public GameObject GolemPrefab;
 
+    //NPC FROM 50
+    public GameObject DragonPrefab;
+
+    //NO ID NEEDED HERE.
     public GameObject PlayerController;
     public GameObject floorPrefab;
 
@@ -83,6 +87,10 @@ public class CSVReader : MonoBehaviour {
                 //{
                 //    result = Instantiate(GolemPrefab, objPos, Quaternion.identity) as GameObject;
                 //}
+                else if (LevelLayoutArray[x, y] == "50")
+                {
+                    result = Instantiate(DragonPrefab, objPos, Quaternion.identity) as GameObject;
+                }
                 else
                 {
                     result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
