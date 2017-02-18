@@ -15,8 +15,8 @@ public class AndroidMeleeScript : MonoBehaviour {
     {
         if (heroAttack == null)
             heroAttack = GameObject.FindObjectOfType<HeroMeleeButton>();
-        else
-         heroAttack.doAttack();
+        //else
+            heroAttack.doAttack();
     }
 #else
     void Start()

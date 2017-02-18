@@ -7,7 +7,13 @@ using System.Collections;
 public class AndroidRangeScript : MonoBehaviour {
 #if UNITY_ANDROID
     private HeroRangeScript heroRangeAttack;
-	
+    private PlayerDrag thePlayerJoystick;
+
+	void Start()
+    {
+        thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
+    }
+
     public void pressedShoot()
     {
         //Debug.Log("Trying to shoot");
@@ -16,6 +22,9 @@ public class AndroidRangeScript : MonoBehaviour {
             //Debug.Log("Finding GameObject 1st");
             heroRangeAttack = GameObject.FindObjectOfType<HeroRangeScript>();
         }
+        if (thePlayerJoystick == null)
+            thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
+        thePlayerJoystick.playerHasPressedButton();
         heroRangeAttack.shootArrow();
     }
 #else

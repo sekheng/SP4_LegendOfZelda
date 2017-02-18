@@ -57,7 +57,8 @@ public class HeroMeleeButton : MonoBehaviour {
 #if UNITY_ANDROID
     public void doAttack()
     {
-        thePlayerJoystick.fingerHasPressedIt = false;
+        //thePlayerJoystick.fingerHasPressedIt = false;
+        thePlayerJoystick.playerHasPressedButton();
         theHeroMeleeSystem.meleeAttack();
         GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
     }

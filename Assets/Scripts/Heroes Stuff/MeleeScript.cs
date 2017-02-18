@@ -141,5 +141,13 @@ public class MeleeScript : MonoBehaviour {
         }
     }
 
-    
+    /// <summary>
+    /// Stops the attack but not the animation
+    /// </summary>
+    void stopMeleeAttack()
+    {
+        playerIsAttacking = false;
+        timeCounter = 0;
+        m_delayCounter = 0;
+    }
 }

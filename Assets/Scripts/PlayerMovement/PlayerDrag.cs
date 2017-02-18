@@ -73,18 +73,18 @@ public class PlayerDrag : MonoBehaviour {
            if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
            {
                directionOfStick = new Vector3(directionOfStick.x, 0);
-               movedInXDirection = (short)directionOfStick.x;
            }
            else
            {
                directionOfStick = new Vector3(0, directionOfStick.y);
-               movedInYDirection = (short)directionOfStick.y;
            }
             if (!playerPressedButton)
                 theOnlyHero.moveDirection(directionOfStick);
             else
             {
                 // If player pressed a button and then move the hero in other directions, all will be forgiven.
+                if (!(directionOfStick.x == movedInXDirection && directionOfStick.y == movedInYDirection))
+                    playerPressedButton = false;
             }
 
            //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
@@ -236,6 +236,9 @@ public class PlayerDrag : MonoBehaviour {
     public void playerHasPressedButton()
     {
         playerPressedButton = true;
+        movedInXDirection = (short)directionOfStick.x;
+        movedInYDirection = (short)directionOfStick.y;
+        Debug.Log("Player Pressed a button: " + movedInXDirection + ", : " + movedInYDirection);
     }
 #else
     void Start()

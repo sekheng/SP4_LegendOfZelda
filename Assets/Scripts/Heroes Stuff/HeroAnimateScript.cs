@@ -74,6 +74,7 @@ public class HeroAnimateScript : MonoBehaviour {
         //heroAnimationController.Play(m_heroMeleeAnimation[indexOfPlayerAnimation]);
         heroAnimationController.SetBool("Attack", true);
         isAttacking = true;
+        stopRangeAttackAnimation();
     }
     public void stopMeleeAttack()
     {
@@ -96,6 +97,7 @@ public class HeroAnimateScript : MonoBehaviour {
     /// </summary>
     public void rangeAttackAnimation()
     {
+        stopMeleeAttack();
         // If there isn't any shooting animation to begin with
         if (!isShooting)
         {
@@ -105,7 +107,7 @@ public class HeroAnimateScript : MonoBehaviour {
     }
     public void stopRangeAttackAnimation()
     {
-        //if (isShooting)
+        if (isShooting)
         {
             heroAnimationController.SetBool("RangeAttack", false);
             isShooting = false;
