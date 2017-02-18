@@ -11,7 +11,7 @@ public class exampleUI : MonoBehaviour
 
     [System.NonSerialized]
     public VIDE_Data dialogue; //All you need for everything to work is to have a variable of this type in your custom UI script
-#if UNITY_STANDALONE
+
     //These are just references to UI components in the scene
     public UnityEngine.UI.Text npcText;
     public UnityEngine.UI.Text npcName;
@@ -25,7 +25,7 @@ public class exampleUI : MonoBehaviour
 
     //We'll be using this to store the current player dialogue options
     private List<UnityEngine.UI.Text> currentOptions = new List<UnityEngine.UI.Text>();
-
+#if UNITY_STANDALONE
     //Here I'm assigning the variable a new component of its required type
     void Start()
     {
