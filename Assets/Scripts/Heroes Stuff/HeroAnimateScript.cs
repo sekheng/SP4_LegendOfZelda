@@ -105,7 +105,7 @@ public class HeroAnimateScript : MonoBehaviour {
     }
     public void stopRangeAttackAnimation()
     {
-        if (isShooting)
+        //if (isShooting)
         {
             heroAnimationController.SetBool("RangeAttack", false);
             isShooting = false;
