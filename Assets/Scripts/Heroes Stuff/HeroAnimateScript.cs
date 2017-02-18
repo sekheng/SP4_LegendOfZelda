@@ -63,7 +63,7 @@ public class HeroAnimateScript : MonoBehaviour {
         //{
         //    heroAnimationController.Ge
         //}
-        Debug.Log(m_heroAnimationMovement[indexOfPlayerAnimation]);
+        //Debug.Log(m_heroAnimationMovement[indexOfPlayerAnimation]);
         heroAnimationController.SetBool(m_heroAnimationMovement[indexOfPlayerAnimation], true);
     }
 

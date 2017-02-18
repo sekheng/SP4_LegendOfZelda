@@ -23,6 +23,27 @@ public class AttackSystemScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handling the range attack of the arrow. This is the consequences of not planning well from the start
+    /// </summary>
+    /// <param name="zeArrow">
+    /// The arrow
+    /// </param>
+    /// <param name="zeVictim">
+    /// The creature that got shot!
+    /// </param>
+    public void ManageArrowAttack(ArrowScript zeArrow, HealthScript zeVictim)
+    {
+        if (particleSystem == null)
+            particleSystem = GameObject.Find(m_NameOfParticleSys);
+        zeVictim.modifyHealth(-zeArrow.m_damage);
+        if (particleSystem != null)
+        {
+            particleSystem.transform.position = zeVictim.transform.position;
+            particleSystem.GetComponent<ParticleSystem>().Play();
+        }
+    }
+
     public void ManageMeleeAttack(MeleeScript attacker, HealthScript victim)
     {
         if (particleSystem == null)
@@ -49,7 +70,10 @@ public class AttackSystemScript : MonoBehaviour {
         }
         victim.modifyHealth(-m_damage_);
         if (particleSystem != null)
+        {
+            particleSystem.transform.position = victim.transform.position;
             particleSystem.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     private static AttackSystemScript cantTouchThis = null;

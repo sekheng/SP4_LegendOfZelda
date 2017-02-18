@@ -70,6 +70,7 @@
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroAnimateScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroDataScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
+     <Compile Include="Assets\Scripts\Heroes Stuff\HeroRangeScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
@@ -86,6 +87,7 @@
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
+     <Compile Include="Assets\Scripts\Range Stuff\ArrowScript.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ChangeScene2.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\LocalDataSingleton.cs" />

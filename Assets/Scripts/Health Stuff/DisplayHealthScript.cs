@@ -39,7 +39,7 @@ public class DisplayHealthScript : MonoBehaviour {
 	void Update () {
         //theDebuggingText.text = characterHealth.m_health.ToString();
         float percentageOfOverallHealth = characterHealth.m_health / characterHealth.max_health;
-        Debug.Log("Percentage of health: " + percentageOfOverallHealth);
+        //Debug.Log("Percentage of health: " + percentageOfOverallHealth);
         if (percentageOfOverallHealth < 0.25f)
         {
             healthBarUI.color = new Color32(237, 7, 7, 255);

@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour {
                 currentKeyPressed = KeyCode.LeftArrow;
             if (Input.GetKeyDown(KeyCode.Z))
                 currentKeyPressed = KeyCode.Z;
+            if (Input.GetKeyDown(KeyCode.X))
+                currentKeyPressed = KeyCode.X;
 
             // Here we check whether the player has continuously press it for movement
             if (Input.GetKey(currentKeyPressed))
