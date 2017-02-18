@@ -60,10 +60,12 @@ public class LocalDataSingleton : MonoBehaviour {
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
             MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
             MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
         }
 #endif
     }
