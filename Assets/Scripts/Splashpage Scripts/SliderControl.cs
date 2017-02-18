@@ -5,6 +5,7 @@ using System.Collections;
 public class SliderControl : MonoBehaviour {
 
 	// Update is called once per frame
+#if UNITY_STANDALONE
 	void Update () {
 	    if(Input.GetKey(KeyCode.RightArrow))
         {
@@ -15,4 +16,5 @@ public class SliderControl : MonoBehaviour {
             GetComponent<Slider>().value -= Time.deltaTime;
         }
 	}
+#endif
 }
