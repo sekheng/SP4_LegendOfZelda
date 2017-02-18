@@ -399,7 +399,6 @@ public class VIDE_Data : MonoBehaviour
         } else {
 			nodeData.pausedAction = true;	
 		}
-
     }
 
     /// <summary>

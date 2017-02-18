@@ -6,6 +6,9 @@ public class LocalDataSingleton : MonoBehaviour {
 
     public static LocalDataSingleton instance = null;
 
+    public GameObject MainCanvas;
+    public GameObject OptionsCanvas;
+
     [HideInInspector]
     public int previousSceneFrom = -1;
     [HideInInspector]
@@ -42,23 +45,27 @@ public class LocalDataSingleton : MonoBehaviour {
             transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
         }
 #if UNITY_STANDALONE
+        MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(SceneManager.GetActiveScene().buildIndex != 0)
             {
                 //activate the child canvas
-                transform.GetChild(0).gameObject.SetActive(!transform.GetChild(0).gameObject.activeSelf);
+                OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);
             }
         }
 #endif
 #if UNITY_ANDROID
         if(SceneManager.GetActiveScene().buildIndex != 0)
         {
-            transform.GetChild(2).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
         }
         else
         {
-            transform.GetChild(2).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
         }
 #endif
     }
@@ -74,8 +81,10 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
 
-        float fadeTime = LocalDataSingleton.instance.GetComponent<Fading>().BeginFade(1);
+        float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
+        if (talking)
+            talking = false;
         SceneManager.LoadScene(index);
     }
 }

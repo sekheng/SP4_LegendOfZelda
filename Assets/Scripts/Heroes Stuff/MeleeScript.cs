@@ -2,8 +2,7 @@
 using System.Collections;
 
 /// <summary>
-/// A generic melee attack script
-/// Can be applied to all monster and heroes
+/// A hardcoded melee attack script
 /// Right now it can be giving a definite damage every interval!
 /// This will also check for any magic component too so as not to interfere with HealthScript
 /// We will be using raycast for collision detection!
@@ -140,5 +139,15 @@ public class MeleeScript : MonoBehaviour {
             m_delayCounter = 0;
             heroMeleeAnim.stopMeleeAttack();
         }
+    }
+
+    /// <summary>
+    /// Stops the attack but not the animation
+    /// </summary>
+    void stopMeleeAttack()
+    {
+        playerIsAttacking = false;
+        timeCounter = 0;
+        m_delayCounter = 0;
     }
 }

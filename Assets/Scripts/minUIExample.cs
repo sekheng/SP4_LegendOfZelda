@@ -5,7 +5,7 @@ public class minUIExample : MonoBehaviour {
 
     [System.NonSerialized]
     public VIDE_Data dialogue;
-
+#if UNITY_ANDROID
     void Start()
     {
         dialogue = gameObject.AddComponent<VIDE_Data>();
@@ -48,4 +48,5 @@ public class minUIExample : MonoBehaviour {
         }
         GUILayout.EndArea();
 	}
+#endif
 }
