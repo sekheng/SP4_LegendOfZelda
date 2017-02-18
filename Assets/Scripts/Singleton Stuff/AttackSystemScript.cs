@@ -1,7 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// A system to calculate the attack then pass the attack to it!
+/// </summary>
 public class AttackSystemScript : MonoBehaviour {
+    // The particle system object
+    private GameObject particleSystem;
+    [Tooltip("The name of the particle system")]
+    public string m_NameOfParticleSys = "ParticleFX_Blood";
+
     public static AttackSystemScript instance
     {
         get
@@ -15,8 +23,31 @@ public class AttackSystemScript : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Handling the range attack of the arrow. This is the consequences of not planning well from the start
+    /// </summary>
+    /// <param name="zeArrow">
+    /// The arrow
+    /// </param>
+    /// <param name="zeVictim">
+    /// The creature that got shot!
+    /// </param>
+    public void ManageArrowAttack(ArrowScript zeArrow, HealthScript zeVictim)
+    {
+        if (particleSystem == null)
+            particleSystem = GameObject.Find(m_NameOfParticleSys);
+        zeVictim.modifyHealth(-zeArrow.m_damage);
+        if (particleSystem != null)
+        {
+            particleSystem.transform.position = zeVictim.transform.position;
+            particleSystem.GetComponent<ParticleSystem>().Play();
+        }
+    }
+
     public void ManageMeleeAttack(MeleeScript attacker, HealthScript victim)
     {
+        if (particleSystem == null)
+            particleSystem = GameObject.Find(m_NameOfParticleSys);
         float m_damage_ = attacker.m_damage_;
         // If the enemy has a magic defense
         Debug.Log("Passing to ManageMeleeAttack");
@@ -38,6 +69,11 @@ public class AttackSystemScript : MonoBehaviour {
             m_damage_ *= 1.25f;
         }
         victim.modifyHealth(-m_damage_);
+        if (particleSystem != null)
+        {
+            particleSystem.transform.position = victim.transform.position;
+            particleSystem.GetComponent<ParticleSystem>().Play();
+        }
     }
 
     private static AttackSystemScript cantTouchThis = null;

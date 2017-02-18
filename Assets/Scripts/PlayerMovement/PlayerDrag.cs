@@ -27,6 +27,9 @@ public class PlayerDrag : MonoBehaviour {
     public bool fingerHasPressedIt = false;
     // Screen resolution!
     private int screenSizeX, screenSizeY;
+    // When player pressed the button, hero's movement has to stop unless they stop dragging the joystick or move it to other directions
+    private bool playerPressedButton = false;
+    private short movedInXDirection = 0, movedInYDirection = 0;
 
     // Use this for initialization
 	void Start () {
@@ -59,9 +62,12 @@ public class PlayerDrag : MonoBehaviour {
            ImgFG.rectTransform.anchoredPosition = directionOfStick;
            // Since heroes can only move in 4 direction, then we should only do just that!
            // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-           if (directionOfStick.sqrMagnitude < offsetDistance)
+           if (directionOfStick.sqrMagnitude < ImgBG.rectTransform.sizeDelta.x * 0.5f)
            {
                theOnlyHero.stopMovement();
+               movedInXDirection = 0;
+               movedInYDirection = 0;
+               playerPressedButton = false;
                return; // Otherwise the hero will still be moving!
            }
            if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
@@ -72,7 +78,14 @@ public class PlayerDrag : MonoBehaviour {
            {
                directionOfStick = new Vector3(0, directionOfStick.y);
            }
-           theOnlyHero.moveDirection(directionOfStick);
+            if (!playerPressedButton)
+                theOnlyHero.moveDirection(directionOfStick);
+            else
+            {
+                // If player pressed a button and then move the hero in other directions, all will be forgiven.
+                if (!(directionOfStick.x == movedInXDirection && directionOfStick.y == movedInYDirection))
+                    playerPressedButton = false;
+            }
 
            //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
            //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
@@ -218,6 +231,14 @@ public class PlayerDrag : MonoBehaviour {
         }
         //Debug.Log("Pressing the button");
         fingerHasPressedIt = true;
+    }
+
+    public void playerHasPressedButton()
+    {
+        playerPressedButton = true;
+        movedInXDirection = (short)directionOfStick.x;
+        movedInYDirection = (short)directionOfStick.y;
+        Debug.Log("Player Pressed a button: " + movedInXDirection + ", : " + movedInYDirection);
     }
 #else
     void Start()
