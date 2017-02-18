@@ -17,7 +17,7 @@ public class HeroAnimateScript : MonoBehaviour {
     // This will be used to be in aligned with all other animation.
     // For example, moving up animation index is 0. When player melee attacks, it will melee attack up animation whose index happens to be 0!
     private int indexOfPlayerAnimation = 0;
-    private bool isAttacking = false;
+    private bool isAttacking = false, isShooting = false;
 
     // To make slow down so that hero looks idling
     private bool slowAnimSpeed = false;
@@ -27,11 +27,6 @@ public class HeroAnimateScript : MonoBehaviour {
         heroAnimationController = GetComponentInChildren<Animator>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
     /// <summary>
     /// For now, it will have to hardcoding!
     /// </summary>
@@ -40,6 +35,7 @@ public class HeroAnimateScript : MonoBehaviour {
     /// </param>
     public void moveAnimation(Vector2 zeDir)
     {
+        stopRangeAttackAnimation();
         heroAnimationController.SetBool(m_heroAnimationMovement[indexOfPlayerAnimation], false);
         //Debug.Log("Hero movement direction: " + zeDir);
         if (zeDir.x >= 1)
@@ -92,6 +88,27 @@ public class HeroAnimateScript : MonoBehaviour {
                 break;
             case false:
                 break;
+        }
+    }
+
+    /// <summary>
+    /// This will start the range attack animation!
+    /// </summary>
+    public void rangeAttackAnimation()
+    {
+        // If there isn't any shooting animation to begin with
+        if (!isShooting)
+        {
+            heroAnimationController.SetBool("RangeAttack", true);
+            isShooting = true;
+        }
+    }
+    public void stopRangeAttackAnimation()
+    {
+        if (isShooting)
+        {
+            heroAnimationController.SetBool("RangeAttack", false);
+            isShooting = false;
         }
     }
 }

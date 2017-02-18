@@ -46,6 +46,7 @@ public class HeroesMovement : MonoBehaviour {
         }
     }
 
+#if UNITY_STANDALONE
     public void passInKeyPressed(KeyCode zeKey)
     {
         switch (zeKey)
@@ -53,9 +54,13 @@ public class HeroesMovement : MonoBehaviour {
             case KeyCode.Z:
                 stopMovement();
                 break;
+            case KeyCode.X:
+                stopMovement();
+                break;
             default:
                 Debug.Log("Something is wrong with current keypressed");
                 break;
         }
     }
+#endif
 }
