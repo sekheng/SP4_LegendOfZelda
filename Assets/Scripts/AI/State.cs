@@ -13,8 +13,8 @@ public class State : MonoBehaviour {
 
     protected float timeToCheckCollision;
 
-    RaycastHit2D[] collision;
-    RaycastHit2D[] inRange;
+    protected RaycastHit2D[] collision;
+    protected RaycastHit2D[] inRange;
 
     private void Start()
     {
@@ -35,7 +35,7 @@ public class State : MonoBehaviour {
             {
                 if (temp.collider.gameObject.tag == "Player" && temp.collider.gameObject.GetComponent<HealthScript>() != null)
                 {
-                    temp.collider.gameObject.GetComponent<HealthScript>().m_health -= monsterInfo.dps;
+                    temp.collider.gameObject.GetComponent<HealthScript>().modifyHealth(-monsterInfo.dps);
                     return true;
                 }
             }
