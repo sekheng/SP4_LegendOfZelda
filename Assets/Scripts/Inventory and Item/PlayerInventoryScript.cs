@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 /// <summary>
 /// Keep track of what item does the player has!
+/// All similar items can stack for now!
 /// </summary>
 public class PlayerInventoryScript : MonoBehaviour {
+    [Tooltip("For now, just in case we want limited number of inventory in the space")]
+    public int max_InventorySpace = 10;
+    
     private static string PlayerInventoryTable = "PlayerInventoryTable";
 
     // To know what item does the player has on hand
-    private Dictionary<string, uint> itemName_Count_Map = new Dictionary<string,uint>();
+    private Dictionary<string, itemInformation> itemName_Count_Map = new Dictionary<string, itemInformation>();
 
-	// Use this for initialization
-	void Start () {
-	    
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public bool passInInventory(itemInformation zeItem)
+    {
+
+        return false;
+    }
 }
