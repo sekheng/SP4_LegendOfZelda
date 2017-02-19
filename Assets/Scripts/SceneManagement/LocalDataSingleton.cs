@@ -8,6 +8,7 @@ public class LocalDataSingleton : MonoBehaviour {
 
     public GameObject MainCanvas;
     public GameObject OptionsCanvas;
+    public GameObject MainMenuCanvas; // only use once, so don't really need to care.
 
     [HideInInspector]
     public int previousSceneFrom = -1;
@@ -35,6 +36,16 @@ public class LocalDataSingleton : MonoBehaviour {
         }
 
         DontDestroyOnLoad(transform.gameObject);
+    }
+
+    void Start()
+    {
+#if UNITY_STANDALONE
+        MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(true);
+#else
+        MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(false);
+#endif
+        //it's okay if this thing turns null later, won't use it anyway 
     }
 
     void Update()
@@ -70,6 +81,15 @@ public class LocalDataSingleton : MonoBehaviour {
 #endif
     }
 
+    public void QuitApp()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+#if UNITY_STANDALONE
+        Application.Quit();
+#endif
+    }
 
     public void GoNext()
     {

@@ -4,7 +4,7 @@ using System.Collections;
 
 public class MainMenuControl : MonoBehaviour {
 
-    public Transform PlayButton, OptionsButton;
+    public Transform PlayButton, OptionsButton, ExitButton;
 
     public ToggleActive optionsMenu;
 
@@ -12,6 +12,7 @@ public class MainMenuControl : MonoBehaviour {
     {
         PLAY,
         OPTION,
+        EXIT,
     };
 
     public CURRENTBUTTON selected;
@@ -29,17 +30,19 @@ public class MainMenuControl : MonoBehaviour {
         {
             if (selected == CURRENTBUTTON.PLAY)
             {
-                GetComponent<RectTransform>().anchoredPosition = new Vector3(575, 0, 0);
-
                 PlayButton.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                //PlayButton.gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1.0f);
                 PlayButton.GetComponent<Button>().interactable = true;
 
                 OptionsButton.localScale = new Vector3(1, 1, 1);
-                //OptionsButton.gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                 OptionsButton.GetComponent<Button>().interactable = false;
 
-                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                ExitButton.localScale = new Vector3(1, 1, 1);
+                ExitButton.GetComponent<Button>().interactable = false;
+                if(Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    selected = CURRENTBUTTON.EXIT;
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     selected = CURRENTBUTTON.OPTION;
                 }
@@ -50,23 +53,50 @@ public class MainMenuControl : MonoBehaviour {
             }
             else if (selected == CURRENTBUTTON.OPTION)
             {
-                GetComponent<RectTransform>().anchoredPosition = new Vector3(575, -210, 0);
-
                 OptionsButton.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                //OptionsButton.gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 1.0f);
                 OptionsButton.GetComponent<Button>().interactable = true;
 
                 PlayButton.localScale = new Vector3(1, 1, 1);
-                //PlayButton.gameObject.GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
                 PlayButton.GetComponent<Button>().interactable = false;
 
-                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+                ExitButton.localScale = new Vector3(1, 1, 1);
+                ExitButton.GetComponent<Button>().interactable = false;
+
+                if (Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     selected = CURRENTBUTTON.PLAY;
+                }
+                if(Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    selected = CURRENTBUTTON.EXIT;
                 }
                 else if (Input.GetKeyDown(KeyCode.Return) && optionsMenu != null)
                 {
                     optionsMenu.Toggle(LocalDataSingleton.instance.transform.GetChild(0).gameObject);
+                }
+            }
+            else if (selected == CURRENTBUTTON.EXIT)
+            {
+                ExitButton.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                ExitButton.GetComponent<Button>().interactable = true;
+
+                OptionsButton.localScale = new Vector3(1, 1, 1);
+                OptionsButton.GetComponent<Button>().interactable = false;
+
+                PlayButton.localScale = new Vector3(1, 1, 1);
+                PlayButton.GetComponent<Button>().interactable = false;
+
+                if(Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    selected = CURRENTBUTTON.OPTION;
+                }
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    selected = CURRENTBUTTON.PLAY;
+                }
+                else if (Input.GetKeyDown(KeyCode.Return))
+                {
+                    LocalDataSingleton.instance.QuitApp();
                 }
             }
         }
