@@ -91,6 +91,12 @@ public class LocalDataSingleton : MonoBehaviour {
 #endif
     }
 
+    public void ReturntoMain()
+    {
+        test = ChangeLevel(0);
+        StartCoroutine(test);
+    }
+
     public void GoNext()
     {
         test = ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1);
