@@ -34,4 +34,22 @@ public class PlayerInventoryScript : MonoBehaviour {
         }
         return false;
     }
+    bool checkForAvailableInventory(string zeItemName)
+    {
+        itemInformation zeItemInform;
+        // Need to check if the item is still thr
+        if (itemName_Count_Map.TryGetValue(zeItemName, out zeItemInform))
+        {
+            // Then we need to check whether he has any items!
+            if (zeItemInform.item_count > 0)
+                return true;
+        }
+        return false;
+    }
+    itemInformation getItem(string zeItemName)
+    {
+        itemInformation zeItemInform;
+        itemName_Count_Map.TryGetValue(zeItemName, out zeItemInform);
+        return zeItemInform;
+    }
 }
