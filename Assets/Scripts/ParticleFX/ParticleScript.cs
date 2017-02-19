@@ -17,12 +17,12 @@ public class ParticleScript : MonoBehaviour {
     //private float m_timeCounter = 0;
 
 	// Use this for initialization
-	void Start () {
-        //if (debugginMesh == null)
-        //    debugginMesh = GameObject.Find("Remove TODO").GetComponent<TextMesh>();
-        //debugginMesh.text = "Activating blood effects particle";
-        toRenderParticleEffects = GetComponent<ParticleSystem>();
-	}
+    //void Start () {
+    //    //if (debugginMesh == null)
+    //    //    debugginMesh = GameObject.Find("Remove TODO").GetComponent<TextMesh>();
+    //    //debugginMesh.text = "Activating blood effects particle";
+    //    toRenderParticleEffects = GetComponent<ParticleSystem>();
+    //}
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,11 +39,11 @@ public class ParticleScript : MonoBehaviour {
         //}
     }
 #else
+#endif
     void Start()
     {
         toRenderParticleEffects = GetComponent<ParticleSystem>();
     }
-#endif
 
     public void playEffect()
     {

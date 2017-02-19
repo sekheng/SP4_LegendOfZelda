@@ -12,4 +12,9 @@ public class ItemInteractionScript : MonoBehaviour {
 	void Update () {
 	
 	}
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Interacting with: " + other.name);
+    }
 }
