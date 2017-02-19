@@ -6,17 +6,30 @@ public class State : MonoBehaviour {
     public MonsterInfomation monsterInfo;
     public Transform monsterTransform;
     public Rigidbody2D monsterRigidbody2D;
-    public Sprite monsterSprite;
+    public Sprite monsterSprite;// well this is now more of a sprite to check for collision
     public SpriteRenderer monsterSpriteRenderer;
     public HealthScript health;
-	public virtual void UpdateState () {
+    public CircleCollider2D circleCollider;
+
+    protected float timeToCheckCollision;
+
+    RaycastHit2D[] collision;
+    RaycastHit2D[] inRange;
+
+    private void Start()
+    {
+        timeToCheckCollision = 0;
+    }
+
+    public virtual void UpdateState () {
+
 	}
 
     public virtual bool checkForCollision()
     {
-        RaycastHit2D[] hit = Physics2D.BoxCastAll(monsterTransform.position, monsterSprite.bounds.size,0,Vector2.zero);
+        collision = Physics2D.BoxCastAll(monsterTransform.position, circleCollider.bounds.size, 0,Vector2.zero);
 
-        foreach (RaycastHit2D temp in hit)
+        foreach (RaycastHit2D temp in collision)
         {
             if (temp.collider != null)
             {
@@ -31,9 +44,9 @@ public class State : MonoBehaviour {
     }
     public virtual bool checkForPlayerInRange()
     {
-        RaycastHit2D[] hit = Physics2D.CircleCastAll(monsterTransform.position, monsterSprite.bounds.size.x * 3, Vector2.zero, 0);
+        inRange = Physics2D.CircleCastAll(monsterTransform.position, circleCollider.bounds.size.x * 3, Vector2.zero, 0);
 
-        foreach (RaycastHit2D temp in hit)
+        foreach (RaycastHit2D temp in inRange)
         {
             if (temp.collider != null)
             {

@@ -7,9 +7,10 @@ public class Wolf_IdleState : State
     private float timeAwayToRoam;
     private float timeToRoam;
     private float damageTimer;
-    private float timeToCheckCollision;
+    //private float timeToCheckCollision;
     private Wolf_Statemanager manager;
     private IntRange rng;
+
     void Start()
     {
         timeAwayToRoam = 0;

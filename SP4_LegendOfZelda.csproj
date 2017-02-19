@@ -96,6 +96,8 @@
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
+    <Compile Include="Assets\Scripts\Heroes Stuff\AndroidMeleeScript.cs" />
+    <Compile Include="Assets\Scripts\Heroes Stuff\HeroAnimateScript.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\HeroDataScript.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
@@ -122,8 +124,11 @@
     <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
     <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
     <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
+    <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
+    <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
+    <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
     <Compile Include="Assets\Scripts\Splashpage Scripts\SplashScripts.cs" />
-    <Compile Include="Assets\Scripts\exampleUI.cs" />
+    <Compile Include="Assets\Scripts\minUIExample.cs" />
     <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
     <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
     <Compile Include="Assets\VIDE\VIDE_Assign.cs" />

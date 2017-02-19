@@ -21,11 +21,11 @@ public class Pathfinding : MonoBehaviour {
         }
         if (seeker != null && target != null)
         {
-            FindPath(seeker.position, target.position);
+            //FindPath(seeker.position, target.position);
         }
     }
 
-	void FindPath(Vector2 startPos, Vector2 targetPos)
+	public void FindPath(Vector2 startPos, Vector2 targetPos)
     {
         Node startNode = grid.NodeFromWorldPoint(startPos);
         Node targetNode = grid.NodeFromWorldPoint(targetPos);
