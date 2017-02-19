@@ -27,6 +27,7 @@ public class ItemInteractionScript : MonoBehaviour {
             if (playerInventory == null)
                 Start();
             Debug.Log("Interacting with: " + other.name);
+            playerInventory.passInInventory(theItemStuff);
         }
     }
 }

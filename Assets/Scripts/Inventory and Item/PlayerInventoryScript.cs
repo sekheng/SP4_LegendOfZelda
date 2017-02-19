@@ -17,7 +17,21 @@ public class PlayerInventoryScript : MonoBehaviour {
 
     public bool passInInventory(itemInformation zeItem)
     {
-
+        itemInformation toCheckWhetherItExistInsideInventory;
+        // Add to the stacks of items!
+        if (itemName_Count_Map.TryGetValue(zeItem.item_name, out toCheckWhetherItExistInsideInventory))
+        {
+            toCheckWhetherItExistInsideInventory.item_count++;
+            Debug.Log("Stacking item: " + zeItem.item_name);
+            return true;
+        }
+        // If still can contain more inventory space, then add it in!
+        if (itemName_Count_Map.Count < max_InventorySpace)
+        {
+            Debug.Log("Adding item: " + zeItem.item_name);
+            itemName_Count_Map.Add(zeItem.item_name, zeItem);
+            return true;
+        }
         return false;
     }
 }

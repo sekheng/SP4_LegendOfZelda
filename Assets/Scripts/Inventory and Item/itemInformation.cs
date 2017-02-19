@@ -8,7 +8,7 @@ public class itemInformation : MonoBehaviour {
     public string item_name;
     public string item_effect;
     public int item_count;
-    public Text display_stats;
+    //public Text display_stats;
 
     public void updateStatDisplay()
     {
@@ -18,6 +18,6 @@ public class itemInformation : MonoBehaviour {
         str.Append("Effect:" + item_effect + ", ");
         
 
-        display_stats.text = str.ToString();
+        //display_stats.text = str.ToString();
     }
 }
