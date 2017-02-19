@@ -77,6 +77,13 @@ public class Wolf_RoamState : State
             manager.changeAnim(whichDir);
         }
 
+
+        //check if the player is in the range
+        if (checkForPlayerInRange())
+        {
+            monsterRigidbody2D.velocity = Vector3.zero;
+            manager.changeState("chase");//change state
+        }
         //When Health < 0, change to dead state
         if (health.m_health <= 0)
         {
