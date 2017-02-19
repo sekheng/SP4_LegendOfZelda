@@ -42,7 +42,7 @@ public class HeroRangeScript : MonoBehaviour {
             else if (m_TimeCounter > m_animTime)
             {
                 heroAnimator.stopRangeAttackAnimation();
-                Debug.Log("Stopping range attack animation");
+                //Debug.Log("Stopping range attack animation");
             }
         }
 	}
