@@ -71,5 +71,21 @@ public class Wolf_Statemanager : MonoBehaviour {
         {
             anim.Play("wolf_walk_down");
         }
+        else if (dir == 7)
+        {
+            anim.Play("wolf_attack_right");
+        }
+        else if (dir == 6)
+        {
+            anim.Play("wolf_attack_left");
+        }
+        else if (dir == 4)
+        {
+            anim.Play("wolf_attack_up");
+        }
+        else if (dir == 5)
+        {
+            anim.Play("wolf_attack_down");
+        }
     }
 }
