@@ -84,6 +84,7 @@
      <Compile Include="Assets\Scripts\Magic Stuff\MagicAttackScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicDefendScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicTypeScript.cs" />
+     <Compile Include="Assets\Scripts\ParticleFX\ParticleScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />

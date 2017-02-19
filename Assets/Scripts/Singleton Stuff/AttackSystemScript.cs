@@ -10,6 +10,9 @@ public class AttackSystemScript : MonoBehaviour {
     [Tooltip("The name of the particle system")]
     public string m_NameOfParticleSys = "ParticleFX_Blood";
 
+    // TODO: Remove when finish debugging for Android
+    //private TextMesh debugginMesh;
+
     public static AttackSystemScript instance
     {
         get
@@ -34,23 +37,29 @@ public class AttackSystemScript : MonoBehaviour {
     /// </param>
     public void ManageArrowAttack(ArrowScript zeArrow, HealthScript zeVictim)
     {
-        if (particleSystem == null)
-            particleSystem = GameObject.Find(m_NameOfParticleSys);
+        //if (particleSystem == null)
+        //    particleSystem = GameObject.Find(m_NameOfParticleSys);
         zeVictim.modifyHealth(-zeArrow.m_damage);
         if (particleSystem != null)
         {
+            //particleSystem.SetActive(true);
             particleSystem.transform.position = zeVictim.transform.position;
-            particleSystem.GetComponent<ParticleSystem>().Play();
+            particleSystem.GetComponent<ParticleScript>().playEffect();
         }
     }
 
     public void ManageMeleeAttack(MeleeScript attacker, HealthScript victim)
     {
         if (particleSystem == null)
+        {
+            Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
             particleSystem = GameObject.Find(m_NameOfParticleSys);
+        }
+        //if (debugginMesh == null)
+        //    debugginMesh = GameObject.Find("Remove TODO").GetComponent<TextMesh>();
         float m_damage_ = attacker.m_damage_;
         // If the enemy has a magic defense
-        Debug.Log("Passing to ManageMeleeAttack");
+        //Debug.Log("Passing to ManageMeleeAttack");
         if (victim.GetComponent<MagicDefendScript>() != null)
         {
             // If the attack has no magic attack, reduce the damage!
@@ -69,10 +78,18 @@ public class AttackSystemScript : MonoBehaviour {
             m_damage_ *= 1.25f;
         }
         victim.modifyHealth(-m_damage_);
+        //Debug.Log("Trying to play particle effects in: " + particleSystem.name);
+        //debugginMesh.text = "Trying to find particle system: " + particleSystem.name;
         if (particleSystem != null)
         {
+            Debug.Log("Playing particle effects");
+            //debugginMesh.text = "Successful playing particle effects";
+#if UNITY_ANDROID
+            //particleSystem.SetActive(true);
+            //particleSystem.GetComponent<ParticleScript>().resetToActive();
+#endif
             particleSystem.transform.position = victim.transform.position;
-            particleSystem.GetComponent<ParticleSystem>().Play();
+            particleSystem.GetComponent<ParticleScript>().playEffect();
         }
     }
 
@@ -80,11 +97,17 @@ public class AttackSystemScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        if (particleSystem == null)
+        {
+            Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
+            particleSystem = GameObject.Find(m_NameOfParticleSys);
+        }
+    }
 	
 	// Update is called once per frame
 	void Update () {
-	
-	}
+        //Debug.Log("Updating to find: " + m_NameOfParticleSys);
+        if (particleSystem == null)
+            particleSystem = GameObject.Find(m_NameOfParticleSys);
+    }
 }
