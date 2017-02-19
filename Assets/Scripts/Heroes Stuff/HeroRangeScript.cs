@@ -42,7 +42,7 @@ public class HeroRangeScript : MonoBehaviour {
             else if (m_TimeCounter > m_animTime)
             {
                 heroAnimator.stopRangeAttackAnimation();
-                Debug.Log("Stopping range attack animation");
+                //Debug.Log("Stopping range attack animation");
             }
         }
 	}
@@ -51,6 +51,8 @@ public class HeroRangeScript : MonoBehaviour {
     {
         if (m_TimeCounter > m_firingRate)
         {
+            // Well, the player has to stop their movement then they can fire
+            directionOfHero.stopMovement();
             isShooting = true;
             m_TimeCounter = 0;
             GameObject zeArrow = Instantiate(theArrow);

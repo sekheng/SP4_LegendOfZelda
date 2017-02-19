@@ -13,7 +13,7 @@ public class PlayerDrag : MonoBehaviour {
     [Tooltip("Actual joystick")]
     public Image ImgBG;
 #if UNITY_ANDROID
-    private Vector3 directionOfStick;
+    private Vector3 directionOfStick = new Vector3(1, 0, 0);
 
     // There will only be 1 hero throughout the entire game!
     private HeroesMovement theOnlyHero;
@@ -31,6 +31,9 @@ public class PlayerDrag : MonoBehaviour {
     private bool playerPressedButton = false;
     private short movedInXDirection = 0, movedInYDirection = 0;
 
+    // Used to debug Android inputs. Will remove soon!
+    //private TextMesh debugginMesh;
+
     // Use this for initialization
 	void Start () {
         //ImgFG = GetComponent<Image>();
@@ -45,6 +48,9 @@ public class PlayerDrag : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        //if (debugginMesh == null)
+        //    debugginMesh = GameObject.Find("Remove TODO").GetComponent<TextMesh>(); ;
+
         if (theOnlyHero == null && ImgFG.IsActive() && ImgBG.IsActive())
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
@@ -68,6 +74,7 @@ public class PlayerDrag : MonoBehaviour {
                movedInXDirection = 0;
                movedInYDirection = 0;
                playerPressedButton = false;
+               //debugginMesh.text = "Restart playerPressedButton";
                return; // Otherwise the hero will still be moving!
            }
            if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
@@ -83,8 +90,15 @@ public class PlayerDrag : MonoBehaviour {
             else
             {
                 // If player pressed a button and then move the hero in other directions, all will be forgiven.
-                if (!(directionOfStick.x == movedInXDirection && directionOfStick.y == movedInYDirection))
+                if (!(directionOfStick.normalized.x == movedInXDirection && directionOfStick.normalized.y == movedInYDirection))
+                {
                     playerPressedButton = false;
+                    //debugginMesh.text = "Player moved in other directions: " + movedInXDirection + ", " + movedInYDirection;
+                }
+                //else
+                //{
+                //    debugginMesh.text = "Player not moving other directions";
+                //}
             }
 
            //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
@@ -236,9 +250,10 @@ public class PlayerDrag : MonoBehaviour {
     public void playerHasPressedButton()
     {
         playerPressedButton = true;
-        movedInXDirection = (short)directionOfStick.x;
-        movedInYDirection = (short)directionOfStick.y;
+        movedInXDirection = (short)Mathf.Ceil(directionOfStick.normalized.x);
+        movedInYDirection = (short)Mathf.Ceil(directionOfStick.normalized.y);
         Debug.Log("Player Pressed a button: " + movedInXDirection + ", : " + movedInYDirection);
+        //debugginMesh.text = "Player Pressed a button: " + movedInXDirection + ", " + movedInYDirection;
     }
 #else
     void Start()
