@@ -19,11 +19,16 @@ public class ArrowScript : MonoBehaviour {
     private Vector3 directionOfArrow = new Vector3(-1, 0, 0);
     // Used to set the velocity of the arrow!
     private Rigidbody2D theArrowPhysics;
+    // When the arrow collides, it shall spawn the dust effect!
+    private GameObject arrowParticleEffect;
+    [Tooltip("The name of the particle effect for this arrow")]
+    public string m_particleSystemName = "ParticleFX_ArrowCollide";
 
 	// Use this for initialization
 	void Start () {
         //transform.rotation = Quaternion.FromToRotation(zeDirection, Vector3.down);
         theArrowPhysics = GetComponent<Rigidbody2D>();
+        arrowParticleEffect = GameObject.Find(m_particleSystemName);
         //Debug.Log("Instantiated");
 	}
 
@@ -64,6 +69,11 @@ public class ArrowScript : MonoBehaviour {
         // Need to make sure it isn't friendly fire!
         if (!zeVictim.tag.Equals("Player") && zeVictim.GetComponent<HealthScript>() != null)
         {
+            if (arrowParticleEffect != null)
+            {
+                arrowParticleEffect.transform.position = transform.position;
+                arrowParticleEffect.GetComponent<ParticleScript>().playEffect();
+            }
             AttackSystemScript.instance.ManageArrowAttack(this, zeVictim.GetComponent<HealthScript>());
             Debug.Log("Hit the " + zeVictim.gameObject.name);
             Destroy(gameObject);
