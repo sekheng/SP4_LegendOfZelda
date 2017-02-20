@@ -104,7 +104,9 @@ public class PlayerController : MonoBehaviour {
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
-        RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + GeneralDir, GeneralDir, 1.0f);
+        Vector2 choosenOne = GeneralDir == Vector2.zero ? GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().directionOfHero : GeneralDir;
+
+        RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + choosenOne, choosenOne, 1.0f);
         if (rHit.collider != null)
         {
             //In this example, we will try to interact with any collider the raycast finds
@@ -134,6 +136,7 @@ public class PlayerController : MonoBehaviour {
             {
                 LocalDataSingleton.instance.talking = true;
                 rHit.collider.GetComponent<minUIExample>().dialogue.BeginDialogue(rHit.collider.GetComponent <VIDE_Assign>());
+                Debug.Log("AC");
             }
 #endif
         }

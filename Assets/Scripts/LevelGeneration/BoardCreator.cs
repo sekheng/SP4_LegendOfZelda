@@ -20,7 +20,6 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
 
     public GameObject player;                                   // Player prefab
-    public GameObject PlayerController;                         // PlayerController prefab
     public GameObject slime;                                    // Slime prefab, PLEASE DRAG IN LATER
     public GameObject wolf;                                    // Slime prefab, PLEASE DRAG IN LATER
     public GameObject nextLevelPrefab;                          // for jumping to next level.
@@ -54,16 +53,15 @@ public class BoardCreator : MonoBehaviour
             if (i == 0)
             {
                 Instantiate(player, objPos, Quaternion.identity);
-                Instantiate(PlayerController);
             }
             //feel free to instantiate slime here
-            if(i %  5 == 0) //spawns 1 slime every 5 rooms.
+            if(i %  5 == 0 && i != 0) //spawns 1 slime every 5 rooms.
             {
                  Instantiate(slime, objPos, Quaternion.identity);
                  //spawns roughly in the middle of the room
             }
 
-            if (i % 10 == 0) //spawns 1 slime every 5 rooms.
+            if (i % 20 == 0 && i != 0) //spawns 1 wolf every 20 rooms.
             {
                 Instantiate(wolf, objPos, Quaternion.identity);
                 //spawns roughly in the middle of the room
