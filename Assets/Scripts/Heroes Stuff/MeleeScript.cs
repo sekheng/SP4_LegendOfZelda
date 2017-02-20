@@ -9,8 +9,8 @@ using System.Collections;
 /// </summary>
 [RequireComponent(typeof(HeroAnimateScript))]
 public class MeleeScript : MonoBehaviour {
-    [Tooltip("Range of the raycast")]
-    public float m_range = 5.0f;
+    //[Tooltip("Range of the raycast")]
+    //public float m_range = 5.0f;
     [Tooltip("This will be the damage for every interval")]
     public int m_damage_ = 20;
     [Tooltip("The interval time")]

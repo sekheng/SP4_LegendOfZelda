@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/GAME/2_Sky_Scene.unity
+- path: Assets/Scene/MainMenu_Scene.unity
   isLoaded: 1
   isActive: 1
