@@ -34,7 +34,7 @@ public class PlayerInventoryScript : MonoBehaviour {
         }
         return false;
     }
-    bool checkForAvailableInventory(string zeItemName)
+    public bool checkForAvailableInventory(string zeItemName)
     {
         itemInformation zeItemInform;
         // Need to check if the item is still thr
@@ -46,7 +46,7 @@ public class PlayerInventoryScript : MonoBehaviour {
         }
         return false;
     }
-    itemInformation getItem(string zeItemName)
+    public itemInformation getItem(string zeItemName)
     {
         itemInformation zeItemInform;
         itemName_Count_Map.TryGetValue(zeItemName, out zeItemInform);
