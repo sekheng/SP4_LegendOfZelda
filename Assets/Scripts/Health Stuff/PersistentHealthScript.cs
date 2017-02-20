@@ -9,7 +9,7 @@ public class PersistentHealthScript : MonoBehaviour {
     public static PersistentHealthScript instance = null;
 
     // Make sure the player's health won't change!
-    private float max_health;
+    private float max_health = 100;
     public float currHealth
     {
         get;
