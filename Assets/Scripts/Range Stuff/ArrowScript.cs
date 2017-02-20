@@ -75,8 +75,8 @@ public class ArrowScript : MonoBehaviour {
                 arrowParticleEffect.GetComponent<ParticleScript>().playEffect();
             }
             AttackSystemScript.instance.ManageArrowAttack(this, zeVictim.GetComponent<HealthScript>());
-            Debug.Log("Hit the " + zeVictim.gameObject.name);
-            Destroy(gameObject);
+            //Debug.Log("Hit the " + zeVictim.gameObject.name);
         }
+        Destroy(gameObject);
     }
 }
