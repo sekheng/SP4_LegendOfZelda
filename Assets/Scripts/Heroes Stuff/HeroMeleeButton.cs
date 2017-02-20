@@ -23,6 +23,8 @@ public class HeroMeleeButton : MonoBehaviour {
     public KeyCode attackButton = KeyCode.Z;
     [Tooltip("The Key to change weapon")]
     public KeyCode rangeButton = KeyCode.X;
+    [Tooltip("The key to open inventory list")]
+    public KeyCode inventoryButton = KeyCode.C;
 #endif
 
     // Use this for initialization
