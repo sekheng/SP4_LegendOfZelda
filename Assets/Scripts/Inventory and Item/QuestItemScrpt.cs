@@ -14,6 +14,8 @@ public class QuestItemScrpt : MonoBehaviour {
 
     // This will help check for unique item name and prevent the same copy!
     private HashSet<string> theQuestItemName = new HashSet<string>();
+    // The table to player's inventory!
+    private static string tableString = "PlayerInventoryTable";
 
     public bool checkQuestItemsCollected()
     {
@@ -30,6 +32,10 @@ public class QuestItemScrpt : MonoBehaviour {
             theQuestItemName.Add(zeQuestItem.item_name);
             Debug.Log("Successful notify quest item: " + zeQuestItem.item_name);
             Debug.Log("Total Quest items: " + theQuestItemName.Count);
+            List<string> myConditions = new List<string>();
+            myConditions.Add("PlayerID = " + HeroDataScript.m_playerID);
+            myConditions.Add("ItemName = " + MySQLiteHandler.instance.helpToConvertToSQLString(zeQuestItem.item_name));
+            MySQLiteHandler.instance.saveSpecificResult(tableString, "ItemCount", zeQuestItem.item_count.ToString(), myConditions);
             if (checkQuestItemsCollected())
             {
                 // Then we shall proceed to the next level!

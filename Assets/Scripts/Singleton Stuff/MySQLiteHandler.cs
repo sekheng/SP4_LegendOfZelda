@@ -163,6 +163,56 @@ public class MySQLiteHandler : MonoBehaviour {
     }
 
     /// <summary>
+    /// Updating the specific result to the table 
+    /// </summary>
+    /// <param name="zeTable">
+    /// The exact table
+    /// </param>
+    /// <param name="zeCol">
+    /// The exact Coloumn
+    /// </param>
+    /// <param name="zeVal">
+    /// The value to be stored
+    /// </param>
+    /// <param name="zeCondition">
+    /// The Condition. Null as default
+    /// All the conditions will be treated as AND operator!
+    /// </param>
+    public void saveSpecificResult(string zeTable, string zeCol, string zeVal, List<string> zeCondition = null)
+    {
+        dbcmd = dbconn.CreateCommand();
+        string sqlQuery = "UPDATE " + zeTable + " SET " + zeCol + " = " + zeVal;
+        // If the condition is not empty, then put in the condition!
+        if (zeCondition != null)
+        {
+            sqlQuery += " WHERE ";
+            bool checkWhetherIsAnotherCondition = false;
+            foreach (string zeStr in zeCondition)
+            {
+                // This will helps to check for whether is there 2nd or more conditions
+                if (checkWhetherIsAnotherCondition)
+                {
+                    sqlQuery += "AND ";
+                }
+                sqlQuery += zeStr + " ";
+                checkWhetherIsAnotherCondition = true;
+            }
+        }
+        Debug.Log("Executing saveSpecificResult Query: " + sqlQuery);
+        dbcmd.CommandText = sqlQuery;
+        dbcmd.ExecuteScalar();
+        dbcmd.Dispose();
+    }
+    /// <summary>
+    /// This will help to convert string usable in SQL
+    /// </summary>
+    /// <param name="zeStr"></param>
+    /// <returns></returns>
+    public string helpToConvertToSQLString(string zeStr)
+    {
+        return String.Format("\"{0}\"", zeStr);
+    }
+    /// <summary>
     /// Destroy the connection to the database after it is over!
     /// </summary>
     void OnDestroy()
@@ -171,3 +221,43 @@ public class MySQLiteHandler : MonoBehaviour {
             dbconn.Close();
     }
 }
+
+//void SaveToDataBase()
+//{
+//    IDbConnection dbconn;
+//    dbconn = (IDbConnection)new SqliteConnection(connectionString);
+//    dbconn.Open(); //Open connection to the database.
+//    using (IDbCommand dbcmd = dbconn.CreateCommand())
+//    {
+//        //Debug.Log("Saving to SQL Table");
+//        // This is basically inserting the Coloumn where there is PlayerDamage and Name.
+//        string sqlQuery = String.Format("INSERT INTO PlaceSequence(PlayerDamage,Name) VALUES(\"{0}\",\"{1}\")", 100, String.Format("YOLO"));
+
+//        //string sqlQuery = String.Format("INSERT INTO PlaceSequence(Value,PlayerDamage) VALUES(\"{0}\",\"{1}\")", 20, 100);
+//        dbcmd.CommandText = sqlQuery;
+//        //Debug.Log("Trying to Save");
+//        dbcmd.ExecuteScalar();
+//        //Debug.Log("Successful Saving");
+//        dbcmd.Dispose();
+//        //dbcmd = null;
+//    }
+//    dbconn.Close();
+//    dbconn = null;
+//}
+
+//void TryDeleteToDataBase()
+//{
+//    IDbConnection dbconn;
+//    dbconn = (IDbConnection)new SqliteConnection(connectionString);
+//    dbconn.Open(); //Open connection to the database.
+//    using (IDbCommand dbcmd = dbconn.CreateCommand())
+//    {
+//        string sqlQuery = String.Format("DELETE FROM PlaceSequence WHERE Value = \"{0}\"", 2);
+//        dbcmd.CommandText = sqlQuery;
+//        dbcmd.ExecuteScalar();
+//        dbcmd.Dispose();
+//    }
+//    dbconn.Close();
+//    dbconn = null;
+//}
+

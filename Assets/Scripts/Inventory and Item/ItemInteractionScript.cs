@@ -9,13 +9,13 @@ public class ItemInteractionScript : MonoBehaviour {
     // This is for player to interact with the item!
     private PlayerInventoryScript playerInventory;
     // All item's has their own item information to pass it to the inventory!
-    private itemInformation theItemStuff;
+    private ItemScript theItemStuff;
 
     void Start()
     {
         // Since there will only be 1 inventory at any point of time
         playerInventory = FindObjectOfType<PlayerInventoryScript>();
-        theItemStuff = GetComponent<itemInformation>();
+        theItemStuff = GetComponent<ItemScript>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -27,7 +27,7 @@ public class ItemInteractionScript : MonoBehaviour {
             if (playerInventory == null)
                 Start();
             Debug.Log("Interacting with: " + other.name);
-            playerInventory.passInInventory(theItemStuff);
+            playerInventory.passInInventory(theItemStuff.m_itemInform);
         }
     }
 }
