@@ -44,7 +44,9 @@ public class HeroMeleeButton : MonoBehaviour {
         // Need to check whether the player has pressed the key and theEnemy is not null
         if (Input.GetKeyDown(attackButton))
         {
-            theHeroMeleeSystem.meleeAttack();
+            //Need to see if the Player is talking to NPC or not
+            if (!LocalDataSingleton.instance.talking)
+                theHeroMeleeSystem.meleeAttack();
             GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
         }
         else if (Input.GetKeyDown(rangeButton))
