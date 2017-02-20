@@ -85,7 +85,10 @@ public class PlayerDrag : MonoBehaviour {
            {
                directionOfStick = new Vector3(0, directionOfStick.y);
            }
-            if (!playerPressedButton)
+            // If the player is talking, don't move at all!
+           if (LocalDataSingleton.instance.talking)
+               return;
+           if (!playerPressedButton)
                 theOnlyHero.moveDirection(directionOfStick);
             else
             {
