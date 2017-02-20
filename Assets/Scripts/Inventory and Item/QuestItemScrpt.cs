@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Hardcoded for now, as there is no time to do other stuff!
@@ -8,16 +9,32 @@ using System.Collections;
 public class QuestItemScrpt : MonoBehaviour {
     [Tooltip("The number of relics")]
     public int m_numberOfRelics = 5;
+    [Tooltip("What is the overall QuestName")]
+    public string m_questItemName = "Relic";
 
-    private BitArray checkForRelicBool;
+    // This will help check for unique item name and prevent the same copy!
+    private HashSet<string> theQuestItemName = new HashSet<string>();
 
-	// Use this for initialization
-	void Start () {
-        checkForRelicBool = new BitArray(m_numberOfRelics);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+    public bool checkQuestItemsCollected()
+    {
+        if (theQuestItemName.Count == m_numberOfRelics)
+            return true;
+        return false;
+    }
+
+    public void notifyItemCollected(itemInformation zeQuestItem)
+    {
+        Debug.Log("Notifying quest item: " + zeQuestItem.item_name);
+        if (zeQuestItem.item_name.Contains(m_questItemName))
+        {
+            theQuestItemName.Add(zeQuestItem.item_name);
+            Debug.Log("Successful notify quest item: " + zeQuestItem.item_name);
+            Debug.Log("Total Quest items: " + theQuestItemName.Count);
+        }
+    }
+
+    public void resetQuestItemList()
+    {
+        theQuestItemName.Clear();
+    }
 }
