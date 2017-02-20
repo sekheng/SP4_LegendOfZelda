@@ -44,7 +44,7 @@ public class State : MonoBehaviour {
     }
     public virtual bool checkForPlayerInRange()
     {
-        inRange = Physics2D.CircleCastAll(monsterTransform.position, circleCollider.bounds.size.x * 3, Vector2.zero, 0);
+        inRange = Physics2D.CircleCastAll(monsterTransform.position, circleCollider.bounds.size.x * 5, Vector2.zero, 0);
 
         foreach (RaycastHit2D temp in inRange)
         {

@@ -11,6 +11,7 @@ public class Wolf_SearchState : State {
     IntRange rngX,rngY;
     int x, y;
     int randFloorNum;
+    float timeBeforeChangeState;
     bool initOnUpdate;
     bool hasReached;
     //float timeToCheckCollision;
@@ -24,7 +25,7 @@ public class Wolf_SearchState : State {
         astar.setSeeker(monsterTransform);
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
         timeToCheckCollision = 0.0f;
-
+        timeBeforeChangeState = 0.0f;
     }
 
     // Update is called once per frame
@@ -42,6 +43,15 @@ public class Wolf_SearchState : State {
         astar.FindPath(monsterTransform.position, target.transform.position);
         if (astar.getGrid().NodeFromWorldPoint(target.transform.position).m_bWalkable && !hasReached && astar.getPath().Count != 0)
         {
+            timeBeforeChangeState += Time.deltaTime;
+            if(timeBeforeChangeState > 10.0f)
+            {
+                timeBeforeChangeState = 0;
+                hasReached = false;
+                initOnUpdate = false;
+                manager.changeState("roam");
+                return;
+            }
             Vector3 dir = astar.getPath()[0].m_v2_worldPosition - (Vector2)monsterTransform.position;
             dir.Normalize();
             monsterRigidbody2D.velocity = dir * monsterInfo.speed * Time.deltaTime;
