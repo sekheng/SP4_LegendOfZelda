@@ -29,4 +29,16 @@ public class HealthScript : MonoBehaviour {
         m_health = Mathf.Clamp(m_health + zeNum, 0, max_health);
         //Debug.Log("Health: " + m_health);
     }
+
+    /// <summary>
+    /// Reset the max health and current health will also become the max health
+    /// </summary>
+    /// <param name="zeNum">
+    /// The value of health to pass in. Only if it is more than 0!
+    /// </param>
+    public void resetToMaxHealth(float zeNum)
+    {
+        if (zeNum > Mathf.Epsilon)
+            m_health = max_health = zeNum;
+    }
 }

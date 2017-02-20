@@ -210,11 +210,13 @@ public class VIDE_Data : MonoBehaviour
                 if (currentNPCStep.outputNPC == null && currentNPCStep.outputSet == null && currentNPCStep.outAction == null && nodeData.npcCommentIndex == nodeData.npcComment.Length - 1)
                 {
                     nodeData.isEnd = true;
+                    LocalDataSingleton.instance.talking = false;
                     return nodeData;
                 }
                 else if (currentNPCStep.outputNPC == null && currentNPCStep.outputSet == null && currentNPCStep.outAction == null && nodeData.npcComment.Length < 1)
                 {
                     nodeData.isEnd = true;
+                    LocalDataSingleton.instance.talking = false;
                     return nodeData;
                 }
             }
@@ -228,6 +230,7 @@ public class VIDE_Data : MonoBehaviour
             if (currentPlayerStep.comment[option].outputAnswer == null && currentPlayerStep.comment[option].outAction == null)
             {
                 nodeData.isEnd = true;
+                LocalDataSingleton.instance.talking = false;
                 return nodeData;
             }
         }
@@ -237,6 +240,7 @@ public class VIDE_Data : MonoBehaviour
             if (lastActionNode.outPlayer == null && lastActionNode.outNPC == null && lastActionNode.outAction == null)
             {
 				nodeData.isEnd = true;
+                LocalDataSingleton.instance.talking = false;
                 return nodeData;
             }
         }

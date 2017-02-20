@@ -12,7 +12,7 @@ public class minUIExample : MonoBehaviour {
     }
 
     void OnGUI () {
-        GUILayout.BeginArea(new Rect(Screen.width / 2 - 210, Screen.height / 2 + 105, 420, 420));
+        GUILayout.BeginArea(new Rect(Screen.width / 2 - (Screen.width / 6), Screen.height / 2, Screen.width / 3, Screen.height / 3));
 	    if (dialogue.isLoaded)
         {
             var data = dialogue.nodeData; //Quick reference

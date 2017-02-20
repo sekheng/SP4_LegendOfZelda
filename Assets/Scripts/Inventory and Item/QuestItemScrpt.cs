@@ -42,4 +42,8 @@ public class QuestItemScrpt : MonoBehaviour {
     {
         theQuestItemName.Clear();
     }
+    public int getCurrenNumOfQuestItems()
+    {
+        return theQuestItemName.Count;
+    }
 }
