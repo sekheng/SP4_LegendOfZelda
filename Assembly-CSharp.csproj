@@ -95,6 +95,8 @@
      <Compile Include="Assets\Scripts\SceneManagement\Fading.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\LocalDataSingleton.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ToggleActive.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\enableOBJ.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\enableOBJBasedOnPlatform.cs" />
      <Compile Include="Assets\Scripts\SceneTransition Scripts\GoSceneScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
