@@ -17,11 +17,40 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     void Start()
     {
         currState = idle;
-        anim.Play("golemboss_attack");
+        anim.Play("golemboss_idle");
     }
 
     void Update()
     {
         currState.UpdateState();
+    }
+
+    public void changeState(string str)
+    {
+        if (str == "idle")
+        {
+            currState = idle;
+        }
+        else if (str == "sleep")
+        {
+            currState = sleep;
+        }
+        else if (str == "attack")
+        {
+            currState = attack;
+        }
+        else if (str == "awake")
+        {
+            currState = awake;
+        }
+        else if (str == "dead")
+        {
+            currState = dead;
+        }
+    }
+
+    public void changeAnim(string animName)
+    {
+        anim.Play(animName);
     }
 }

@@ -69,6 +69,10 @@ public class Wolf_ChaseState : State
                 manager.changeState("attack");
             }
         }
+        if (health.m_health <= 0)
+        {
+            manager.changeState("dead");//change state
+        }
         //Debug.Log("hi");
     }
 }

@@ -28,7 +28,7 @@ public class layerChanger : MonoBehaviour {
         }
         else
         {
-            if(player.transform.position.y > gameObject.transform.position.y)
+            if(player.transform.position.y > gameObject.transform.position.y - spriteR.sprite.bounds.size.y/2)
             {
                 spriteR.sortingOrder = playerSpriteR.sortingOrder + 1;
             }

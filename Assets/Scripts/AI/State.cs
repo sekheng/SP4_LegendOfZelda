@@ -27,7 +27,7 @@ public class State : MonoBehaviour {
 
     public virtual bool checkForCollision()
     {
-        collision = Physics2D.BoxCastAll(monsterTransform.position, circleCollider.bounds.size, 0,Vector2.zero);
+        collision = Physics2D.CircleCastAll(monsterTransform.position, circleCollider.bounds.size.x, Vector2.zero, 0);
 
         foreach (RaycastHit2D temp in collision)
         {

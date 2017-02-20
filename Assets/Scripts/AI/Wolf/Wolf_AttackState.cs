@@ -33,52 +33,61 @@ public class Wolf_AttackState : State
             target.transform.position = thePlayer.transform.position;
             astar.FindPath(monsterTransform.position, target.transform.position);
 
-            if (!astar.getGrid().NodeFromWorldPoint(target.transform.position).m_bWalkable)//chek if path is walkable
+            //if (!astar.getGrid().NodeFromWorldPoint(target.transform.position).m_bWalkable)//chek if path is walkable
+            //{
+            //    monsterRigidbody2D.velocity = Vector3.zero;
+            //    manager.changeState("roam");
+            //    return;
+            //}
+            if (astar.getPath().Count > 0)
             {
-                monsterRigidbody2D.velocity = Vector3.zero;
-                manager.changeState("roam");
-                return;
-            }
-
-            if (astar.getPath().Count > 1)//not close enoguh to attack
-            {
-                monsterRigidbody2D.velocity = Vector3.zero;
-                manager.changeState("chase");
-                return;
-            }
-
-            dirToAttack = (astar.getPath()[0].m_v2_worldPosition - (Vector2)monsterTransform.position).normalized;
-            dist = (astar.getPath()[0].m_v2_worldPosition - (Vector2)monsterTransform.position).magnitude;
-
-            if (dirToAttack.x > 0 && dirToAttack.x > Mathf.Abs(dirToAttack.y))
-            {
-                manager.changeAnim(7);
-            }
-            else if (dirToAttack.x < 0 && dirToAttack.x < -Mathf.Abs(dirToAttack.y))
-            {
-                manager.changeAnim(6);
-            }
-            else if (dirToAttack.y > 0 && dirToAttack.y > Mathf.Abs(dirToAttack.x))
-            {
-                manager.changeAnim(4);
-            }
-            else if (dirToAttack.y < 0 && dirToAttack.y < -Mathf.Abs(dirToAttack.x))
-            {
-                manager.changeAnim(5);
-            }
-            if(damageTimer > 1)
-            {
-                if(checkForCollision())
+                if (!astar.getGrid().NodeFromWorldPoint(target.transform.position).m_bWalkable)//chek if path is walkable
                 {
-                    damageTimer = 0;
+                    monsterRigidbody2D.velocity = Vector3.zero;
+                    manager.changeState("roam");
+                    return;
+                }
+                if (astar.getPath().Count > 1)//not close enoguh to attack
+                {
+                    monsterRigidbody2D.velocity = Vector3.zero;
+                    manager.changeState("chase");
+                    return;
                 }
             }
 
-            //When Health < 0, change to dead state
-            if (health.m_health <= 0)
-            {
-                manager.changeState("dead");//change state
-            }
+                dirToAttack = ((Vector2)target.transform.position - (Vector2)monsterTransform.position).normalized;
+                dist = ((Vector2)target.transform.position - (Vector2)monsterTransform.position).magnitude;
+
+                if (dirToAttack.x > 0 && dirToAttack.x > Mathf.Abs(dirToAttack.y))
+                {
+                    manager.changeAnim(7);
+                }
+                else if (dirToAttack.x < 0 && dirToAttack.x < -Mathf.Abs(dirToAttack.y))
+                {
+                    manager.changeAnim(6);
+                }
+                else if (dirToAttack.y > 0 && dirToAttack.y > Mathf.Abs(dirToAttack.x))
+                {
+                    manager.changeAnim(4);
+                }
+                else if (dirToAttack.y < 0 && dirToAttack.y < -Mathf.Abs(dirToAttack.x))
+                {
+                    manager.changeAnim(5);
+                }
+                if (damageTimer > 1)
+                {
+                    if (checkForCollision())
+                    {
+                        damageTimer = 0;
+                    }
+                }
+
+                //When Health < 0, change to dead state
+                if (health.m_health <= 0)
+                {
+                    manager.changeState("dead");//change state
+                }
+            
         }
     }
 

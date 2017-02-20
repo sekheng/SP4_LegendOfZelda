@@ -3,14 +3,32 @@ using System.Collections;
 
 public class GolemBoss_DeadState : State
 {
+    public float timeToSetInactive;
+    private float accumTimeToSetInactive;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
+    void Start()
+    {
+        accumTimeToSetInactive = 0.0f;
+        if (timeToSetInactive > 1)
+        {
+            timeToSetInactive = 1;
+        }
+    }
 
-    // Update is called once per frame
     public override void UpdateState()
     {
+        accumTimeToSetInactive += Time.deltaTime;// time for the death animation
+        monsterSpriteRenderer.color = new Color(0, 0, 0, (timeToSetInactive - accumTimeToSetInactive));
+        if (accumTimeToSetInactive > timeToSetInactive)
+        {
+            if (monsterTransform.parent != null)
+            {
+                Destroy(monsterTransform.parent.gameObject);
+            }
+            else
+            {
+                Destroy(monsterTransform.gameObject);
+            }
+        }
     }
 }
