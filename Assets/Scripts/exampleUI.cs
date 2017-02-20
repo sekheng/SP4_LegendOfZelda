@@ -20,7 +20,6 @@ public class exampleUI : MonoBehaviour
     public GameObject uiContainer;
 
     //We'll use these later
-    bool gotItem = false;
     bool animatingText = false;
 
     //We'll be using this to store the current player dialogue options
@@ -212,31 +211,7 @@ public class exampleUI : MonoBehaviour
     //Note that it is easier to call methods now with the Action node.
     public bool DoAction(VIDE_Data.NodeData data)
     {
-        bool didAction = false; 
-        switch (data.extraData)
-        {
-            case "item":
-                //npcCommentIndex refers to the current NPC's comment when there are many in a single Node (when you use <br>)
-                didAction = true;
-                if (data.npcCommentIndex == 1)
-                {
-                    if (!itemText.activeSelf)
-                    {
-                        itemText.SetActive(true);
-                        gotItem = true;
-                    }
-                    else
-                    {
-                        itemText.SetActive(false);
-                        dialogue.Next();
-                    }
-                }
-                else
-                {
-                    dialogue.Next();
-                }
-                break;
-        }
+        bool didAction = false;
         return didAction;
     }
 
