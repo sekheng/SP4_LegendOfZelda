@@ -15,6 +15,14 @@ public class PlayerInventoryScript : MonoBehaviour {
     // To know what item does the player has on hand
     private Dictionary<string, itemInformation> itemName_Count_Map = new Dictionary<string, itemInformation>();
 
+    // This is to notify that the quest is completed if all the relics have been collected!
+    private QuestItemScrpt checkForRelics;
+
+    void Start()
+    {
+        checkForRelics = GetComponent<QuestItemScrpt>();
+    }
+
     public bool passInInventory(itemInformation zeItem)
     {
         itemInformation toCheckWhetherItExistInsideInventory;

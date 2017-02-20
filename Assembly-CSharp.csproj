@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\QuestItemScrpt.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
