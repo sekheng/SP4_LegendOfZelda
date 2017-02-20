@@ -21,7 +21,14 @@ public class Wolf_DeadState : State {
         monsterSpriteRenderer.color = new Color(0, 0, 0, (timeToSetInactive - accumTimeToSetInactive));
         if (accumTimeToSetInactive > timeToSetInactive)
         {
-            Destroy(monsterTransform.gameObject);
+            if (monsterTransform.parent != null)
+            {
+                Destroy(monsterTransform.parent.gameObject);
+            }
+            else
+            {
+                Destroy(monsterTransform.gameObject);
+            }
         }
     }
 }
