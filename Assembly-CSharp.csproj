@@ -45,6 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_IdleState.cs" />
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_SleepState.cs" />
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_Statemanager.cs" />
      <Compile Include="Assets\Scripts\AI\Grid.cs" />
      <Compile Include="Assets\Scripts\AI\Heap.cs" />
      <Compile Include="Assets\Scripts\AI\MonsterInfomation.cs" />
@@ -107,6 +113,7 @@
      <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
+     <Compile Include="Assets\Scripts\layerChanger.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
