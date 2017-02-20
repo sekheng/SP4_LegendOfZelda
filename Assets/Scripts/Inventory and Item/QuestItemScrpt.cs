@@ -30,6 +30,11 @@ public class QuestItemScrpt : MonoBehaviour {
             theQuestItemName.Add(zeQuestItem.item_name);
             Debug.Log("Successful notify quest item: " + zeQuestItem.item_name);
             Debug.Log("Total Quest items: " + theQuestItemName.Count);
+            if (checkQuestItemsCollected())
+            {
+                // Then we shall proceed to the next level!
+                LocalDataSingleton.instance.GoNext();
+            }
         }
     }
 
