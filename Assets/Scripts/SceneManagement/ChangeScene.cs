@@ -10,17 +10,8 @@ public class ChangeScene : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            test = ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            test = LocalDataSingleton.instance.ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1);
             StartCoroutine(test);
         }
-    }
-
-    IEnumerator ChangeLevel(int index)
-    {
-        LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
-
-        float fadeTime = LocalDataSingleton.instance.GetComponent<Fading>().BeginFade(1);
-        yield return new WaitForSeconds(fadeTime);
-        SceneManager.LoadScene(index);
     }
 }

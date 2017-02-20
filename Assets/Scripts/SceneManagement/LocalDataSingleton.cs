@@ -34,18 +34,7 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             Destroy(this.gameObject);
         }
-
         DontDestroyOnLoad(transform.gameObject);
-    }
-
-    void Start()
-    {
-#if UNITY_STANDALONE
-        MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(true);
-#else
-        MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(false);
-#endif
-        //it's okay if this thing turns null later, won't use it anyway 
     }
 
     void Update()
@@ -60,10 +49,17 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             MainMenuCanvas = GameObject.Find("MainMenucanvas");
         }
+        if(MainMenuCanvas != null)
+        {
+#if UNITY_STANDALONE
+            MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(true);
+#else
+            MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(false);
+#endif
+        }
 
 #if UNITY_STANDALONE
         MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
-        MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(SceneManager.GetActiveScene().buildIndex != 0)
@@ -114,7 +110,7 @@ public class LocalDataSingleton : MonoBehaviour {
         StartCoroutine(test);
     }
 
-    IEnumerator ChangeLevel(int index)
+    public IEnumerator ChangeLevel(int index)
     {
         LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
 
