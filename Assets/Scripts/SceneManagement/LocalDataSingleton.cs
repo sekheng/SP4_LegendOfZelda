@@ -55,6 +55,12 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
         }
+
+        if(MainMenuCanvas == null && SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            MainMenuCanvas = GameObject.Find("MainMenucanvas");
+        }
+
 #if UNITY_STANDALONE
         MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
         MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
@@ -93,6 +99,11 @@ public class LocalDataSingleton : MonoBehaviour {
 
     public void ReturntoMain()
     {
+        if(OptionsCanvas.gameObject.activeSelf)
+        {
+            OptionsCanvas.gameObject.SetActive(false);
+        }
+
         test = ChangeLevel(0);
         StartCoroutine(test);
     }
