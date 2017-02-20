@@ -67,16 +67,19 @@ public class ArrowScript : MonoBehaviour {
     void OnTriggerEnter2D(Collider2D zeVictim)
     {
         // Need to make sure it isn't friendly fire!
-        if (!zeVictim.tag.Equals("Player") && zeVictim.GetComponent<HealthScript>() != null)
+        if (!zeVictim.tag.Equals("Player"))
         {
             if (arrowParticleEffect != null)
             {
                 arrowParticleEffect.transform.position = transform.position;
                 arrowParticleEffect.GetComponent<ParticleScript>().playEffect();
             }
-            AttackSystemScript.instance.ManageArrowAttack(this, zeVictim.GetComponent<HealthScript>());
-            Debug.Log("Hit the " + zeVictim.gameObject.name);
+            if (zeVictim.GetComponent<HealthScript>() != null)
+            {
+                AttackSystemScript.instance.ManageArrowAttack(this, zeVictim.GetComponent<HealthScript>());
+            }
             Destroy(gameObject);
+           //Debug.Log("Hit the " + zeVictim.gameObject.name);
         }
     }
 }
