@@ -116,7 +116,6 @@ public class PlayerController : MonoBehaviour {
             if (rHit.collider.GetComponent<VIDE_Assign>() != null)
             {
                 assigned = rHit.collider.GetComponent<VIDE_Assign>();
-                LocalDataSingleton.instance.talking = true;
             }
             else return;
 
@@ -124,6 +123,7 @@ public class PlayerController : MonoBehaviour {
             {
                 //... and use it to begin the conversation
                 diagUI.Begin(assigned);
+                LocalDataSingleton.instance.talking = true;
             }
             else
             {

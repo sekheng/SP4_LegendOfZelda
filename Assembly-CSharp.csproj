@@ -86,6 +86,9 @@
      <Compile Include="Assets\Scripts\Magic Stuff\MagicAttackScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicDefendScript.cs" />
      <Compile Include="Assets\Scripts\Magic Stuff\MagicTypeScript.cs" />
+     <Compile Include="Assets\Scripts\NPC\SpokeToDragon.cs" />
+     <Compile Include="Assets\Scripts\NPC\exampleUI.cs" />
+     <Compile Include="Assets\Scripts\NPC\minUIExample.cs" />
      <Compile Include="Assets\Scripts\ParticleFX\ParticleScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
@@ -98,16 +101,12 @@
      <Compile Include="Assets\Scripts\SceneManagement\ToggleActive.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\enableOBJ.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\enableOBJBasedOnPlatform.cs" />
-     <Compile Include="Assets\Scripts\SceneTransition Scripts\GoSceneScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
-     <Compile Include="Assets\Scripts\Splashpage Scripts\SplashScripts.cs" />
-     <Compile Include="Assets\Scripts\exampleUI.cs" />
-     <Compile Include="Assets\Scripts\minUIExample.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
