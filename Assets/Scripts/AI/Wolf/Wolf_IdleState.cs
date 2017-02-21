@@ -14,8 +14,9 @@ public class Wolf_IdleState : State
     void Start()
     {
         timeAwayToRoam = 0;
-        rng = new IntRange(1, 5);
-        timeToRoam = rng.Random;
+        //rng = new IntRange(1, 5);
+        //if(rng )
+        //timeToRoam = rng.Random;
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
         //Debug.Log(timeToRoam.ToString());
     }

@@ -21,17 +21,29 @@ public class Slime_RoamState : State {
         directions[1] = Vector3.down;
         directions[2] = Vector3.left;
         directions[3] = Vector3.right;
-        rngTime = new IntRange(1, 3);
-        rngDir = new IntRange(0, 4);
+        //rngTime = new IntRange(1, 3);
+        //rngDir = new IntRange(0, 4);
         manager = transform.parent.GetComponent<Slime_Statemanager>();
         roamingTime = 0;
-        timeToStopRoaming = rngTime.Random;
-        whichDir = rngDir.Random;
+        //if (rngTime != null)
+        //    timeToStopRoaming = rngTime.Random;
+        //if(rngDir != null)
+        //    whichDir = rngDir.Random;
         damageTimer = 0;
     }
 
     public override void UpdateState()
     {
+        if(rngTime == null)
+        {
+            rngTime = new IntRange(1, 3);
+            timeToStopRoaming = rngTime.Random;
+        }
+        if(rngDir == null)
+        {
+            rngDir = new IntRange(0, 4);
+            whichDir = rngDir.Random;
+        }
         roamingTime += Time.deltaTime;
         damageTimer += Time.deltaTime;
         timeToCheckCollision += Time.deltaTime;

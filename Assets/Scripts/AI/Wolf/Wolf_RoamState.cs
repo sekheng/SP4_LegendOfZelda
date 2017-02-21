@@ -24,20 +24,38 @@ public class Wolf_RoamState : State
         directions[1] = Vector3.down;
         directions[2] = Vector3.left;
         directions[3] = Vector3.right;
-        rngTime = new IntRange(1, 2);
-        rngDir = new IntRange(0, 4);
-        rngChangeState = new IntRange(0, 2);
+        //rngTime = new IntRange(1, 2);
+        //rngDir = new IntRange(0, 4);
+        //rngChangeState = new IntRange(0, 2);
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
         roamingTime = 0;
-        timeToStopRoaming = rngTime.Random;
-        whichDir = rngDir.Random;
-        toChangeState = rngChangeState.Random;
+        //if (rngTime != null)
+        //    timeToStopRoaming = rngTime.Random;
+        //if (rngDir != null)
+        //    whichDir = rngDir.Random;
+        //if(rngChangeState != null)
+        //    toChangeState = rngChangeState.Random;
         damageTimer = 0;
         manager.changeAnim(whichDir);
     }
 
     public override void UpdateState()
     {
+        if (rngTime == null)
+        {
+            rngTime = new IntRange(1, 3);
+            timeToStopRoaming = rngTime.Random;
+        }
+        if (rngDir == null)
+        {
+            rngDir = new IntRange(0, 4);
+            whichDir = rngDir.Random;
+        }
+        if (rngChangeState == null)
+        {
+            rngChangeState = new IntRange(0, 2);
+            toChangeState = rngChangeState.Random;
+        }
         roamingTime += Time.deltaTime;
         damageTimer += Time.deltaTime;
         timeToCheckCollision += Time.deltaTime;

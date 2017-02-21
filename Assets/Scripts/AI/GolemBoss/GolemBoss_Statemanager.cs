@@ -9,6 +9,8 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     public GolemBoss_AttackState attack;
     public GolemBoss_DeadState dead;
 
+    public BoxCollider2D box;
+
     public Animator anim;
     public Rigidbody2D golemboss_RB;
 
@@ -16,8 +18,8 @@ public class GolemBoss_Statemanager : MonoBehaviour {
 
     void Start()
     {
-        currState = idle;
-        anim.Play("golemboss_idle");
+        currState = sleep;
+        anim.Play("golemboss_sleep");
     }
 
     void Update()
@@ -52,5 +54,10 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     public void changeAnim(string animName)
     {
         anim.Play(animName);
+    }
+
+    public BoxCollider2D getBox()
+    {
+        return box;
     }
 }
