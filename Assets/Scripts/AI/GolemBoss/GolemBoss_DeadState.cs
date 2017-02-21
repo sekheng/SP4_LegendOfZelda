@@ -25,6 +25,7 @@ public class GolemBoss_DeadState : State
             if (monsterTransform.parent != null)
             {
                 Destroy(monsterTransform.parent.gameObject);
+                LocalDataSingleton.instance.GoNext();
             }
             else
             {
