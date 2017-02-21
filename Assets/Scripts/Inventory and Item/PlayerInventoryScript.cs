@@ -31,7 +31,11 @@ public class PlayerInventoryScript : MonoBehaviour {
         theFieldToTake.Add("LOL");
         theFieldToTake.Add("LOL");
         theFieldToTake.Add((int)1);
-        Debug.Log(MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 6, theFieldToTake, myConditions));
+        string[] allZeStuff = MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 6, theFieldToTake, myConditions);
+        foreach (string zeStr in allZeStuff)
+        {
+            Debug.Log(zeStr);
+        }
     }
 
     public bool passInInventory(itemInformation zeItem)
