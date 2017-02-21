@@ -22,6 +22,16 @@ public class PlayerInventoryScript : MonoBehaviour {
     void Start()
     {
         checkForRelics = GetComponent<QuestItemScrpt>();
+        List<string> myConditions = new List<string>();
+        myConditions.Add("PlayerID = " + HeroDataScript.m_playerID);
+        List<object> theFieldToTake = new List<object>();
+        theFieldToTake.Add((int)1);
+        theFieldToTake.Add((int)1);
+        theFieldToTake.Add("LOL");
+        theFieldToTake.Add("LOL");
+        theFieldToTake.Add("LOL");
+        theFieldToTake.Add((int)1);
+        Debug.Log(MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 6, theFieldToTake, myConditions));
     }
 
     public bool passInInventory(itemInformation zeItem)

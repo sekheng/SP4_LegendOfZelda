@@ -142,19 +142,58 @@ public class MySQLiteHandler : MonoBehaviour {
     /// <param name="zeTable">
     ///  The Table to get the string
     /// </param>
+    /// <param name="zeConditions">
+    /// The condition that you have put in. It will be treated as AND operator for every condition put in.
+    /// </param>
     /// <returns>
     /// For every row, there will be a string.
     /// For every coloumn in the row, it will be separated with a comma
     /// return the whole string array
     /// </returns>
-    public string[] getAllStringFromTable(string zeTable)
+    public string[] getAllStringFromTable(string zeTable, int numOfField, List<object> allTheField, List<string> zeConditions = null)
     {
         List<string> AllTheResult = new List<string>();
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT * FROM " + zeTable;
+        if (zeConditions != null)
+        {
+            sqlQuery += " WHERE ";
+            bool gotMoreConditions = false; // So that subsequent conditions aside the 1st one, will have the AND operator!
+            foreach (string zeCond in zeConditions)
+            {
+                if (gotMoreConditions)
+                    sqlQuery += "AND ";
+                sqlQuery += zeCond + " ";
+                gotMoreConditions = true;
+            }
+        }
+        Debug.Log("The Command in getAllStringFromTable: " + sqlQuery);
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
-
+        while (reader.Read())
+        {
+            string zeWholeRow = "";
+            //AllTheResult.Add(reader.GetString(0));
+            for (int zeNum = 0; zeNum < numOfField; ++zeNum)
+            {
+                // Need to make sure that the subsequent field are divided by comma
+                if (zeNum != 0)
+                    zeWholeRow += ",";
+                if (allTheField[zeNum] is string)
+                {
+                    zeWholeRow += reader.GetString(zeNum);
+                }
+                else if (allTheField[zeNum] is int)
+                {
+                    zeWholeRow += reader.GetInt32(zeNum);
+                }
+                else if (allTheField[zeNum] is float)
+                {
+                    zeWholeRow += reader.GetInt32(zeNum);
+                }
+            }
+            AllTheResult.Add(zeWholeRow);
+        }
         reader.Close();
         reader = null;
         dbcmd.Dispose();
