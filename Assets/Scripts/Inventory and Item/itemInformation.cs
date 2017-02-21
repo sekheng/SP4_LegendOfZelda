@@ -14,6 +14,19 @@ public class itemInformation {
     {
         item_count = 0;
     }
+    public itemInformation(string zeName, string zeType, string zeEffect)
+    {
+        item_name = zeName;
+        item_type = zeType;
+        item_effect = zeEffect;
+    }
+    public itemInformation(itemInformation zeOther)
+    {
+        item_name = zeOther.item_name;
+        item_effect = zeOther.item_effect;
+        item_type = zeOther.item_type;
+        item_count = zeOther.item_count;
+    }
 
     //public void updateStatDisplay()
     //{

@@ -142,6 +142,12 @@ public class MySQLiteHandler : MonoBehaviour {
     /// <param name="zeTable">
     ///  The Table to get the string
     /// </param>
+    /// <param name="numOfField">
+    /// Number of coloumns are there
+    /// </param>
+    /// <param name="allTheField">
+    /// The field type depending on the given number of fields. Can't think of any other simper ways to make life easier
+    /// </param>
     /// <param name="zeConditions">
     /// The condition that you have put in. It will be treated as AND operator for every condition put in.
     /// </param>
@@ -167,7 +173,7 @@ public class MySQLiteHandler : MonoBehaviour {
                 gotMoreConditions = true;
             }
         }
-        Debug.Log("The Command in getAllStringFromTable: " + sqlQuery);
+        //Debug.Log("The Command in getAllStringFromTable: " + sqlQuery);
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
         while (reader.Read())

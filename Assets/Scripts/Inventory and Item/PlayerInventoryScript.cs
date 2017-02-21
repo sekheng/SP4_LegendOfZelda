@@ -11,7 +11,8 @@ public class PlayerInventoryScript : MonoBehaviour {
     [Tooltip("For now, just in case we want limited number of inventory in the space")]
     public int max_InventorySpace = 10;
     
-    private static string PlayerInventoryTable = "PlayerInventoryTable";
+    [Tooltip("Set the name of the player's inventory table from the database")]
+    public  string PlayerInventoryTable = "PlayerInventoryTable";
 
     // To know what item does the player has on hand
     private Dictionary<string, itemInformation> itemName_Count_Map = new Dictionary<string, itemInformation>();
@@ -26,16 +27,25 @@ public class PlayerInventoryScript : MonoBehaviour {
         myConditions.Add("PlayerID = " + HeroDataScript.m_playerID);
         List<object> theFieldToTake = new List<object>();
         theFieldToTake.Add((int)1);
-        theFieldToTake.Add((int)1);
-        theFieldToTake.Add("LOL");
-        theFieldToTake.Add("LOL");
         theFieldToTake.Add("LOL");
         theFieldToTake.Add((int)1);
-        string[] allZeStuff = MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 6, theFieldToTake, myConditions);
+        string[] allZeStuff = MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 3, theFieldToTake, myConditions);
         foreach (string zeStr in allZeStuff)
         {
-            Debug.Log(zeStr);
+            Debug.Log(PlayerInventoryTable + ": " + zeStr);
+            string[] allZeItemStr = zeStr.Split(',');
+            // Item Count is int 3rd row, we shall check if that is more than 0. If so, add it to the inventory!
+            int zeItemCount;
+            int.TryParse(allZeItemStr[2], out zeItemCount);
+            if (zeItemCount > 0)
+            {
+                // Since the string will be in the 2nd row, we will take that!
+                itemInformation zeNewItem = new itemInformation(ItemGeneratorScript.instance.getItemInform(allZeItemStr[1]));
+                zeNewItem.item_count = zeItemCount;
+                passInInventory(zeNewItem);
+            }
         }
+        Debug.Log("Total Inventory space: " + itemName_Count_Map.Count);
     }
 
     public bool passInInventory(itemInformation zeItem)
