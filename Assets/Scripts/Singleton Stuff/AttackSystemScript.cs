@@ -102,7 +102,7 @@ public class AttackSystemScript : MonoBehaviour {
 	void Start () {
         if (particleSystem == null)
         {
-            Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
+            //Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
             particleSystem = GameObject.Find(m_NameOfParticleSys);
         }
     }

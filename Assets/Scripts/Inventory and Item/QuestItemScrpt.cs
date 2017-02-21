@@ -26,12 +26,12 @@ public class QuestItemScrpt : MonoBehaviour {
 
     public void notifyItemCollected(itemInformation zeQuestItem)
     {
-        Debug.Log("Notifying quest item: " + zeQuestItem.item_name);
+        //Debug.Log("Notifying quest item: " + zeQuestItem.item_name);
         if (zeQuestItem.item_name.Contains(m_questItemName))
         {
             theQuestItemName.Add(zeQuestItem.item_name);
-            Debug.Log("Successful notify quest item: " + zeQuestItem.item_name);
-            Debug.Log("Total Quest items: " + theQuestItemName.Count);
+            //Debug.Log("Successful notify quest item: " + zeQuestItem.item_name);
+            //Debug.Log("Total Quest items: " + theQuestItemName.Count);
             List<string> myConditions = new List<string>();
             //myConditions.Add("PlayerID = " + HeroDataScript.m_playerID);
             //myConditions.Add("ItemName = " + MySQLiteHandler.instance.helpToConvertToSQLString(zeQuestItem.item_name));

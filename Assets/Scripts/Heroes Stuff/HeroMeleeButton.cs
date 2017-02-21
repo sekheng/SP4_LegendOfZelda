@@ -25,6 +25,10 @@ public class HeroMeleeButton : MonoBehaviour {
     public KeyCode rangeButton = KeyCode.X;
     [Tooltip("The key to open inventory list")]
     public KeyCode inventoryButton = KeyCode.C;
+    [Tooltip("The Item UI name")]
+    public string m_ItemUI_Name = "Inventory Canvas for PC";
+    // Need to keep track of the Item UI Canvas
+    private GameObject ItemUI;
 #endif
 
     // Use this for initialization
@@ -34,6 +38,9 @@ public class HeroMeleeButton : MonoBehaviour {
 	#if UNITY_STANDALONE
         //theAttackButton = GameObject.Find("AttackButton");
         //theAttackButton.SetActive(false);
+        ItemUI = GameObject.Find(m_ItemUI_Name);
+        Debug.Log("Item Canvas name: " + ItemUI.name);
+        ItemUI.gameObject.SetActive(false);
 #else
         thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
         theAttackButton = GameObject.Find("AttackButton");
@@ -54,6 +61,10 @@ public class HeroMeleeButton : MonoBehaviour {
         else if (Input.GetKeyDown(rangeButton))
         {
             theHeroRangeSystem.shootArrow();
+        }
+        else if (Input.GetKeyDown(inventoryButton))
+        {
+            ItemUI.SetActive(true);
         }
 #endif
 	}

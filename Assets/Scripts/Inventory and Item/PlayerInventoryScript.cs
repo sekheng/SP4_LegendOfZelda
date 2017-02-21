@@ -15,7 +15,7 @@ public class PlayerInventoryScript : MonoBehaviour {
     public  string PlayerInventoryTable = "PlayerInventoryTable";
 
     // To know what item does the player has on hand
-    private Dictionary<string, itemInformation> itemName_Count_Map = new Dictionary<string, itemInformation>();
+    public Dictionary<string, itemInformation> itemName_Count_Map = new Dictionary<string, itemInformation>();
 
     // This is to notify that the quest is completed if all the relics have been collected!
     private QuestItemScrpt checkForRelics;
@@ -32,7 +32,7 @@ public class PlayerInventoryScript : MonoBehaviour {
         string[] allZeStuff = MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 3, theFieldToTake, myConditions);
         foreach (string zeStr in allZeStuff)
         {
-            Debug.Log(PlayerInventoryTable + ": " + zeStr);
+            //Debug.Log(PlayerInventoryTable + ": " + zeStr);
             string[] allZeItemStr = zeStr.Split(',');
             // Item Count is int 3rd row, we shall check if that is more than 0. If so, add it to the inventory!
             int zeItemCount;
@@ -45,7 +45,7 @@ public class PlayerInventoryScript : MonoBehaviour {
                 passInInventory(zeNewItem);
             }
         }
-        Debug.Log("Total Inventory space: " + itemName_Count_Map.Count);
+        //Debug.Log("Total Inventory space: " + itemName_Count_Map.Count);
     }
 
     public bool passInInventory(itemInformation zeItem)
@@ -55,14 +55,14 @@ public class PlayerInventoryScript : MonoBehaviour {
         if (itemName_Count_Map.TryGetValue(zeItem.item_name, out toCheckWhetherItExistInsideInventory))
         {
             toCheckWhetherItExistInsideInventory.item_count++;
-            Debug.Log("Stacking item: " + zeItem.item_name);
+            //Debug.Log("Stacking item: " + zeItem.item_name);
             checkForRelics.notifyItemCollected(zeItem);
             return true;
         }
         // If still can contain more inventory space, then add it in!
         if (itemName_Count_Map.Count < max_InventorySpace)
         {
-            Debug.Log("Adding item: " + zeItem.item_name);
+            //Debug.Log("Adding item: " + zeItem.item_name);
             checkForRelics.notifyItemCollected(zeItem);
             itemName_Count_Map.Add(zeItem.item_name, zeItem);
             return true;
