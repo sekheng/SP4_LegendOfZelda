@@ -7,11 +7,10 @@ public class Slime_IdleState : State {
     private float damageTimer;
     //private float timeToCheckCollision;
     private Slime_Statemanager manager;
-    private IntRange rng;
+    private IntRange rng = new IntRange(1, 5);
     void Start()
     {
         timeAwayToRoam = 0;
-        rng = new IntRange(1, 5);
         timeToRoam = rng.Random;
         manager = transform.parent.GetComponent<Slime_Statemanager>();
         //Debug.Log(timeToRoam.ToString());
@@ -45,5 +44,4 @@ public class Slime_IdleState : State {
             manager.changeState("dead");//change state
         }
     }
-   
 }

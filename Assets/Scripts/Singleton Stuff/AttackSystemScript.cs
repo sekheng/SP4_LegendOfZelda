@@ -6,7 +6,7 @@ using System.Collections;
 /// </summary>
 public class AttackSystemScript : MonoBehaviour {
     // The particle system object
-    private GameObject particleSystem;
+    private new GameObject particleSystem;
     [Tooltip("The name of the particle system")]
     public string m_NameOfParticleSys = "ParticleFX_Blood";
 
