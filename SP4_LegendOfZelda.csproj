@@ -58,6 +58,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -106,6 +112,7 @@
     <Compile Include="Assets\Scripts\Inventory and Item\DisplayItemScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\ItemScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\QuestItemScrpt.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
@@ -144,6 +151,7 @@
     <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
     <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
     <Compile Include="Assets\VIDE\VIDE_Data.cs" />
+    <Compile Include="Assets\stateNumberChanger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\VIDE\Resources\ReadMe.txt" />
