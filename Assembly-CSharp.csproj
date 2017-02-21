@@ -86,6 +86,7 @@
      <Compile Include="Assets\Scripts\Inventory and Item\ItemScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\QuestItemScrpt.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\RecogniseItemUIScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
@@ -122,6 +123,7 @@
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
      <Compile Include="Assets\VIDE\VIDE_Data.cs" />
+     <Compile Include="Assets\stateNumberChanger.cs" />
      <None Include="Assets\VIDE\license.txt" />
      <None Include="Assets\VIDE\Resources\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
