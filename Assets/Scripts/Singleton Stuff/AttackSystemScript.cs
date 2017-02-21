@@ -88,6 +88,9 @@ public class AttackSystemScript : MonoBehaviour {
             //particleSystem.SetActive(true);
             //particleSystem.GetComponent<ParticleScript>().resetToActive();
 #endif
+            //Vector3 directionOfParticle = victim.transform.position - attacker.transform.position;
+            //directionOfParticle = new Vector3(directionOfParticle.x * victim.transform.localScale.x, directionOfParticle.y * victim.transform.localScale.y);
+            //particleSystem.transform.position = directionOfParticle + victim.transform.position;
             particleSystem.transform.position = victim.transform.position;
             particleSystem.GetComponent<ParticleScript>().playEffect();
         }
