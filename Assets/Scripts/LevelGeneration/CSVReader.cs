@@ -10,8 +10,8 @@ public class CSVReader : MonoBehaviour {
     public GameObject PlayerPrefab;
     
     //From 1 to 10.
-    public GameObject OuterWallPrefab;
-    public GameObject WallPrefab;
+    public GameObject[] OuterWallPrefabs;
+    public GameObject[] WallPrefabs;
     public GameObject StonePrefab;
     public GameObject RelicPrefab;
     public GameObject PickableCompassPrefab;
@@ -26,7 +26,7 @@ public class CSVReader : MonoBehaviour {
     public GameObject DragonPrefab;
 
     //NO ID NEEDED HERE.
-    public GameObject floorPrefab;
+    public GameObject[] floorPrefabs;
 
     private string[,] LevelLayoutArray;
     private string [] textRow;
@@ -56,24 +56,28 @@ public class CSVReader : MonoBehaviour {
                 {
                     Instantiate(PlayerPrefab, objPos, Quaternion.identity);
 
-                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "1")
                 {
-                    GameObject result = Instantiate(OuterWallPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex = Random.Range(0, OuterWallPrefabs.Length);
+                    GameObject result = Instantiate(OuterWallPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "2")
                 {
-                    GameObject result = Instantiate(WallPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex = Random.Range(0, WallPrefabs.Length);
+                    GameObject result = Instantiate(WallPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "3")
                 {
                     Instantiate(StonePrefab, objPos, Quaternion.identity);
 
-                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 //else if (LevelLayoutArray[x, y] == "4")
@@ -88,7 +92,9 @@ public class CSVReader : MonoBehaviour {
                 {
                     Instantiate(SlimePrefab, objPos, Quaternion.identity);
 
-                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 //else if (LevelLayoutArray[x, y] == "20")
@@ -99,12 +105,16 @@ public class CSVReader : MonoBehaviour {
                 {
                     Instantiate(DragonPrefab, objPos, Quaternion.identity);
 
-                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 else
                 {
-                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+
                     result.transform.SetParent(lvlHolder.transform);
                 }
                 
