@@ -7,12 +7,16 @@ public class Wolf_ChaseState : State
     public LayerMask unwalkableMask;
     public GameObject target;
     private Wolf_Statemanager manager;
-    private GameObject thePlayer;
+    //private GameObject thePlayer;
 
 	// Use this for initialization
 	void Start () {
-        thePlayer = GameObject.FindGameObjectWithTag("Player");
+        //thePlayer = GameObject.FindGameObjectWithTag("Player");
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     public override void UpdateState()
@@ -57,7 +61,12 @@ public class Wolf_ChaseState : State
                 manager.changeState("roam");
                 
             }
-            if (astar.getPath().Count > 10)//out of range, change to roam again
+            //if (astar.getPath().Count > 10)//out of range, change to roam again
+            //{
+            //    monsterRigidbody2D.velocity = Vector3.zero;
+            //    manager.changeState("roam");
+            //}
+            if (!checkForPlayerInRange(thePlayer.transform.position, 10))
             {
                 monsterRigidbody2D.velocity = Vector3.zero;
                 manager.changeState("roam");

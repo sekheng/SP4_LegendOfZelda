@@ -37,10 +37,18 @@ public class Wolf_RoamState : State
         //    toChangeState = rngChangeState.Random;
         damageTimer = 0;
         manager.changeAnim(whichDir);
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     public override void UpdateState()
     {
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
         if (rngTime == null)
         {
             rngTime = new IntRange(1, 3);
@@ -59,7 +67,8 @@ public class Wolf_RoamState : State
         roamingTime += Time.deltaTime;
         damageTimer += Time.deltaTime;
         timeToCheckCollision += Time.deltaTime;
-        Vector3 tempToCheckCollision = transform.TransformDirection(directions[whichDir]);
+        //Vector3 tempToCheckCollision = transform.TransformDirection(directions[whichDir]);
+        Vector3 tempToCheckCollision = (directions[whichDir]);
         tempToCheckCollision *= monsterInfo.speed * Time.deltaTime;
         monsterRigidbody2D.velocity = tempToCheckCollision;
         manager.changeAnim(whichDir);
@@ -97,7 +106,7 @@ public class Wolf_RoamState : State
 
 
         //check if the player is in the range
-        if (checkForPlayerInRange())
+        if (checkForPlayerInRange(thePlayer.transform.position,5))
         {
             monsterRigidbody2D.velocity = Vector3.zero;
             manager.changeState("chase");//change state
