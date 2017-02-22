@@ -60,7 +60,6 @@ public class LocalDataSingleton : MonoBehaviour {
 
 #if UNITY_STANDALONE
         MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
-        MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
             if(SceneManager.GetActiveScene().buildIndex != 0)

@@ -214,13 +214,14 @@ public class BoardCreator : MonoBehaviour
                     // ... instantiate a wall over the top.
                     InstantiateFromArray(wallTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
 
-                    if (chanceOfEnvOBJ.Random == 1) // 1 / 10 chance of spawning a envOBJ
+                    if (environmentObjects.Length > 0) // 1 / 10 chance of spawning a envOBJ
                     {
                         int randomIndex = Random.Range(0, environmentObjects.Length);
-                        Instantiate(environmentObjects[randomIndex], new Vector3(
+                        GameObject result = Instantiate(environmentObjects[randomIndex], new Vector3(
                             i - ((rows >> 1) - offset), 
                             j - ((rows >> 1) - offset)), 
-                            Quaternion.identity); // create a environment OBJ on top of it.
+                            Quaternion.identity) as GameObject; // create a environment OBJ on top of it.
+                        result.transform.SetParent(boardHolder.transform);
                     }
                 }
             }
