@@ -200,8 +200,11 @@ public class BoardCreator : MonoBehaviour
         {
             for (int j = 0; j < tiles[i].Length; j++)
             {
-                // ... and instantiate a floor tile for it.
-                InstantiateFromArray(floorTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
+                if (tiles[i][j] == TileType.Floor)
+                {
+                    // ... and instantiate a floor tile for it.
+                    InstantiateFromArray(floorTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
+                }
 
                 // If the tile type is Wall...
                 if (tiles[i][j] == TileType.Wall)
