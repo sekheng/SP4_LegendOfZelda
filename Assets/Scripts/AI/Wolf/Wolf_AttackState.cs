@@ -7,7 +7,7 @@ public class Wolf_AttackState : State
     public LayerMask unwalkableMask;
     public GameObject target;
     private Wolf_Statemanager manager;
-    private GameObject thePlayer;
+    //private GameObject thePlayer;
     private Vector3 dirToAttack;
     private float dist;
     private float damageTimer;
@@ -15,7 +15,8 @@ public class Wolf_AttackState : State
     // Use this for initialization
     void Start()
     {
-        thePlayer = GameObject.FindGameObjectWithTag("Player");
+        if (thePlayer == null)
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
         damageTimer = 1;
     }
