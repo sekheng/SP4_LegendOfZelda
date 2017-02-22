@@ -58,12 +58,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -111,10 +105,12 @@
     <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\DisplayItemScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\ItemGeneratorScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\ItemScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\QuestItemScrpt.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\RecogniseItemUIScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
