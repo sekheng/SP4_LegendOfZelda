@@ -55,6 +55,9 @@ public class CSVReader : MonoBehaviour {
                 if (LevelLayoutArray[x, y] == "0")
                 {
                     Instantiate(PlayerPrefab, objPos, Quaternion.identity);
+
+                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "1")
                 {
@@ -69,6 +72,9 @@ public class CSVReader : MonoBehaviour {
                 else if (LevelLayoutArray[x, y] == "3")
                 {
                     Instantiate(StonePrefab, objPos, Quaternion.identity);
+
+                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
                 }
                 //else if (LevelLayoutArray[x, y] == "4")
                 //{
@@ -81,6 +87,9 @@ public class CSVReader : MonoBehaviour {
                 else if(LevelLayoutArray[x, y] == "10")
                 {
                     Instantiate(SlimePrefab, objPos, Quaternion.identity);
+
+                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
                 }
                 //else if (LevelLayoutArray[x, y] == "20")
                 //{
@@ -89,6 +98,9 @@ public class CSVReader : MonoBehaviour {
                 else if (LevelLayoutArray[x, y] == "50")
                 {
                     Instantiate(DragonPrefab, objPos, Quaternion.identity);
+
+                    GameObject result = Instantiate(floorPrefab, objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
                 }
                 else
                 {

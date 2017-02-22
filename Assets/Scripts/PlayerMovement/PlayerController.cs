@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour {
         if (diagUI == null)
         {
             diagUI = GameObject.Find("LocalDataSingleton").transform.GetComponentInChildren<exampleUI>();
-            Debug.Log(diagUI.name);
+
         }
     }
 
