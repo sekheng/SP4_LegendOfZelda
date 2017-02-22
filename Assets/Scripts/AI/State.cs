@@ -12,6 +12,9 @@ public class State : MonoBehaviour {
     public CircleCollider2D circleCollider;
 
     protected float timeToCheckCollision;
+    protected float distToPlayer;
+
+    protected GameObject thePlayer;
 
     protected RaycastHit2D[] collision;
     protected RaycastHit2D[] inRange;
@@ -42,20 +45,27 @@ public class State : MonoBehaviour {
         }
         return false;
     }
-    public virtual bool checkForPlayerInRange()
+    public virtual bool checkForPlayerInRange(Vector3 playerPos, float range)
     {
-        inRange = Physics2D.CircleCastAll(monsterTransform.position, circleCollider.bounds.size.x * 5, Vector2.zero, 0);
+        //inRange = Physics2D.CircleCastAll(monsterTransform.position, circleCollider.bounds.size.x * 5, Vector2.zero, 0);
 
-        foreach (RaycastHit2D temp in inRange)
+        //foreach (RaycastHit2D temp in inRange)
+        //{
+        //    if (temp.collider != null)
+        //    {
+        //        if (temp.collider.gameObject.tag == "Player")
+        //        {
+        //            return true;
+        //        }
+        //    }
+        //}
+        //return false;
+        distToPlayer = (playerPos - monsterTransform.position).magnitude;
+        if(distToPlayer < range)
         {
-            if (temp.collider != null)
-            {
-                if (temp.collider.gameObject.tag == "Player")
-                {
-                    return true;
-                }
-            }
+            return true;
         }
+
         return false;
     }
 

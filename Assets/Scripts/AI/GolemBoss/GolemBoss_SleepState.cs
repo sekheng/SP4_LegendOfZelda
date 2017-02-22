@@ -10,10 +10,18 @@ public class GolemBoss_SleepState : State
     void Start()
     {
         manager = transform.parent.GetComponent<GolemBoss_Statemanager>();
+        if(thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     public override void UpdateState()
     {
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
         timeToCheckCollision += Time.deltaTime;
         if (timeToCheckCollision > 1)//check and do damage every one second
         {
@@ -22,7 +30,7 @@ public class GolemBoss_SleepState : State
                 timeToCheckCollision = 0;
             }
         }
-        if(checkForPlayerInRange())
+        if(checkForPlayerInRange(thePlayer.transform.position, 3))
         {
             manager.changeState("awake");//change state
             //manager.changeAnim("golemboss_awake");
@@ -52,20 +60,5 @@ public class GolemBoss_SleepState : State
         return false;
     }
 
-    public override bool checkForPlayerInRange()
-    {
-        inRange = Physics2D.BoxCastAll(monsterTransform.position, manager.getBox().bounds.size * 3, 0, Vector2.zero);
-
-        foreach (RaycastHit2D temp in inRange)
-        {
-            if (temp.collider != null)
-            {
-                if (temp.collider.gameObject.tag == "Player")
-                {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    
 }
