@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour {
     private KeyCode currentKeyPressed;
     private Vector2 GeneralDir = Vector2.zero;
 
-#if UNITY_STANDALONE
     private exampleUI diagUI;
     void Start()
     {
@@ -26,6 +25,7 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
+#if UNITY_STANDALONE
     // Update is called once per frame
 	void Update () {
         if (theOnlyHero == null)
@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour {
         {
             //In this example, we will try to interact with any collider the raycast finds
             //Lets grab the NPC's DialogueAssign script... if there's any
-#if UNITY_STANDALONE
+
             VIDE_Assign assigned;
             if (rHit.collider.GetComponent<VIDE_Assign>() != null)
             {
@@ -130,15 +130,14 @@ public class PlayerController : MonoBehaviour {
                 //If conversation already began, let's just progress through it
                 diagUI.NextNode();
             }
-#endif
-#if UNITY_ANDROID
-            if (rHit.collider.GetComponent<minUIExample>() != null && !LocalDataSingleton.instance.talking)
-            {
-                LocalDataSingleton.instance.talking = true;
-                rHit.collider.GetComponent<minUIExample>().dialogue.BeginDialogue(rHit.collider.GetComponent <VIDE_Assign>());
-                Debug.Log("AC");
-            }
-#endif
+//#if UNITY_ANDROID
+//            if (rHit.collider.GetComponent<minUIExample>() != null && !LocalDataSingleton.instance.talking)
+//            {
+//                LocalDataSingleton.instance.talking = true;
+//                rHit.collider.GetComponent<minUIExample>().dialogue.BeginDialogue(rHit.collider.GetComponent <VIDE_Assign>());
+//                Debug.Log("AC");
+//            }
+//#endif
         }
     }
 }
