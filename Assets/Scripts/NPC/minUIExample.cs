@@ -7,6 +7,8 @@ public class minUIExample : MonoBehaviour {
     public VIDE_Data dialogue;
     private GUIStyle style, style2;
 
+    // TODO: Will remove once finished debugging GUI Text
+
 #if UNITY_ANDROID
     void Start()
     {
