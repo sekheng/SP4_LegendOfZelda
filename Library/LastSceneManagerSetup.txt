@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/GAME/4_Cave_Scene.unity
+- path: Assets/Scene/GAME/2_Sky_Scene.unity
   isLoaded: 1
   isActive: 1
