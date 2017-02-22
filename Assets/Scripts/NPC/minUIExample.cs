@@ -8,6 +8,7 @@ public class minUIExample : MonoBehaviour {
     private GUIStyle style, style2;
 
     // TODO: Will remove once finished debugging GUI Text
+    private TextMesh debugAlignment;
 
 #if UNITY_ANDROID
     void Start()
@@ -17,8 +18,14 @@ public class minUIExample : MonoBehaviour {
     }
 
     void OnGUI () {
+        if (debugAlignment != null)
+        {
+            debugAlignment = GameObject.Find("DebuggingText").GetComponent<TextMesh>();
+        }
 
         GUILayout.BeginArea(new Rect(Screen.width / 2 - (Screen.width / 4), Screen.height / 2, Screen.width / 2, Screen.height));
+
+        debugAlignment.text = "Screen Height: " + Screen.height + ", Screen Width: " + Screen.width; 
 
         style = new GUIStyle(GUI.skin.button);
         style.normal.textColor = Color.white;
