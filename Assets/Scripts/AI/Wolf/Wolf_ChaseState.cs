@@ -55,7 +55,7 @@ public class Wolf_ChaseState : State
 
                 //if()
             }
-            else if(checkForPlayerInRange(thePlayer.transform.position, 2.0f))
+            else if(checkForPlayerInRange(thePlayer.transform.position, 5.0f))
             {
                 Vector3 dir = target.transform.position - monsterTransform.position;
                 dir.Normalize();
