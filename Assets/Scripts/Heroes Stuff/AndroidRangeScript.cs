@@ -17,15 +17,18 @@ public class AndroidRangeScript : MonoBehaviour {
     public void pressedShoot()
     {
         //Debug.Log("Trying to shoot");
-        if (heroRangeAttack == null)
+        if (!LocalDataSingleton.instance.talking)
         {
-            //Debug.Log("Finding GameObject 1st");
-            heroRangeAttack = GameObject.FindObjectOfType<HeroRangeScript>();
+            if (heroRangeAttack == null)
+            {
+                //Debug.Log("Finding GameObject 1st");
+                heroRangeAttack = GameObject.FindObjectOfType<HeroRangeScript>();
+            }
+            if (thePlayerJoystick == null)
+                thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
+            thePlayerJoystick.playerHasPressedButton();
+            heroRangeAttack.shootArrow();
         }
-        if (thePlayerJoystick == null)
-            thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
-        thePlayerJoystick.playerHasPressedButton();
-        heroRangeAttack.shootArrow();
     }
 #else
     void Start()

@@ -7,6 +7,8 @@ public class minUIExample : MonoBehaviour {
     public VIDE_Data dialogue;
     private GUIStyle style, style2;
 
+    // TODO: Will remove once finished debugging GUI Text
+
 #if UNITY_ANDROID
     void Start()
     {
@@ -17,7 +19,6 @@ public class minUIExample : MonoBehaviour {
     void OnGUI () {
 
         GUILayout.BeginArea(new Rect(Screen.width / 2 - (Screen.width / 4), Screen.height / 2, Screen.width / 2, Screen.height));
-        GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3(Screen.width / 1280, Screen.height / 800, 1)); 
 
         style = new GUIStyle(GUI.skin.button);
         style.normal.textColor = Color.white;
