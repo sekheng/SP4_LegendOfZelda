@@ -53,6 +53,10 @@ public class RecogniseItemUIScript : MonoBehaviour {
                         // We will make a copy of the item!
                         break;
                     }
+                    else
+                    {
+                        DestroyObject(zeItemUI);
+                    }
                 }
                 //allTheSlots[m_AvailableSlots].transform.A;
                 Debug.Log("The Items: " + zeItemUI.name);
@@ -65,5 +69,15 @@ public class RecogniseItemUIScript : MonoBehaviour {
     void OnDisable()
     {
         m_AvailableSlots = 0;
+        // We will also need to delete all the UI GameObject 
+        foreach (slotstuff zeSlot in allTheSlots)
+        {
+            ItemScript zeItem = zeSlot.gameObject.GetComponentInChildren<ItemScript>();
+            // If there is such an item, destroy the gameobject
+            if (zeItem != null)
+            {
+                DestroyObject(zeItem.gameObject);
+            }
+        }
     }
 }
