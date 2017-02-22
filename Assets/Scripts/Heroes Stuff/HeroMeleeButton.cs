@@ -49,7 +49,7 @@ public class HeroMeleeButton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	#if UNITY_STANDALONE
+#if UNITY_STANDALONE
         // Need to check whether the player has pressed the key and theEnemy is not null
         if (Input.GetKeyDown(attackButton))
         {

@@ -20,10 +20,11 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
 
     public GameObject player;                                   // Player prefab
-    public GameObject slime;                                    // Slime prefab, PLEASE DRAG IN LATER
-    public GameObject wolf;                                    // Slime prefab, PLEASE DRAG IN LATER
-    public GameObject nextLevelPrefab;                          // for jumping to next level.
-    public GameObject gridMaker;                                // make the grid for A*
+    public GameObject slime;                                    // Slime prefab
+    public GameObject wolf;                                     // Wolf prefab
+    public GameObject nextLevelPrefab;                          // For jumping to next level.
+    public GameObject[] environmentObjects;                     // An array of environment objects.
+    public GameObject gridMaker;                                // Make the grid for A*
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
     //make rooms public if you have to
@@ -196,6 +197,7 @@ public class BoardCreator : MonoBehaviour
     {
         // Go through all the tiles in the jagged array...
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
+        IntRange chanceOfEnvOBJ = new IntRange(1, 10);
         for (int i = 0; i < tiles.Length; i++)
         {
             for (int j = 0; j < tiles[i].Length; j++)
@@ -211,6 +213,15 @@ public class BoardCreator : MonoBehaviour
                 {
                     // ... instantiate a wall over the top.
                     InstantiateFromArray(wallTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
+
+                    if (chanceOfEnvOBJ.Random == 1) // 1 / 10 chance of spawning a envOBJ
+                    {
+                        int randomIndex = Random.Range(0, environmentObjects.Length);
+                        Instantiate(environmentObjects[randomIndex], new Vector3(
+                            i - ((rows >> 1) - offset), 
+                            j - ((rows >> 1) - offset)), 
+                            Quaternion.identity); // create a environment OBJ on top of it.
+                    }
                 }
             }
         }

@@ -24,7 +24,7 @@ public class exampleUI : MonoBehaviour
 
     //We'll be using this to store the current player dialogue options
     private List<UnityEngine.UI.Text> currentOptions = new List<UnityEngine.UI.Text>();
-#if UNITY_STANDALONE
+
     //Here I'm assigning the variable a new component of its required type
     void Start()
     {
@@ -61,6 +61,7 @@ public class exampleUI : MonoBehaviour
             //Scroll through Player dialogue options
             if (!data.pausedAction)
             {
+#if UNITY_STANDALONE
                 if (Input.GetKeyDown(KeyCode.DownArrow))
                 {
                     if (data.selectedOption < currentOptions.Count - 1)
@@ -71,6 +72,18 @@ public class exampleUI : MonoBehaviour
                     if (data.selectedOption > 0)
                         data.selectedOption--;
                 }
+#else
+                if (receive -1)
+                {
+                    if (data.selectedOption < currentOptions.Count - 1)
+                        data.selectedOption++;
+                }
+                if (receive 1)
+                {
+                    if (data.selectedOption > 0)
+                        data.selectedOption--;
+                }
+#endif
             }
         }
     }
@@ -248,5 +261,4 @@ public class exampleUI : MonoBehaviour
         npcText.text = data.npcComment[data.npcCommentIndex]; //And here		
         animatingText = false;
     }
-#endif
 }
