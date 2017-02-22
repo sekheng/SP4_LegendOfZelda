@@ -26,10 +26,18 @@ public class Wolf_SearchState : State {
         manager = transform.parent.GetComponent<Wolf_Statemanager>();
         timeToCheckCollision = 0.0f;
         timeBeforeChangeState = 0.0f;
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     // Update is called once per frame
     public override void UpdateState() {
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
         timeToCheckCollision += Time.deltaTime;
         if (!initOnUpdate)
         {
@@ -84,7 +92,7 @@ public class Wolf_SearchState : State {
         }
 
         //check if the player is in the range
-        if(checkForPlayerInRange())
+        if(checkForPlayerInRange(thePlayer.transform.position,5))
         {
             monsterRigidbody2D.velocity = Vector3.zero;
             manager.changeState("chase");//change state

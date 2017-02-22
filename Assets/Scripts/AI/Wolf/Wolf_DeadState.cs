@@ -18,7 +18,7 @@ public class Wolf_DeadState : State {
     public override void UpdateState()
     {
         accumTimeToSetInactive += Time.deltaTime;// time for the death animation
-        monsterSpriteRenderer.color = new Color(0, 0, 0, (timeToSetInactive - accumTimeToSetInactive));
+        monsterSpriteRenderer.color = new Color(monsterSpriteRenderer.color.r, monsterSpriteRenderer.color.g, monsterSpriteRenderer.color.b, (timeToSetInactive - accumTimeToSetInactive));
         if (accumTimeToSetInactive > timeToSetInactive)
         {
             if (monsterTransform.parent != null)
