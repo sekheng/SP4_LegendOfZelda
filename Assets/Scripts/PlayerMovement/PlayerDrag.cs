@@ -30,7 +30,11 @@ public class PlayerDrag : MonoBehaviour {
     // When player pressed the button, hero's movement has to stop unless they stop dragging the joystick or move it to other directions
     private bool playerPressedButton = false;
     private short movedInXDirection = 0, movedInYDirection = 0;
+    // To know the direction of where is going to be 
+    [HideInInspector]
     public short movingInYDirection = 0;
+    // This will need to be used to check against movingInYDirection!
+    private short directionOfPrevY = 0, directionOfCurrY = 0;
 
     // Used to debug Android inputs. Will remove soon!
     //private TextMesh debugginMesh;
@@ -76,6 +80,7 @@ public class PlayerDrag : MonoBehaviour {
                 movedInXDirection = 0;
                 movedInYDirection = 0;
                 playerPressedButton = false;
+                directionOfPrevY = directionOfCurrY = movingInYDirection = 0;
                 //debugginMesh.text = "Restart playerPressedButton";
                 return; // Otherwise the hero will still be moving!
             }
@@ -87,7 +92,13 @@ public class PlayerDrag : MonoBehaviour {
             {
                 directionOfStick = new Vector3(0, directionOfStick.y);
             }
-            movingInYDirection = (short)(Mathf.Ceil(directionOfStick.normalized.y));
+            if (directionOfPrevY != directionOfCurrY)
+            {
+                directionOfPrevY = directionOfCurrY;
+            }
+            // Below the if statement then it will be recognized in this frame!
+            directionOfCurrY = (short)(Mathf.Clamp(directionOfStick.y, -1.0f, 1.0f));
+            movingInYDirection = (short)(directionOfCurrY + directionOfPrevY);
             // If the player is talking, don't move at all!
             if (LocalDataSingleton.instance.talking)
                 return;
