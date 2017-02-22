@@ -59,7 +59,7 @@ public class RecogniseItemUIScript : MonoBehaviour {
                     }
                 }
                 //allTheSlots[m_AvailableSlots].transform.A;
-                Debug.Log("The Items: " + zeItemUI.name);
+                //Debug.Log("The Items: " + zeItemUI.name);
                 zeItemUI.GetComponent<RectTransform>().SetParent(allTheSlots[m_AvailableSlots].GetComponent<RectTransform>(),false);
                 ++m_AvailableSlots;
             }

@@ -9,6 +9,8 @@ public class LocalDataSingleton : MonoBehaviour {
     public GameObject MainCanvas;
     public GameObject OptionsCanvas;
     public GameObject MainMenuCanvas; // only use once, so don't really need to care.
+    [Tooltip("Inventory Canvas")]
+    public GameObject Inventorycanvas;
 
     [HideInInspector]
     public int previousSceneFrom = -1;
