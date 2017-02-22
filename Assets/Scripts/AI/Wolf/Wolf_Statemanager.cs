@@ -9,6 +9,8 @@ public class Wolf_Statemanager : MonoBehaviour {
     public Wolf_DeadState dead;
     public Wolf_ChaseState chase;
     public Wolf_AttackState attack;
+    public Wolf_FollowState follow;
+    public Wolf_GrowlState growl;
     public Animator anim;
     public Rigidbody2D wolf_RB;
 
@@ -50,6 +52,14 @@ public class Wolf_Statemanager : MonoBehaviour {
         else if (str == "attack")
         {
             currState = attack;
+        }
+        else if(str == "follow")
+        {
+            currState = follow;
+        }
+        else if(str == "growl")
+        {
+            currState = growl;
         }
     }
 

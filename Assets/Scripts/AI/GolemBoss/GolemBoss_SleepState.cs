@@ -30,7 +30,7 @@ public class GolemBoss_SleepState : State
                 timeToCheckCollision = 0;
             }
         }
-        if(checkForPlayerInRange(thePlayer.transform.position, 3))
+        if(checkForPlayerInRange(thePlayer.transform.position, 3) || health.m_health != health.max_health)
         {
             manager.changeState("awake");//change state
             //manager.changeAnim("golemboss_awake");

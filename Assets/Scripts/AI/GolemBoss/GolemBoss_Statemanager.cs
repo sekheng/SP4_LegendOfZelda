@@ -14,6 +14,9 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     public Animator anim;
     public Rigidbody2D golemboss_RB;
 
+    public GameObject projectile;
+    public GameObject currProjectile;
+
     public State currState;
 
     void Start()
