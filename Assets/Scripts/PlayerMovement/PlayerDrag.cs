@@ -44,6 +44,7 @@ public class PlayerDrag : MonoBehaviour {
         screenSizeX = Screen.width;
         screenSizeY = Screen.height;
         //Debug.Log("Screen height: " + screenSizeY);
+        //Debug.Log("ImgBG sizeDelta Y: " + ImgBG.rectTransform.sizeDelta.y);
     }
 	
 	// Update is called once per frame
@@ -57,35 +58,38 @@ public class PlayerDrag : MonoBehaviour {
         }
 	    if (fingerHasPressedIt)
         {
-            Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
-            Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
-            directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
-            if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-            {
-                directionOfStick.Normalize();
-                directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-            }
-            ImgFG.rectTransform.anchoredPosition = directionOfStick;
-            // Since heroes can only move in 4 direction, then we should only do just that!
-            // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-            if (directionOfStick.sqrMagnitude < ImgBG.rectTransform.sizeDelta.x * 0.5f)
-            {
-                theOnlyHero.stopMovement();
-                movedInXDirection = 0;
-                movedInYDirection = 0;
-                playerPressedButton = false;
-                //debugginMesh.text = "Restart playerPressedButton";
-                return; // Otherwise the hero will still be moving!
-            }
-            if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-            {
-                directionOfStick = new Vector3(directionOfStick.x, 0);
-            }
-            else
-            {
-                directionOfStick = new Vector3(0, directionOfStick.y);
-            }
-            if (!playerPressedButton)
+           Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
+           Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
+           directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
+           if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+           {
+               directionOfStick.Normalize();
+               directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+           }
+           ImgFG.rectTransform.anchoredPosition = directionOfStick;
+           // Since heroes can only move in 4 direction, then we should only do just that!
+           // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+           if (directionOfStick.magnitude < ImgBG.rectTransform.sizeDelta.y * 0.25f)
+           {
+               theOnlyHero.stopMovement();
+               movedInXDirection = 0;
+               movedInYDirection = 0;
+               playerPressedButton = false;
+               //debugginMesh.text = "Restart playerPressedButton";
+               return; // Otherwise the hero will still be moving!
+           }
+           if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+           {
+               directionOfStick = new Vector3(directionOfStick.x, 0);
+           }
+           else
+           {
+               directionOfStick = new Vector3(0, directionOfStick.y);
+           }
+            // If the player is talking, don't move at all!
+           if (LocalDataSingleton.instance.talking)
+               return;
+           if (!playerPressedButton)
                 theOnlyHero.moveDirection(directionOfStick);
             else
             {
