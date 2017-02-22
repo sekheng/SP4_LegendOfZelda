@@ -12,17 +12,16 @@ public class RecogniseItemUIScript : MonoBehaviour {
     // To access the player's inventory!
     private PlayerInventoryScript playerInventory;
     // need to know how many slots are there!
-    private List<RectTransform> allTheSlots = new List<RectTransform>();
+    private List<slotstuff> allTheSlots = new List<slotstuff>();
     private int m_AvailableSlots = 0;
 
     // 1st, we need to find how many slots are there!
     void Awake()
     {
         gameObject.GetComponentsInChildren(allTheSlots);
-        // Need to remove it's rect transform from the array!
-        allTheSlots.Remove(GetComponent<RectTransform>());
         // Need to know how many slots are there!
-        m_AvailableSlots = allTheSlots.Count;
+        //m_AvailableSlots = allTheSlots.Count;
+        //Debug.Log("The No. of slots: " + m_AvailableSlots);
     }
 
     // Using this function will allows the restart of finding item in the inventory again!
@@ -43,17 +42,21 @@ public class RecogniseItemUIScript : MonoBehaviour {
                 GameObject zeItemUI = null;
                 foreach (GameObject zeGO in allItemPrefabs)
                 {
-                    ItemScript zeItemInform = zeGO.GetComponent<ItemScript>();
+                    zeItemUI = Instantiate(zeGO);
+                    zeItemUI.BroadcastMessage("Start"); // Need to initialize the gameobject
+                    ItemScript zeItemInform = zeItemUI.GetComponentInChildren<ItemScript>();
+                    //Debug.Log("The GO: " + zeItemUI.name);
+                    //Debug.Log("The item's name: " + zeNameAndItem.Value.item_name);
+                    //Debug.Log("GO item's inform: " + zeItemInform.m_itemInform.item_name);
                     if (zeItemInform.m_itemInform.item_name.Equals(zeNameAndItem.Value.item_name))
                     {
                         // We will make a copy of the item!
-                        zeItemUI = Instantiate(zeGO);
                         break;
                     }
                 }
                 //allTheSlots[m_AvailableSlots].transform.A;
                 Debug.Log("The Items: " + zeItemUI.name);
-                zeItemUI.transform.SetParent(allTheSlots[m_AvailableSlots]);
+                zeItemUI.GetComponent<RectTransform>().SetParent(allTheSlots[m_AvailableSlots].GetComponent<RectTransform>(),false);
                 ++m_AvailableSlots;
             }
         }
@@ -61,6 +64,6 @@ public class RecogniseItemUIScript : MonoBehaviour {
     // This is to remove the items from the slot!
     void OnDisable()
     {
-
+        m_AvailableSlots = 0;
     }
 }
