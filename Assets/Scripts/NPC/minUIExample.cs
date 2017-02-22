@@ -25,7 +25,7 @@ public class minUIExample : MonoBehaviour {
 
         GUILayout.BeginArea(new Rect(Screen.width / 2 - (Screen.width / 4), Screen.height / 2, Screen.width / 2, Screen.height));
 
-        debugAlignment.text = "Screen Height: " + Screen.height + ", Screen Width: " + Screen.width; 
+        //debugAlignment.text = "Screen Height: " + Screen.height + ", Screen Width: " + Screen.width; 
 
         style = new GUIStyle(GUI.skin.button);
         style.normal.textColor = Color.white;
