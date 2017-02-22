@@ -73,6 +73,7 @@
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_Statemanager.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
+     <Compile Include="Assets\Scripts\Health Stuff\DisplaySpecificHealthScript.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\PersistentHealthScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\AndroidMeleeScript.cs" />
