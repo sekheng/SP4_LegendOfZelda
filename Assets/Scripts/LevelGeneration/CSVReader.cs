@@ -27,6 +27,7 @@ public class CSVReader : MonoBehaviour {
 
     //NO ID NEEDED HERE.
     public GameObject[] floorPrefabs;
+    public GameObject[] environmentOBJ;
 
     private string[,] LevelLayoutArray;
     private string [] textRow;
@@ -47,7 +48,7 @@ public class CSVReader : MonoBehaviour {
         float offsetX = width % 2 == 0 ? 0.5f : 0.0f;
         float offsetY = -0.5f; //compulsory
 
-        for (int y = 0; y < height; y++) // height
+        for (int y = height - 1; y >= 0; y--) // height
         {
             for (int x = 0; x < width; x++)
             {
@@ -71,6 +72,13 @@ public class CSVReader : MonoBehaviour {
                     int randomIndex = Random.Range(0, WallPrefabs.Length);
                     GameObject result = Instantiate(WallPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
+
+                    if(environmentOBJ.Length > 0)
+                    {
+                        int randomIndex2 = Random.Range(0, environmentOBJ.Length);
+                        GameObject result2 = Instantiate(environmentOBJ[randomIndex2], objPos, Quaternion.identity) as GameObject;
+                        result2.transform.SetParent(lvlHolder.transform);
+                    }
                 }
                 else if (LevelLayoutArray[x, y] == "3")
                 {

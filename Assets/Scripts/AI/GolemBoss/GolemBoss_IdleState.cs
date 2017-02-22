@@ -36,10 +36,18 @@ public class GolemBoss_IdleState : State {
         }
         if(accumTimeToAttack > timeToAttack)
         {
-            timeToAttack = rngTime.Random;
+            if (health.m_health / health.max_health > 0.20f)
+            {
+                timeToAttack = rngTime.Random;
+            }
+            else
+            {
+                timeToAttack = 1;
+            }
             accumTimeToAttack = 0;
             manager.changeState("attack");//change state
             manager.anim.SetBool("idleToAttack", true);
+            manager.currProjectile = Instantiate(manager.projectile, monsterTransform.position, Quaternion.identity) as GameObject;
         }
         if (health.m_health <= 0)
         {
