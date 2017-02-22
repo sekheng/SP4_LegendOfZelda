@@ -55,6 +55,28 @@ public class Wolf_ChaseState : State
 
                 //if()
             }
+            else if(checkForPlayerInRange(thePlayer.transform.position, 2.0f))
+            {
+                Vector3 dir = target.transform.position - monsterTransform.position;
+                dir.Normalize();
+                monsterRigidbody2D.velocity = dir * monsterInfo.speed * Time.deltaTime;
+                if (monsterRigidbody2D.velocity.x > 0 && monsterRigidbody2D.velocity.x > Mathf.Abs(monsterRigidbody2D.velocity.y))
+                {
+                    manager.changeAnim(3);
+                }
+                else if (monsterRigidbody2D.velocity.x < 0 && monsterRigidbody2D.velocity.x < -Mathf.Abs(monsterRigidbody2D.velocity.y))
+                {
+                    manager.changeAnim(2);
+                }
+                else if (monsterRigidbody2D.velocity.y > 0 && monsterRigidbody2D.velocity.y > Mathf.Abs(monsterRigidbody2D.velocity.x))
+                {
+                    manager.changeAnim(0);
+                }
+                else if (monsterRigidbody2D.velocity.y < 0 && monsterRigidbody2D.velocity.y < -Mathf.Abs(monsterRigidbody2D.velocity.x))
+                {
+                    manager.changeAnim(1);
+                }
+            }
             else//invalid route to take
             {
                 //change scene
@@ -71,7 +93,7 @@ public class Wolf_ChaseState : State
                 monsterRigidbody2D.velocity = Vector3.zero;
                 manager.changeState("roam");
             }
-            if (astar.getPath().Count == 1)//close enoguh to attack
+            if (checkForPlayerInRange(thePlayer.transform.position, 0.5f))//close enoguh to attack
             {
                 
                 monsterRigidbody2D.velocity = Vector3.zero;

@@ -112,6 +112,7 @@
     <Compile Include="Assets\Scripts\Inventory and Item\QuestItemScrpt.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\RecogniseItemUIScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
+    <Compile Include="Assets\Scripts\Inventory and Item\slotstuff.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
     <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />
