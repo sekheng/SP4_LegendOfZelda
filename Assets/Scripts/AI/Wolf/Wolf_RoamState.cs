@@ -58,6 +58,7 @@ public class Wolf_RoamState : State
         {
             rngDir = new IntRange(0, 4);
             whichDir = rngDir.Random;
+            
         }
         if (rngChangeState == null)
         {
@@ -72,6 +73,7 @@ public class Wolf_RoamState : State
         tempToCheckCollision *= monsterInfo.speed * Time.deltaTime;
         monsterRigidbody2D.velocity = tempToCheckCollision;
         manager.changeAnim(whichDir);
+        Debug.Log(whichDir.ToString());
         if (timeToCheckCollision > 1)//check and do damage every one second
         {
             if (checkForCollision())

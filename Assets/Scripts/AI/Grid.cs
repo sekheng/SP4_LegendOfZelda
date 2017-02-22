@@ -12,14 +12,26 @@ public class Grid : MonoBehaviour {
     float nodeDiameter;
     int gridSizeX, gridSizeY;
 
+    GameObject randGenerator;
+
     public List<Node> path;
 
     void Start()
     {
+        if (randGenerator == null)
+        {
+            randGenerator = GameObject.Find("qp'srandDGenerator");
+        }
+        if(randGenerator != null)
+        {
+            gridWorldSize.x = randGenerator.GetComponent<BoardCreator>().columns + 2;
+            gridWorldSize.y = randGenerator.GetComponent<BoardCreator>().rows + 2;
+        }
         nodeDiameter = nodeRadius * 2;
         gridSizeX = Mathf.RoundToInt(gridWorldSize.x / nodeDiameter);
         gridSizeY = Mathf.RoundToInt(gridWorldSize.y / nodeDiameter);
         CreateGrid();
+        
     }
 
     public int getGridSizeX()
