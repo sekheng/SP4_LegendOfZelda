@@ -29,7 +29,7 @@ public class PlayerDrag : MonoBehaviour {
     private int screenSizeX, screenSizeY;
     // When player pressed the button, hero's movement has to stop unless they stop dragging the joystick or move it to other directions
     private bool playerPressedButton = false;
-    private short movedInXDirection = 0, movedInYDirection = 0;
+    public short movedInXDirection = 0, movedInYDirection = 0;
 
     // Used to debug Android inputs. Will remove soon!
     //private TextMesh debugginMesh;
@@ -44,6 +44,7 @@ public class PlayerDrag : MonoBehaviour {
         screenSizeX = Screen.width;
         screenSizeY = Screen.height;
         //Debug.Log("Screen height: " + screenSizeY);
+        //Debug.Log("ImgBG sizeDelta Y: " + ImgBG.rectTransform.sizeDelta.y);
     }
 	
 	// Update is called once per frame
@@ -68,7 +69,7 @@ public class PlayerDrag : MonoBehaviour {
            ImgFG.rectTransform.anchoredPosition = directionOfStick;
            // Since heroes can only move in 4 direction, then we should only do just that!
            // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-           if (directionOfStick.sqrMagnitude < ImgBG.rectTransform.sizeDelta.x * 0.5f)
+           if (directionOfStick.magnitude < ImgBG.rectTransform.sizeDelta.y * 0.25f)
            {
                theOnlyHero.stopMovement();
                movedInXDirection = 0;
