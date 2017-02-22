@@ -73,12 +73,13 @@ public class exampleUI : MonoBehaviour
                         data.selectedOption--;
                 }
 #else
-                if (receive -1)
+                PlayerDrag touch = LocalDataSingleton.instance.GetComponentInChildren<PlayerDrag>();
+                if (touch.movedInYDirection == -1)
                 {
                     if (data.selectedOption < currentOptions.Count - 1)
                         data.selectedOption++;
                 }
-                if (receive 1)
+                if (touch.movedInYDirection == 1)
                 {
                     if (data.selectedOption > 0)
                         data.selectedOption--;
