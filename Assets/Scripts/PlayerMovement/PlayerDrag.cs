@@ -29,7 +29,8 @@ public class PlayerDrag : MonoBehaviour {
     private int screenSizeX, screenSizeY;
     // When player pressed the button, hero's movement has to stop unless they stop dragging the joystick or move it to other directions
     private bool playerPressedButton = false;
-    public short movedInXDirection = 0, movedInYDirection = 0;
+    private short movedInXDirection = 0, movedInYDirection = 0;
+    public short movingInYDirection = 0;
 
     // Used to debug Android inputs. Will remove soon!
     //private TextMesh debugginMesh;
@@ -58,38 +59,39 @@ public class PlayerDrag : MonoBehaviour {
         }
 	    if (fingerHasPressedIt)
         {
-           Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
-           Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
-           directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
-           if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-           {
-               directionOfStick.Normalize();
-               directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-           }
-           ImgFG.rectTransform.anchoredPosition = directionOfStick;
-           // Since heroes can only move in 4 direction, then we should only do just that!
-           // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-           if (directionOfStick.magnitude < ImgBG.rectTransform.sizeDelta.y * 0.25f)
-           {
-               theOnlyHero.stopMovement();
-               movedInXDirection = 0;
-               movedInYDirection = 0;
-               playerPressedButton = false;
-               //debugginMesh.text = "Restart playerPressedButton";
-               return; // Otherwise the hero will still be moving!
-           }
-           if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-           {
-               directionOfStick = new Vector3(directionOfStick.x, 0);
-           }
-           else
-           {
-               directionOfStick = new Vector3(0, directionOfStick.y);
-           }
+            Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
+            Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
+            directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
+            if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+            {
+                directionOfStick.Normalize();
+                directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+            }
+            ImgFG.rectTransform.anchoredPosition = directionOfStick;
+            // Since heroes can only move in 4 direction, then we should only do just that!
+            // 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+            if (directionOfStick.magnitude < ImgBG.rectTransform.sizeDelta.y * 0.25f)
+            {
+                theOnlyHero.stopMovement();
+                movedInXDirection = 0;
+                movedInYDirection = 0;
+                playerPressedButton = false;
+                //debugginMesh.text = "Restart playerPressedButton";
+                return; // Otherwise the hero will still be moving!
+            }
+            if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+            {
+                directionOfStick = new Vector3(directionOfStick.x, 0);
+            }
+            else
+            {
+                directionOfStick = new Vector3(0, directionOfStick.y);
+            }
+            movingInYDirection = (short)(Mathf.Ceil(directionOfStick.normalized.y));
             // If the player is talking, don't move at all!
-           if (LocalDataSingleton.instance.talking)
-               return;
-           if (!playerPressedButton)
+            if (LocalDataSingleton.instance.talking)
+                return;
+            if (!playerPressedButton)
                 theOnlyHero.moveDirection(directionOfStick);
             else
             {
@@ -105,30 +107,30 @@ public class PlayerDrag : MonoBehaviour {
                 //}
             }
 
-           //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
-           //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
-           //{
-           //    directionOfStick.Normalize();
-           //    directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
-           //}
-           //ImgFG.rectTransform.anchoredPosition = directionOfStick;
-           ////Debug.Log("Direction: " + directionOfStick);
-           //// Since heroes can only move in 4 direction, then we should only do just that!
-           //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
-           //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
-           //{
-           //    theOnlyHero.stopMovement();
-           //    return;
-           //}
-           //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
-           //{
-           //    directionOfStick = new Vector3(directionOfStick.x, 0);
-           //}
-           //else
-           //{
-           //    directionOfStick = new Vector3(0, directionOfStick.y);
-           //}
-           //theOnlyHero.moveDirection(directionOfStick);
+            //directionOfStick = Input.mousePosition - ImgBG.rectTransform.position;
+            //if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
+            //{
+            //    directionOfStick.Normalize();
+            //    directionOfStick *= Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f);
+            //}
+            //ImgFG.rectTransform.anchoredPosition = directionOfStick;
+            ////Debug.Log("Direction: " + directionOfStick);
+            //// Since heroes can only move in 4 direction, then we should only do just that!
+            //// 1st, we will need to check whether it has gone more than a certain threshold!, otherwise stop movement!
+            //if (directionOfStick.sqrMagnitude < offsetDistance * offsetDistance)
+            //{
+            //    theOnlyHero.stopMovement();
+            //    return;
+            //}
+            //if (Mathf.Abs(directionOfStick.x) > Mathf.Abs(directionOfStick.y))
+            //{
+            //    directionOfStick = new Vector3(directionOfStick.x, 0);
+            //}
+            //else
+            //{
+            //    directionOfStick = new Vector3(0, directionOfStick.y);
+            //}
+            //theOnlyHero.moveDirection(directionOfStick);
         }
         //else if (Input.touchCount > 0)
         //{
