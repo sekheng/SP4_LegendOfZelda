@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_IdleState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_SleepState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_Statemanager.cs" />
+     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemProjectile.cs" />
      <Compile Include="Assets\Scripts\AI\Grid.cs" />
      <Compile Include="Assets\Scripts\AI\Heap.cs" />
      <Compile Include="Assets\Scripts\AI\MonsterInfomation.cs" />
@@ -64,6 +65,8 @@
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_AttackState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_ChaseState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_DeadState.cs" />
+     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_FollowState.cs" />
+     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_GrowlState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_IdleState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_RoamState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_SearchState.cs" />
@@ -124,7 +127,6 @@
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
      <Compile Include="Assets\VIDE\VIDE_Data.cs" />
-     <Compile Include="Assets\stateNumberChanger.cs" />
      <None Include="Assets\VIDE\license.txt" />
      <None Include="Assets\VIDE\Resources\ReadMe.txt" />
  <Reference Include="UnityEngine.UI">
