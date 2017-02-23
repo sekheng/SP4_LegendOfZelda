@@ -92,11 +92,11 @@ public class exampleUI : MonoBehaviour
     //This begins the conversation (Called by examplePlayer script)
     public void Begin(VIDE_Assign diagToLoad)
     {
+
         //First step is to call BeginDialogue, passing the required VIDE_Assign component 
         //This will store the first Node data in dialogue.nodeData
         dialogue.BeginDialogue(diagToLoad);
 
-        var data = dialogue.nodeData;
 
         //Safety check in case a null dialogue was sent
         if (dialogue.assigned == null)
@@ -119,14 +119,22 @@ public class exampleUI : MonoBehaviour
             {
                 case "Dragon":
                     dialogue.nodeData = dialogue.SetNode(30); //SetNode allows you to jump to whichever node you want
-                    LocalDataSingleton.instance.talkedToDragon = true;
+                    //diagToLoad.overrideStartNode = 30;
+                    if (!LocalDataSingleton.instance.talkedToDragon)
+                    {
+                        LocalDataSingleton.instance.talkedToDragon = true;
+                    }
                     break;
             }
         }
 
+        var data = dialogue.nodeData;
+
         //Let's specifically check for dynamic text change
-        if (!data.currentIsPlayer && data.extraData == "itemLookUp")
+        if (!data.currentIsPlayer && data.extraData.Equals("itemLookUp"))
             ItemLookUp(data);
+        else if (!data.currentIsPlayer && data.extraData.Equals("RelicLookUp"))
+            RelicLookUp(data);   
 
         //Everytime dialogue.nodeData gets updated, we update our UI with the new data
         UpdateUI();
@@ -153,8 +161,10 @@ public class exampleUI : MonoBehaviour
         }
 
         //Let's specifically check for dynamic text change
-        if (!data.currentIsPlayer && data.extraData == "itemLookUp" && !data.pausedAction)
-            ItemLookUp(data);      
+        if (!data.currentIsPlayer && data.extraData.Equals("itemLookUp") && !data.pausedAction)
+            ItemLookUp(data);
+        else if (!data.currentIsPlayer && data.extraData.Equals("RelicLookUp") && !data.pausedAction)
+            RelicLookUp(data);   
 
         //This will update the dialogue.nodeData with the next Node's data
         dialogue.Next();
@@ -233,10 +243,13 @@ public class exampleUI : MonoBehaviour
     //This will replace any "[NAME]" with the name of the gameobject holding the VIDE_Assign
     void ItemLookUp(VIDE_Data.NodeData data)
     {
-        if (data.npcCommentIndex == 0)
-        {
-            data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[NAME]", dialogue.assigned.gameObject.name);
-        }
+        data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[NAME]", dialogue.assigned.gameObject.name);
+    }
+
+    void RelicLookUp(VIDE_Data.NodeData data)
+    {
+        QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();
+        data.npcComment[data.npcCommentIndex] = data.npcComment[data.npcCommentIndex].Replace("[RELIC]", (test.m_numberOfRelics - test.getCurrenNumOfQuestItems()).ToString() );
     }
 
     //Very simple text animation, not optimal

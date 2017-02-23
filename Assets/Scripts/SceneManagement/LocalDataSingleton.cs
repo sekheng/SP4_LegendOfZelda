@@ -23,8 +23,6 @@ public class LocalDataSingleton : MonoBehaviour {
 
     private float Volume { get; set; }
 
-    IEnumerator test;
-
     // Earlier than start
     void Awake()
     {
@@ -102,17 +100,20 @@ public class LocalDataSingleton : MonoBehaviour {
             OptionsCanvas.gameObject.SetActive(false);
         }
 
-        test = ChangeLevel(0);
-        StartCoroutine(test);
+        StartCoroutine(ChangeLevel(0));
+    }
+
+    public void ReturntoPrevious()
+    {
+        StartCoroutine(ChangeLevel(LocalDataSingleton.instance.previousSceneFrom));
     }
 
     public void GoNext()
     {
-        test = ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1);
-        StartCoroutine(test);
+        StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    public IEnumerator ChangeLevel(int index)
+    IEnumerator ChangeLevel(int index)
     {
         LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
 
