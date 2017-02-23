@@ -62,7 +62,7 @@ public class BoardCreator : MonoBehaviour
                  //spawns roughly in the middle of the room
             }
 
-            if (i % 20 == 0 && i != 0) //spawns 1 wolf every 20 rooms.
+            if (i % 10 == 0 && i != 0) //spawns 1 wolf every 20 rooms.
             {
                 Instantiate(wolf, objPos, Quaternion.identity);
                 //spawns roughly in the middle of the room
