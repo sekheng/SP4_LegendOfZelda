@@ -25,18 +25,18 @@ public class GolemBoss_IdleState : State {
             timeToAttack = rngTime.Random;
         }
         //Debug.Log("hi");
-        timeToCheckCollision += Time.deltaTime;
+        //timeToCheckCollision += Time.deltaTime;
         accumTimeToAttack += Time.deltaTime;
-        if (timeToCheckCollision > 1)//check and do damage every one second
-        {
-            if (checkForCollision())
-            {
-                timeToCheckCollision = 0;
-            }
-        }
+        //if (timeToCheckCollision > 1)//check and do damage every one second
+        //{
+        //    if (checkForCollision())
+        //    {
+        //        timeToCheckCollision = 0;
+        //    }
+        //}
         if(accumTimeToAttack > timeToAttack)
         {
-            if (health.m_health / health.max_health > 0.20f)
+            if (health.m_health / health.max_health > 0.50f)
             {
                 timeToAttack = rngTime.Random;
             }
@@ -55,21 +55,21 @@ public class GolemBoss_IdleState : State {
         }
     }
 
-    public override bool checkForCollision()
-    {
-        collision = Physics2D.BoxCastAll(monsterTransform.position, manager.getBox().bounds.size, 0, Vector2.zero);
+    //public override bool checkForCollision()
+    //{
+    //    collision = Physics2D.BoxCastAll(monsterTransform.position, manager.getBox().bounds.size, 0, Vector2.zero);
 
-        foreach (RaycastHit2D temp in collision)
-        {
-            if (temp.collider != null)
-            {
-                if (temp.collider.gameObject.tag == "Player" && temp.collider.gameObject.GetComponent<HealthScript>() != null)
-                {
-                    temp.collider.gameObject.GetComponent<HealthScript>().modifyHealth(-monsterInfo.dps);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+    //    foreach (RaycastHit2D temp in collision)
+    //    {
+    //        if (temp.collider != null)
+    //        {
+    //            if (temp.collider.gameObject.tag == "Player" && temp.collider.gameObject.GetComponent<HealthScript>() != null)
+    //            {
+    //                temp.collider.gameObject.GetComponent<HealthScript>().modifyHealth(-monsterInfo.dps);
+    //                return true;
+    //            }
+    //        }
+    //    }
+    //    return false;
+    //}
 }

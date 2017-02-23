@@ -2,9 +2,9 @@
 using System.Collections;
 
 public class layerChanger : MonoBehaviour {
-    private GameObject player;
-    private SpriteRenderer spriteR;
-    private SpriteRenderer playerSpriteR;
+    protected GameObject player;
+    protected SpriteRenderer spriteR;
+    protected SpriteRenderer playerSpriteR;
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -17,7 +17,7 @@ public class layerChanger : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
+	public virtual void Update () {
 	    if(player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -38,4 +38,5 @@ public class layerChanger : MonoBehaviour {
             }
         }
     }
+
 }

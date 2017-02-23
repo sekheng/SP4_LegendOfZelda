@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\LayerChangerForGolemBoss.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_AttackState.cs" />
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_ChaseState.cs" />
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_DeadState.cs" />
+    <Compile Include="Assets\Scripts\AI\Wolf\Wolf_EscapeState.cs" />
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_FollowState.cs" />
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_GrowlState.cs" />
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_IdleState.cs" />
@@ -97,6 +99,7 @@
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_Statemanager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
+    <Compile Include="Assets\Scripts\Health Stuff\DisplaySpecificHealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\PersistentHealthScript.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\AndroidMeleeScript.cs" />
