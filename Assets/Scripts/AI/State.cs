@@ -13,6 +13,7 @@ public class State : MonoBehaviour {
 
     protected float timeToCheckCollision;
     protected float distToPlayer;
+    protected int whichDir;
 
     protected GameObject thePlayer;
 

@@ -9,7 +9,7 @@ public class Wolf_RoamState : State
     private IntRange rngDir;
     private IntRange rngChangeState;
     private Wolf_Statemanager manager;
-    private int whichDir;
+    //private int whichDir;
     private int toChangeState;
     private float roamingTime;
     private float timeToStopRoaming;
@@ -41,6 +41,7 @@ public class Wolf_RoamState : State
         {
             thePlayer = GameObject.FindGameObjectWithTag("Player");
         }
+        manager.healthBeforeDamaged = health.max_health;
     }
 
     public override void UpdateState()
@@ -72,7 +73,14 @@ public class Wolf_RoamState : State
         Vector3 tempToCheckCollision = (directions[whichDir]);
         tempToCheckCollision *= monsterInfo.speed * Time.deltaTime;
         monsterRigidbody2D.velocity = tempToCheckCollision;
-        manager.changeAnim(whichDir);
+        if (monsterInfo.speed == monsterInfo.maxSpeed)
+        {
+            manager.changeAnim(whichDir);
+        }
+        else
+        {
+            manager.changeAnim(whichDir + 4);
+        }
         //Debug.Log(whichDir.ToString());
         //if (timeToCheckCollision > 1)//check and do damage every one second
         //{
@@ -106,18 +114,36 @@ public class Wolf_RoamState : State
             manager.changeAnim(whichDir);
         }
 
+        if (health.m_health != manager.healthBeforeDamaged)
+        {
+            manager.healthBeforeDamaged = health.m_health;
+            whichDir = rngDir.Random;
+            roamingTime = 0;//reset the time
+            timeToStopRoaming = rngTime.Random;
+            toChangeState = rngChangeState.Random;
+            monsterRigidbody2D.velocity = Vector3.zero;
+            //manager.changeAnim(whichDir);
+            manager.changeState("growl");//change state
+        }
 
-        //check if the player is in the range
-        if (checkForPlayerInRange(thePlayer.transform.position,3))
+        if (health.m_health / health.max_health <= 0.2f && checkForPlayerInRange(thePlayer.transform.position, 3))
         {
             monsterRigidbody2D.velocity = Vector3.zero;
-            manager.changeState("chase");//change state
+            manager.changeState("escape");//change state
+        }
+        //check if the player is in the range
+        else if (checkForPlayerInRange(thePlayer.transform.position,3))
+        {
+            monsterRigidbody2D.velocity = Vector3.zero;
+            manager.changeState("follow");//change state
         }
         //When Health < 0, change to dead state
-        if (health.m_health <= 0)
+        else if (health.m_health <= 0)
         {
             monsterRigidbody2D.velocity = Vector3.zero;
             manager.changeState("dead");//change state
         }
+        
+        
     }
 }

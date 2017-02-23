@@ -16,6 +16,7 @@ public class Wolf_Statemanager : MonoBehaviour {
     public Rigidbody2D wolf_RB;
 
     public State currState;
+    public float healthBeforeDamaged;
 
     void Start()
     {
@@ -88,19 +89,19 @@ public class Wolf_Statemanager : MonoBehaviour {
         }
         else if (dir == 7)
         {
-            anim.Play("wolf_attack_right");
+            anim.Play("wolf_walk_right_slow");
         }
         else if (dir == 6)
         {
-            anim.Play("wolf_attack_left");
+            anim.Play("wolf_walk_left_slow");
         }
         else if (dir == 4)
         {
-            anim.Play("wolf_attack_up");
+            anim.Play("wolf_walk_up_slow");
         }
         else if (dir == 5)
         {
-            anim.Play("wolf_attack_down");
+            anim.Play("wolf_walk_down_slow");
         }
     }
 }
