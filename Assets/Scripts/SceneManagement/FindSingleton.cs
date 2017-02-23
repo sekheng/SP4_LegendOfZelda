@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class FindSingleton : MonoBehaviour {
 
@@ -11,5 +10,10 @@ public class FindSingleton : MonoBehaviour {
     public void OpenOptions()
     {
         LocalDataSingleton.instance.OptionsCanvas.SetActive(true);
+    }
+
+    public void Quit()
+    {
+        LocalDataSingleton.instance.QuitApp();
     }
 }

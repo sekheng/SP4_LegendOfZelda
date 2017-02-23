@@ -22,6 +22,7 @@ public class LocalDataSingleton : MonoBehaviour {
     public bool talking = false;
 
     private float Volume { get; set; }
+    private bool Transiting = false;
 
     // Earlier than start
     void Awake()
@@ -40,16 +41,16 @@ public class LocalDataSingleton : MonoBehaviour {
     void Update()
     {
         AudioListener.volume = Volume;
-        if(SceneManager.GetActiveScene().buildIndex != 0 && !transform.GetChild(3).gameObject.activeSelf)
+        if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
         {
             transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
         }
 
-        if(MainMenuCanvas == null && SceneManager.GetActiveScene().buildIndex == 0)
+        if (MainMenuCanvas == null && SceneManager.GetActiveScene().buildIndex == 1)
         {
             MainMenuCanvas = GameObject.Find("MainMenucanvas");
         }
-        if(MainMenuCanvas != null)
+        else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
 #if UNITY_STANDALONE
             MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(true);
@@ -60,9 +61,10 @@ public class LocalDataSingleton : MonoBehaviour {
 
 #if UNITY_STANDALONE
         MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
+        MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(SceneManager.GetActiveScene().buildIndex != 0)
+            if (SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
             {
                 //activate the child canvas
                 OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);
@@ -70,7 +72,7 @@ public class LocalDataSingleton : MonoBehaviour {
         }
 #endif
 #if UNITY_ANDROID
-        if(SceneManager.GetActiveScene().buildIndex != 0)
+        if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
         {
             MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
             MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
@@ -99,28 +101,37 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             OptionsCanvas.gameObject.SetActive(false);
         }
-
-        StartCoroutine(ChangeLevel(0));
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(1));
+        }
     }
 
     public void ReturntoPrevious()
     {
-        StartCoroutine(ChangeLevel(LocalDataSingleton.instance.previousSceneFrom));
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(LocalDataSingleton.instance.previousSceneFrom));
+        }
     }
 
     public void GoNext()
     {
-        StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
     }
 
     IEnumerator ChangeLevel(int index)
     {
+        Transiting = true;
         LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
-
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
         if (talking)
             talking = false;
         SceneManager.LoadScene(index);
+        Transiting = false;
     }
 }
