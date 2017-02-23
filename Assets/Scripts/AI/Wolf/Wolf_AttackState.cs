@@ -80,7 +80,8 @@ public class Wolf_AttackState : State
                     if (checkForCollision())
                     {
                         damageTimer = 0;
-                    }
+                        manager.changeState("growl");
+                }
                 }
 
                 //When Health < 0, change to dead state
