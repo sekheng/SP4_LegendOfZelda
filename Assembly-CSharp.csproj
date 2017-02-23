@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\LayerChangerForGolemBoss.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
@@ -65,6 +66,7 @@
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_AttackState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_ChaseState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_DeadState.cs" />
+     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_EscapeState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_FollowState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_GrowlState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_IdleState.cs" />
@@ -119,6 +121,7 @@
      <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\BackToMain.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\NextSceneIn2s.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />

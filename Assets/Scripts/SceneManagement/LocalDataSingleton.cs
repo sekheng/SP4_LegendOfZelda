@@ -95,6 +95,7 @@ public class LocalDataSingleton : MonoBehaviour {
 #endif
     }
 
+//FROM HERE ONE ARE OPTIONS TO HELP DO SCENE MOVEMENT
     public void ReturntoMain()
     {
         if(OptionsCanvas.gameObject.activeSelf)
@@ -120,6 +121,22 @@ public class LocalDataSingleton : MonoBehaviour {
         if (!Transiting)
         {
             StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+    }
+
+    public void onWin()
+    {
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(8));
+        }
+    }
+
+    public void onLose()
+    {
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(9));
         }
     }
 

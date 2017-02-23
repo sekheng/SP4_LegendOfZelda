@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class NextSceneIn2s : MonoBehaviour {
+public class BackToMain : MonoBehaviour {
 
     public float TimeToWaitFor = 2.0f;
 	// Update is called once per frame
@@ -11,7 +11,7 @@ public class NextSceneIn2s : MonoBehaviour {
         }
         else
         {
-            LocalDataSingleton.instance.GoNext();
+            LocalDataSingleton.instance.ReturntoMain();
         }
 	}
 }
