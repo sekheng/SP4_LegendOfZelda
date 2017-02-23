@@ -172,8 +172,8 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </returns>
     public string[] getAllStringFromTable(string zeTable, int numOfField, List<object> allTheField, List<string> zeConditions = null)
     {
-        if (dbconn == null)
-            Awake();
+        //if (dbconn == null)
+        //    Awake();
         Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
 
         List<string> AllTheResult = new List<string>();
@@ -216,7 +216,11 @@ public class MySQLiteHandler : MonoBehaviour {
                 }
                 if (allTheField[zeNum] is string)
                 {
-                    zeDebugginText.text = "Getting string from " + zeTable + " at " + zeNum + ", " + allTheField.Count;
+                    if (zeTable.Equals("ItemStuff"))
+                    {
+                        //zeDebugginText.text = "Getting string from " + zeTable + " at " + zeNum + ", " + allTheField.Count;
+                        zeDebugginText.text = allTheField[zeNum].ToString();
+                    }
                     zeWholeRow += reader.GetString(zeNum);
                     if (zeTable.Equals("ItemStuff"))
                         zeDebugginText.text = zeWholeRow;

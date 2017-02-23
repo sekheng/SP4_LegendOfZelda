@@ -30,7 +30,7 @@ public class ItemGeneratorScript : MonoBehaviour {
     // To contain all the item's informatiom. There won't be anything missing!
     private Dictionary<string, itemInformation> allTheItemThatWillExist = new Dictionary<string, itemInformation>();
 
-	void OnEnable () {
+	void Start () {
         if (!isItInitialized)
         {
             Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
