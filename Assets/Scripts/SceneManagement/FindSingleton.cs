@@ -2,6 +2,11 @@
 
 public class FindSingleton : MonoBehaviour {
 
+    public void ReturnToLastFailed()
+    {
+        LocalDataSingleton.instance.ReturntoPrevious();
+    }
+
     public void GoScene()
     {
        LocalDataSingleton.instance.GoNext();

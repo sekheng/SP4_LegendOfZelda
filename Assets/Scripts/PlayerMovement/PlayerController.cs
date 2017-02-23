@@ -29,11 +29,19 @@ public class PlayerController : MonoBehaviour {
 #if UNITY_STANDALONE
     // Update is called once per frame
 	void Update () {
-        if (theOnlyHero == null && (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1))
+        if (theOnlyHero == null && (
+            SceneManager.GetActiveScene().buildIndex != 0 && //splashscreen
+            SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
+            SceneManager.GetActiveScene().buildIndex != 8 && //winpage
+            SceneManager.GetActiveScene().buildIndex != 9 ))//losepage
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
-        else if ((SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1) && theOnlyHero != null)
+        else if (theOnlyHero != null && (
+            SceneManager.GetActiveScene().buildIndex != 0 && //splashscreen
+            SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
+            SceneManager.GetActiveScene().buildIndex != 8 && //winpage
+            SceneManager.GetActiveScene().buildIndex != 9))//losepage
         {
             // Here we shall check which key is pressed so that interception can happen!
             if (!LocalDataSingleton.instance.talking)
