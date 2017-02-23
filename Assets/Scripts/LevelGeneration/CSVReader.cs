@@ -97,6 +97,10 @@ public class CSVReader : MonoBehaviour {
                     int randomIndex = Random.Range(0, RelicPrefabs.Length);
                     GameObject result = Instantiate(RelicPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
+
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result2 = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+                    result2.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "5")
                 {
