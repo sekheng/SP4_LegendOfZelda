@@ -103,16 +103,20 @@ public class LocalDataSingleton : MonoBehaviour {
         }
 
         test = ChangeLevel(0);
-        StartCoroutine(test);
+        StartCoroutine(ChangeLevel(0));
+    }
+
+    public void ReturntoPrevious()
+    {
+        StartCoroutine(ChangeLevel(LocalDataSingleton.instance.previousSceneFrom));
     }
 
     public void GoNext()
     {
-        test = ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1);
-        StartCoroutine(test);
+        StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    public IEnumerator ChangeLevel(int index)
+    IEnumerator ChangeLevel(int index)
     {
         LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
 
