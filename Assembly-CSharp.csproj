@@ -120,6 +120,7 @@
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\NextSceneIn2s.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
      <Compile Include="Assets\Scripts\layerChanger.cs" />

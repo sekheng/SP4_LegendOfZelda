@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class MainMenuControl : MonoBehaviour {
 
@@ -22,6 +21,7 @@ public class MainMenuControl : MonoBehaviour {
         selected = CURRENTBUTTON.PLAY;
         PlayButton.GetComponent<Button>().interactable = false;
         OptionsButton.GetComponent<Button>().interactable = false;
+        ExitButton.GetComponent<Button>().interactable = false;
 	}
 	
 	// Update is called once per frame
@@ -38,6 +38,7 @@ public class MainMenuControl : MonoBehaviour {
 
                 ExitButton.localScale = new Vector3(1, 1, 1);
                 ExitButton.GetComponent<Button>().interactable = false;
+
                 if(Input.GetKeyDown(KeyCode.UpArrow))
                 {
                     selected = CURRENTBUTTON.EXIT;

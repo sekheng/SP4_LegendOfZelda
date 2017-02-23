@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Used for keyboard and android mobile controller!
@@ -28,53 +29,56 @@ public class PlayerController : MonoBehaviour {
 #if UNITY_STANDALONE
     // Update is called once per frame
 	void Update () {
-        if (theOnlyHero == null)
+        if (theOnlyHero == null && (SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1))
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
-    // Here we shall check which key is pressed so that interception can happen!
-        if (!LocalDataSingleton.instance.talking)
+        else if ((SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1) && theOnlyHero != null)
         {
-            if (Input.GetKeyDown(KeyCode.UpArrow))
-                currentKeyPressed = KeyCode.UpArrow;    
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-                currentKeyPressed = KeyCode.DownArrow;
-            if (Input.GetKeyDown(KeyCode.RightArrow))
-                currentKeyPressed = KeyCode.RightArrow;
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
-                currentKeyPressed = KeyCode.LeftArrow;
-            if (Input.GetKeyDown(KeyCode.Z))
-                currentKeyPressed = KeyCode.Z;
-            if (Input.GetKeyDown(KeyCode.X))
-                currentKeyPressed = KeyCode.X;
-
-            // Here we check whether the player has continuously press it for movement
-            if (Input.GetKey(currentKeyPressed))
+            // Here we shall check which key is pressed so that interception can happen!
+            if (!LocalDataSingleton.instance.talking)
             {
-                switch (currentKeyPressed)
+                if (Input.GetKeyDown(KeyCode.UpArrow))
+                    currentKeyPressed = KeyCode.UpArrow;
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                    currentKeyPressed = KeyCode.DownArrow;
+                if (Input.GetKeyDown(KeyCode.RightArrow))
+                    currentKeyPressed = KeyCode.RightArrow;
+                if (Input.GetKeyDown(KeyCode.LeftArrow))
+                    currentKeyPressed = KeyCode.LeftArrow;
+                if (Input.GetKeyDown(KeyCode.Z))
+                    currentKeyPressed = KeyCode.Z;
+                if (Input.GetKeyDown(KeyCode.X))
+                    currentKeyPressed = KeyCode.X;
+
+                // Here we check whether the player has continuously press it for movement
+                if (Input.GetKey(currentKeyPressed))
                 {
-                    case KeyCode.UpArrow:
-                        theOnlyHero.moveDirection(new Vector2(0, 1));
-                        GeneralDir = new Vector2(0, 1);
-                        break;
-                    case KeyCode.DownArrow:
-                        theOnlyHero.moveDirection(new Vector2(0, -1));
-                        GeneralDir = new Vector2(0, -1);
-                        break;
-                    case KeyCode.RightArrow:
-                        theOnlyHero.moveDirection(new Vector2(1, 0));
-                        GeneralDir = new Vector2(1, 0);
-                        break;
-                    case KeyCode.LeftArrow:
-                        theOnlyHero.moveDirection(new Vector2(-1, 0));
-                        GeneralDir = new Vector2(-1, 0);
-                        break;
-                    default:
-                        theOnlyHero.passInKeyPressed(currentKeyPressed);
-                        //Debug.Log("Something is wrong with current keypressed");
-                        break;
+                    switch (currentKeyPressed)
+                    {
+                        case KeyCode.UpArrow:
+                            theOnlyHero.moveDirection(new Vector2(0, 1));
+                            GeneralDir = new Vector2(0, 1);
+                            break;
+                        case KeyCode.DownArrow:
+                            theOnlyHero.moveDirection(new Vector2(0, -1));
+                            GeneralDir = new Vector2(0, -1);
+                            break;
+                        case KeyCode.RightArrow:
+                            theOnlyHero.moveDirection(new Vector2(1, 0));
+                            GeneralDir = new Vector2(1, 0);
+                            break;
+                        case KeyCode.LeftArrow:
+                            theOnlyHero.moveDirection(new Vector2(-1, 0));
+                            GeneralDir = new Vector2(-1, 0);
+                            break;
+                        default:
+                            theOnlyHero.passInKeyPressed(currentKeyPressed);
+                            //Debug.Log("Something is wrong with current keypressed");
+                            break;
+                    }
+                    checkPlayerMoved = true;
                 }
-                checkPlayerMoved = true;
             }
         }
     }
