@@ -10,6 +10,8 @@ public class ItemSelectScript : MonoBehaviour {
     public string m_tagnameOfDisplayImage = "ItemDisplayUI";
     [Tooltip("tagname of the description text")]
     public string m_tagnameOfDescriptionText = "ItemDescriptionText";
+    [Tooltip("tagname of the inventory scrollbar")]
+    public string m_tagnameOfScrollbar = "ItemScrollbar";
     // To display the item image UI!
     private Image theItemImage;
     // To display the text name!
@@ -20,11 +22,14 @@ public class ItemSelectScript : MonoBehaviour {
     private short m_slotAt = 0;
     // To get the position of the UI
     private RectTransform thePosition;
+    // It will also need to be able to scroll and change the rectTransform position!
+    private Scrollbar theInventoryScrollbar;
 
 	// Use this for initialization
 	void Start() {
         theItemImage = GameObject.FindGameObjectWithTag(m_tagnameOfDisplayImage).GetComponent<Image>();
         theItemText = GameObject.FindGameObjectWithTag(m_tagnameOfDescriptionText).GetComponent<Text>();
+        theInventoryScrollbar = GameObject.FindGameObjectWithTag(m_tagnameOfScrollbar).GetComponent<Scrollbar>();
         toKnowTheSlots = FindObjectOfType<RecogniseItemUIScript>();
         thePosition = GetComponent<RectTransform>();
 	}
