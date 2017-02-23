@@ -61,20 +61,20 @@ public class Wolf_AttackState : State
 
                 if (dirToAttack.x > 0 && dirToAttack.x > Mathf.Abs(dirToAttack.y))
                 {
-                    manager.changeAnim(7);
-                }
+                    manager.anim.Play("wolf_attack_right");
+            }
                 else if (dirToAttack.x < 0 && dirToAttack.x < -Mathf.Abs(dirToAttack.y))
                 {
-                    manager.changeAnim(6);
-                }
+                    manager.anim.Play("wolf_attack_left");
+            }
                 else if (dirToAttack.y > 0 && dirToAttack.y > Mathf.Abs(dirToAttack.x))
                 {
-                    manager.changeAnim(4);
-                }
+                    manager.anim.Play("wolf_attack_up");
+            }
                 else if (dirToAttack.y < 0 && dirToAttack.y < -Mathf.Abs(dirToAttack.x))
                 {
-                    manager.changeAnim(5);
-                }
+                    manager.anim.Play("wolf_attack_down");
+            }
                 if (damageTimer > 1)
                 {
                     if (checkForCollision())

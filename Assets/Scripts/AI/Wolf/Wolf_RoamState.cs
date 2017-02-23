@@ -73,14 +73,14 @@ public class Wolf_RoamState : State
         tempToCheckCollision *= monsterInfo.speed * Time.deltaTime;
         monsterRigidbody2D.velocity = tempToCheckCollision;
         manager.changeAnim(whichDir);
-        Debug.Log(whichDir.ToString());
-        if (timeToCheckCollision > 1)//check and do damage every one second
-        {
-            if (checkForCollision())
-            {
-                timeToCheckCollision = 0;
-            }
-        }
+        //Debug.Log(whichDir.ToString());
+        //if (timeToCheckCollision > 1)//check and do damage every one second
+        //{
+        //    if (checkForCollision())
+        //    {
+        //        timeToCheckCollision = 0;
+        //    }
+        //}
         //if (!Physics.Raycast(monsterTransform.position, tempToCheckCollision, monsterSprite.bounds.size.x))
         //{
         //    monsterRigidbody2D.velocity = tempToCheckCollision;
@@ -108,7 +108,7 @@ public class Wolf_RoamState : State
 
 
         //check if the player is in the range
-        if (checkForPlayerInRange(thePlayer.transform.position,5))
+        if (checkForPlayerInRange(thePlayer.transform.position,3))
         {
             monsterRigidbody2D.velocity = Vector3.zero;
             manager.changeState("chase");//change state

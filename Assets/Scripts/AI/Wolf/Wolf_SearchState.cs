@@ -92,20 +92,20 @@ public class Wolf_SearchState : State {
         }
 
         //check if the player is in the range
-        if(checkForPlayerInRange(thePlayer.transform.position,5))
+        if(checkForPlayerInRange(thePlayer.transform.position,3))
         {
             monsterRigidbody2D.velocity = Vector3.zero;
             manager.changeState("chase");//change state
         }
 
-        //check and do damage every one second
-        if (timeToCheckCollision > 1)
-        {
-            if (checkForCollision())
-            {
-                timeToCheckCollision = 0;
-            }
-        }
+        ////check and do damage every one second
+        //if (timeToCheckCollision > 1)
+        //{
+        //    if (checkForCollision())
+        //    {
+        //        timeToCheckCollision = 0;
+        //    }
+        //}
 
         //When Health < 0, change to dead state
         if (health.m_health <= 0)
