@@ -3,7 +3,6 @@
 public class NextSceneIn2s : MonoBehaviour {
 
     public float TimeToWaitFor = 2.0f;
-    private bool itsTimeToGo = false;
 	// Update is called once per frame
 	void Update () {
 	    if(TimeToWaitFor > 0.0f)

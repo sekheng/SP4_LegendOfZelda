@@ -12,7 +12,6 @@ public class LocalDataSingleton : MonoBehaviour {
     [Tooltip("Inventory Canvas")]
     public GameObject Inventorycanvas;
 
-    [HideInInspector]
     public int previousSceneFrom = -1;
     [HideInInspector]
     public bool talkedToDragon = false;
@@ -95,6 +94,7 @@ public class LocalDataSingleton : MonoBehaviour {
 #endif
     }
 
+//FROM HERE ONE ARE OPTIONS TO HELP DO SCENE MOVEMENT
     public void ReturntoMain()
     {
         if(OptionsCanvas.gameObject.activeSelf)
@@ -111,7 +111,14 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         if (!Transiting)
         {
-            StartCoroutine(ChangeLevel(LocalDataSingleton.instance.previousSceneFrom));
+            if(previousSceneFrom == -1)
+            {
+                StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
+            }
+            else
+            {
+                StartCoroutine(ChangeLevel(previousSceneFrom));
+            }
         }
     }
 
@@ -123,10 +130,32 @@ public class LocalDataSingleton : MonoBehaviour {
         }
     }
 
+    public void onWin()
+    {
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(8));
+        }
+    }
+
+    public void onLose()
+    {
+        if (!Transiting)
+        {
+            StartCoroutine(ChangeLevel(9));
+        }
+    }
+
     IEnumerator ChangeLevel(int index)
     {
         Transiting = true;
-        LocalDataSingleton.instance.previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
+        if (SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
+            SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
+            SceneManager.GetActiveScene().buildIndex != 8 && //winscreen
+            SceneManager.GetActiveScene().buildIndex != 9) //losescreen
+        {
+            previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
+        }
         float fadeTime = GetComponent<Fading>().BeginFade(1);
         yield return new WaitForSeconds(fadeTime);
         if (talking)

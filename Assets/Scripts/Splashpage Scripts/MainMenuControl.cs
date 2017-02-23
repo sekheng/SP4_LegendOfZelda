@@ -49,7 +49,7 @@ public class MainMenuControl : MonoBehaviour {
                 }
                 else if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    LocalDataSingleton.instance.GoNext();
+                    LocalDataSingleton.instance.ReturntoPrevious();
                 }
             }
             else if (selected == CURRENTBUTTON.OPTION)

@@ -70,6 +70,13 @@ public class CSVReader : MonoBehaviour {
                     int randomIndex = Random.Range(0, OuterWallPrefabs.Length);
                     GameObject result = Instantiate(OuterWallPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
+
+                    if (environmentOBJ.Length > 0)
+                    {
+                        int randomIndex2 = Random.Range(0, environmentOBJ.Length);
+                        GameObject result2 = Instantiate(environmentOBJ[randomIndex2], objPos, Quaternion.identity) as GameObject;
+                        result2.transform.SetParent(lvlHolder.transform);
+                    }
                 }
                 else if (LevelLayoutArray[x, y] == "2")
                 {
@@ -97,6 +104,10 @@ public class CSVReader : MonoBehaviour {
                     int randomIndex = Random.Range(0, RelicPrefabs.Length);
                     GameObject result = Instantiate(RelicPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
+
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result2 = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+                    result2.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "5")
                 {
@@ -115,14 +126,14 @@ public class CSVReader : MonoBehaviour {
 
                     result.transform.SetParent(lvlHolder.transform);
                 }
-                //else if (LevelLayoutArray[x, y] == "20")
-                //{
-                //    Instantiate(GolemPrefab, objPos, Quaternion.identity);
+                else if (LevelLayoutArray[x, y] == "20")
+                {
+                    Instantiate(GolemPrefab, objPos, Quaternion.identity);
 
-                //    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
-                //    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
-                //    result.transform.SetParent(lvlHolder.transform);
-                //}
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }
                 else if (LevelLayoutArray[x, y] == "50")
                 {
                     Instantiate(DragonPrefab, objPos, Quaternion.identity);
@@ -133,35 +144,43 @@ public class CSVReader : MonoBehaviour {
                 }
                 else if (LevelLayoutArray[x, y] == "60") //TOP LEFT
                 {
-                    Instantiate(skyTiles[0], objPos, Quaternion.identity);
+                    GameObject result = Instantiate(skyTiles[0], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
                 }
                 else if (LevelLayoutArray[x, y] == "61") //TOP RIGHT
                 {
-                    Instantiate(skyTiles[1], objPos, Quaternion.identity);
-                }
-                else if (LevelLayoutArray[x, y] == "62") //BOT LEFT
-                {
-                    Instantiate(skyTiles[2], objPos, Quaternion.identity);
-                }
-                else if (LevelLayoutArray[x, y] == "63") // BOT RIGHT
-                {
-                    Instantiate(skyTiles[3], objPos, Quaternion.identity);
-                }
-                else if (LevelLayoutArray[x, y] == "64") //STRAIGHT TOP
-                {
-                    Instantiate(skyTiles[4], objPos, Quaternion.identity);
-                }
-                else if (LevelLayoutArray[x, y] == "65") //STRAIGHT LEFT
-                {
-                    Instantiate(skyTiles[5], objPos, Quaternion.identity);
-                }
-                else if (LevelLayoutArray[x, y] == "66") //STRAIGHT RIGHT
-                {
-                    Instantiate(skyTiles[6], objPos, Quaternion.identity);
-                }
-                else if (LevelLayoutArray[x, y] == "67") //STRAIGHT BOT
-                {
-                    Instantiate(skyTiles[7], objPos, Quaternion.identity);
+                    GameObject result = Instantiate(skyTiles[1], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }                                                                           
+                else if (LevelLayoutArray[x, y] == "62") //BOT LEFT                         
+                {                                                                           
+                    GameObject result = Instantiate(skyTiles[2], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }                                                                            
+                else if (LevelLayoutArray[x, y] == "63") // BOT RIGHT                        
+                {                                                                            
+                    GameObject result = Instantiate(skyTiles[3], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }                                                                            
+                else if (LevelLayoutArray[x, y] == "64") //STRAIGHT TOP                      
+                {                                                                            
+                    GameObject result = Instantiate(skyTiles[4], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }                                                                            
+                else if (LevelLayoutArray[x, y] == "65") //STRAIGHT LEFT                     
+                {                                                                            
+                    GameObject result = Instantiate(skyTiles[5], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }                                                                            
+                else if (LevelLayoutArray[x, y] == "66") //STRAIGHT RIGHT                    
+                {                                                                            
+                    GameObject result = Instantiate(skyTiles[6], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }                                                                            
+                else if (LevelLayoutArray[x, y] == "67") //STRAIGHT BOT                      
+                {                                                                            
+                    GameObject result = Instantiate(skyTiles[7], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
                 }
                 else
                 {

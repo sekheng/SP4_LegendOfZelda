@@ -39,13 +39,13 @@ public class BoardCreator : MonoBehaviour
 
         SetupTilesArray();
 
+        InstantiateOuterWalls();
         CreateRoomsAndCorridors();
 
         SetTilesValuesForRooms();
         SetTilesValuesForCorridors();
 
         InstantiateTiles();
-        InstantiateOuterWalls();
 
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
         for (int i = 0; i < rooms.Length; i++)
@@ -213,7 +213,7 @@ public class BoardCreator : MonoBehaviour
                     // ... instantiate a wall over the top.
                     InstantiateFromArray(wallTiles, i - ((rows >> 1) - offset), j - ((rows >> 1) - offset));
 
-                    if (environmentObjects.Length > 0) // 1 / 10 chance of spawning a envOBJ
+                    if (environmentObjects.Length > 0)
                     {
                         int randomIndex = Random.Range(0, environmentObjects.Length);
                         GameObject result = Instantiate(environmentObjects[randomIndex], new Vector3(
@@ -257,7 +257,12 @@ public class BoardCreator : MonoBehaviour
         {
             // ... instantiate an outer wall tile at the x coordinate and the current y coordinate.
             InstantiateFromArray(outerWallTiles, xCoord, currentY);
-
+            if (environmentObjects.Length > 0)
+            {
+                int randomIndex = Random.Range(0, environmentObjects.Length);
+                GameObject result = Instantiate(environmentObjects[randomIndex], new Vector3(xCoord, currentY), Quaternion.identity) as GameObject; // create a environment OBJ on top of it.
+                result.transform.SetParent(boardHolder.transform);
+            }
             currentY++;
         }
     }
@@ -272,7 +277,12 @@ public class BoardCreator : MonoBehaviour
         {
             // ... instantiate an outer wall tile at the y coordinate and the current x coordinate.
             InstantiateFromArray(outerWallTiles, currentX, yCoord);
-
+            if (environmentObjects.Length > 0)
+            {
+                int randomIndex = Random.Range(0, environmentObjects.Length);
+                GameObject result = Instantiate(environmentObjects[randomIndex], new Vector3(currentX, yCoord), Quaternion.identity) as GameObject; // create a environment OBJ on top of it.
+                result.transform.SetParent(boardHolder.transform);
+            }
             currentX++;
         }
     }
