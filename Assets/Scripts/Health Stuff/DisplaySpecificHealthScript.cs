@@ -42,6 +42,8 @@ public class DisplaySpecificHealthScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (monsterHealth == null)
+            Start();
         //theDebuggingText.text = characterHealth.m_health.ToString();
         float percentageOfOverallHealth = monsterHealth.m_health / monsterHealth.max_health;
         //Debug.Log("Percentage of health: " + percentageOfOverallHealth);

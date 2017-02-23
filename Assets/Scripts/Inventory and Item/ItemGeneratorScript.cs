@@ -61,6 +61,7 @@ public class ItemGeneratorScript : MonoBehaviour {
 
     public itemInformation getItemInform(string zeName)
     {
+        Start();
         itemInformation zeItemInform;
         allTheItemThatWillExist.TryGetValue(zeName, out zeItemInform);
         return zeItemInform;

@@ -41,6 +41,7 @@ public class MySQLiteHandler : MonoBehaviour {
         Debug.Log(Application.persistentDataPath);
         actualDBFilePath = Application.persistentDataPath + "/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
+        Debug.Log("Android filepath: " + actualDBFilePath);
         if (!File.Exists(actualDBFilePath))
         {
             //int countLoop = 0;

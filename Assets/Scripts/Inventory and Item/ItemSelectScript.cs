@@ -29,10 +29,10 @@ public class ItemSelectScript : MonoBehaviour {
     // We need to straight away and get the joystick before it is gone!
     [Tooltip("To keep track the player's joystic")]
     public PlayerDrag thePlayerDrag;
-    void Awake()
-    {
-        thePlayerDrag = FindObjectOfType<PlayerDrag>();
-    }
+    //void Awake()
+    //{
+    //    thePlayerDrag = FindObjectOfType<PlayerDrag>();
+    //}
 #endif
 
 	// Use this for initialization
@@ -62,6 +62,18 @@ public class ItemSelectScript : MonoBehaviour {
         }
 #else
         // Based on the android joystick drag, we shall determine where is it moving
+        if (thePlayerDrag == null)
+            thePlayerDrag = FindObjectOfType<PlayerDrag>();
+        if (thePlayerDrag.movingInXDirection > 0)
+        {
+            ++m_slotAt;
+            UpdateTheUI();
+        }
+        else if (thePlayerDrag.movingInXDirection < 0)
+        {
+            --m_slotAt;
+            UpdateTheUI();
+        }
 #endif
     }
 
