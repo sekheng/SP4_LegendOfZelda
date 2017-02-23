@@ -46,6 +46,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 
                 zeNewItem.item_count = zeItemCount;
                 Debug.Log("Item Count: " + zeNewItem.item_count);
+                Debug.Log("Item Name: " + zeNewItem.item_name);
                 Debug.Log(zeNewItem.item_effect);
                 passInInventory(zeNewItem);
             }

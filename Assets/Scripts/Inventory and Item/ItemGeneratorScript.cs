@@ -72,7 +72,7 @@ public class ItemGeneratorScript : MonoBehaviour {
                 //GameObject zeOtherGO = Instantiate(zeGO);
                 //Debug.Log(zeOtherGO.name);
                 ItemScript zeItem = Instantiate(zeGO.GetComponent<ItemScript>());
-                //Debug.Log(zeItem.name);
+                zeItem.SendMessage("Start");
                 if (!allTheItemThatWillExist.ContainsKey(zeItem.m_itemName))
                     allTheItemThatWillExist.Add(zeItem.m_itemName, new itemInformation(zeItem.m_itemInform));
                 //Destroy(zeOtherGO);
@@ -97,6 +97,7 @@ public class ItemGeneratorScript : MonoBehaviour {
         //    Debug.Log("Item's name: " + zePair.Key);
         //}
         allTheItemThatWillExist.TryGetValue(zeName, out zeItemInform);
+        Debug.Log("item name: " + zeItemInform.item_name);
         return zeItemInform;
     }
 }
