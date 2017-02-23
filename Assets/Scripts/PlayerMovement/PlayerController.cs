@@ -80,7 +80,13 @@ public class PlayerController : MonoBehaviour {
                     checkPlayerMoved = true;
                 }
             }
+            if (theOnlyHero.GetComponent<HealthScript>().m_health <= 0)
+            {
+                LocalDataSingleton.instance.onLose();
+                theOnlyHero.GetComponent<HealthScript>().resetToMaxHealth(theOnlyHero.GetComponent<HealthScript>().max_health);
+            }
         }
+
     }
 
     void LateUpdate()
