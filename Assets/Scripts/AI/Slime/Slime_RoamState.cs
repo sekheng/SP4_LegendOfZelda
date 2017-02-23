@@ -7,7 +7,7 @@ public class Slime_RoamState : State {
     private IntRange rngTime;
     private IntRange rngDir;
     private Slime_Statemanager manager;
-    private int whichDir;
+    //private int whichDir;
     private float roamingTime;
     private float timeToStopRoaming;
     private float damageTimer;

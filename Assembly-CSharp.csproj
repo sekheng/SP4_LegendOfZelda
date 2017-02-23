@@ -45,7 +45,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\LayerChangerForGolemBoss.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
@@ -96,6 +95,7 @@
      <Compile Include="Assets\Scripts\Inventory and Item\RecogniseItemUIScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\itemInformation.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\slotstuff.cs" />
+     <Compile Include="Assets\Scripts\LayerChangerForGolemBoss.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\BoardCreator.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\CSVReader.cs" />
      <Compile Include="Assets\Scripts\LevelGeneration\Corridor.cs" />

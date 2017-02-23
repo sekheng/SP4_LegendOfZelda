@@ -22,7 +22,7 @@ public class MonsterInfomation : MonoBehaviour {
         {
             if (health.m_health < health.max_health / 2)
             {
-                speed *= 0.5f;
+                speed = maxSpeed * 0.5f;
             }
             else
             {

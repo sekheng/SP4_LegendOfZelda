@@ -101,9 +101,22 @@ public class Wolf_FollowState : State {
                 manager.changeState("growl");
             }
         }
+
+        if (health.m_health != manager.healthBeforeDamaged)
+        {
+            manager.healthBeforeDamaged = health.m_health;
+            monsterRigidbody2D.velocity = Vector3.zero;
+            manager.changeState("growl");//change state
+        }
+
         if (health.m_health <= 0)
         {
             manager.changeState("dead");//change state
+        }
+        else if (health.m_health/health.max_health <= 0.2f)
+        {
+            monsterRigidbody2D.velocity = Vector3.zero;
+            manager.changeState("escape");//change state
         }
         //Debug.Log("hi");
     }
