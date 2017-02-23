@@ -14,6 +14,14 @@ public class Wolf_IdleState : State
     void Start()
     {
         timeAwayToRoam = 0;
+        if(rng == null)
+        {
+            rng = new IntRange(1, 5);
+        }
+        if(rng != null)
+        {
+            timeToRoam = rng.Random;
+        }
         //rng = new IntRange(1, 5);
         //if(rng )
         //timeToRoam = rng.Random;
@@ -23,6 +31,11 @@ public class Wolf_IdleState : State
 
     public override void UpdateState()
     {
+        if (rng == null)
+        {
+            rng = new IntRange(1, 5);
+            timeToRoam = rng.Random;
+        }
         timeAwayToRoam += Time.deltaTime;
         damageTimer += Time.deltaTime;
         timeToCheckCollision += Time.deltaTime;
