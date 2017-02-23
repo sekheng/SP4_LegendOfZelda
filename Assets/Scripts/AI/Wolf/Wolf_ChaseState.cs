@@ -38,19 +38,20 @@ public class Wolf_ChaseState : State
                 monsterRigidbody2D.velocity = dir * monsterInfo.speed * Time.deltaTime;
                 if (monsterRigidbody2D.velocity.x > 0 && monsterRigidbody2D.velocity.x > Mathf.Abs(monsterRigidbody2D.velocity.y))
                 {
-                    manager.changeAnim(3);
+                    if(monsterInfo.speed == monsterInfo.maxSpeed)
+                    manager.anim.Play("wolf_walk_right");
                 }
                 else if (monsterRigidbody2D.velocity.x < 0 && monsterRigidbody2D.velocity.x < -Mathf.Abs(monsterRigidbody2D.velocity.y))
                 {
-                    manager.changeAnim(2);
+                    manager.anim.Play("wolf_walk_left");
                 }
                 else if (monsterRigidbody2D.velocity.y > 0 && monsterRigidbody2D.velocity.y > Mathf.Abs(monsterRigidbody2D.velocity.x))
                 {
-                    manager.changeAnim(0);
+                    manager.anim.Play("wolf_walk_up");
                 }
                 else if (monsterRigidbody2D.velocity.y < 0 && monsterRigidbody2D.velocity.y < -Mathf.Abs(monsterRigidbody2D.velocity.x))
                 {
-                    manager.changeAnim(1);
+                    manager.anim.Play("wolf_walk_down");
                 }
 
                 //if()
@@ -62,19 +63,19 @@ public class Wolf_ChaseState : State
                 monsterRigidbody2D.velocity = dir * monsterInfo.speed * Time.deltaTime;
                 if (monsterRigidbody2D.velocity.x > 0 && monsterRigidbody2D.velocity.x > Mathf.Abs(monsterRigidbody2D.velocity.y))
                 {
-                    manager.changeAnim(3);
+                    manager.anim.Play("wolf_walk_right");
                 }
                 else if (monsterRigidbody2D.velocity.x < 0 && monsterRigidbody2D.velocity.x < -Mathf.Abs(monsterRigidbody2D.velocity.y))
                 {
-                    manager.changeAnim(2);
+                    manager.anim.Play("wolf_walk_left");
                 }
                 else if (monsterRigidbody2D.velocity.y > 0 && monsterRigidbody2D.velocity.y > Mathf.Abs(monsterRigidbody2D.velocity.x))
                 {
-                    manager.changeAnim(0);
+                    manager.anim.Play("wolf_walk_up");
                 }
                 else if (monsterRigidbody2D.velocity.y < 0 && monsterRigidbody2D.velocity.y < -Mathf.Abs(monsterRigidbody2D.velocity.x))
                 {
-                    manager.changeAnim(1);
+                    manager.anim.Play("wolf_walk_down");
                 }
             }
             else//invalid route to take
@@ -88,7 +89,7 @@ public class Wolf_ChaseState : State
             //    monsterRigidbody2D.velocity = Vector3.zero;
             //    manager.changeState("roam");
             //}
-            if (!checkForPlayerInRange(thePlayer.transform.position, 10))
+            if (!checkForPlayerInRange(thePlayer.transform.position, 5))
             {
                 monsterRigidbody2D.velocity = Vector3.zero;
                 manager.changeState("roam");

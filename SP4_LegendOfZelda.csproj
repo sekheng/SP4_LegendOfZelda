@@ -129,7 +129,6 @@
     <Compile Include="Assets\Scripts\Magic Stuff\MagicTypeScript.cs" />
     <Compile Include="Assets\Scripts\NPC\SpokeToDragon.cs" />
     <Compile Include="Assets\Scripts\NPC\exampleUI.cs" />
-    <Compile Include="Assets\Scripts\NPC\minUIExample.cs" />
     <Compile Include="Assets\Scripts\ParticleFX\ParticleScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
