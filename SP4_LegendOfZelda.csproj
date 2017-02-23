@@ -69,6 +69,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\AudioManager.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
