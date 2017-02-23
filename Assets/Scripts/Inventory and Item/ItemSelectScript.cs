@@ -32,6 +32,7 @@ public class ItemSelectScript : MonoBehaviour {
         theInventoryScrollbar = GameObject.FindGameObjectWithTag(m_tagnameOfScrollbar).GetComponent<Scrollbar>();
         toKnowTheSlots = FindObjectOfType<RecogniseItemUIScript>();
         thePosition = GetComponent<RectTransform>();
+        UpdateTheUI();
 	}
 
     void Update()
@@ -44,7 +45,7 @@ public class ItemSelectScript : MonoBehaviour {
             --m_slotAt;
             UpdateTheUI();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && m_slotAt < toKnowTheSlots.allTheSlots.Count)
+        else if (Input.GetKeyDown(KeyCode.RightArrow) && m_slotAt + 1 < toKnowTheSlots.allTheSlots.Count)
         {
             ++m_slotAt;
             UpdateTheUI();
@@ -71,5 +72,8 @@ public class ItemSelectScript : MonoBehaviour {
             theItemImage.enabled = false;
         }
         thePosition.SetParent(toKnowTheSlots.allTheSlots[m_slotAt].GetComponent<RectTransform>(), false);
+        // We will need to scroll the inventory!
+        float zeValue = (float)(m_slotAt) / (float)toKnowTheSlots.allTheSlots.Count;
+        theInventoryScrollbar.value = zeValue;
     }
 }
