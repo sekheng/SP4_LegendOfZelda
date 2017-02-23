@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+using UnityEngine.UI;
+
 /// <summary>
 /// To Load Heroe's information from the database!
 /// </summary>
@@ -39,7 +41,7 @@ public class HeroDataScript : MonoBehaviour {
     }
 
     void getHealthFromPersistent()
-    {
+    { 
         switch (m_GotHealth)
         {
             case false:

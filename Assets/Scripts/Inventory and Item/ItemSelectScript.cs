@@ -25,6 +25,16 @@ public class ItemSelectScript : MonoBehaviour {
     // It will also need to be able to scroll and change the rectTransform position!
     private Scrollbar theInventoryScrollbar;
 
+#if UNITY_ANDROID
+    // We need to straight away and get the joystick before it is gone!
+    [Tooltip("To keep track the player's joystic")]
+    public PlayerDrag thePlayerDrag;
+    //void Awake()
+    //{
+    //    thePlayerDrag = FindObjectOfType<PlayerDrag>();
+    //}
+#endif
+
 	// Use this for initialization
 	void Start() {
         theItemImage = GameObject.FindGameObjectWithTag(m_tagnameOfDisplayImage).GetComponent<Image>();
@@ -51,7 +61,19 @@ public class ItemSelectScript : MonoBehaviour {
             UpdateTheUI();
         }
 #else
-
+        // Based on the android joystick drag, we shall determine where is it moving
+        if (thePlayerDrag == null)
+            thePlayerDrag = FindObjectOfType<PlayerDrag>();
+        if (thePlayerDrag.movingInXDirection == 1)
+        {
+            ++m_slotAt;
+            UpdateTheUI();
+        }
+        else if (thePlayerDrag.movingInXDirection == -1)
+        {
+            --m_slotAt;
+            UpdateTheUI();
+        }
 #endif
     }
 

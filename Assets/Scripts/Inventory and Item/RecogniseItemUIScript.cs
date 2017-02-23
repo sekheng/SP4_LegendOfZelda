@@ -32,7 +32,7 @@ public class RecogniseItemUIScript : MonoBehaviour {
         {
             playerInventory = FindObjectOfType<PlayerInventoryScript>();
         }
-        Debug.Log("Gonna insert items into the UI: " + playerInventory.itemName_Count_Map.Count);
+        //Debug.Log("Gonna insert items into the UI: " + playerInventory.itemName_Count_Map.Count);
         // Trying to get the key and value then put it in the slot!
         foreach (KeyValuePair<string,itemInformation> zeNameAndItem in playerInventory.itemName_Count_Map)
         {

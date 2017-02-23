@@ -71,6 +71,7 @@ public class HeroMeleeButton : MonoBehaviour {
             //ItemUI.SetActive(true);
             LocalDataSingleton.instance.Inventorycanvas.SetActive(!LocalDataSingleton.instance.Inventorycanvas.activeSelf);
             LocalDataSingleton.instance.talking = LocalDataSingleton.instance.Inventorycanvas.activeSelf;
+            GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().stopMovement();
         }
 #endif
 	}

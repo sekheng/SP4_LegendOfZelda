@@ -50,6 +50,7 @@ public class QuestItemScrpt : MonoBehaviour {
     }
     public int getCurrenNumOfQuestItems()
     {
+        //Debug.Log("Number of Quest item: " + theQuestItemName.Count);
         return theQuestItemName.Count;
     }
 }

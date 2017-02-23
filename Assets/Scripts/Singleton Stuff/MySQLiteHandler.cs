@@ -5,6 +5,7 @@ using System.Data;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 /// <summary>
 /// For now, this SQLite will only work for this game!
@@ -27,20 +28,27 @@ public class MySQLiteHandler : MonoBehaviour {
         {
             if (cantTouchThiz == null)
             {
-                cantTouchThiz = GameObject.FindObjectOfType<MySQLiteHandler>();
+                cantTouchThiz = FindObjectOfType<MySQLiteHandler>();
             }
             return cantTouchThiz;
         }
     }
 
+    private bool hasInitialized = false;
+
 	// Use this for initialization
 	void Awake () {
+        if (!hasInitialized)
+            hasInitialized = true;
+        else
+            return;
         //Debug.Log(String.Format("INSERT INTO PlaceSequence(PlayerDamage,Name) VALUES(\"{0}\",\"{1}\")", 100, String.Format("YOLO")));
         string actualDBFilePath;
 #if UNITY_ANDROID
         Debug.Log(Application.persistentDataPath);
         actualDBFilePath = Application.persistentDataPath + "/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
+        Debug.Log("Android filepath: " + actualDBFilePath);
         if (!File.Exists(actualDBFilePath))
         {
             //int countLoop = 0;
@@ -55,12 +63,13 @@ public class MySQLiteHandler : MonoBehaviour {
             // then save to Application.persistentDataPath
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
         }
+        Debug.Log("Initializing the DB connection in Android");
 #else
         actualDBFilePath = Application.dataPath + "/StreamingAssets/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
 #endif
         dbconn = (IDbConnection)new SqliteConnection(connectionDB);
-        dbconn.Open(); //Open connection to the database.
+        //dbconn.Open(); //Open connection to the database.
     }
 	
     /// <summary>
@@ -80,6 +89,7 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </returns>
     public int getInteger(string zeTableName, string zeCol, string[] zeCondition)
     {
+        dbconn.Open();
         int zeVal = 0;
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT " + zeCol + " FROM " + zeTableName;
@@ -98,6 +108,7 @@ public class MySQLiteHandler : MonoBehaviour {
         reader = null;
         dbcmd.Dispose();
         dbcmd = null;
+        dbconn.Close();
         return zeVal;
     }
 
@@ -116,6 +127,7 @@ public class MySQLiteHandler : MonoBehaviour {
     public float getFloat(string zeTableName, string zeCol, string[] zeCondition)
     {
         float zeVal = 0;
+        dbconn.Open();
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT " + zeCol + " FROM " + zeTableName;
         sqlQuery += " WHERE ";
@@ -133,6 +145,7 @@ public class MySQLiteHandler : MonoBehaviour {
         reader = null;
         dbcmd.Dispose();
         dbcmd = null;
+        dbconn.Close();
         return zeVal;
     }
 
@@ -158,8 +171,16 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </returns>
     public string[] getAllStringFromTable(string zeTable, int numOfField, List<object> allTheField, List<string> zeConditions = null)
     {
+        //Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
+
         List<string> AllTheResult = new List<string>();
+        dbconn.Open();
         dbcmd = dbconn.CreateCommand();
+        //if (zeTable.Equals("ItemStuff"))
+        //{
+        //zeDebugginText.text = "Creating Command";
+        //}
+
         string sqlQuery = "SELECT * FROM " + zeTable;
         if (zeConditions != null)
         {
@@ -174,36 +195,59 @@ public class MySQLiteHandler : MonoBehaviour {
             }
         }
         //Debug.Log("The Command in getAllStringFromTable: " + sqlQuery);
+        //zeDebugginText.text = sqlQuery;
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
+        //if (zeTable.Equals("ItemStuff"))
+        //{
+        //    zeDebugginText.text = zeTable + ", " + numOfField;
+        //}
         while (reader.Read())
         {
             string zeWholeRow = "";
-            //AllTheResult.Add(reader.GetString(0));
             for (int zeNum = 0; zeNum < numOfField; ++zeNum)
             {
+                //if (zeTable.Equals("ItemStuff"))
+                //{
+                //    zeDebugginText.text = "Going through the table: " + zeNum;
+                //}
                 // Need to make sure that the subsequent field are divided by comma
                 if (zeNum != 0)
+                {
                     zeWholeRow += ",";
+                }
                 if (allTheField[zeNum] is string)
                 {
+                    //if (zeTable.Equals("ItemStuff"))
+                    //{
+                    //    zeDebugginText.text = "Getting string from " + zeTable + " at " + zeNum + ", " + allTheField.Count;
+                    //}
                     zeWholeRow += reader.GetString(zeNum);
+                    //if (zeTable.Equals("ItemStuff"))
+                    //    zeDebugginText.text = zeWholeRow;
                 }
                 else if (allTheField[zeNum] is int)
                 {
                     zeWholeRow += reader.GetInt32(zeNum);
+                    //if (zeTable.Equals("ItemStuff"))
+                    //    zeDebugginText.text = zeWholeRow;
                 }
                 else if (allTheField[zeNum] is float)
                 {
-                    zeWholeRow += reader.GetInt32(zeNum);
+                    zeWholeRow += reader.GetFloat(zeNum);
+                    //if (zeTable.Equals("ItemStuff"))
+                    //    zeDebugginText.text = zeWholeRow;
                 }
             }
+            //if (zeTable.Equals("ItemStuff"))
+                //zeDebugginText.text = zeWholeRow;
             AllTheResult.Add(zeWholeRow);
         }
         reader.Close();
         reader = null;
         dbcmd.Dispose();
         dbcmd = null;
+        dbconn.Close();
         return AllTheResult.ToArray();
     }
 
@@ -225,6 +269,7 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </param>
     public void saveSpecificResult(string zeTable, string zeCol, string zeVal, List<string> zeCondition = null)
     {
+        dbconn.Open();
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "UPDATE " + zeTable + " SET " + zeCol + " = " + zeVal;
         // If the condition is not empty, then put in the condition!
@@ -247,6 +292,7 @@ public class MySQLiteHandler : MonoBehaviour {
         dbcmd.CommandText = sqlQuery;
         dbcmd.ExecuteScalar();
         dbcmd.Dispose();
+        dbconn.Close();
     }
     /// <summary>
     /// This will help to convert string usable in SQL
@@ -257,14 +303,12 @@ public class MySQLiteHandler : MonoBehaviour {
     {
         return String.Format("\"{0}\"", zeStr);
     }
-    /// <summary>
-    /// Destroy the connection to the database after it is over!
-    /// </summary>
-    void OnDestroy()
-    {
-        if (dbconn != null)
-            dbconn.Close();
-    }
+
+    //void OnDestroy()
+    //{
+    //    dbconn.Close();
+    //    dbconn = null;
+    //}
 }
 
 //void SaveToDataBase()

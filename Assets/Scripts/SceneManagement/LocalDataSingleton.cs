@@ -40,10 +40,10 @@ public class LocalDataSingleton : MonoBehaviour {
     void Update()
     {
         AudioListener.volume = Volume;
-        if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
-        {
-            transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
-        }
+        //if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
+        //{
+        //    transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
+        //}
 
         if (MainMenuCanvas == null && SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -71,7 +71,8 @@ public class LocalDataSingleton : MonoBehaviour {
         }
 #endif
 #if UNITY_ANDROID
-        if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
+        //if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
+        if (SceneManager.GetActiveScene().buildIndex > 1)
         {
             MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
             MainCanvas.transform.GetChild(0).gameObject.SetActive(true);

@@ -14,8 +14,10 @@ public class ItemInteractionScript : MonoBehaviour {
     void Start()
     {
         // Since there will only be 1 inventory at any point of time
-        playerInventory = FindObjectOfType<PlayerInventoryScript>();
-        theItemStuff = GetComponent<ItemScript>();
+        if (playerInventory == null)
+            playerInventory = FindObjectOfType<PlayerInventoryScript>();
+        if (theItemStuff == null)
+            theItemStuff = GetComponent<ItemScript>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -26,8 +28,14 @@ public class ItemInteractionScript : MonoBehaviour {
             // Need to find the inventory again if can't find it!
             if (playerInventory == null)
                 Start();
+            if (theItemStuff == null)
+                Start();
             Debug.Log("Interacting with: " + other.name);
             playerInventory.passInInventory(theItemStuff.m_itemInform);
+            // To debug some of the stuff
+            //ParticleScript zeDebugParticle = GameObject.Find("ParticleFX_Blood_Improved").GetComponent<ParticleScript>();
+            //zeDebugParticle.transform.position = transform.position;
+            //zeDebugParticle.playEffect();
             Destroy(gameObject);
         }
     }
