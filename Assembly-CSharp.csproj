@@ -83,7 +83,6 @@
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroRangeScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
-     <Compile Include="Assets\Scripts\Inventory and Item\DisplayItemScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemGeneratorScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
