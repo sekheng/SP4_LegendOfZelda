@@ -64,12 +64,12 @@ public class ItemSelectScript : MonoBehaviour {
         // Based on the android joystick drag, we shall determine where is it moving
         if (thePlayerDrag == null)
             thePlayerDrag = FindObjectOfType<PlayerDrag>();
-        if (thePlayerDrag.movingInXDirection > 0)
+        if (thePlayerDrag.movingInXDirection == 1)
         {
             ++m_slotAt;
             UpdateTheUI();
         }
-        else if (thePlayerDrag.movingInXDirection < 0)
+        else if (thePlayerDrag.movingInXDirection == -1)
         {
             --m_slotAt;
             UpdateTheUI();

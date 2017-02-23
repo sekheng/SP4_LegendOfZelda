@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 /// <summary>
 /// Keep track of what item does the player has!
@@ -22,6 +23,7 @@ public class PlayerInventoryScript : MonoBehaviour {
 
     void Start()
     {
+        //Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
         checkForRelics = GetComponent<QuestItemScrpt>();
         List<string> myConditions = new List<string>();
         myConditions.Add("PlayerID = " + HeroDataScript.m_playerID);
@@ -30,7 +32,9 @@ public class PlayerInventoryScript : MonoBehaviour {
         theFieldToTake.Add("LOL");
         theFieldToTake.Add((int)1);
         Debug.Log("Reading from Table: " + PlayerInventoryTable);
+        //zeDebugginText.text = "Reading from Table: " + PlayerInventoryTable;
         string[] allZeStuff = MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 3, theFieldToTake, myConditions);
+        //zeDebugginText.text = "Successful reading from: " + PlayerInventoryTable;
         Debug.Log("Successful reading from: " + PlayerInventoryTable);
         foreach (string zeStr in allZeStuff)
         {
