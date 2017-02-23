@@ -12,7 +12,8 @@ public class RecogniseItemUIScript : MonoBehaviour {
     // To access the player's inventory!
     private PlayerInventoryScript playerInventory;
     // need to know how many slots are there!
-    private List<slotstuff> allTheSlots = new List<slotstuff>();
+    [HideInInspector]
+    public List<slotstuff> allTheSlots = new List<slotstuff>();
     private int m_AvailableSlots = 0;
 
     // 1st, we need to find how many slots are there!
