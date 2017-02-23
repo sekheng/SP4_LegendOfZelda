@@ -32,6 +32,10 @@ public class ItemInteractionScript : MonoBehaviour {
                 Start();
             Debug.Log("Interacting with: " + other.name);
             playerInventory.passInInventory(theItemStuff.m_itemInform);
+            // To debug some of the stuff
+            ParticleScript zeDebugParticle = GameObject.Find("ParticleFX_Blood_Improved").GetComponent<ParticleScript>();
+            zeDebugParticle.transform.position = transform.position;
+            zeDebugParticle.playEffect();
             Destroy(gameObject);
         }
     }

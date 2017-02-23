@@ -5,6 +5,7 @@ using System.Data;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 /// <summary>
 /// For now, this SQLite will only work for this game!
@@ -61,7 +62,7 @@ public class MySQLiteHandler : MonoBehaviour {
         connectionDB = "URI=file:" + actualDBFilePath;
 #endif
         dbconn = (IDbConnection)new SqliteConnection(connectionDB);
-        dbconn.Open(); //Open connection to the database.
+        //dbconn.Open(); //Open connection to the database.
     }
 	
     /// <summary>
@@ -81,6 +82,8 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </returns>
     public int getInteger(string zeTableName, string zeCol, string[] zeCondition)
     {
+        dbconn.Open(); //Open connection to the database.
+
         int zeVal = 0;
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT " + zeCol + " FROM " + zeTableName;
@@ -99,6 +102,7 @@ public class MySQLiteHandler : MonoBehaviour {
         reader = null;
         dbcmd.Dispose();
         dbcmd = null;
+        dbconn.Close();
         return zeVal;
     }
 
@@ -117,6 +121,7 @@ public class MySQLiteHandler : MonoBehaviour {
     public float getFloat(string zeTableName, string zeCol, string[] zeCondition)
     {
         float zeVal = 0;
+        dbconn.Open();
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT " + zeCol + " FROM " + zeTableName;
         sqlQuery += " WHERE ";
@@ -134,6 +139,7 @@ public class MySQLiteHandler : MonoBehaviour {
         reader = null;
         dbcmd.Dispose();
         dbcmd = null;
+        dbconn.Close();
         return zeVal;
     }
 
@@ -159,8 +165,14 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </returns>
     public string[] getAllStringFromTable(string zeTable, int numOfField, List<object> allTheField, List<string> zeConditions = null)
     {
+        Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
+        //zeDebugginText.text = "Table: " + zeTable + ", NumOfField: " + numOfField + ", NumOfConditions: " + zeConditions.Count;
         List<string> AllTheResult = new List<string>();
+        dbconn.Open();
+        zeDebugginText.text = "Opened connection";
         dbcmd = dbconn.CreateCommand();
+        zeDebugginText.text = "Opened command";
+
         string sqlQuery = "SELECT * FROM " + zeTable;
         if (zeConditions != null)
         {
@@ -177,6 +189,7 @@ public class MySQLiteHandler : MonoBehaviour {
         //Debug.Log("The Command in getAllStringFromTable: " + sqlQuery);
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
+        zeDebugginText.text = "Executre Reader";
         while (reader.Read())
         {
             string zeWholeRow = "";
@@ -205,6 +218,7 @@ public class MySQLiteHandler : MonoBehaviour {
         reader = null;
         dbcmd.Dispose();
         dbcmd = null;
+        dbconn.Close();
         return AllTheResult.ToArray();
     }
 
@@ -226,6 +240,7 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </param>
     public void saveSpecificResult(string zeTable, string zeCol, string zeVal, List<string> zeCondition = null)
     {
+        dbconn.Open();
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "UPDATE " + zeTable + " SET " + zeCol + " = " + zeVal;
         // If the condition is not empty, then put in the condition!
@@ -248,6 +263,7 @@ public class MySQLiteHandler : MonoBehaviour {
         dbcmd.CommandText = sqlQuery;
         dbcmd.ExecuteScalar();
         dbcmd.Dispose();
+        dbconn.Close();
     }
     /// <summary>
     /// This will help to convert string usable in SQL
@@ -257,14 +273,6 @@ public class MySQLiteHandler : MonoBehaviour {
     public string helpToConvertToSQLString(string zeStr)
     {
         return String.Format("\"{0}\"", zeStr);
-    }
-    /// <summary>
-    /// Destroy the connection to the database after it is over!
-    /// </summary>
-    void OnDestroy()
-    {
-        if (dbconn != null)
-            dbconn.Close();
     }
 }
 

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 /// <summary>
 /// This will be used to generate items and pass it to the player so that it won't place too much burden on the table!
@@ -32,11 +33,14 @@ public class ItemGeneratorScript : MonoBehaviour {
 	void Start () {
         if (!isItInitialized)
         {
+            Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
             List<object> zeFields = new List<object>();
            zeFields.Add("LOL");
            zeFields.Add("LOL");
            zeFields.Add("LOL");
+           zeDebugginText.text = "Trying to get table: " + m_tableName; 
            string[] allZeItem = MySQLiteHandler.instance.getAllStringFromTable(m_tableName, 3, zeFields);
+           zeDebugginText.text = "Successful getting from table";
            foreach (string zeItemStr in allZeItem)
            {
                //Debug.Log("Item recorded: " + zeItemStr);
@@ -56,7 +60,13 @@ public class ItemGeneratorScript : MonoBehaviour {
            }
            //Debug.Log("Total Unique items: " + allTheItemThatWillExist.Count);
            isItInitialized = true;
+           zeDebugginText.text = "Total recorded items: " + allTheItemThatWillExist.Count;
         }
+    }
+
+    void FixedUpdate()
+    {
+        Start();
     }
 
     public itemInformation getItemInform(string zeName)

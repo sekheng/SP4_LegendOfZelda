@@ -50,6 +50,7 @@ public class ParticleScript : MonoBehaviour {
         //if (debugginMesh == null)
         //    debugginMesh = GameObject.Find("Remove TODO").GetComponent<TextMesh>();
         //debugginMesh.text = "Position of particle: " + transform.position;
+        //Debug.Log("Play Position " + gameObject.name + " : " + transform.position);
         toRenderParticleEffects.Play();
     }
 }
