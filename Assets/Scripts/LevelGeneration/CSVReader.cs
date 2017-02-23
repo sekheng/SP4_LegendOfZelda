@@ -13,7 +13,7 @@ public class CSVReader : MonoBehaviour {
     public GameObject[] OuterWallPrefabs;
     public GameObject[] WallPrefabs;
     public GameObject StonePrefab;
-    public GameObject RelicPrefab;
+    public GameObject[] RelicPrefabs;
     public GameObject PickableCompassPrefab;
 
     //Enemy ID will start from 10
@@ -88,10 +88,12 @@ public class CSVReader : MonoBehaviour {
                     GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
                 }
-                //else if (LevelLayoutArray[x, y] == "4")
-                //{
-                //    result = Instantiate(RelicPrefab, objPos, Quaternion.identity) as GameObject;
-                //}
+                else if (LevelLayoutArray[x, y] == "4")
+                {
+                    int randomIndex = Random.Range(0, RelicPrefabs.Length);
+                    GameObject result = Instantiate(RelicPrefabs[randomIndex], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }
                 else if (LevelLayoutArray[x, y] == "5")
                 {
                     Instantiate(PickableCompassPrefab, objPos, Quaternion.identity);
