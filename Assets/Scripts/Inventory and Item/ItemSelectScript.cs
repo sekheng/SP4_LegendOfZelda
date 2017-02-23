@@ -27,10 +27,11 @@ public class ItemSelectScript : MonoBehaviour {
 
 #if UNITY_ANDROID
     // We need to straight away and get the joystick before it is gone!
-
+    [Tooltip("To keep track the player's joystic")]
+    public PlayerDrag thePlayerDrag;
     void Awake()
     {
-
+        thePlayerDrag = FindObjectOfType<PlayerDrag>();
     }
 #endif
 

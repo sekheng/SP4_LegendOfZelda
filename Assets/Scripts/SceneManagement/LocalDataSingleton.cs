@@ -72,7 +72,8 @@ public class LocalDataSingleton : MonoBehaviour {
         }
 #endif
 #if UNITY_ANDROID
-        if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
+        //if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
+        if (SceneManager.GetActiveScene().buildIndex > 1)
         {
             MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
             MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
