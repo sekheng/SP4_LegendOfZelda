@@ -28,14 +28,20 @@ public class MySQLiteHandler : MonoBehaviour {
         {
             if (cantTouchThiz == null)
             {
-                cantTouchThiz = GameObject.FindObjectOfType<MySQLiteHandler>();
+                cantTouchThiz = FindObjectOfType<MySQLiteHandler>();
             }
             return cantTouchThiz;
         }
     }
 
+    private bool hasInitialized = false;
+
 	// Use this for initialization
 	void Awake () {
+        if (!hasInitialized)
+            hasInitialized = true;
+        else
+            return;
         //Debug.Log(String.Format("INSERT INTO PlaceSequence(PlayerDamage,Name) VALUES(\"{0}\",\"{1}\")", 100, String.Format("YOLO")));
         string actualDBFilePath;
 #if UNITY_ANDROID
@@ -57,6 +63,7 @@ public class MySQLiteHandler : MonoBehaviour {
             // then save to Application.persistentDataPath
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
         }
+        Debug.Log("Initializing the DB connection in Android");
 #else
         actualDBFilePath = Application.dataPath + "/StreamingAssets/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
@@ -165,13 +172,13 @@ public class MySQLiteHandler : MonoBehaviour {
     /// </returns>
     public string[] getAllStringFromTable(string zeTable, int numOfField, List<object> allTheField, List<string> zeConditions = null)
     {
+        if (dbconn == null)
+            Awake();
         Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
-        //zeDebugginText.text = "Table: " + zeTable + ", NumOfField: " + numOfField + ", NumOfConditions: " + zeConditions.Count;
+
         List<string> AllTheResult = new List<string>();
         dbconn.Open();
-        zeDebugginText.text = "Opened connection";
         dbcmd = dbconn.CreateCommand();
-        zeDebugginText.text = "Opened command";
 
         string sqlQuery = "SELECT * FROM " + zeTable;
         if (zeConditions != null)
@@ -189,29 +196,46 @@ public class MySQLiteHandler : MonoBehaviour {
         //Debug.Log("The Command in getAllStringFromTable: " + sqlQuery);
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
-        zeDebugginText.text = "Executre Reader";
+        if (zeTable.Equals("ItemStuff"))
+        {
+            zeDebugginText.text = zeTable + ", " + numOfField;
+        }
         while (reader.Read())
         {
             string zeWholeRow = "";
-            //AllTheResult.Add(reader.GetString(0));
             for (int zeNum = 0; zeNum < numOfField; ++zeNum)
             {
+                if (zeTable.Equals("ItemStuff"))
+                {
+                    zeDebugginText.text = "Going through the table: " + zeNum;
+                }
                 // Need to make sure that the subsequent field are divided by comma
                 if (zeNum != 0)
+                {
                     zeWholeRow += ",";
+                }
                 if (allTheField[zeNum] is string)
                 {
+                    zeDebugginText.text = "Getting string from " + zeTable + " at " + zeNum + ", " + allTheField.Count;
                     zeWholeRow += reader.GetString(zeNum);
+                    if (zeTable.Equals("ItemStuff"))
+                        zeDebugginText.text = zeWholeRow;
                 }
                 else if (allTheField[zeNum] is int)
                 {
                     zeWholeRow += reader.GetInt32(zeNum);
+                    if (zeTable.Equals("ItemStuff"))
+                        zeDebugginText.text = zeWholeRow;
                 }
                 else if (allTheField[zeNum] is float)
                 {
-                    zeWholeRow += reader.GetInt32(zeNum);
+                    zeWholeRow += reader.GetFloat(zeNum);
+                    if (zeTable.Equals("ItemStuff"))
+                        zeDebugginText.text = zeWholeRow;
                 }
             }
+            if (zeTable.Equals("ItemStuff"))
+                zeDebugginText.text = zeWholeRow;
             AllTheResult.Add(zeWholeRow);
         }
         reader.Close();

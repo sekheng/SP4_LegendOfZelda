@@ -40,10 +40,10 @@ public class LocalDataSingleton : MonoBehaviour {
     void Update()
     {
         AudioListener.volume = Volume;
-        if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
-        {
-            transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
-        }
+        //if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
+        //{
+        //    transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
+        //}
 
         if (MainMenuCanvas == null && SceneManager.GetActiveScene().buildIndex == 1)
         {

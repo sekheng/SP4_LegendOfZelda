@@ -16,7 +16,7 @@ public class ItemGeneratorScript : MonoBehaviour {
             {
                 cantTouchThis = FindObjectOfType<ItemGeneratorScript>();
                 // Need to initialize it!
-                cantTouchThis.Start();
+                //cantTouchThis.Start();
             }
             return cantTouchThis;
         }
@@ -30,7 +30,7 @@ public class ItemGeneratorScript : MonoBehaviour {
     // To contain all the item's informatiom. There won't be anything missing!
     private Dictionary<string, itemInformation> allTheItemThatWillExist = new Dictionary<string, itemInformation>();
 
-	void Start () {
+	void OnEnable () {
         if (!isItInitialized)
         {
             Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
@@ -38,9 +38,11 @@ public class ItemGeneratorScript : MonoBehaviour {
            zeFields.Add("LOL");
            zeFields.Add("LOL");
            zeFields.Add("LOL");
-           zeDebugginText.text = "Trying to get table: " + m_tableName; 
+            zeDebugginText.text = "Trying to get table: " + m_tableName + ", Number of fields: " + zeFields.Count;
+            Debug.Log("Trying to get table: " + m_tableName + ", Number of fields: " + zeFields.Count);
            string[] allZeItem = MySQLiteHandler.instance.getAllStringFromTable(m_tableName, 3, zeFields);
            zeDebugginText.text = "Successful getting from table";
+           Debug.Log("Successful getting from table");
            foreach (string zeItemStr in allZeItem)
            {
                //Debug.Log("Item recorded: " + zeItemStr);
@@ -64,14 +66,13 @@ public class ItemGeneratorScript : MonoBehaviour {
         }
     }
 
-    void FixedUpdate()
-    {
-        Start();
-    }
+    //void FixedUpdate()
+    //{
+    //    Start();
+    //}
 
     public itemInformation getItemInform(string zeName)
     {
-        Start();
         itemInformation zeItemInform;
         allTheItemThatWillExist.TryGetValue(zeName, out zeItemInform);
         return zeItemInform;
