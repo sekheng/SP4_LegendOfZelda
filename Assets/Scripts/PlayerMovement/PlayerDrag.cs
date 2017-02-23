@@ -32,9 +32,9 @@ public class PlayerDrag : MonoBehaviour {
     private short movedInXDirection = 0, movedInYDirection = 0;
     // To know the direction of where is going to be 
     [HideInInspector]
-    public short movingInYDirection = 0;
+    public short movingInYDirection = 0, movingInXDirection = 0;
     // This will need to be used to check against movingInYDirection!
-    private short directionOfPrevY = 0, directionOfCurrY = 0;
+    private short directionOfPrevY = 0, directionOfCurrY = 0, directionOfPrevX = 0, directionOfCurrX = 0;
 
     // Used to debug Android inputs. Will remove soon!
     //private TextMesh debugginMesh;
@@ -80,7 +80,7 @@ public class PlayerDrag : MonoBehaviour {
                 movedInXDirection = 0;
                 movedInYDirection = 0;
                 playerPressedButton = false;
-                directionOfPrevY = directionOfCurrY = movingInYDirection = 0;
+                movedInXDirection = directionOfCurrX = directionOfPrevX = directionOfPrevY = directionOfCurrY = movingInYDirection = 0;
                 //debugginMesh.text = "Restart playerPressedButton";
                 return; // Otherwise the hero will still be moving!
             }
@@ -92,6 +92,7 @@ public class PlayerDrag : MonoBehaviour {
             {
                 directionOfStick = new Vector3(0, directionOfStick.y);
             }
+
             if (directionOfPrevY != directionOfCurrY)
             {
                 directionOfPrevY = directionOfCurrY;
@@ -99,6 +100,14 @@ public class PlayerDrag : MonoBehaviour {
             // Below the if statement then it will be recognized in this frame!
             directionOfCurrY = (short)(Mathf.Clamp(directionOfStick.y, -1.0f, 1.0f));
             movingInYDirection = (short)(directionOfCurrY + directionOfPrevY);
+            if (directionOfPrevX != directionOfCurrX)
+            {
+                directionOfPrevX = directionOfCurrX;
+            }
+            // Below the if statement then it will be recognized in this frame!
+            directionOfCurrX = (short)(Mathf.Clamp(directionOfStick.x, -1.0f, 1.0f));
+            movingInXDirection = (short)(directionOfCurrX + directionOfPrevX);
+            
             // If the player is talking, don't move at all!
             if (LocalDataSingleton.instance.talking)
                 return;
