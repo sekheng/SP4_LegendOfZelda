@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\Inventory and Item\ItemGeneratorScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemScript.cs" />
+     <Compile Include="Assets\Scripts\Inventory and Item\ItemSelectScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\PlayerInventoryScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\QuestItemScrpt.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\RecogniseItemUIScript.cs" />

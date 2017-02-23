@@ -28,6 +28,7 @@ public class ItemInteractionScript : MonoBehaviour {
                 Start();
             Debug.Log("Interacting with: " + other.name);
             playerInventory.passInInventory(theItemStuff.m_itemInform);
+            Destroy(gameObject);
         }
     }
 }
