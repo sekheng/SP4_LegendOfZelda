@@ -29,10 +29,12 @@ public class PlayerInventoryScript : MonoBehaviour {
         theFieldToTake.Add((int)1);
         theFieldToTake.Add("LOL");
         theFieldToTake.Add((int)1);
+        Debug.Log("Reading from Table: " + PlayerInventoryTable);
         string[] allZeStuff = MySQLiteHandler.instance.getAllStringFromTable(PlayerInventoryTable, 3, theFieldToTake, myConditions);
+        Debug.Log("Successful reading from: " + PlayerInventoryTable);
         foreach (string zeStr in allZeStuff)
         {
-            //Debug.Log(PlayerInventoryTable + ": " + zeStr);
+            Debug.Log(PlayerInventoryTable + ": " + zeStr);
             string[] allZeItemStr = zeStr.Split(',');
             // Item Count is int 3rd row, we shall check if that is more than 0. If so, add it to the inventory!
             int zeItemCount;
@@ -41,17 +43,21 @@ public class PlayerInventoryScript : MonoBehaviour {
             {
                 // Since the string will be in the 2nd row, we will take that!
                 itemInformation zeNewItem = new itemInformation(ItemGeneratorScript.instance.getItemInform(allZeItemStr[1]));
+
                 zeNewItem.item_count = zeItemCount;
+                Debug.Log("Item Count: " + zeNewItem.item_count);
+                Debug.Log(zeNewItem.item_effect);
                 passInInventory(zeNewItem);
             }
         }
-        //Debug.Log("Total Inventory space: " + itemName_Count_Map.Count);
+        Debug.Log("Total Inventory space: " + itemName_Count_Map.Count);
     }
 
     public bool passInInventory(itemInformation zeItem)
     {
         itemInformation toCheckWhetherItExistInsideInventory;
         // Add to the stacks of items!
+        Debug.Log("Item's name: " + zeItem.item_name);
         if (itemName_Count_Map.TryGetValue(zeItem.item_name, out toCheckWhetherItExistInsideInventory))
         {
             toCheckWhetherItExistInsideInventory.item_count++;
