@@ -23,8 +23,6 @@ public class LocalDataSingleton : MonoBehaviour {
 
     private float Volume { get; set; }
 
-    IEnumerator test;
-
     // Earlier than start
     void Awake()
     {
@@ -102,7 +100,6 @@ public class LocalDataSingleton : MonoBehaviour {
             OptionsCanvas.gameObject.SetActive(false);
         }
 
-        test = ChangeLevel(0);
         StartCoroutine(ChangeLevel(0));
     }
 

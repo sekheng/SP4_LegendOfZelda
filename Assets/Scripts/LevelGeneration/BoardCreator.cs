@@ -197,7 +197,6 @@ public class BoardCreator : MonoBehaviour
     {
         // Go through all the tiles in the jagged array...
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
-        IntRange chanceOfEnvOBJ = new IntRange(1, 10);
         for (int i = 0; i < tiles.Length; i++)
         {
             for (int j = 0; j < tiles[i].Length; j++)
