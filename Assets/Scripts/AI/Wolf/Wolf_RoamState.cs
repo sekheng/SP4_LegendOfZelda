@@ -46,6 +46,19 @@ public class Wolf_RoamState : State
 
     public override void UpdateState()
     {
+        if(directions == null)
+        {
+            directions = new Vector3[4];
+            directions[0] = Vector3.up;
+            directions[1] = Vector3.down;
+            directions[2] = Vector3.left;
+            directions[3] = Vector3.right;
+        }
+        if(manager == null)
+        {
+            manager = transform.parent.GetComponent<Wolf_Statemanager>();
+        }
+
         if (thePlayer == null)
         {
             thePlayer = GameObject.FindGameObjectWithTag("Player");

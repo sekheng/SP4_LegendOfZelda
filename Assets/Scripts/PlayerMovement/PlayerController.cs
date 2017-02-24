@@ -30,18 +30,24 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
 	void Update () {
         if (theOnlyHero == null && (
-            SceneManager.GetActiveScene().buildIndex != 0 && //splashscreen
+            SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
             SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
-            SceneManager.GetActiveScene().buildIndex != 8 && //winpage
-            SceneManager.GetActiveScene().buildIndex != 9 ))//losepage
+            SceneManager.GetActiveScene().buildIndex != 2 && //CUTSCENE_1
+            SceneManager.GetActiveScene().buildIndex != 4 && //CUTSCENE_2
+            SceneManager.GetActiveScene().buildIndex != 10 && //CUTSCENE_3
+            SceneManager.GetActiveScene().buildIndex != 11 && //winscreen
+            SceneManager.GetActiveScene().buildIndex != 12)) //losescreen
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
         else if (theOnlyHero != null && (
-            SceneManager.GetActiveScene().buildIndex != 0 && //splashscreen
+            SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
             SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
-            SceneManager.GetActiveScene().buildIndex != 8 && //winpage
-            SceneManager.GetActiveScene().buildIndex != 9))//losepage
+            SceneManager.GetActiveScene().buildIndex != 2 && //CUTSCENE_1
+            SceneManager.GetActiveScene().buildIndex != 4 && //CUTSCENE_2
+            SceneManager.GetActiveScene().buildIndex != 10 && //CUTSCENE_3
+            SceneManager.GetActiveScene().buildIndex != 11 && //winscreen
+            SceneManager.GetActiveScene().buildIndex != 12)) //losescreen
         {
             // Here we shall check which key is pressed so that interception can happen!
             if (!LocalDataSingleton.instance.talking)
