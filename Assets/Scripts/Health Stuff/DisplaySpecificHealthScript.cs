@@ -67,14 +67,14 @@ public class DisplaySpecificHealthScript : MonoBehaviour {
             //Debug.Log("Percentage of health: " + percentageOfOverallHealth);
             if (percentageOfOverallHealth < 0.25f)
             {
-                healthUI.color = new Color32(237, 7, 7, 255);
+                healthUI.color = new Color32(237, 7, 7, (byte)(healthUI.color.a * 255));
             }
             else if (percentageOfOverallHealth < 0.5f)
             {
-                healthUI.color = new Color32(226, 145, 4, 255);
+                healthUI.color = new Color32(226, 145, 4, (byte)(healthUI.color.a * 255));
             }
             else
-                healthUI.color = new Color32(30, 255, 0, 255);
+                healthUI.color = new Color32(30, 255, 0, (byte)(healthUI.color.a * 255));
             //float resultingScaleX = originalScaleX * percentageOfOverallHealth;
             //healthBarUI.transform.localScale = new Vector3(resultingScaleX, healthBarUI.transform.localScale.y, healthBarUI.transform.localScale.z);
             healthUI.fillAmount = percentageOfOverallHealth;
