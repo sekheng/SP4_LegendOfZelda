@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BoardCreator : MonoBehaviour
 {
@@ -19,18 +20,19 @@ public class BoardCreator : MonoBehaviour
     public GameObject[] wallTiles;                              // An array of wall tile prefabs.
     public GameObject[] outerWallTiles;                         // An array of outer wall tile prefabs.
 
-    public GameObject player;                                   // Player prefab
-    public GameObject slime;                                    // Slime prefab
-    public GameObject wolf;                                     // Wolf prefab
-    public GameObject nextLevelPrefab;                          // For jumping to next level.
-    public GameObject[] environmentObjects;                     // An array of environment objects.
-    public GameObject gridMaker;                                // Make the grid for A*
+    public GameObject player = null;                                   // Player prefab
+    public GameObject slime = null;                                    // Slime prefab
+    public GameObject wolf = null;                                     // Wolf prefab
+    public GameObject nextLevelPrefab = null;                          // For jumping to next level.
+    public GameObject[] environmentObjects = null;                     // An array of environment objects.
+    public GameObject[] relicArray = null;
+    public GameObject gridMaker = null;                                // Make the grid for A*
 
-    private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
+    private TileType[][] tiles = null;                               // A jagged array of tile types representing the board, like a grid.
     //make rooms public if you have to
-    private Room[] rooms;                                     // All the rooms that are created for this board.
-    private Corridor[] corridors;                             // All the corridors that connect the rooms.
-    private GameObject boardHolder;                           // GameObject that acts as a container for all other tiles.
+    private Room[] rooms = null;                                     // All the rooms that are created for this board.
+    private Corridor[] corridors = null;                             // All the corridors that connect the rooms.
+    private GameObject boardHolder = null;                           // GameObject that acts as a container for all other tiles.
 
     private void Start()
     {
@@ -48,6 +50,8 @@ public class BoardCreator : MonoBehaviour
         InstantiateTiles();
 
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
+        HashSet<int> helpCheckSpawnedRelics = new HashSet<int>();
+  
         for (int i = 0; i < rooms.Length; i++)
         {
             Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((rows >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
@@ -66,6 +70,20 @@ public class BoardCreator : MonoBehaviour
             {
                 Instantiate(wolf, objPos, Quaternion.identity);
                 //spawns roughly in the middle of the room
+            }
+
+            if(i % 11 == 0 && i != 0)
+            {
+                for (int num = 0; num < relicArray.Length; ++num)
+                {
+                    int randomIndex = Random.Range(0, relicArray.Length);
+                    if (!helpCheckSpawnedRelics.Contains(randomIndex))
+                    {
+                        helpCheckSpawnedRelics.Add(randomIndex);
+                        Instantiate(relicArray[randomIndex], objPos, Quaternion.identity);
+                        break;
+                    }
+                }
             }
 
             if (nextLevelPrefab != null && i == rooms.Length - 1)

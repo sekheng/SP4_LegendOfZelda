@@ -16,7 +16,7 @@ public class ItemGeneratorScript : MonoBehaviour {
             {
                 cantTouchThis = FindObjectOfType<ItemGeneratorScript>();
                 // Need to initialize it!
-                //cantTouchThis.Start();
+                cantTouchThis.Start();
             }
             return cantTouchThis;
         }
@@ -44,9 +44,9 @@ public class ItemGeneratorScript : MonoBehaviour {
                 zeItem.SendMessage("Start");
                 if (!allTheItemThatWillExist.ContainsKey(zeItem.m_itemName))
                     allTheItemThatWillExist.Add(zeItem.m_itemName, new itemInformation(zeItem.m_itemInform));
-                //Destroy(zeOtherGO);
+                Destroy(zeItem.gameObject);
             }
-
+            //Debug.Log("Total Item exists: " + allTheItemThatWillExist.Count);
             //Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
             //List<object> zeFields = new List<object>();
             //zeFields.Add("LOL");

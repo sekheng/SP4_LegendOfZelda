@@ -7,7 +7,7 @@ public class NextSceneIn2s : MonoBehaviour {
 	void Update () {
 	    if(TimeToWaitFor > 0.0f)
         {
-            TimeToWaitFor -= Time.deltaTime;
+            TimeToWaitFor -= (Input.GetKey(KeyCode.Space) ? 2 : 1) * Time.deltaTime;
         }
         else
         {
