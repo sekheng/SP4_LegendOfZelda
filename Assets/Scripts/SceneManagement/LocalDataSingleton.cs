@@ -152,8 +152,11 @@ public class LocalDataSingleton : MonoBehaviour {
         Transiting = true;
         if (SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
             SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
-            SceneManager.GetActiveScene().buildIndex != 8 && //winscreen
-            SceneManager.GetActiveScene().buildIndex != 9) //losescreen
+            SceneManager.GetActiveScene().buildIndex != 2 && //CUTSCENE_1
+            SceneManager.GetActiveScene().buildIndex != 4 && //CUTSCENE_2
+            SceneManager.GetActiveScene().buildIndex != 10 && //CUTSCENE_3
+            SceneManager.GetActiveScene().buildIndex != 11 && //winscreen
+            SceneManager.GetActiveScene().buildIndex != 12) //losescreen
         {
             previousSceneFrom = SceneManager.GetActiveScene().buildIndex;
         }
