@@ -56,7 +56,7 @@ public class Wolf_GrowlState : State {
             manager.changeAnim(whichDir + 4);
             
         }
-        if (timePassed > 3)
+        if (timePassed > 1)
         {
             bool havePlayer = false;
             bool haveObstacles = false;
