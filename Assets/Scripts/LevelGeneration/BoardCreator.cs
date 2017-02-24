@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BoardCreator : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class BoardCreator : MonoBehaviour
     public GameObject wolf;                                     // Wolf prefab
     public GameObject nextLevelPrefab;                          // For jumping to next level.
     public GameObject[] environmentObjects;                     // An array of environment objects.
+    public GameObject[] relicArray;
     public GameObject gridMaker;                                // Make the grid for A*
 
     private TileType[][] tiles;                               // A jagged array of tile types representing the board, like a grid.
@@ -48,6 +50,8 @@ public class BoardCreator : MonoBehaviour
         InstantiateTiles();
 
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
+        HashSet<int> helpCheckSpawnedRelics = new HashSet<int>();
+  
         for (int i = 0; i < rooms.Length; i++)
         {
             Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((rows >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
@@ -66,6 +70,20 @@ public class BoardCreator : MonoBehaviour
             {
                 Instantiate(wolf, objPos, Quaternion.identity);
                 //spawns roughly in the middle of the room
+            }
+
+            if(i % 11 == 0 && i != 0)
+            {
+                for (int num = 0; num < relicArray.Length; ++num)
+                {
+                    int randomIndex = Random.Range(0, relicArray.Length);
+                    if (!helpCheckSpawnedRelics.Contains(randomIndex))
+                    {
+                        helpCheckSpawnedRelics.Add(randomIndex);
+                        Instantiate(relicArray[randomIndex], objPos, Quaternion.identity);
+                        break;
+                    }
+                }
             }
 
             if (nextLevelPrefab != null && i == rooms.Length - 1)
