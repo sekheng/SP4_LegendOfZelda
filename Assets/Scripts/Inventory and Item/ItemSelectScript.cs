@@ -98,4 +98,14 @@ public class ItemSelectScript : MonoBehaviour {
         float zeValue = (float)(m_slotAt) / (float)toKnowTheSlots.allTheSlots.Count;
         theInventoryScrollbar.value = zeValue;
     }
+
+    public void setSelectAtWhichSlot(int zeNum)
+    {
+        // Check whether is it wthin the slots
+        if (zeNum >= 0 && zeNum < toKnowTheSlots.allTheSlots.Count)
+        {
+            m_slotAt = (short)(zeNum);
+            UpdateTheUI();
+        }
+    }
 }

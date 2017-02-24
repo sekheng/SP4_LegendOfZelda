@@ -5,8 +5,11 @@ using System;
 
 public class slotstuff : MonoBehaviour, IDropHandler {
     public string slot_type;
-    public int slot_number;
+    public int slot_number = 0;
     //public character player = null;
+    // The selection border
+    private ItemSelectScript selectBorder;
+
     public GameObject item
     {
         get
@@ -17,6 +20,16 @@ public class slotstuff : MonoBehaviour, IDropHandler {
             }
             return null;
         }
+    }
+
+    void Start()
+    {
+        selectBorder = GameObject.FindGameObjectWithTag("ItemSelectSlot").GetComponent<ItemSelectScript>();
+    }
+
+    public void PressedTheSlotButton()
+    {
+        selectBorder.setSelectAtWhichSlot(slot_number);
     }
 
     public void OnDrop(PointerEventData eventData)
