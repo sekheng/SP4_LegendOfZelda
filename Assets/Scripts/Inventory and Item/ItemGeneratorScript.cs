@@ -44,7 +44,7 @@ public class ItemGeneratorScript : MonoBehaviour {
                 zeItem.SendMessage("Start");
                 if (!allTheItemThatWillExist.ContainsKey(zeItem.m_itemName))
                     allTheItemThatWillExist.Add(zeItem.m_itemName, new itemInformation(zeItem.m_itemInform));
-                //Destroy(zeOtherGO);
+                Destroy(zeItem.gameObject);
             }
 
             //Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
