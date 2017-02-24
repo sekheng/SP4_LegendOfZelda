@@ -83,6 +83,12 @@ public class LocalDataSingleton : MonoBehaviour {
             MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
         }
 #endif
+        //if you reach the required number of questitems
+        QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();
+        if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics)
+        {
+            GoNext();
+        }
     }
 
     public void QuitApp()
