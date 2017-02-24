@@ -10,6 +10,10 @@ public class ItemInteractionScript : MonoBehaviour {
     private PlayerInventoryScript playerInventory;
     // All item's has their own item information to pass it to the inventory!
     private ItemScript theItemStuff;
+    [Tooltip("The particle system for item interaction")]
+    public string m_ParticleSystemName = "ParticleFX_ItemCollected";
+    // The particle system
+    private ParticleScript itemInteractParticles;
 
     void Start()
     {
@@ -18,6 +22,8 @@ public class ItemInteractionScript : MonoBehaviour {
             playerInventory = FindObjectOfType<PlayerInventoryScript>();
         if (theItemStuff == null)
             theItemStuff = GetComponent<ItemScript>();
+        if (itemInteractParticles == null)
+            itemInteractParticles = GameObject.Find(m_ParticleSystemName).GetComponent<ParticleScript>();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -36,6 +42,8 @@ public class ItemInteractionScript : MonoBehaviour {
             //ParticleScript zeDebugParticle = GameObject.Find("ParticleFX_Blood_Improved").GetComponent<ParticleScript>();
             //zeDebugParticle.transform.position = transform.position;
             //zeDebugParticle.playEffect();
+            itemInteractParticles.transform.position = transform.position;
+            itemInteractParticles.playEffect();
             Destroy(gameObject);
         }
     }

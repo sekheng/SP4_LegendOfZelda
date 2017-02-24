@@ -19,6 +19,11 @@ public class AndroidInventoryScript : MonoBehaviour {
 	
     public void pressedTheButtonScript()
     {
+        // We shall cheat here becuz aint no time for SP!
+        // So everytime we press a button, see whether Player GameoObject has exists!
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+            return;
+
         if (thePlayerDrag == null)
         {
             thePlayerDrag = FindObjectOfType<PlayerDrag>();

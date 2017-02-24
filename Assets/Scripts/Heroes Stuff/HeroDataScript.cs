@@ -28,6 +28,15 @@ public class HeroDataScript : MonoBehaviour {
         getHealthFromPersistent();
 	}
 
+    void Update()
+    {
+        if (herosHealth.m_health <= 0)
+        {
+            LocalDataSingleton.instance.onLose();
+            herosHealth.resetToMaxHealth(herosHealth.max_health);
+        }
+    }
+
     // So that it won't be so intensive on the Update loop!
     void FixedUpdate()
     {
