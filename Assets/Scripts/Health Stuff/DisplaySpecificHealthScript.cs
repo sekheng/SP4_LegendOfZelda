@@ -14,10 +14,17 @@ public class DisplaySpecificHealthScript : MonoBehaviour {
     public string monster_name = "GolemBoss";
     [Tooltip("Monster's tagname")]
     public string monster_tag = "Untagged";
+
+    public Image healthbar;
+    public GameObject bossName;
+  
     // To expand and contract the monster's health
     private Image healthUI;
     // To keep track of that monster's health!
     private HealthScript monsterHealth;
+
+    private GolemBoss_Statemanager golemStateManager;
+    private GolemBoss_AwakeState golemAwakeState;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +37,8 @@ public class DisplaySpecificHealthScript : MonoBehaviour {
                 if (zeGo.name.Equals(monster_name))
                 {
                     monsterHealth = zeGo.GetComponent<HealthScript>();
+                    golemStateManager = monsterHealth.GetComponentInChildren<GolemBoss_Statemanager>();
+                    golemAwakeState = golemStateManager.gameObject.GetComponentInChildren<GolemBoss_AwakeState>();
                     break;
                 }
             }
@@ -44,21 +53,31 @@ public class DisplaySpecificHealthScript : MonoBehaviour {
 	void Update () {
         if (monsterHealth == null)
             Start();
-        //theDebuggingText.text = characterHealth.m_health.ToString();
-        float percentageOfOverallHealth = monsterHealth.m_health / monsterHealth.max_health;
-        //Debug.Log("Percentage of health: " + percentageOfOverallHealth);
-        if (percentageOfOverallHealth < 0.25f)
+        if (golemStateManager.currState == golemAwakeState)
         {
-            healthUI.color = new Color32(237, 7, 7, 255);
+            if (!healthbar.enabled)
+                healthbar.enabled = true;
+            if (!bossName.activeSelf)
+                bossName.SetActive(true);
         }
-        else if (percentageOfOverallHealth < 0.5f)
+        if (healthbar.enabled && bossName.activeSelf)
         {
-            healthUI.color = new Color32(226, 145, 4, 255);
+            //theDebuggingText.text = characterHealth.m_health.ToString();
+            float percentageOfOverallHealth = monsterHealth.m_health / monsterHealth.max_health;
+            //Debug.Log("Percentage of health: " + percentageOfOverallHealth);
+            if (percentageOfOverallHealth < 0.25f)
+            {
+                healthUI.color = new Color32(237, 7, 7, 255);
+            }
+            else if (percentageOfOverallHealth < 0.5f)
+            {
+                healthUI.color = new Color32(226, 145, 4, 255);
+            }
+            else
+                healthUI.color = new Color32(30, 255, 0, 255);
+            //float resultingScaleX = originalScaleX * percentageOfOverallHealth;
+            //healthBarUI.transform.localScale = new Vector3(resultingScaleX, healthBarUI.transform.localScale.y, healthBarUI.transform.localScale.z);
+            healthUI.fillAmount = percentageOfOverallHealth;
         }
-        else
-            healthUI.color = new Color32(30, 255, 0, 255);
-        //float resultingScaleX = originalScaleX * percentageOfOverallHealth;
-        //healthBarUI.transform.localScale = new Vector3(resultingScaleX, healthBarUI.transform.localScale.y, healthBarUI.transform.localScale.z);
-        healthUI.fillAmount = percentageOfOverallHealth;
 	}
 }
