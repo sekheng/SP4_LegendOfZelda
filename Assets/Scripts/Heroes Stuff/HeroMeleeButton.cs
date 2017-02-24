@@ -25,10 +25,9 @@ public class HeroMeleeButton : MonoBehaviour {
     public KeyCode rangeButton = KeyCode.X;
     [Tooltip("The key to open inventory list")]
     public KeyCode inventoryButton = KeyCode.C;
-    //[Tooltip("The Item UI name")]
-    //public string m_ItemUI_Name = "Inventory Canvas for PC";
-    // Need to keep track of the Item UI Canvas
-    //private GameObject ItemUI;
+
+    // Used to keep track if the inventory is open or not
+    private bool openInventory = false;
 #endif
 
     // Use this for initialization
@@ -54,24 +53,47 @@ public class HeroMeleeButton : MonoBehaviour {
         if (Input.GetKeyDown(attackButton))
         {
             //Need to see if the Player is talking to NPC or not
-            if (!LocalDataSingleton.instance.talking)
-                theHeroMeleeSystem.meleeAttack();
-            GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
+            if (!openInventory)
+            {
+                if (!LocalDataSingleton.instance.talking)
+                    theHeroMeleeSystem.meleeAttack();
+                GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
+            }
         }
-        else if (Input.GetKeyDown(rangeButton))
+        else if (Input.GetKeyDown(rangeButton) && !LocalDataSingleton.instance.talking)
         {
             theHeroRangeSystem.shootArrow();
         }
         else if (Input.GetKeyDown(inventoryButton))
         {
-            //if (ItemUI == null)
+            // Need to make sure that the player is not talking and he is not opening inventory
+            switch (openInventory)
+            {
+                case true:
+                    if (LocalDataSingleton.instance.talking)
+                    {
+                        LocalDataSingleton.instance.Inventorycanvas.SetActive(!LocalDataSingleton.instance.Inventorycanvas.activeSelf);
+                        LocalDataSingleton.instance.talking = LocalDataSingleton.instance.Inventorycanvas.activeSelf;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().stopMovement();
+                        openInventory = false;
+                    }
+                    break;
+                default:
+                    if (!LocalDataSingleton.instance.talking)
+                    {
+                        LocalDataSingleton.instance.Inventorycanvas.SetActive(!LocalDataSingleton.instance.Inventorycanvas.activeSelf);
+                        LocalDataSingleton.instance.talking = LocalDataSingleton.instance.Inventorycanvas.activeSelf;
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().stopMovement();
+                        openInventory = true;
+                    }
+                    break;
+            }
+            //if (!LocalDataSingleton.instance.talking && !openInventory)
             //{
-            //    ItemUI = GameObject.Find(m_ItemUI_Name);
+            //    LocalDataSingleton.instance.Inventorycanvas.SetActive(!LocalDataSingleton.instance.Inventorycanvas.activeSelf);
+            //    LocalDataSingleton.instance.talking = LocalDataSingleton.instance.Inventorycanvas.activeSelf;
+            //    GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().stopMovement();
             //}
-            //ItemUI.SetActive(true);
-            LocalDataSingleton.instance.Inventorycanvas.SetActive(!LocalDataSingleton.instance.Inventorycanvas.activeSelf);
-            LocalDataSingleton.instance.talking = LocalDataSingleton.instance.Inventorycanvas.activeSelf;
-            GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().stopMovement();
         }
 #endif
 	}
