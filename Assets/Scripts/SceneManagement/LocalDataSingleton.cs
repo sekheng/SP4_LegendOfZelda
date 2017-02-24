@@ -135,7 +135,7 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         if (!Transiting)
         {
-            StartCoroutine(ChangeLevel(8));
+            StartCoroutine(ChangeLevel(11));
         }
     }
 
@@ -143,7 +143,7 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         if (!Transiting)
         {
-            StartCoroutine(ChangeLevel(9));
+            StartCoroutine(ChangeLevel(12));
         }
     }
 
