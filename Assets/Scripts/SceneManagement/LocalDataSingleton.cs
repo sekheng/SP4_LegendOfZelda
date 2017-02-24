@@ -85,9 +85,9 @@ public class LocalDataSingleton : MonoBehaviour {
 #endif
         //if you reach the required number of questitems
         QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();
-        if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics)
+        if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics && SceneManager.GetActiveScene().buildIndex != 9)
         {
-            GoNext();
+            onWin();
         }
     }
 
@@ -141,7 +141,7 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         if (!Transiting)
         {
-            StartCoroutine(ChangeLevel(11));
+            StartCoroutine(ChangeLevel(9));
         }
     }
 
