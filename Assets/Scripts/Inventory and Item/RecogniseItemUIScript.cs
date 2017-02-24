@@ -46,9 +46,9 @@ public class RecogniseItemUIScript : MonoBehaviour {
                     zeItemUI = Instantiate(zeGO);
                     zeItemUI.BroadcastMessage("Start"); // Need to initialize the gameobject
                     ItemScript zeItemInform = zeItemUI.GetComponentInChildren<ItemScript>();
-                    //Debug.Log("The GO: " + zeItemUI.name);
-                    //Debug.Log("The item's name: " + zeNameAndItem.Value.item_name);
-                    //Debug.Log("GO item's inform: " + zeItemInform.m_itemInform.item_name);
+                    Debug.Log("The GO: " + zeItemUI.name);
+                    Debug.Log("The item's name: " + zeNameAndItem.Value.item_name);
+                    Debug.Log("GO item's inform: " + zeItemInform.m_itemInform.item_name);
                     if (zeItemInform.m_itemInform.item_name.Equals(zeNameAndItem.Value.item_name))
                     {
                         // We will make a copy of the item!
