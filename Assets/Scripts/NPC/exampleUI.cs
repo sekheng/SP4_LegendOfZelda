@@ -55,7 +55,7 @@ public class exampleUI : MonoBehaviour
             for (int i = 0; i < currentOptions.Count; i++)
             {
                 currentOptions[i].color = Color.black;
-                if (i == data.selectedOption) currentOptions[i].color = Color.blue;
+                if (i == data.selectedOption) currentOptions[i].color = Color.white;
             }
 
             //Scroll through Player dialogue options
