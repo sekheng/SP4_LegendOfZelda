@@ -28,7 +28,7 @@ public class PersistentHealthScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Debug.Log("Starting the persistent health");
+        //Debug.Log("Starting the persistent health");
         if (!hasInitialized)
         {
             string[] zeCondition = { "PlayerID = " + HeroDataScript.m_playerID };

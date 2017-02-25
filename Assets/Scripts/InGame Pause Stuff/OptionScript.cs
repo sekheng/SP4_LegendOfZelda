@@ -6,11 +6,6 @@ using System.Collections;
 /// </summary>
 public class OptionScript : PauseButtonScript {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
     public override bool executeButton()
     {
         //Debug.Log("OPTIONS0");

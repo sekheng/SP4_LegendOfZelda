@@ -177,7 +177,7 @@ public class LocalDataSingleton : MonoBehaviour {
 
     public void turnOnInGamePauseMenu()
     {
-        if (SceneManager.GetActiveScene().buildIndex > 1 && !talking)
+        if (SceneManager.GetActiveScene().buildIndex > 1)
         {
             //activate the child canvas
             //OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);

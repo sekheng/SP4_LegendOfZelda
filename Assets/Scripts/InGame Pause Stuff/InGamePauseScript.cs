@@ -13,14 +13,22 @@ public class InGamePauseScript : MonoBehaviour {
     private short whichButtonIsAt = 0;
     // Need to know it's own rectTransform
     private RectTransform arrowTransform;
+#if UNITY_ANDROID
+    // To keep track of player's joystick
+    private PlayerDrag thePlayerJoystick;
+#endif
 
 	// Use this for initialization
 	void Start () {
+#if UNITY_ANDROID
+        // Since there will only be 1 joystick!
+        thePlayerJoystick = FindObjectOfType<PlayerDrag>();
+#endif
         arrowTransform = GetComponent<RectTransform>();
         GameObject[] allTheInGamePauseButtons = GameObject.FindGameObjectsWithTag("InGamePauseOptions");
         foreach (GameObject zeGO in allTheInGamePauseButtons)
         {
-            Debug.Log("Pause button name: " + zeGO.name);
+            //Debug.Log("Pause button name: " + zeGO.name);
             PauseButtonScript zePause = zeGO.GetComponent<PauseButtonScript>();
             if (zePause != null)
             {
@@ -30,9 +38,17 @@ public class InGamePauseScript : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-#if UNIY_ANDROID
-        
+	void Update ()
+    {
+#if UNITY_ANDROID
+        if (thePlayerJoystick.movingInYDirection == 1)
+        {
+            UpdateUI((short)(whichButtonIsAt - 1));
+        }
+        else if (thePlayerJoystick.movingInYDirection == -1)
+        {
+            UpdateUI((short)(whichButtonIsAt + 1));
+        }
 #else
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
@@ -52,7 +68,7 @@ public class InGamePauseScript : MonoBehaviour {
             }
         }
 #endif
-	}
+    }
 
     /// <summary>
     /// To move the arrow down
@@ -85,5 +101,18 @@ public class InGamePauseScript : MonoBehaviour {
     {
         // We will need to disable the talking and movement!
         LocalDataSingleton.instance.talking = false;
+    }
+
+    /// <summary>
+    /// This will means based on which slot the arrow is at, execute that button!
+    /// </summary>
+    public void selectedTheButton()
+    {
+        PauseButtonScript zePauseButton;
+        // if can find the pause button, then execute that button
+        if (allThePauseButtons.TryGetValue(whichButtonIsAt, out zePauseButton))
+        {
+            zePauseButton.executeButton();
+        }
     }
 }

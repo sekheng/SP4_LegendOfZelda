@@ -3,11 +3,6 @@ using System.Collections;
 
 public class ReturnScript : PauseButtonScript {
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-
     public override bool executeButton()
     {
         Debug.Log("RETURN");

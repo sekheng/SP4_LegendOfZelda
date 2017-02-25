@@ -14,6 +14,8 @@ public class ItemInteractionScript : MonoBehaviour {
     public string m_ParticleSystemName = "ParticleFX_ItemCollected";
     // The particle system
     private ParticleScript itemInteractParticles;
+    [Tooltip("How much health do you want to heal the player")]
+    public float m_heal = 20.0f;
 
     void Start()
     {
@@ -38,10 +40,11 @@ public class ItemInteractionScript : MonoBehaviour {
                 Start();
             Debug.Log("Interacting with: " + other.name);
             playerInventory.passInInventory(theItemStuff.m_itemInform);
-            // To debug some of the stuff
-            //ParticleScript zeDebugParticle = GameObject.Find("ParticleFX_Blood_Improved").GetComponent<ParticleScript>();
-            //zeDebugParticle.transform.position = transform.position;
-            //zeDebugParticle.playEffect();
+
+            // We also need to give the player back some health!
+            HealthScript zePlayerHealth = other.GetComponent<HealthScript>();
+            zePlayerHealth.modifyHealth(m_heal);
+
             itemInteractParticles.transform.position = transform.position;
             itemInteractParticles.playEffect();
             Destroy(gameObject);
