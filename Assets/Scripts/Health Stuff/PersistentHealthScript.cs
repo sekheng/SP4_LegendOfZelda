@@ -32,8 +32,8 @@ public class PersistentHealthScript : MonoBehaviour {
         if (!hasInitialized)
         {
             string[] zeCondition = { "PlayerID = " + HeroDataScript.m_playerID };
-            max_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
-            currHealth = max_health;
+            max_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerMaxHealth", zeCondition);
+            currHealth = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
             hasInitialized = true;
         }
     }
