@@ -91,14 +91,14 @@ public class ItemGeneratorScript : MonoBehaviour {
         // The unfortunate thing to do
         //Start();
         itemInformation zeItemInform;
-        Debug.Log("The key: " + zeName);
+        //Debug.Log("The key: " + zeName);
         //Debug.Log(allTheItemThatWillExist.Count);
         //foreach (KeyValuePair<string, itemInformation> zePair in allTheItemThatWillExist)
         //{
         //    Debug.Log("Item's name: " + zePair.Key);
         //}
         allTheItemThatWillExist.TryGetValue(zeName, out zeItemInform);
-        Debug.Log("item name: " + zeItemInform.item_name);
+        //Debug.Log("item name: " + zeItemInform.item_name);
         return zeItemInform;
     }
 }

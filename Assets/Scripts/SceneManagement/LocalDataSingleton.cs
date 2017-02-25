@@ -11,6 +11,8 @@ public class LocalDataSingleton : MonoBehaviour {
     public GameObject MainMenuCanvas; // only use once, so don't really need to care.
     [Tooltip("Inventory Canvas")]
     public GameObject Inventorycanvas;
+    [Tooltip("InGame Pause Canvas")]
+    public GameObject InGamePauseCanvas;
 
     public int previousSceneFrom = -1;
     [HideInInspector]
@@ -66,7 +68,8 @@ public class LocalDataSingleton : MonoBehaviour {
             if (SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
             {
                 //activate the child canvas
-                OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);
+                //OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);
+                InGamePauseCanvas.SetActive(!InGamePauseCanvas.activeSelf);
             }
         }
 #endif

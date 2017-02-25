@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AudioManager.cs" />
+     <Compile Include="Assets\BgmManager.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
      <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
@@ -87,6 +88,11 @@
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroRangeScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
      <Compile Include="Assets\Scripts\InGame Pause Stuff\InGamePauseScript.cs" />
+     <Compile Include="Assets\Scripts\InGame Pause Stuff\OptionScript.cs" />
+     <Compile Include="Assets\Scripts\InGame Pause Stuff\PauseButtonScript.cs" />
+     <Compile Include="Assets\Scripts\InGame Pause Stuff\ResumeScript.cs" />
+     <Compile Include="Assets\Scripts\InGame Pause Stuff\ReturnScript.cs" />
+     <Compile Include="Assets\Scripts\InGame Pause Stuff\SaveScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemGeneratorScript.cs" />
      <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
@@ -131,6 +137,7 @@
      <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\translateText.cs" />
      <Compile Include="Assets\Scripts\layerChanger.cs" />
+     <Compile Include="Assets\SoundEffectsManager.cs" />
      <Compile Include="Assets\VIDE\Data\MiniJSON_VIDE.cs" />
      <Compile Include="Assets\VIDE\Data\VIDE_EditorDB.cs" />
      <Compile Include="Assets\VIDE\VIDE_Assign.cs" />
