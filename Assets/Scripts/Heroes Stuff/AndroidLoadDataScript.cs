@@ -16,8 +16,8 @@ public class AndroidLoadDataScript : MonoBehaviour {
     public GameObject m_InventoryButton;
     [Tooltip("Change the in-game pause button with SQLite!")]
     public GameObject m_PauseButton;
-    [Tooltip("The Table which it will be reading from the SQLite. Don't change it if u don't know!")]
-    public string m_SQLiteTable = "GlobalSettingTable";
+    //The Table which it will be reading from the SQLite. Don't change it if u don't know
+    public static string m_SQLiteTable = "GlobalSettingTable";
 
     // This is because only Android phone will be accessing this stuff
 #if UNITY_ANDROID
