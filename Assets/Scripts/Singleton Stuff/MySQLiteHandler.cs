@@ -292,7 +292,7 @@ public class MySQLiteHandler : MonoBehaviour {
                 checkWhetherIsAnotherCondition = true;
             }
         }
-        Debug.Log("Executing saveSpecificResult Query: " + sqlQuery);
+        //Debug.Log("Executing saveSpecificResult Query: " + sqlQuery);
         dbcmd.CommandText = sqlQuery;
         dbcmd.ExecuteScalar();
         dbcmd.Dispose();

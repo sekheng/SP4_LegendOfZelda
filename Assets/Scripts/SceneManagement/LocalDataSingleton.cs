@@ -75,13 +75,15 @@ public class LocalDataSingleton : MonoBehaviour {
         //if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
         if (SceneManager.GetActiveScene().buildIndex > 1)
         {
-            MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
-            MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
+            //MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
+            //MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
+            MainCanvas.SetActive(true);
         }
         else
         {
-            MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
-            MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
+            MainCanvas.SetActive(false);
+            //MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
+            //MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
         }
 #endif
         //if you reach the required number of questitems
