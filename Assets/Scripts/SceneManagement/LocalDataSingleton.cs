@@ -25,6 +25,9 @@ public class LocalDataSingleton : MonoBehaviour {
     private float Volume { get; set; }
     private bool Transiting = false;
 
+    //This is used to check if the player can open the ingame pause menu so that he/she wont abuse it!
+    private bool isOpeningInPause = false;
+
     // Earlier than start
     void Awake()
     {
@@ -65,12 +68,7 @@ public class LocalDataSingleton : MonoBehaviour {
         MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if (SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
-            {
-                //activate the child canvas
-                //OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);
-                InGamePauseCanvas.SetActive(!InGamePauseCanvas.activeSelf);
-            }
+            turnOnInGamePauseMenu();
         }
 #endif
 #if UNITY_ANDROID
@@ -175,5 +173,31 @@ public class LocalDataSingleton : MonoBehaviour {
             talking = false;
         SceneManager.LoadScene(index);
         Transiting = false;
+    }
+
+    public void turnOnInGamePauseMenu()
+    {
+        if (SceneManager.GetActiveScene().buildIndex > 1 && !talking)
+        {
+            //activate the child canvas
+            //OptionsCanvas.gameObject.SetActive(!OptionsCanvas.gameObject.activeSelf);
+            //InGamePauseCanvas.SetActive(!InGamePauseCanvas.activeSelf);
+            switch (isOpeningInPause)
+            {
+                case true:
+                    // If the player happens to be openning in game pause menu, turn it off!
+                    InGamePauseCanvas.SetActive(false);
+                    isOpeningInPause = false;
+                    break;
+                default:
+                    // If the player is not talking, then player can access the in game pause menu
+                    if (!talking)
+                    {
+                        InGamePauseCanvas.SetActive(true);
+                        isOpeningInPause = true;
+                    }
+                    break;
+            }
+        }
     }
 }
