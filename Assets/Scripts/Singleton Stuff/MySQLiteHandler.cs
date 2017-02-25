@@ -45,7 +45,7 @@ public class MySQLiteHandler : MonoBehaviour {
         //Debug.Log(String.Format("INSERT INTO PlaceSequence(PlayerDamage,Name) VALUES(\"{0}\",\"{1}\")", 100, String.Format("YOLO")));
         string actualDBFilePath;
 #if UNITY_ANDROID
-        Debug.Log(Application.persistentDataPath);
+        //Debug.Log(Application.persistentDataPath);
         actualDBFilePath = Application.persistentDataPath + "/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
         Debug.Log("Android filepath: " + actualDBFilePath);
@@ -63,7 +63,7 @@ public class MySQLiteHandler : MonoBehaviour {
             // then save to Application.persistentDataPath
             File.WriteAllBytes(actualDBFilePath, loadDB.bytes);
         }
-        Debug.Log("Initializing the DB connection in Android");
+        //Debug.Log("Initializing the DB connection in Android");
 #else
         actualDBFilePath = Application.dataPath + "/StreamingAssets/AllData.db";
         connectionDB = "URI=file:" + actualDBFilePath;
@@ -122,18 +122,22 @@ public class MySQLiteHandler : MonoBehaviour {
     /// The specific coloumn
     /// </param>
     /// <param name="zeCondition">
+    /// the specific condition to get the table! Default to be null
     /// </param>
     /// <returns></returns>
-    public float getFloat(string zeTableName, string zeCol, string[] zeCondition)
+    public float getFloat(string zeTableName, string zeCol, string[] zeCondition = null)
     {
         float zeVal = 0;
         dbconn.Open();
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT " + zeCol + " FROM " + zeTableName;
-        sqlQuery += " WHERE ";
-        foreach (string zeCond in zeCondition)
+        if (zeCondition != null)
         {
-            sqlQuery += zeCond;
+            sqlQuery += " WHERE ";
+            foreach (string zeCond in zeCondition)
+            {
+                sqlQuery += zeCond;
+            }
         }
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
