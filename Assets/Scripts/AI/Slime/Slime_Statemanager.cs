@@ -9,14 +9,21 @@ public class Slime_Statemanager : MonoBehaviour {
     public Animator anim;
     
     public State currState;
+    public SoundEffectsManager soundEffects;
 
     void Start(){
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         currState = idle;
         anim.Play("slime_idle");
     }
     
     void Update()
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         currState.UpdateState();
     }
 
