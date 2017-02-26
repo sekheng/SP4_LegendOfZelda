@@ -15,18 +15,37 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     public Rigidbody2D golemboss_RB;
 
     public GameObject projectile;
+    public GameObject[] projectiles;
     public GameObject currProjectile;
+    public GameObject[] currProjectiles;
 
     public State currState;
 
+    [HideInInspector]
+    public SoundEffectsManager soundEffects;
+    public BgmManager bgm;
+
     void Start()
     {
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+        bgm = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<BgmManager>();
+        currProjectiles = new GameObject[4];
         currState = sleep;
         anim.Play("golemboss_sleep");
     }
 
     void Update()
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
+        if (bgm == null)
+        {
+            bgm = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<BgmManager>();
+
+        }
         currState.UpdateState();
     }
 

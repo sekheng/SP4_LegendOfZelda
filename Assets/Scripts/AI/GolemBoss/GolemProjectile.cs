@@ -13,10 +13,12 @@ public class GolemProjectile : MonoBehaviour {
     public Rigidbody2D rb;
     private RaycastHit2D[] collision;
     private GameObject projectileParticles;
+    private SoundEffectsManager soundEffects;
     private string particlesystemname = "ParticleFX_RockDebris";
 
     // Use this for initialization
     void Start () {
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         spriteR.color = new Color(spriteR.color.r, spriteR.color.g, spriteR.color.b, 0);//0alpha
         speed = 0;
         direction = Vector3.zero;
@@ -28,6 +30,11 @@ public class GolemProjectile : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         if (projectileParticles != null)
         {
             projectileParticles = GameObject.Find(particlesystemname);
@@ -65,6 +72,7 @@ public class GolemProjectile : MonoBehaviour {
                         projectileParticles.GetComponent<ParticleScript>().playEffect();
                     }
                     temp.collider.gameObject.GetComponent<HealthScript>().modifyHealth(-damage);
+                    soundEffects.playSound("smashing");
                     return true;
                 }
                 else if(temp.collider.gameObject.tag != "GolemBoss" && temp.collider.gameObject.tag != "GolemBoss_Projectile" && temp.collider.gameObject.tag != "Arrows")
