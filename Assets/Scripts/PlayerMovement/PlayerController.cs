@@ -52,44 +52,82 @@ public class PlayerController : MonoBehaviour {
             // Here we shall check which key is pressed so that interception can happen!
             if (!LocalDataSingleton.instance.talking)
             {
-                if (Input.GetKeyDown(KeyCode.UpArrow))
-                    currentKeyPressed = KeyCode.UpArrow;
-                if (Input.GetKeyDown(KeyCode.DownArrow))
-                    currentKeyPressed = KeyCode.DownArrow;
-                if (Input.GetKeyDown(KeyCode.RightArrow))
-                    currentKeyPressed = KeyCode.RightArrow;
-                if (Input.GetKeyDown(KeyCode.LeftArrow))
-                    currentKeyPressed = KeyCode.LeftArrow;
-                if (Input.GetKeyDown(KeyCode.Z))
-                    currentKeyPressed = KeyCode.Z;
-                if (Input.GetKeyDown(KeyCode.X))
-                    currentKeyPressed = KeyCode.X;
+                //if (Input.GetKeyDown(KeyCode.UpArrow))
+                //    currentKeyPressed = KeyCode.UpArrow;
+                //if (Input.GetKeyDown(KeyCode.DownArrow))
+                //    currentKeyPressed = KeyCode.DownArrow;
+                //if (Input.GetKeyDown(KeyCode.RightArrow))
+                //    currentKeyPressed = KeyCode.RightArrow;
+                //if (Input.GetKeyDown(KeyCode.LeftArrow))
+                //    currentKeyPressed = KeyCode.LeftArrow;
+                //if (Input.GetKeyDown(KeyCode.Z))
+                //    currentKeyPressed = KeyCode.Z;
+                //if (Input.GetKeyDown(KeyCode.X))
+                //    currentKeyPressed = KeyCode.X;
+                if (Input.GetKeyDown(KeyBindScript.upKey))
+                    currentKeyPressed = KeyBindScript.upKey;
+                if (Input.GetKeyDown(KeyBindScript.downKey))
+                    currentKeyPressed = KeyBindScript.downKey;
+                if (Input.GetKeyDown(KeyBindScript.rightKey))
+                    currentKeyPressed = KeyBindScript.rightKey;
+                if (Input.GetKeyDown(KeyBindScript.leftKey))
+                    currentKeyPressed = KeyBindScript.leftKey;
+                if (Input.GetKeyDown(KeyBindScript.attackKey))
+                    currentKeyPressed = KeyBindScript.attackKey;
+                if (Input.GetKeyDown(KeyBindScript.rangeKey))
+                    currentKeyPressed = KeyBindScript.rangeKey;
+                if (Input.GetKeyDown(KeyBindScript.inventoryKey))
+                    currentKeyPressed = KeyBindScript.inventoryKey;
 
                 // Here we check whether the player has continuously press it for movement
                 if (Input.GetKey(currentKeyPressed))
                 {
-                    switch (currentKeyPressed)
+                    //switch (currentKeyPressed)
+                    //{
+                    //    case KeyCode.UpArrow:
+                    //        theOnlyHero.moveDirection(new Vector2(0, 1));
+                    //        GeneralDir = new Vector2(0, 1);
+                    //        break;
+                    //    case KeyCode.DownArrow:
+                    //        theOnlyHero.moveDirection(new Vector2(0, -1));
+                    //        GeneralDir = new Vector2(0, -1);
+                    //        break;
+                    //    case KeyCode.RightArrow:
+                    //        theOnlyHero.moveDirection(new Vector2(1, 0));
+                    //        GeneralDir = new Vector2(1, 0);
+                    //        break;
+                    //    case KeyCode.LeftArrow:
+                    //        theOnlyHero.moveDirection(new Vector2(-1, 0));
+                    //        GeneralDir = new Vector2(-1, 0);
+                    //        break;
+                    //    default:
+                    //        theOnlyHero.passInKeyPressed(currentKeyPressed);
+                    //        //Debug.Log("Something is wrong with current keypressed");
+                    //        break;
+                    //}
+                    if (currentKeyPressed == KeyBindScript.upKey)
                     {
-                        case KeyCode.UpArrow:
-                            theOnlyHero.moveDirection(new Vector2(0, 1));
-                            GeneralDir = new Vector2(0, 1);
-                            break;
-                        case KeyCode.DownArrow:
-                            theOnlyHero.moveDirection(new Vector2(0, -1));
-                            GeneralDir = new Vector2(0, -1);
-                            break;
-                        case KeyCode.RightArrow:
-                            theOnlyHero.moveDirection(new Vector2(1, 0));
-                            GeneralDir = new Vector2(1, 0);
-                            break;
-                        case KeyCode.LeftArrow:
-                            theOnlyHero.moveDirection(new Vector2(-1, 0));
-                            GeneralDir = new Vector2(-1, 0);
-                            break;
-                        default:
-                            theOnlyHero.passInKeyPressed(currentKeyPressed);
-                            //Debug.Log("Something is wrong with current keypressed");
-                            break;
+                        theOnlyHero.moveDirection(new Vector2(0, 1));
+                        GeneralDir = new Vector2(0, 1);
+                    }
+                    else if (currentKeyPressed == KeyBindScript.downKey)
+                    {
+                        theOnlyHero.moveDirection(new Vector2(0, -1));
+                        GeneralDir = new Vector2(0, -1);
+                    }
+                    else if (currentKeyPressed == KeyBindScript.leftKey)
+                    {
+                        theOnlyHero.moveDirection(new Vector2(-1, 0));
+                        GeneralDir = new Vector2(-1, 0);
+                    }
+                    else if (currentKeyPressed == KeyBindScript.rightKey)
+                    {
+                        theOnlyHero.moveDirection(new Vector2(1, 0));
+                        GeneralDir = new Vector2(1, 0);
+                    }
+                    else
+                    {
+                        theOnlyHero.passInKeyPressed(currentKeyPressed);
                     }
                     checkPlayerMoved = true;
                 }

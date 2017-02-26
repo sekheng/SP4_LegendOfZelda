@@ -49,18 +49,20 @@ public class HeroesMovement : MonoBehaviour {
 #if UNITY_STANDALONE
     public void passInKeyPressed(KeyCode zeKey)
     {
-        switch (zeKey)
-        {
-            case KeyCode.Z:
-                stopMovement();
-                break;
-            case KeyCode.X:
-                stopMovement();
-                break;
-            default:
-                Debug.Log("Something is wrong with current keypressed");
-                break;
-        }
+        //switch (zeKey)
+        //{
+        //    case KeyCode.Z:
+        //        stopMovement();
+        //        break;
+        //    case KeyCode.X:
+        //        stopMovement();
+        //        break;
+        //    default:
+        //        Debug.Log("Something is wrong with current keypressed");
+        //        break;
+        //}
+        // Any key press will just stop the movement!
+        stopMovement();
     }
 #endif
 }

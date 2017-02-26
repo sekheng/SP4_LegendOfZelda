@@ -50,15 +50,15 @@ public class InGamePauseScript : MonoBehaviour {
             UpdateUI((short)(whichButtonIsAt + 1));
         }
 #else
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyBindScript.upKey))
         {
             UpdateUI((short)(whichButtonIsAt - 1));
         }
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyBindScript.downKey))
         {
             UpdateUI((short)(whichButtonIsAt + 1));
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyBindScript.attackKey))
         {
             PauseButtonScript zePauseButton;
             // if can find the pause button, then execute that button

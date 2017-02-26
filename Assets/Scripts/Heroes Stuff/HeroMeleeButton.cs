@@ -19,12 +19,12 @@ public class HeroMeleeButton : MonoBehaviour {
     private GameObject theAttackButton;
 
 #if UNITY_STANDALONE
-    [Tooltip("The Key pressed for Melee Attack!")]
-    public KeyCode attackButton = KeyCode.Z;
-    [Tooltip("The Key to change weapon")]
-    public KeyCode rangeButton = KeyCode.X;
-    [Tooltip("The key to open inventory list")]
-    public KeyCode inventoryButton = KeyCode.C;
+    //[Tooltip("The Key pressed for Melee Attack!")]
+    //public KeyCode attackButton = KeyCode.Z;
+    //[Tooltip("The Key to change weapon")]
+    //public KeyCode rangeButton = KeyCode.X;
+    //[Tooltip("The key to open inventory list")]
+    //public KeyCode inventoryButton = KeyCode.C;
 
     // Used to keep track if the inventory is open or not
     private bool openInventory = false;
@@ -50,7 +50,7 @@ public class HeroMeleeButton : MonoBehaviour {
 	void Update () {
 #if UNITY_STANDALONE
         // Need to check whether the player has pressed the key and theEnemy is not null
-        if (Input.GetKeyDown(attackButton))
+        if (Input.GetKeyDown(KeyBindScript.attackKey))
         {
             //Need to see if the Player is talking to NPC or not
             if (!openInventory)
@@ -60,11 +60,11 @@ public class HeroMeleeButton : MonoBehaviour {
                 GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
             }
         }
-        else if (Input.GetKeyDown(rangeButton) && !LocalDataSingleton.instance.talking)
+        else if (Input.GetKeyDown(KeyBindScript.rangeKey) && !LocalDataSingleton.instance.talking)
         {
             theHeroRangeSystem.shootArrow();
         }
-        else if (Input.GetKeyDown(inventoryButton))
+        else if (Input.GetKeyDown(KeyBindScript.inventoryKey))
         {
             // Need to make sure that the player is not talking and he is not opening inventory
             switch (openInventory)

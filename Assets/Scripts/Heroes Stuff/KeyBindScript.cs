@@ -25,6 +25,8 @@ public class KeyBindScript : MonoBehaviour {
     public static KeyCode rangeKey = KeyCode.X;
     [HideInInspector]
     public static KeyCode inventoryKey = KeyCode.C;
+    // The Table to read from the SQLite!
+    private static string theSQLiteTable = "GlobalSettingTable";
 
 	// Use this for initialization
 	void Start () {
@@ -33,9 +35,16 @@ public class KeyBindScript : MonoBehaviour {
         enabled = false;
 #else
         // We shall begin reading of the Keybind from SQLite!
-        Debug.Log("Reading from SQLite for keybinds");
-
-        Debug.Log("Successful Reading from SQLite for keybinds");
+        //Debug.Log("Reading from SQLite for keybinds");
+        // hardcoding at ze best!
+        upKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "UpKeycode");
+        downKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "DownKeycode");
+        rightKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "RightKeycode");
+        leftKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "LeftKeycode");
+        attackKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "AttackKeycode");
+        rangeKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "RangeKeycode");
+        inventoryKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "InventoryKeycode");
+        //Debug.Log("Successful Reading from SQLite for keybinds");
 #endif
 	}
 }

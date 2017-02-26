@@ -50,12 +50,12 @@ public class ItemSelectScript : MonoBehaviour {
 #if UNITY_STANDALONE
         // For keypress so that the select border can go left and right
         //  Will also need to make sure that the slot this select is at is more than 0
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && m_slotAt > 0)
+        if (Input.GetKeyDown(KeyBindScript.leftKey) && m_slotAt > 0)
         {
             --m_slotAt;
             UpdateTheUI();
         }
-        else if (Input.GetKeyDown(KeyCode.RightArrow) && m_slotAt + 1 < toKnowTheSlots.allTheSlots.Count)
+        else if (Input.GetKeyDown(KeyBindScript.rightKey) && m_slotAt + 1 < toKnowTheSlots.allTheSlots.Count)
         {
             ++m_slotAt;
             UpdateTheUI();
