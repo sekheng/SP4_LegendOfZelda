@@ -7,6 +7,11 @@ public class FindSingleton : MonoBehaviour {
         LocalDataSingleton.instance.ReturntoPrevious();
     }
 
+    public void OpenPlayMenu()
+    {
+
+    }
+
     public void GoScene()
     {
        LocalDataSingleton.instance.GoNext();

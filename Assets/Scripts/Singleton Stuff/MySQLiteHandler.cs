@@ -87,16 +87,19 @@ public class MySQLiteHandler : MonoBehaviour {
     /// <returns>
     /// returns an integer value if found. return 0 if nothing is found!
     /// </returns>
-    public int getInteger(string zeTableName, string zeCol, string[] zeCondition)
+    public int getInteger(string zeTableName, string zeCol, string[] zeCondition = null)
     {
         dbconn.Open();
         int zeVal = 0;
         dbcmd = dbconn.CreateCommand();
         string sqlQuery = "SELECT " + zeCol + " FROM " + zeTableName;
-        sqlQuery += " WHERE ";
-        foreach (string zeCond in zeCondition)
+        if (zeCondition != null)
         {
-            sqlQuery += zeCond;
+            sqlQuery += " WHERE ";
+            foreach (string zeCond in zeCondition)
+            {
+                sqlQuery += zeCond;
+            }
         }
         dbcmd.CommandText = sqlQuery;
         reader = dbcmd.ExecuteReader();
