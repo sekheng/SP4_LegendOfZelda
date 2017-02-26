@@ -15,11 +15,17 @@ public class AndroidInputAdjustScript : MonoBehaviour {
     // We will need to know what is the canvas like!
     private CanvasScaler theScaleOfCanvas;
 
+
+
 	// Use this for initialization
 	void Start () {
+#if UNITY_ANDROID
         UI_position = GetComponent<RectTransform>();
         theScaleOfCanvas = GameObject.FindGameObjectWithTag("CustomizeAndroidInput").GetComponent<CanvasScaler>();
         //Debug.Log("Canvas Res: " + theScaleOfCanvas.referenceResolution);
+#else
+        enabled = false;
+#endif
 	}
 	
 	// Update is called once per frame
@@ -27,7 +33,7 @@ public class AndroidInputAdjustScript : MonoBehaviour {
 	    switch (hasFingerPressed)
         {
             case true:
-                detectMousePosition();
+                //detectMousePosition();
                 break;
             default:
                 break;
