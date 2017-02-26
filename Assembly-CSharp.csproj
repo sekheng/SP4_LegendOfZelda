@@ -88,6 +88,7 @@
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroDataScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroMeleeButton.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\HeroRangeScript.cs" />
+     <Compile Include="Assets\Scripts\Heroes Stuff\KeyBindScript.cs" />
      <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
      <Compile Include="Assets\Scripts\InGame Pause Stuff\InGamePauseScript.cs" />
      <Compile Include="Assets\Scripts\InGame Pause Stuff\OptionScript.cs" />
