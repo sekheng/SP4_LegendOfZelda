@@ -54,6 +54,13 @@ public class MainMenuControl : MonoBehaviour {
                             selected = CURRENTBUTTON.OPTION;
                         }
                     }
+                    else
+                    {
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            PlayMenu.gameObject.SetActive(!PlayMenu.gameObject.activeSelf);
+                        }
+                    }
                     if (Input.GetKeyDown(KeyCode.Return))
                     {
                         if (!PlayMenu.gameObject.activeSelf)
@@ -73,15 +80,25 @@ public class MainMenuControl : MonoBehaviour {
                     ExitButton.localScale = new Vector3(1, 1, 1);
                     ExitButton.GetComponent<Button>().interactable = false;
 
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
+                    if(!LocalDataSingleton.instance.transform.GetChild(0).gameObject.activeSelf)
                     {
-                        selected = CURRENTBUTTON.PLAY;
+                        if (Input.GetKeyDown(KeyCode.UpArrow))
+                        {
+                            selected = CURRENTBUTTON.PLAY;
+                        }
+                        if (Input.GetKeyDown(KeyCode.DownArrow))
+                        {
+                            selected = CURRENTBUTTON.EXIT;
+                        }
                     }
-                    if (Input.GetKeyDown(KeyCode.DownArrow))
+                    else
                     {
-                        selected = CURRENTBUTTON.EXIT;
+                        if (Input.GetKeyDown(KeyCode.Escape))
+                        {
+                            LocalDataSingleton.instance.transform.GetChild(0).gameObject.SetActive(false);
+                        }
                     }
-                    else if (Input.GetKeyDown(KeyCode.Return) && optionsMenu != null)
+                    if (Input.GetKeyDown(KeyCode.Return) && optionsMenu != null)
                     {
                         optionsMenu.Toggle(LocalDataSingleton.instance.transform.GetChild(0).gameObject);
                     }
