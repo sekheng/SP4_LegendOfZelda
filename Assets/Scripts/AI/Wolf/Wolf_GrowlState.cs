@@ -27,8 +27,13 @@ public class Wolf_GrowlState : State {
         {
             thePlayer = GameObject.FindGameObjectWithTag("Player");
         }
+        if (manager.soundEffects != null && timePassed == 0)
+        {
+            manager.soundEffects.playSound("Wolf_Howl");
+        }
         timePassed += Time.deltaTime;
         direction = (thePlayer.transform.position - monsterTransform.position).normalized;
+        
         if (timePassed > 0.1f)
         {
             if (direction.x > 0 && direction.x > Mathf.Abs(direction.y))

@@ -15,17 +15,26 @@ public class Wolf_Statemanager : MonoBehaviour {
     public Animator anim;
     public Rigidbody2D wolf_RB;
 
+    [HideInInspector]
+    public SoundEffectsManager soundEffects;
+
     public State currState;
     public float healthBeforeDamaged;
 
     void Start()
     {
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         currState = roam;
         anim.Play("wolf_walk_left");
     }
 
     void Update()
     {
+        if(soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         currState.UpdateState();
     }
 
