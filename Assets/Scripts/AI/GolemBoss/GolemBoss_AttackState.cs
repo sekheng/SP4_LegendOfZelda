@@ -9,7 +9,8 @@ public class GolemBoss_AttackState : State {
     private float alphaPercentage;
     private bool startAccum;
     private GolemProjectile golemProjectile;
-    
+    private GolemProjectile[] golemProjectiles;
+
 
     // Use this for initialization
     void Start()
@@ -17,6 +18,11 @@ public class GolemBoss_AttackState : State {
         if (thePlayer == null)
         {
             thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
+        golemProjectiles = new GolemProjectile[4];
+        for (int i = 0; i < golemProjectiles.Length; ++i)
+        {
+            golemProjectiles[i] = null;
         }
         manager = transform.parent.GetComponent<GolemBoss_Statemanager>();
         accumTimeToChangeState = 0;
@@ -47,6 +53,13 @@ public class GolemBoss_AttackState : State {
             if(manager.currProjectile != null)
              golemProjectile = manager.currProjectile.GetComponent<GolemProjectile>();
         }
+        for (int i = 0; i < golemProjectiles.Length; ++i)
+        {
+            if (golemProjectiles[i] == null && manager.currProjectiles[i] != null)
+            {
+                golemProjectiles[i] = manager.currProjectiles[i].GetComponent<GolemProjectile>(); 
+            }
+        }
         if(accumTimeToChangeState < 1)
         {
             
@@ -54,6 +67,13 @@ public class GolemBoss_AttackState : State {
             alphaValue = 1 * alphaPercentage;
             if (manager.currProjectile != null)
                 golemProjectile.spriteR.color = new Color(golemProjectile.spriteR.color.r, golemProjectile.spriteR.color.g, golemProjectile.spriteR.color.b, alphaValue);
+            for (int i = 0; i < golemProjectiles.Length; ++i)
+            {
+                if (manager.currProjectiles[i] != null)
+                {
+                    golemProjectiles[i].spriteR.color = new Color(golemProjectile.spriteR.color.r, golemProjectile.spriteR.color.g, golemProjectile.spriteR.color.b, alphaValue);
+                }
+            }
         }
         else if (accumTimeToChangeState > 1 && manager.anim.GetCurrentAnimatorStateInfo(0).IsName("golemboss_idle"))
         {
@@ -74,6 +94,25 @@ public class GolemBoss_AttackState : State {
                 }
                 golemProjectile.direction = (thePlayer.transform.position - monsterTransform.transform.position).normalized;
                 golemProjectile = null;
+            }
+            for (int i = 0; i < golemProjectiles.Length; ++i)
+            {
+                if (manager.currProjectiles[i] != null)
+                {
+                    if (health.m_health / health.max_health > 0.20f)
+                    {
+                        golemProjectiles[i].speed = 1000;
+                        golemProjectiles[i].damage = monsterInfo.dps;
+                    }
+                    else
+                    {
+                        golemProjectiles[i].speed = 500;
+                        golemProjectiles[i].damage = monsterInfo.dps / 2;
+                    }
+                    golemProjectiles[i].direction = (thePlayer.transform.position - monsterTransform.transform.position).normalized;
+                    golemProjectiles[i] = null;
+                    //golemProjectiles[i] = manager.currProjectiles[i].GetComponent<GolemProjectile>();
+                }
             }
             Debug.Log("hi");
         }

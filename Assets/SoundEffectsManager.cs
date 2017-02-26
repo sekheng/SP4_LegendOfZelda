@@ -9,6 +9,8 @@ public class Sound
 
     [Range(0f,1f)]
     public float Volume = 1f;
+    [Range(0, 255)]
+    public int Priority = 125;
     [Range(0.5f, 1.5f)]
     public float Pitch = 1f;
     public bool PlayOnAwake = false;
@@ -25,6 +27,7 @@ public class Sound
     public void Play()
     {
         source.volume = Volume;
+        source.priority = Priority;
         source.pitch = Pitch;
         source.playOnAwake = PlayOnAwake;
         if (!source.isPlaying || AllowResetWhilePlaying)

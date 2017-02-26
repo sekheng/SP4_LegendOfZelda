@@ -35,6 +35,14 @@ public class GolemBoss_SleepState : State
             manager.changeState("awake");//change state
             //manager.changeAnim("golemboss_awake");
             manager.anim.SetBool("sleepToAwake", true);
+            if (manager.soundEffects != null)
+            {
+                manager.soundEffects.playSound("earthquake");
+            }
+            if (manager.bgm != null)
+            {
+                manager.bgm.changeMusic("Will_You_Still_Cry");
+            }
         }
         if (health.m_health <= 0)
         {
