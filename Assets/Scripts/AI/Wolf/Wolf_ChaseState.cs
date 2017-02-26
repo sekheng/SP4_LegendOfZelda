@@ -111,7 +111,7 @@ public class Wolf_ChaseState : State
                 monsterRigidbody2D.velocity = Vector3.zero;
                 manager.changeState("roam");
             }
-            if (checkForPlayerInRange(thePlayer.transform.position, 0.5f))//close enoguh to attack
+            if (checkForPlayerInRange(thePlayer.transform.position, 0.65f))//close enoguh to attack
             {
                 
                 monsterRigidbody2D.velocity = Vector3.zero;

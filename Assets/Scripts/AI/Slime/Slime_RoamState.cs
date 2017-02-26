@@ -30,11 +30,19 @@ public class Slime_RoamState : State {
         //if(rngDir != null)
         //    whichDir = rngDir.Random;
         damageTimer = 0;
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
     }
 
     public override void UpdateState()
     {
-        if(rngTime == null)
+        if (thePlayer == null)
+        {
+            thePlayer = GameObject.FindGameObjectWithTag("Player");
+        }
+        if (rngTime == null)
         {
             rngTime = new IntRange(1, 3);
             timeToStopRoaming = rngTime.Random;
@@ -44,8 +52,17 @@ public class Slime_RoamState : State {
             rngDir = new IntRange(0, 4);
             whichDir = rngDir.Random;
         }
+        if (checkForPlayerInRange(thePlayer.transform.position, 5))//close enough to play sound
+        {
+            if (manager.soundEffects != null )
+            {
+                manager.soundEffects.playSound("Slime_Movement");
+            }
+        }
+       
         roamingTime += Time.deltaTime;
         damageTimer += Time.deltaTime;
+        
         timeToCheckCollision += Time.deltaTime;
         Vector3 tempToCheckCollision = transform.TransformDirection(directions[whichDir]);
         tempToCheckCollision *= monsterInfo.speed * Time.deltaTime;
