@@ -125,6 +125,7 @@
      <Compile Include="Assets\Scripts\SceneManagement\ChangeScene.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ChangeScene2.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\ChildActiveBasedOnOS.cs" />
+     <Compile Include="Assets\Scripts\SceneManagement\ControlToActivate.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\Fading.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\FindSingleton.cs" />
      <Compile Include="Assets\Scripts\SceneManagement\LocalDataSingleton.cs" />
@@ -135,8 +136,10 @@
      <Compile Include="Assets\Scripts\Singleton Stuff\LoadPlayerScript.cs" />
      <Compile Include="Assets\Scripts\Singleton Stuff\MySQLiteHandler.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\BackToMain.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\EscToDeactivate.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\MainMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\NextSceneIn2s.cs" />
+     <Compile Include="Assets\Scripts\Splashpage Scripts\OptionMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PlayMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
