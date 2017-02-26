@@ -75,6 +75,7 @@
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_SearchState.cs" />
      <Compile Include="Assets\Scripts\AI\Wolf\Wolf_Statemanager.cs" />
      <Compile Include="Assets\Scripts\CameraController.cs" />
+     <Compile Include="Assets\Scripts\Compass.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\DisplaySpecificHealthScript.cs" />
      <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
