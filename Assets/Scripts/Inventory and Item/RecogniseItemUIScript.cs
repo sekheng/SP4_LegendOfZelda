@@ -36,7 +36,7 @@ public class RecogniseItemUIScript : MonoBehaviour {
         // Trying to get the key and value then put it in the slot!
         foreach (KeyValuePair<string,itemInformation> zeNameAndItem in playerInventory.itemName_Count_Map)
         {
-            Debug.Log("Trying to insert items into the UI");
+            //Debug.Log("Trying to insert items into the UI");
             // Need to make sure that the items count are more than 0!
             if (zeNameAndItem.Value.item_count > 0)
             {
@@ -46,9 +46,9 @@ public class RecogniseItemUIScript : MonoBehaviour {
                     zeItemUI = Instantiate(zeGO);
                     zeItemUI.BroadcastMessage("Start"); // Need to initialize the gameobject
                     ItemScript zeItemInform = zeItemUI.GetComponentInChildren<ItemScript>();
-                    Debug.Log("The GO: " + zeItemUI.name);
-                    Debug.Log("The item's name: " + zeNameAndItem.Value.item_name);
-                    Debug.Log("GO item's inform: " + zeItemInform.m_itemInform.item_name);
+                    //Debug.Log("The GO: " + zeItemUI.name);
+                    //Debug.Log("The item's name: " + zeNameAndItem.Value.item_name);
+                    //Debug.Log("GO item's inform: " + zeItemInform.m_itemInform.item_name);
                     if (zeItemInform.m_itemInform.item_name.Equals(zeNameAndItem.Value.item_name))
                     {
                         // We will make a copy of the item!

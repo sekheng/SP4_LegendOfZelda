@@ -19,6 +19,7 @@ public class AndroidInputAdjustScript : MonoBehaviour {
 	void Start () {
         UI_position = GetComponent<RectTransform>();
         theScaleOfCanvas = GameObject.FindGameObjectWithTag("CustomizeAndroidInput").GetComponent<CanvasScaler>();
+        //Debug.Log("Canvas Res: " + theScaleOfCanvas.referenceResolution);
 	}
 	
 	// Update is called once per frame
@@ -46,9 +47,7 @@ public class AndroidInputAdjustScript : MonoBehaviour {
     {
         hasFingerPressed = false;
         // And then we shall save the position of this input to the database!
-        //MySQLiteHandler.instance.saveSpecificResult(AndroidLoadDataScript.m_SQLiteTable, m_AndroidInputName + "X", UI_position.localPosition.x.ToString());
         MySQLiteHandler.instance.saveSpecificResult(AndroidLoadDataScript.m_SQLiteTable, m_AndroidInputName + "X", UI_position.anchoredPosition.x.ToString());
-        //MySQLiteHandler.instance.saveSpecificResult(AndroidLoadDataScript.m_SQLiteTable, m_AndroidInputName + "Y", UI_position.localPosition.y.ToString());
         MySQLiteHandler.instance.saveSpecificResult(AndroidLoadDataScript.m_SQLiteTable, m_AndroidInputName + "Y", UI_position.anchoredPosition.y.ToString());
     }
 
@@ -60,7 +59,8 @@ public class AndroidInputAdjustScript : MonoBehaviour {
         //UI_position.localPosition = Input.mousePosition;
         //UI_position.anchoredPosition = Input.mousePosition;
         //Debug.Log("Mouse position: " + Input.mousePosition);
-        UI_position.anchoredPosition = new Vector2(Input.mousePosition.x * theScaleOfCanvas.referenceResolution.x / Screen.width, Input.mousePosition.y * theScaleOfCanvas.referenceResolution.y / Screen.height);
+        //UI_position.anchoredPosition = new Vector2(Input.mousePosition.x * theScaleOfCanvas.referenceResolution.x / Screen.width, Input.mousePosition.y * theScaleOfCanvas.referenceResolution.y / Screen.height);
+        UI_position.anchoredPosition = new Vector2((Input.mousePosition.x * theScaleOfCanvas.referenceResolution.x / Screen.width) - (theScaleOfCanvas.referenceResolution.x * UI_position.anchorMax.x), (Input.mousePosition.y * theScaleOfCanvas.referenceResolution.y / Screen.height) - (theScaleOfCanvas.referenceResolution.y * UI_position.anchorMax.y));
     }
 
     void detectFingerPosition()

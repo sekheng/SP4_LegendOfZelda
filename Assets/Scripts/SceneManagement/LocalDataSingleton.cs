@@ -85,6 +85,17 @@ public class LocalDataSingleton : MonoBehaviour {
             //MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
             //MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
         }
+#else
+        //// Since hardcoding is ze best way
+        //// Since dialogue UI has ExampleUI, we will use that instead!
+        //if (SceneManager.GetActiveScene().buildIndex <= 1)
+        //{
+        //    MainCanvas.GetComponentInChildren<exampleUI>().gameObject.SetActive(false);
+        //}
+        //else
+        //{
+        //    MainCanvas.GetComponentInChildren<exampleUI>().gameObject.SetActive(true);
+        //}
 #endif
         //if you reach the required number of questitems
         QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();

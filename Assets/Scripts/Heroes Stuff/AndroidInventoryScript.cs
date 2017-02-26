@@ -63,7 +63,7 @@ public class AndroidInventoryScript : MonoBehaviour {
 #else
     void Start()
     {
-        enabled = false;
+        gameObject.SetActive(false);
     }
 #endif
 }
