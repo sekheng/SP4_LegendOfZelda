@@ -21,7 +21,7 @@ public class LoadGameScript : MonoBehaviour {
         HeroDataScript.m_playerID = m_loadNumber;
         // We will also need to restart the data!
         GameObject zeDebugPlayerController = GameObject.FindGameObjectWithTag("GameController");
-        Debug.Log("Player Controller: " + zeDebugPlayerController.name);
+        //Debug.Log("Player Controller: " + zeDebugPlayerController.name);
         zeDebugPlayerController.BroadcastMessage("Start");
         switch (m_loadNumber)
         {
