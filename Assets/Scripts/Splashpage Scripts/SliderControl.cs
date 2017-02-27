@@ -4,9 +4,14 @@ using System.Collections;
 
 public class SliderControl : MonoBehaviour {
 
-	// Update is called once per frame
+
+    private void Start()
+    {
+        GetComponent<Slider>().value = LocalDataSingleton.instance.Volume;
+    }
+    // Update is called once per frame
 #if UNITY_STANDALONE
-	void Update () {
+    void Update () {
 	    if(Input.GetKey(KeyCode.RightArrow))
         {
             GetComponent<Slider>().value += Time.deltaTime;
