@@ -15,6 +15,9 @@ public class InGamePauseScript : MonoBehaviour {
     private RectTransform arrowTransform;
     [Tooltip("The buttons' tag for it")]
     public string m_buttonTags = "InGamePauseOptions";
+    // We will need to disable the enter and other keys
+    [HideInInspector]
+    public bool m_disableUpdate = false;
 
 #if UNITY_ANDROID
     // To keep track of player's joystick
@@ -43,6 +46,8 @@ public class InGamePauseScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (m_disableUpdate)
+            return;
 #if UNITY_ANDROID
         if (thePlayerJoystick.movingInYDirection == 1)
         {
