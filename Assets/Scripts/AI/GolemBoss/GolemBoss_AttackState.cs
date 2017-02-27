@@ -74,9 +74,15 @@ public class GolemBoss_AttackState : State {
                     golemProjectiles[i].spriteR.color = new Color(golemProjectile.spriteR.color.r, golemProjectile.spriteR.color.g, golemProjectile.spriteR.color.b, alphaValue);
                 }
             }
+            manager.TargetLock.SetActive(true);
+            manager.TargetLock.transform.position = thePlayer.transform.position;
         }
         else if (accumTimeToChangeState > 1 && manager.anim.GetCurrentAnimatorStateInfo(0).IsName("golemboss_idle"))
         {
+            if (manager.soundEffects != null)
+            {
+                manager.soundEffects.playSound("target");
+            }
             manager.changeState("idle");
             accumTimeToChangeState = 0;
             startAccum = false;
@@ -115,6 +121,13 @@ public class GolemBoss_AttackState : State {
                 }
             }
             Debug.Log("hi");
+            manager.TargetLock.SetActive(true);
+            manager.TargetLock.transform.position = thePlayer.transform.position;
+        }
+        else
+        {
+            manager.TargetLock.SetActive(true);
+            manager.TargetLock.transform.position = thePlayer.transform.position;
         }
             //Debug.Log(manager.anim.GetCurrentAnimatorClipInfo(0).Length.ToString());
 

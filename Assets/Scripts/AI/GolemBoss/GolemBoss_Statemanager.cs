@@ -16,13 +16,20 @@ public class GolemBoss_Statemanager : MonoBehaviour {
 
     public GameObject projectile;
     public GameObject[] projectiles;
+
+    public GameObject TargetLock;
+
+    [HideInInspector]
     public GameObject currProjectile;
+    [HideInInspector]
     public GameObject[] currProjectiles;
 
+    [HideInInspector]
     public State currState;
 
     [HideInInspector]
     public SoundEffectsManager soundEffects;
+    [HideInInspector]
     public BgmManager bgm;
 
     void Start()
