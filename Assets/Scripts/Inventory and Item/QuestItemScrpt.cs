@@ -29,7 +29,8 @@ public class QuestItemScrpt : MonoBehaviour {
         //Debug.Log("Notifying quest item: " + zeQuestItem.item_name);
         if (zeQuestItem.item_name.Contains(m_questItemName))
         {
-            theQuestItemName.Add(zeQuestItem.item_name);
+            if (zeQuestItem.item_count > 0)
+                theQuestItemName.Add(zeQuestItem.item_name);
             //Debug.Log("Successful notify quest item: " + zeQuestItem.item_name);
             //Debug.Log("Total Quest items: " + theQuestItemName.Count);
             //List<string> myConditions = new List<string>();
