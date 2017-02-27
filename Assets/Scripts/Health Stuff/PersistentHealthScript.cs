@@ -29,17 +29,30 @@ public class PersistentHealthScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //Debug.Log("Starting the persistent health");
-        if (!hasInitialized)
-        {
-            string[] zeCondition = { "PlayerID = " + HeroDataScript.m_playerID };
-            max_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerMaxHealth", zeCondition);
-            currHealth = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
-            hasInitialized = true;
-        }
+        //if (!hasInitialized)
+        //{
+        //    string[] zeCondition = { "PlayerID = " + HeroDataScript.m_playerID };
+        //    max_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerMaxHealth", zeCondition);
+        //    currHealth = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
+        //    hasInitialized = true;
+        //}
+        // We shall default the health to be 100!
+        currHealth = max_health = 100;
     }
 
     public float getMaxHealth()
     {
         return max_health;
+    }
+
+    /// <summary>
+    /// Use this when u begin to load data from the Load Game!
+    /// </summary>
+    public void loadPlayerHealthFromSQLite()
+    {
+        string[] zeCondition = { "PlayerID = " + HeroDataScript.m_playerID };
+        max_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerMaxHealth", zeCondition);
+        currHealth = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
+        hasInitialized = true;
     }
 }
