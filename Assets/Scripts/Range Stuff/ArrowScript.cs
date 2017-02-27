@@ -24,8 +24,11 @@ public class ArrowScript : MonoBehaviour {
     [Tooltip("The name of the particle effect for this arrow")]
     public string m_particleSystemName = "ParticleFX_ArrowCollide";
 
-	// Use this for initialization
-	void Start () {
+    private SoundEffectsManager soundEffects;
+
+    // Use this for initialization
+    void Start () {
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         //transform.rotation = Quaternion.FromToRotation(zeDirection, Vector3.down);
         theArrowPhysics = GetComponent<Rigidbody2D>();
         arrowParticleEffect = GameObject.Find(m_particleSystemName);
@@ -34,6 +37,11 @@ public class ArrowScript : MonoBehaviour {
 
     void Update()
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         m_timeCounter += Time.deltaTime;
         // Kills the object when it's lifetime is over!
         if (m_timeCounter > m_lifeTime)
@@ -77,6 +85,10 @@ public class ArrowScript : MonoBehaviour {
             if (zeVictim.GetComponent<HealthScript>() != null)
             {
                 AttackSystemScript.instance.ManageArrowAttack(this, zeVictim.GetComponent<HealthScript>());
+            }
+            if (soundEffects != null)
+            {
+                soundEffects.playSound("RangeHit");
             }
             Destroy(gameObject);
            //Debug.Log("Hit the " + zeVictim.gameObject.name);

@@ -21,12 +21,16 @@ public class GolemBoss_IdleState : State {
     {
         if(rngTime == null)
         {
-            rngTime = new IntRange(3, 6);
+            rngTime = new IntRange(2, 4);
             timeToAttack = rngTime.Random;
         }
         //Debug.Log("hi");
         //timeToCheckCollision += Time.deltaTime;
         accumTimeToAttack += Time.deltaTime;
+        if(manager.currProjectile == null)
+        {
+            manager.TargetLock.SetActive(false);
+        }
         //if (timeToCheckCollision > 1)//check and do damage every one second
         //{
         //    if (checkForCollision())
@@ -40,9 +44,13 @@ public class GolemBoss_IdleState : State {
             {
                 timeToAttack = rngTime.Random;
             }
-            else
+            else if(health.m_health / health.max_health > 0.25f)
             {
                 timeToAttack = 1;
+            }
+            else
+            {
+                timeToAttack = 2;
             }
             accumTimeToAttack = 0;
             manager.changeState("attack");//change state

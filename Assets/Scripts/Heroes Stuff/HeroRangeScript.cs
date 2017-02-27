@@ -23,14 +23,22 @@ public class HeroRangeScript : MonoBehaviour {
     private float m_TimeCounter = 0;
     private bool isShooting = false;
 
-	// Use this for initialization
-	void Start () {
+    private SoundEffectsManager soundEffects;
+
+    // Use this for initialization
+    void Start () {
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         directionOfHero = GetComponent<HeroesMovement>();
         heroAnimator = GetComponent<HeroAnimateScript>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         m_TimeCounter += Time.deltaTime;
         // Need to check the player is shooting or not!
         if (isShooting)
@@ -52,6 +60,10 @@ public class HeroRangeScript : MonoBehaviour {
         if (m_TimeCounter > m_firingRate)
         {
             // Well, the player has to stop their movement then they can fire
+            if (soundEffects != null)
+            {
+                soundEffects.playSound("MeleeHit");
+            }
             directionOfHero.stopMovement();
             isShooting = true;
             m_TimeCounter = 0;
