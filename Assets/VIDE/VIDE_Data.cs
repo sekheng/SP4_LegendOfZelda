@@ -211,12 +211,16 @@ public class VIDE_Data : MonoBehaviour
                 {
                     nodeData.isEnd = true;
                     LocalDataSingleton.instance.talking = false;
+                    LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                    LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
                     return nodeData;
                 }
                 else if (currentNPCStep.outputNPC == null && currentNPCStep.outputSet == null && currentNPCStep.outAction == null && nodeData.npcComment.Length < 1)
                 {
                     nodeData.isEnd = true;
                     LocalDataSingleton.instance.talking = false;
+                    LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                    LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
                     return nodeData;
                 }
             }
@@ -231,6 +235,8 @@ public class VIDE_Data : MonoBehaviour
             {
                 nodeData.isEnd = true;
                 LocalDataSingleton.instance.talking = false;
+                LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
                 return nodeData;
             }
         }
@@ -241,6 +247,8 @@ public class VIDE_Data : MonoBehaviour
             {
 				nodeData.isEnd = true;
                 LocalDataSingleton.instance.talking = false;
+                LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
+                LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
                 return nodeData;
             }
         }

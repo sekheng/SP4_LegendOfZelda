@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scene/GAME/0_MainMenu_Scene.unity
+- path: Assets/Scene/GAME/6_isolatedForest_scene.unity
   isLoaded: 1
   isActive: 1
