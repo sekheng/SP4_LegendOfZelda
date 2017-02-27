@@ -35,6 +35,7 @@ public class ControlsControllerPC : MonoBehaviour {
         children[3].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.rightKey.ToString();
         children[4].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.attackKey.ToString();
         children[5].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.rangeKey.ToString();
+        children[6].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.inventoryKey.ToString();
 
         //we handle the input from here.
         if (Input.GetKeyDown(KeyCode.Return))
@@ -61,7 +62,7 @@ public class ControlsControllerPC : MonoBehaviour {
             MySQLiteHandler.instance.saveSpecificResult(KeyBindScript.theSQLiteTable, KeyBindScript.rangeKeyField, zeRangeKeyValue.ToString());
             MySQLiteHandler.instance.saveSpecificResult(KeyBindScript.theSQLiteTable, KeyBindScript.inventoryKeyField, zeInventoryKeyValue.ToString());
             //only allow the thing to be closed if not editing a keybind
-            transform.parent.parent.gameObject.SetActive(false);
+            transform.parent.gameObject.SetActive(false);
         }
 
         if (helperText.activeSelf)
@@ -115,6 +116,13 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 5:
                 {
                     KeyBindScript.rangeKey = temp;
+                    temp = KeyCode.None;
+                    helperText.SetActive(!helperText.activeSelf);
+                    break;
+                }
+                case 6:
+                {
+                    KeyBindScript.inventoryKey = temp;
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
