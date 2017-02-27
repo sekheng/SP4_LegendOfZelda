@@ -13,6 +13,9 @@ public class InGamePauseScript : MonoBehaviour {
     private short whichButtonIsAt = 0;
     // Need to know it's own rectTransform
     private RectTransform arrowTransform;
+    [Tooltip("The buttons' tag for it")]
+    public string m_buttonTags = "InGamePauseOptions";
+
 #if UNITY_ANDROID
     // To keep track of player's joystick
     private PlayerDrag thePlayerJoystick;
@@ -25,7 +28,7 @@ public class InGamePauseScript : MonoBehaviour {
         thePlayerJoystick = FindObjectOfType<PlayerDrag>();
 #endif
         arrowTransform = GetComponent<RectTransform>();
-        GameObject[] allTheInGamePauseButtons = GameObject.FindGameObjectsWithTag("InGamePauseOptions");
+        GameObject[] allTheInGamePauseButtons = GameObject.FindGameObjectsWithTag(m_buttonTags);
         foreach (GameObject zeGO in allTheInGamePauseButtons)
         {
             //Debug.Log("Pause button name: " + zeGO.name);
