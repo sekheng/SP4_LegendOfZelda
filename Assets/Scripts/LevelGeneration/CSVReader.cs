@@ -142,6 +142,14 @@ public class CSVReader : MonoBehaviour {
                     GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
                     result.transform.SetParent(lvlHolder.transform);
                 }
+                else if (LevelLayoutArray[x, y] == "51")
+                {
+                    Instantiate(FinalNPC, objPos, Quaternion.identity);
+
+                    int randomIndex2 = Random.Range(0, floorPrefabs.Length);
+                    GameObject result = Instantiate(floorPrefabs[randomIndex2], objPos, Quaternion.identity) as GameObject;
+                    result.transform.SetParent(lvlHolder.transform);
+                }
                 else if (LevelLayoutArray[x, y] == "60") //TOP LEFT
                 {
                     GameObject result = Instantiate(skyTiles[0], objPos, Quaternion.identity) as GameObject;
