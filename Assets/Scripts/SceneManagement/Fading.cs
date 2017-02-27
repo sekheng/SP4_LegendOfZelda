@@ -104,6 +104,12 @@ public class Fading : MonoBehaviour
             }
         }
         LocalDataSingleton.instance.talking = false;
+        if (LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned != null)
+        {
+            LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().isLoaded = false;
+            LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned = null;
+        }
+        LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
         LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
     }
 }

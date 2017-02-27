@@ -99,7 +99,10 @@ public class LocalDataSingleton : MonoBehaviour {
 #endif
         //if you reach the required number of questitems
         QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();
-        if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics && SceneManager.GetActiveScene().buildIndex != 9)
+        if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics && 
+            SceneManager.GetActiveScene().buildIndex != 9 && 
+            SceneManager.GetActiveScene().buildIndex != 10 && 
+            SceneManager.GetActiveScene().buildIndex != 11)
         {
             onWin();
         }
@@ -147,6 +150,10 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         if (!Transiting)
         {
+            if (MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned != null)
+            {
+                MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned = null;
+            }
             StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
     }
@@ -184,6 +191,12 @@ public class LocalDataSingleton : MonoBehaviour {
         yield return new WaitForSeconds(fadeTime);
         if (talking)
             talking = false;
+        if (MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned != null)
+        {
+            MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().isLoaded = false;
+            MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned = null;
+        }
+        Inventorycanvas.SetActive(false);
         SceneManager.LoadScene(index);
         Transiting = false;
     }
