@@ -40,11 +40,13 @@ public class EscToDeactivate : MonoBehaviour {
                 }
                 if(okay)
                 {
+                    MySQLiteHandler.instance.saveSpecificResult("GlobalSettingTable", "MusicGlobalVolume", LocalDataSingleton.instance.Volume.ToString());
                     gameObject.SetActive(false);
                 }
             }
             else
             {
+                MySQLiteHandler.instance.saveSpecificResult("GlobalSettingTable", "MusicGlobalVolume", LocalDataSingleton.instance.Volume.ToString());
                 gameObject.SetActive(false);
             }
         }

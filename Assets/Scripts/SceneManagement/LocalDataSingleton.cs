@@ -40,7 +40,7 @@ public class LocalDataSingleton : MonoBehaviour {
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
-        Volume = 1;
+        Volume = MySQLiteHandler.instance.getFloat("GlobalSettingTable", "MusicGlobalVolume");
     }
 
     void Update()
