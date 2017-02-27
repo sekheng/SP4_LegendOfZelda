@@ -34,4 +34,15 @@ public class LoadGameScript : MonoBehaviour {
             break;
         }
     }
+
+    /// <summary>
+    /// Used to save data based on the m_loadNumber!
+    /// </summary>
+    public void saveData()
+    {
+        // If it is not within the save file, dont save!
+        if (m_loadNumber > 3 || m_loadNumber <= 0)
+            return;
+
+    }
 }
