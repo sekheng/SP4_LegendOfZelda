@@ -59,7 +59,7 @@ public class LocalDataSingleton : MonoBehaviour {
 #if UNITY_STANDALONE
             MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(true);
 #else
-            MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(false);
+            MainMenuCanvas.transform.GetChild(3).gameObject.SetActive(false);
 #endif
         }
 

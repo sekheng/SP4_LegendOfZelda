@@ -13,7 +13,8 @@ public class SaveScript : PauseButtonScript {
     /// </returns>
     public override bool executeButton()
     {
-        Debug.Log("SAVE");
+        //Debug.Log("SAVE");
+        GameObject.Find("Save Canvas").SetActive(true);
         return true;
     }
 }
