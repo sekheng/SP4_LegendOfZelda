@@ -63,11 +63,11 @@ public class LoadGameScript : MonoBehaviour {
             foreach (KeyValuePair<string,itemInformation> zeItemNameAndInform in zePlayerStuff.itemName_Count_Map)
             {
                 zeCondtions.Clear();
-                Debug.Log("PlayerID = " + m_loadNumber);
-                Debug.Log("ItemName = " + zeItemNameAndInform.Key);
-                Debug.Log("ItemCount = " + zeItemNameAndInform.Value.item_count);
+                //Debug.Log("PlayerID = " + m_loadNumber);
+                //Debug.Log("ItemName = " + zeItemNameAndInform.Key);
+                //Debug.Log("ItemCount = " + zeItemNameAndInform.Value.item_count);
                 zeCondtions.Add("PlayerID = " + m_loadNumber);
-                zeCondtions.Add("ItemName = " + zeItemNameAndInform.Key);
+                zeCondtions.Add("ItemName = " + MySQLiteHandler.instance.helpToConvertToSQLString(zeItemNameAndInform.Key));
                 MySQLiteHandler.instance.saveSpecificResult(zePlayerStuff.PlayerInventoryTable, "ItemCount", zeItemNameAndInform.Value.item_count.ToString(), zeCondtions);
             }
         }
