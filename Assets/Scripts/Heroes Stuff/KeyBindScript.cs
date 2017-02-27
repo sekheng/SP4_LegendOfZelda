@@ -26,7 +26,29 @@ public class KeyBindScript : MonoBehaviour {
     [HideInInspector]
     public static KeyCode inventoryKey = KeyCode.C;
     // The Table to read from the SQLite!
-    private static string theSQLiteTable = "GlobalSettingTable";
+    [HideInInspector]
+    public static string theSQLiteTable = "GlobalSettingTable";
+    // The field for upkey
+    [HideInInspector]
+    public static string upKeyField = "UpKeycode";
+    // The field for downkey
+    [HideInInspector]
+    public static string downKeyField = "DownKeycode";
+    // The field for rightkey
+    [HideInInspector]
+    public static string rightKeyField = "RightKeycode";
+    // The field for leftkey
+    [HideInInspector]
+    public static string leftKeyField = "LeftKeycode";
+    // The field for attack Key
+    [HideInInspector]
+    public static string attackKeyField = "AttackKeycode";
+    // The field for range Key
+    [HideInInspector]
+    public static string rangeKeyField = "RangeKeycode";
+    // The field for inventory key
+    [HideInInspector]
+    public static string inventoryKeyField = "InventoryKeycode";
 
 	// Use this for initialization
 	void Start () {
@@ -37,13 +59,13 @@ public class KeyBindScript : MonoBehaviour {
         // We shall begin reading of the Keybind from SQLite!
         //Debug.Log("Reading from SQLite for keybinds");
         // hardcoding at ze best!
-        upKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "UpKeycode");
-        downKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "DownKeycode");
-        rightKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "RightKeycode");
-        leftKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "LeftKeycode");
-        attackKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "AttackKeycode");
-        rangeKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "RangeKeycode");
-        inventoryKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, "InventoryKeycode");
+        upKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, upKeyField);
+        downKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, downKeyField);
+        rightKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, rightKeyField);
+        leftKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, leftKeyField);
+        attackKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, attackKeyField);
+        rangeKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, rangeKeyField);
+        inventoryKey = (KeyCode)MySQLiteHandler.instance.getInteger(theSQLiteTable, inventoryKeyField);
         //Debug.Log("Successful Reading from SQLite for keybinds");
 #endif
 	}
