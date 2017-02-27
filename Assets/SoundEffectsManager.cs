@@ -41,9 +41,11 @@ public class SoundEffectsManager : MonoBehaviour {
 
     [SerializeField]
     Sound[] sounds;
+    Sound positiveSound;
+    Sound negativeSound;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         for(int i = 0; i < sounds.Length; i++)
         {
             GameObject go = new GameObject("Sound_" + i + ":" + sounds[i].name);
@@ -86,4 +88,44 @@ public class SoundEffectsManager : MonoBehaviour {
 
         Debug.LogWarning("Sound effect" + _name + "not found");
     }
+
+    public void playPositiveSound()
+    {
+        if(positiveSound == null)
+        {
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                if (sounds[i].name == "positive")
+                {
+                    sounds[i].Play();
+                    positiveSound = sounds[i];
+                    return;
+                }
+            }
+        }
+        else
+        {
+            positiveSound.Play();
+        }
+    }
+    public void playNegativeSound()
+    {
+        if (negativeSound == null)
+        {
+            for (int i = 0; i < sounds.Length; i++)
+            {
+                if (sounds[i].name == "negative")
+                {
+                    sounds[i].Play();
+                    negativeSound = sounds[i];
+                    return;
+                }
+            }
+        }
+        else
+        {
+            negativeSound.Play();
+        }
+    }
+
 }
