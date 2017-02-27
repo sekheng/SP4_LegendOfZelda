@@ -40,6 +40,7 @@ public class LocalDataSingleton : MonoBehaviour {
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
+        Volume = 1;
     }
 
     void Update()
