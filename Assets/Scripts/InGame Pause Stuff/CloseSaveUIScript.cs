@@ -23,6 +23,8 @@ public class CloseSaveUIScript : PauseButtonScript {
         theInGamePauseUpdate.m_disableUpdate = false;
         // Set the parent to be inactive
         theSaveCanvas.SetActive(false);
+        // The quickest fix to the bug in InGamePauseMenu
+        LocalDataSingleton.instance.talking = true;
         return true;
     }
 }
