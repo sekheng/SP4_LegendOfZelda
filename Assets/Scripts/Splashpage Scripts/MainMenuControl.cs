@@ -1,130 +1,64 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuControl : MonoBehaviour {
+public class MainMenuControl : MonoBehaviour
+{
+    public GameObject[] stuff;
+    public GameObject PlayCanvas, OptionCanvas;
+    private int lookAt;
 
-    public Transform PlayButton, OptionsButton, ExitButton;
-    public Transform PlayMenu;
-    public ToggleActive optionsMenu;
-
-
-    public enum CURRENTBUTTON
-    {
-        PLAY,
-        OPTION,
-        EXIT,
-    };
-
-    public CURRENTBUTTON selected;
 #if UNITY_STANDALONE
-    private bool controllable = true;
-	// Use this for initialization
-	void Start () {
-        selected = CURRENTBUTTON.PLAY;
-        PlayButton.GetComponent<Button>().interactable = false;
-        OptionsButton.GetComponent<Button>().interactable = false;
-        ExitButton.GetComponent<Button>().interactable = false;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(controllable)
+    // Use this for initialization
+    void Start()
+    {
+        lookAt = 0;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(OptionCanvas == null)
         {
-            if (!LocalDataSingleton.instance.transform.GetChild(0).gameObject.activeSelf)
+            OptionCanvas = LocalDataSingleton.instance.transform.GetChild(0).gameObject;
+        }
+
+        if (!PlayCanvas.activeSelf && !OptionCanvas.activeSelf)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) && lookAt > 0)
             {
-                if (selected == CURRENTBUTTON.PLAY)
+                --lookAt;
+                GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && lookAt < (stuff.Length - 1))
+            {
+                ++lookAt;
+                GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Return))
+            {
+                switch (lookAt)
                 {
-                    PlayButton.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    PlayButton.GetComponent<Button>().interactable = true;
-
-                    OptionsButton.localScale = new Vector3(1, 1, 1);
-                    OptionsButton.GetComponent<Button>().interactable = false;
-
-                    ExitButton.localScale = new Vector3(1, 1, 1);
-                    ExitButton.GetComponent<Button>().interactable = false;
-
-                    if (!PlayMenu.gameObject.activeSelf)
+                    case 0:
                     {
-                        if (Input.GetKeyDown(KeyCode.UpArrow))
-                        {
-                            selected = CURRENTBUTTON.EXIT;
-                        }
-                        if (Input.GetKeyDown(KeyCode.DownArrow))
-                        {
-                            selected = CURRENTBUTTON.OPTION;
-                        }
+                        //play
+                        PlayCanvas.SetActive(!PlayCanvas.activeSelf);
+                        break;
                     }
-                    else
+                    case 1:
                     {
-                        if (Input.GetKeyDown(KeyCode.Escape))
-                        {
-                            PlayMenu.gameObject.SetActive(!PlayMenu.gameObject.activeSelf);
-                        }
+                        //some other things
+                        OptionCanvas.SetActive(!OptionCanvas.activeSelf);
+                        break;
                     }
-                    if (Input.GetKeyDown(KeyCode.Return))
+                    case 2:
                     {
-                        if (!PlayMenu.gameObject.activeSelf)
-                        {
-                            PlayMenu.gameObject.SetActive(!PlayMenu.gameObject.activeSelf);
-                        }
-                    }
-                }
-                else if (selected == CURRENTBUTTON.OPTION)
-                {
-                    OptionsButton.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    OptionsButton.GetComponent<Button>().interactable = true;
-
-                    PlayButton.localScale = new Vector3(1, 1, 1);
-                    PlayButton.GetComponent<Button>().interactable = false;
-
-                    ExitButton.localScale = new Vector3(1, 1, 1);
-                    ExitButton.GetComponent<Button>().interactable = false;
-
-                    if(!LocalDataSingleton.instance.transform.GetChild(0).gameObject.activeSelf)
-                    {
-                        if (Input.GetKeyDown(KeyCode.UpArrow))
-                        {
-                            selected = CURRENTBUTTON.PLAY;
-                        }
-                        if (Input.GetKeyDown(KeyCode.DownArrow))
-                        {
-                            selected = CURRENTBUTTON.EXIT;
-                        }
-                    }
-                    else
-                    {
-                        if (Input.GetKeyDown(KeyCode.Escape))
-                        {
-                            LocalDataSingleton.instance.transform.GetChild(0).gameObject.SetActive(false);
-                        }
-                    }
-                    if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        LocalDataSingleton.instance.transform.GetChild(0).gameObject.SetActive(!LocalDataSingleton.instance.transform.GetChild(0).gameObject.activeSelf);
-                    }
-                }
-                else if (selected == CURRENTBUTTON.EXIT)
-                {
-                    ExitButton.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                    ExitButton.GetComponent<Button>().interactable = true;
-
-                    OptionsButton.localScale = new Vector3(1, 1, 1);
-                    OptionsButton.GetComponent<Button>().interactable = false;
-
-                    PlayButton.localScale = new Vector3(1, 1, 1);
-                    PlayButton.GetComponent<Button>().interactable = false;
-
-                    if (Input.GetKeyDown(KeyCode.UpArrow))
-                    {
-                        selected = CURRENTBUTTON.OPTION;
-                    }
-                    if (Input.GetKeyDown(KeyCode.DownArrow))
-                    {
-                        selected = CURRENTBUTTON.PLAY;
-                    }
-                    else if (Input.GetKeyDown(KeyCode.Return))
-                    {
-                        LocalDataSingleton.instance.QuitApp();
+#if UNITY_EDITOR
+                        UnityEditor.EditorApplication.isPlaying = false;
+#else
+                        Application.Quit;
+#endif
+                        break;
                     }
                 }
             }
