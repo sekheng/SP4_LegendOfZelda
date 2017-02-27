@@ -21,8 +21,8 @@ public class AndroidLoadDataScript : MonoBehaviour {
 
     // This is because only Android phone will be accessing this stuff
 #if UNITY_ANDROID
-	// Use this for initialization
-	void Start () {
+	// because just in case the data in SQLite got changed
+	void OnEnable () {
         //Debug.Log("Beginning reading of android input position");
         if (m_joystick != null)
         {

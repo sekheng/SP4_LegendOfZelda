@@ -14,8 +14,8 @@ public class AndroidInputAdjustScript : MonoBehaviour {
     private bool hasFingerPressed = false;
     // We will need to know what is the canvas like!
     private CanvasScaler theScaleOfCanvas;
-
-
+    // We will need to know what is the finger's ID
+    private int theFingerTouchedID = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +34,7 @@ public class AndroidInputAdjustScript : MonoBehaviour {
         {
             case true:
                 //detectMousePosition();
+                detectFingerPosition();
                 break;
             default:
                 break;
@@ -45,7 +46,16 @@ public class AndroidInputAdjustScript : MonoBehaviour {
     {
         hasFingerPressed = true;
         // Here we shall identify which finger pressed is it!
-
+        Touch[] allZeTouch = Input.touches;
+        foreach (Touch zeTouch in allZeTouch)
+        {
+            if (zeTouch.position.x < (UI_position.position.x + Mathf.Abs(UI_position.sizeDelta.x * 0.5f)) && zeTouch.position.x > (UI_position.position.x - Mathf.Abs(UI_position.sizeDelta.x * 0.5f))
+                && zeTouch.position.y < (UI_position.position.y + Mathf.Abs(UI_position.sizeDelta.y * 0.5f)) && zeTouch.position.y > (UI_position.position.y - Mathf.Abs(UI_position.sizeDelta.y * 0.5f)))
+            {
+                theFingerTouchedID = zeTouch.fingerId;
+                break;
+            }
+        }
     }
 
     // When letting go of the finger, then save to the database!
@@ -71,6 +81,7 @@ public class AndroidInputAdjustScript : MonoBehaviour {
 
     void detectFingerPosition()
     {
-
+        Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
+        UI_position.anchoredPosition = new Vector2((theFingerTouched.position.x * theScaleOfCanvas.referenceResolution.x / Screen.width) - (theScaleOfCanvas.referenceResolution.x * UI_position.anchorMax.x), (theFingerTouched.position.y * theScaleOfCanvas.referenceResolution.y / Screen.height) - (theScaleOfCanvas.referenceResolution.y * UI_position.anchorMax.y));
     }
 }
