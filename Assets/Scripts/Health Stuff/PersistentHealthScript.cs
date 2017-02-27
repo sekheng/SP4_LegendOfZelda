@@ -23,7 +23,9 @@ public class PersistentHealthScript : MonoBehaviour {
     // Make sure the player's health won't change!
     private float max_health = 100;
     public float currHealth = 100;
-    private static string playerTableName = "PlayerStuff";
+    // The table where player can load their health from in SQLite
+    [HideInInspector]
+    public static string playerTableName = "PlayerStuff";
     private bool hasInitialized = false;
 
 	// Use this for initialization

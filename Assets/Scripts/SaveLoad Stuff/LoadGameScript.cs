@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// This will based on what the player decide becuz ain't no time
@@ -43,6 +44,28 @@ public class LoadGameScript : MonoBehaviour {
         // If it is not within the save file, dont save!
         if (m_loadNumber > 3 || m_loadNumber <= 0)
             return;
-
+        // We will go get the player's control and player's current health so that we can save the health and what items the player is carrying!
+        GameObject zePlayerController = GameObject.FindGameObjectWithTag("GameController");
+        GameObject zePlayer = GameObject.FindGameObjectWithTag("Player");
+        // Need to make sure the object exists otherwise it is meaningless!
+        if (zePlayer != null && zePlayerController != null)
+        {
+            // Here is where we save the player's health
+            List<string> zeCondtions = new List<string>();
+            zeCondtions.Add("PlayerID = " + m_loadNumber);
+            // Based on the m_loadNumber, we will save the data to there as player's ID!
+            HealthScript zePlayerHealth = zePlayer.GetComponent<HealthScript>();
+            MySQLiteHandler.instance.saveSpecificResult(PersistentHealthScript.playerTableName, "PlayerHealth", zePlayerHealth.m_health.ToString(), zeCondtions);
+            // Followed by the Player's inventory!
+            PlayerInventoryScript zePlayerStuff = zePlayerController.GetComponent<PlayerInventoryScript>();
+            // We shall then iterate through the itemlist and see if there is any item to be saved!
+            foreach (KeyValuePair<string,itemInformation> zeItemNameAndInform in zePlayerStuff.itemName_Count_Map)
+            {
+                zeCondtions.Clear();
+                zeCondtions.Add("PlayerID = " + m_loadNumber);
+                zeCondtions.Add("ItemName = " + zeItemNameAndInform.Key);
+                MySQLiteHandler.instance.saveSpecificResult(zePlayerStuff.PlayerInventoryTable, "ItemCount", zeItemNameAndInform.Value.item_count.ToString(), zeCondtions);
+            }
+        }
     }
 }

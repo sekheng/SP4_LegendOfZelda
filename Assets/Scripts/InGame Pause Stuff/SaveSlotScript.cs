@@ -15,7 +15,8 @@ public class SaveSlotScript : PauseButtonScript {
 
     public override bool executeButton()
     {
-        Debug.Log("Saving to the button: " + toSaveToSQLite.m_loadNumber);
+        //Debug.Log("Saving to the button: " + toSaveToSQLite.m_loadNumber);
+        toSaveToSQLite.saveData();
         return true;
     }
 }
