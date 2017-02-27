@@ -98,9 +98,9 @@ public class MainMenuControl : MonoBehaviour {
                             LocalDataSingleton.instance.transform.GetChild(0).gameObject.SetActive(false);
                         }
                     }
-                    if (Input.GetKeyDown(KeyCode.Return) && optionsMenu != null)
+                    if (Input.GetKeyDown(KeyCode.Return))
                     {
-                        optionsMenu.Toggle(LocalDataSingleton.instance.transform.GetChild(0).gameObject);
+                        LocalDataSingleton.instance.transform.GetChild(0).gameObject.SetActive(!LocalDataSingleton.instance.transform.GetChild(0).gameObject.activeSelf);
                     }
                 }
                 else if (selected == CURRENTBUTTON.EXIT)
