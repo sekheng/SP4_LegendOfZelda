@@ -31,6 +31,13 @@ public class Music
             source.Play();
         }
     }
+    public void Stop()
+    {
+        if (source.isPlaying)
+        {
+            source.Stop();
+        }
+    }
 }
 
 public class BgmManager : MonoBehaviour
@@ -62,16 +69,29 @@ public class BgmManager : MonoBehaviour
     }
     public void changeMusic(string _name)
     {
-        for (int i = 0; i < music.Length; i++)
+        if (_name != "stopMusic")
         {
-            if (music[i].name == _name && mainMusic != music[i] )
+            for (int i = 0; i < music.Length; i++)
             {
-                //music[i].Play();
-                mainMusic = music[i];
-                return;
+                if (music[i].name == _name && mainMusic != music[i])
+                {
+                    //music[i].Play();
+                    if (mainMusic != null && mainMusic != music[i])
+                    {
+                        mainMusic.Stop();
+                    }
+                    mainMusic = music[i];
+                    return;
+                }
             }
         }
-
+        else
+        {
+            if (mainMusic != null)
+            {
+                mainMusic.Stop();
+            }
+        }
         Debug.LogWarning("music" + _name + "not found");
     }
 }

@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
+//using UnityEngine.SceneManagement;
 
 public class Fading : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class Fading : MonoBehaviour
     private int drawDepth = -1000;		// the texture's order in the draw hierarchy: a low number means it renders on top
     private float alpha = 1.0f;			// the texture's alpha value between 0 and 1
     private int fadeDir = -1;			// the direction to fade: in = -1 or out = 1
+
+    private BgmManager bgm;
 
     void OnGUI()
     {
@@ -23,6 +27,14 @@ public class Fading : MonoBehaviour
         GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeOutTexture);		// draw the texture to fit the entire screen area
     }
 
+    private void Update()
+    {
+        if(bgm == null)
+        {
+            bgm = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<BgmManager>();
+        }
+    }
+
     // sets fadeDir to the direction parameter making the scene fade in if -1 and out if 1
     public float BeginFade(int direction)
     {
@@ -35,6 +47,62 @@ public class Fading : MonoBehaviour
     {
         // alpha = 1;		// use this if the alpha is not set to 1 by default
         BeginFade(-1);		// call the fade in function
+        /*SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
+            SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
+            SceneManager.GetActiveScene().buildIndex != 2 && //CUTSCENE_1
+            SceneManager.GetActiveScene().buildIndex != 4 && //CUTSCENE_2
+            SceneManager.GetActiveScene().buildIndex != 10 && //CUTSCENE_3
+            SceneManager.GetActiveScene().buildIndex != 11 && //winscreen
+            SceneManager.GetActiveScene().buildIndex != 12) //losescreen*/
+        if (SceneManager.GetActiveScene().buildIndex == 1)//mainmenu
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("Tender_Wind");
+            }
+        }
+        else if(SceneManager.GetActiveScene().buildIndex == 3)//forest
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("Into_The_Forest");
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 5)//sky
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("The_North_Sky");
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 6)//forest
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("Into_The_Forest");
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 7)//cave
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("Dark_cave");
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 11)//win
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("Tender_Wind");
+            }
+        }
+        else if (SceneManager.GetActiveScene().buildIndex == 12)//lose
+        {
+            if (bgm != null)
+            {
+                bgm.changeMusic("stopMusic");
+            }
+        }
         LocalDataSingleton.instance.talking = false;
         LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
     }
