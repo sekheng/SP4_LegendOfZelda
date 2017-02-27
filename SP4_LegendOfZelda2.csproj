@@ -116,12 +116,14 @@
     <Compile Include="Assets\Scripts\Heroes Stuff\HeroRangeScript.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\KeyBindScript.cs" />
     <Compile Include="Assets\Scripts\Heroes Stuff\MeleeScript.cs" />
+    <Compile Include="Assets\Scripts\InGame Pause Stuff\CloseSaveUIScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\InGamePauseScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\OptionScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\PauseButtonScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\ResumeScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\ReturnScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\SaveScript.cs" />
+    <Compile Include="Assets\Scripts\InGame Pause Stuff\SaveSlotScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\DragHandler.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\ItemGeneratorScript.cs" />
     <Compile Include="Assets\Scripts\Inventory and Item\ItemInteractionScript.cs" />
