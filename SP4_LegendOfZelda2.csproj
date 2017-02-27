@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\AI\Wolf\Wolf_Statemanager.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Compass.cs" />
+    <Compile Include="Assets\Scripts\ControlsControllerPC.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\DisplayHealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\DisplaySpecificHealthScript.cs" />
     <Compile Include="Assets\Scripts\Health Stuff\HealthScript.cs" />
@@ -147,9 +148,11 @@
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
     <Compile Include="Assets\Scripts\Range Stuff\ArrowScript.cs" />
+    <Compile Include="Assets\Scripts\SaveLoad Stuff\LoadGameScript.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ChangeScene.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ChangeScene2.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ChildActiveBasedOnOS.cs" />
+    <Compile Include="Assets\Scripts\SceneManagement\ChildActiveBasedOnOSInverse.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ControlToActivate.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\Fading.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\FindSingleton.cs" />
