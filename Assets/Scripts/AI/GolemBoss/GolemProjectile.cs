@@ -72,7 +72,10 @@ public class GolemProjectile : MonoBehaviour {
                         projectileParticles.GetComponent<ParticleScript>().playEffect();
                     }
                     temp.collider.gameObject.GetComponent<HealthScript>().modifyHealth(-damage);
-                    soundEffects.playSound("smashing");
+                    if (soundEffects != null)
+                    {
+                        soundEffects.playSound("smashing");
+                    }
                     return true;
                 }
                 else if(temp.collider.gameObject.tag != "GolemBoss" && temp.collider.gameObject.tag != "GolemBoss_Projectile" && temp.collider.gameObject.tag != "Arrows")
@@ -81,6 +84,10 @@ public class GolemProjectile : MonoBehaviour {
                     {
                         projectileParticles.transform.position = transform.position;
                         projectileParticles.GetComponent<ParticleScript>().playEffect();
+                    }
+                    if (soundEffects != null)
+                    {
+                        soundEffects.playSound("smashing");
                     }
                     //Debug.Log(temp.collider.gameObject.name);
                     return true;

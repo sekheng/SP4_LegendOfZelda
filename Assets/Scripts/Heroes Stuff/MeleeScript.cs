@@ -34,9 +34,10 @@ public class MeleeScript : MonoBehaviour {
     public float m_delayInitialAttack = 0.3f;
     //Count the timer for the initial attack
     private float m_delayCounter = 0;
+    private SoundEffectsManager soundEffects;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
         //BoxCollider2D[] AllTheCollider = GetComponents<BoxCollider2D>();
         //foreach (BoxCollider2D zeBox in AllTheCollider)
         //{
@@ -49,10 +50,16 @@ public class MeleeScript : MonoBehaviour {
         //}
         heroMeleeAnim = GetComponent<HeroAnimateScript>();
         heroMove = GetComponent<HeroesMovement>();
-	}
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         timeCounter += Time.deltaTime;
         //Debug.DrawRay(transform.position, directionOfRay * m_range, Color.black);
         //Debug.Log(gameObject.name + ": " + directionOfRay);
@@ -79,6 +86,10 @@ public class MeleeScript : MonoBehaviour {
                         if (!attacked.collider.gameObject.Equals(gameObject) && attacked.collider.GetComponent<HealthScript>() != null)
                         {
                             //Debug.Log("Successful attack");
+                            if (soundEffects != null)
+                            {
+                                soundEffects.playSound("MeleeHit");
+                            }
                             AttackSystemScript.instance.ManageMeleeAttack(this, attacked.collider.GetComponent<HealthScript>());
                         }
                     }

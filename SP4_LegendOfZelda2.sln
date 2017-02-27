@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP4_LegendOfZelda2", "SP4_LegendOfZelda2.csproj", "{57D1CCBF-70D3-FE8E-B957-01DE03EF609D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SP4_LegendOfZelda2.Editor", "SP4_LegendOfZelda2.Editor.csproj", "{071D767E-4A13-23C9-1347-10DED298D58D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{57D1CCBF-70D3-FE8E-B957-01DE03EF609D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57D1CCBF-70D3-FE8E-B957-01DE03EF609D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57D1CCBF-70D3-FE8E-B957-01DE03EF609D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57D1CCBF-70D3-FE8E-B957-01DE03EF609D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{071D767E-4A13-23C9-1347-10DED298D58D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{071D767E-4A13-23C9-1347-10DED298D58D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{071D767E-4A13-23C9-1347-10DED298D58D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{071D767E-4A13-23C9-1347-10DED298D58D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

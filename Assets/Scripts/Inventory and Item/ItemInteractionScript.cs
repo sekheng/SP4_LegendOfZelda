@@ -17,8 +17,11 @@ public class ItemInteractionScript : MonoBehaviour {
     [Tooltip("How much health do you want to heal the player")]
     public float m_heal = 20.0f;
 
+    private SoundEffectsManager soundEffects;
+
     void Start()
     {
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         // Since there will only be 1 inventory at any point of time
         if (playerInventory == null)
             playerInventory = FindObjectOfType<PlayerInventoryScript>();
@@ -30,6 +33,11 @@ public class ItemInteractionScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         // Items is for player ultimately. It will be trouble if monster can even pick up the stuff!
         if (other.tag.Equals("Player"))
         {
@@ -47,6 +55,10 @@ public class ItemInteractionScript : MonoBehaviour {
 
             itemInteractParticles.transform.position = transform.position;
             itemInteractParticles.playEffect();
+            if (soundEffects != null)
+            {
+                soundEffects.playSound("pickupItems");
+            }
             Destroy(gameObject);
         }
     }

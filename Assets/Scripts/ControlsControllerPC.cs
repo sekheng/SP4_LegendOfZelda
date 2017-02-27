@@ -21,14 +21,21 @@ public class ControlsControllerPC : MonoBehaviour {
         {
             children[i] = holderOfText.transform.GetChild(i).gameObject;
         }
-        GetComponent<RectTransform>().position = children[0].transform.position;
+        GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
         temp = KeyCode.None;
         startingX = helperText.GetComponent<RectTransform>().anchoredPosition.x;
-        extraInfo = helperText.transform.GetChild(0).GetComponent<Text>(); 
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //we'll just hardcode the fixed text, everytime.
+        children[0].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.upKey.ToString();
+        children[1].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.downKey.ToString();
+        children[2].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.leftKey.ToString();
+        children[3].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.rightKey.ToString();
+        children[4].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.attackKey.ToString();
+        children[5].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.rangeKey.ToString();
+
         //we handle the input from here.
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -41,49 +48,12 @@ public class ControlsControllerPC : MonoBehaviour {
             //SAVE HERE
 
             //only allow the thing to be closed if not editing a keybind
-            transform.parent.gameObject.SetActive(false);
+            transform.parent.parent.gameObject.SetActive(false);
         }
 
         if (helperText.activeSelf)
         {
             helperText.GetComponent<RectTransform>().anchoredPosition = new Vector2(startingX, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
-            string extra = "";
-            switch (pointingAt)
-            {
-                case 0:
-                    {
-                        extra = KeyBindScript.upKey.ToString();
-                        break;
-                    }
-                case 1:
-                    {
-                        extra = KeyBindScript.downKey.ToString();
-                        break;
-                    }
-                case 2:
-                    {
-                        extra = KeyBindScript.leftKey.ToString();
-                        break;
-                    }
-                case 3:
-                    {
-                        extra = KeyBindScript.rightKey.ToString();
-                        break;
-                    }
-                case 4:
-                    {
-                        extra = KeyBindScript.attackKey.ToString();
-                        break;
-                    }
-                case 5:
-                    {
-                        extra = KeyBindScript.rangeKey.ToString();
-                        break;
-                    }
-
-
-            }
-            extraInfo.text = "Key Bound to: " + extra;
             //handle the input here
             if(temp == KeyCode.None)
             {
@@ -143,12 +113,12 @@ public class ControlsControllerPC : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.UpArrow) && pointingAt > 0)
             {
                 --pointingAt;
-                GetComponent<RectTransform>().position = children[pointingAt].transform.position;
+                GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && pointingAt < (children.Length - 1))
             {
                 ++pointingAt;
-                GetComponent<RectTransform>().position = children[pointingAt].transform.position;
+                GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
             }
         }
 	}
