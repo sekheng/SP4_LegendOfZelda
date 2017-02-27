@@ -22,7 +22,7 @@ public class LocalDataSingleton : MonoBehaviour {
     [HideInInspector]
     public bool talking = false;
 
-    private float Volume { get; set; }
+    public float Volume { get; set; }
     private bool Transiting = false;
 
     //This is used to check if the player can open the ingame pause menu so that he/she wont abuse it!

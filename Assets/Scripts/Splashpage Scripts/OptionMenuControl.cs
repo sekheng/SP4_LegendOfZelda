@@ -4,8 +4,8 @@ using UnityEngine.UI;
 public class OptionMenuControl : MonoBehaviour {
 
     public GameObject[] stuff;
-    public GameObject WindowsCTRL;
-    private int lookAt;
+    public GameObject WindowsCTRL, SoundCTRL;
+    private int lookAt = 0;
 
 #if UNITY_STANDALONE
 	// Use this for initialization
@@ -14,7 +14,7 @@ public class OptionMenuControl : MonoBehaviour {
         {
             //
         }
-        lookAt = 0;
+        GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
 	}
 	
 	// Update is called once per frame
@@ -31,7 +31,6 @@ public class OptionMenuControl : MonoBehaviour {
                 ++lookAt;
                 GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
             }
-
             if(Input.GetKeyDown(KeyCode.Return))
             {
                 switch(lookAt)
@@ -44,6 +43,7 @@ public class OptionMenuControl : MonoBehaviour {
                     case 1:
                     {
                         //some other things
+                        SoundCTRL.SetActive(!SoundCTRL.activeSelf);
                         break;
                     }
                 }
