@@ -288,6 +288,7 @@ public class PlayerDrag : MonoBehaviour {
         //gameObject.SetActive(false);
         ImgFG.gameObject.SetActive(false);
         ImgBG.gameObject.SetActive(false);
+        enabled = false;
     }
 #endif
 }

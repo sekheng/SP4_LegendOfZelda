@@ -52,7 +52,8 @@ public class PlayMenuControl : MonoBehaviour {
                 }
                 if (Input.GetKeyDown(KeyCode.Return))
                 {
-                    LocalDataSingleton.instance.GoNext();
+                    //LocalDataSingleton.instance.GoNext();
+                    NewGame.BroadcastMessage("beginLoadingData");
                 }
             }
             else if (selected == CURRENTBUTTON.LOAD1)
@@ -80,6 +81,7 @@ public class PlayMenuControl : MonoBehaviour {
                 else if (Input.GetKeyDown(KeyCode.Return))
                 {
                     //ADD CODES FOR THE LOADING.
+                    Load1.BroadcastMessage("beginLoadingData");
                 }
             }
             else if (selected == CURRENTBUTTON.LOAD2)
@@ -107,6 +109,7 @@ public class PlayMenuControl : MonoBehaviour {
                 else if (Input.GetKeyDown(KeyCode.Return))
                 {
                     //ADD CODES FOR THE LOADING.
+                    Load2.BroadcastMessage("beginLoadingData");
                 }
             }
             else if (selected == CURRENTBUTTON.LOAD3)
@@ -134,6 +137,7 @@ public class PlayMenuControl : MonoBehaviour {
                 else if (Input.GetKeyDown(KeyCode.Return))
                 {
                     //ADD CODES FOR THE LOADING.
+                    Load3.BroadcastMessage("beginLoadingData");
                 }
             }
         }

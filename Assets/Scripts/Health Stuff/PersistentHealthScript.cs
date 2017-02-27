@@ -36,8 +36,18 @@ public class PersistentHealthScript : MonoBehaviour {
         //    currHealth = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
         //    hasInitialized = true;
         //}
-        // We shall default the health to be 100!
-        currHealth = max_health = 100;
+
+        switch (HeroDataScript.m_playerID)
+        {
+            case 0:
+                // We shall default the health to be 100 if it is a new game!
+                currHealth = max_health = 100;
+                break;
+            default:
+                // load data from SQLite
+                loadPlayerHealthFromSQLite();
+                break;
+        }
     }
 
     public float getMaxHealth()
