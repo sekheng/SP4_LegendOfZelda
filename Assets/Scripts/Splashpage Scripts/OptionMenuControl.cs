@@ -3,60 +3,49 @@ using UnityEngine.UI;
 
 public class OptionMenuControl : MonoBehaviour {
 
-    public Transform Sound, Controls;
+    public GameObject[] stuff;
+    public GameObject WindowsCTRL;
+    private int lookAt;
 
-    public enum CURRENTBUTTON
-    {
-        SOUND,
-        CONTROL,
-    };
-
-    public CURRENTBUTTON selected;
 #if UNITY_STANDALONE
 	// Use this for initialization
 	void Start () {
-        selected = CURRENTBUTTON.SOUND;
-        Sound.GetComponent<Button>().interactable = false;
-        Controls.GetComponent<Button>().interactable = false;
+        foreach (GameObject t in stuff)
+        {
+            //
+        }
+        lookAt = 0;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if(!LocalDataSingleton.instance.MainCanvas.transform.GetChild(7).gameObject.activeSelf &&
-            !LocalDataSingleton.instance.MainCanvas.transform.GetChild(8).gameObject.activeSelf)
+        if (!WindowsCTRL.activeSelf)
         {
-            if (selected == CURRENTBUTTON.SOUND)
+            if (Input.GetKeyDown(KeyCode.UpArrow) && lookAt > 0)
             {
-                Sound.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                Sound.GetComponent<Button>().interactable = true;
-
-                Controls.localScale = new Vector3(1, 1, 1);
-                Controls.GetComponent<Button>().interactable = false;
-
-                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-                {
-                    selected = CURRENTBUTTON.CONTROL;
-                }
-                if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    LocalDataSingleton.instance.MainCanvas.transform.GetChild(7).gameObject.SetActive(true);
-                }
+                --lookAt;
+                GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
             }
-            else if (selected == CURRENTBUTTON.CONTROL)
+            else if (Input.GetKeyDown(KeyCode.DownArrow) && lookAt < (stuff.Length - 1))
             {
-                Sound.localScale = new Vector3(1, 1, 1);
-                Sound.GetComponent<Button>().interactable = false;
+                ++lookAt;
+                GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
+            }
 
-                Controls.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-                Controls.GetComponent<Button>().interactable = true;
-
-                if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow))
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                switch(lookAt)
                 {
-                    selected = CURRENTBUTTON.SOUND;
-                }
-                else if (Input.GetKeyDown(KeyCode.Return))
-                {
-                    LocalDataSingleton.instance.MainCanvas.transform.GetChild(8).gameObject.SetActive(true);
+                    case 0:
+                    {
+                        WindowsCTRL.SetActive(!WindowsCTRL.activeSelf);
+                        break;
+                    }
+                    case 1:
+                    {
+                        //some other things
+                        break;
+                    }
                 }
             }
         }
