@@ -56,12 +56,16 @@ public class LoadGameScript : MonoBehaviour {
             // Based on the m_loadNumber, we will save the data to there as player's ID!
             HealthScript zePlayerHealth = zePlayer.GetComponent<HealthScript>();
             MySQLiteHandler.instance.saveSpecificResult(PersistentHealthScript.playerTableName, "PlayerHealth", zePlayerHealth.m_health.ToString(), zeCondtions);
+            MySQLiteHandler.instance.saveSpecificResult(PersistentHealthScript.playerTableName, "PlayerMaxHealth", zePlayerHealth.max_health.ToString(), zeCondtions);
             // Followed by the Player's inventory!
             PlayerInventoryScript zePlayerStuff = zePlayerController.GetComponent<PlayerInventoryScript>();
             // We shall then iterate through the itemlist and see if there is any item to be saved!
             foreach (KeyValuePair<string,itemInformation> zeItemNameAndInform in zePlayerStuff.itemName_Count_Map)
             {
                 zeCondtions.Clear();
+                Debug.Log("PlayerID = " + m_loadNumber);
+                Debug.Log("ItemName = " + zeItemNameAndInform.Key);
+                Debug.Log("ItemCount = " + zeItemNameAndInform.Value.item_count);
                 zeCondtions.Add("PlayerID = " + m_loadNumber);
                 zeCondtions.Add("ItemName = " + zeItemNameAndInform.Key);
                 MySQLiteHandler.instance.saveSpecificResult(zePlayerStuff.PlayerInventoryTable, "ItemCount", zeItemNameAndInform.Value.item_count.ToString(), zeCondtions);

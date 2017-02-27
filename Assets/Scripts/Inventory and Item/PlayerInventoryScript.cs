@@ -13,7 +13,7 @@ public class PlayerInventoryScript : MonoBehaviour {
     public int max_InventorySpace = 10;
     
     [Tooltip("Set the name of the player's inventory table from the database")]
-    public  string PlayerInventoryTable = "PlayerInventoryTable";
+    public string PlayerInventoryTable = "PlayerInventoryTable";
 
     // To know what item does the player has on hand
     public Dictionary<string, itemInformation> itemName_Count_Map = new Dictionary<string, itemInformation>();
@@ -25,12 +25,12 @@ public class PlayerInventoryScript : MonoBehaviour {
     {
         // Need to clear the data inside inventory!
         itemName_Count_Map.Clear();
-        switch (HeroDataScript.m_playerID)
-        {
-            case 0:
-                // Since it is a new game, don't load anything!
-                break;
-            default:
+        //switch (HeroDataScript.m_playerID)
+        //{
+        //    case 0:
+        //        // Since it is a new game, don't load anything!
+        //        break;
+        //    default:
                 // We shall load it from the SQLite since it is from the load save!
                 //Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
                 checkForRelics = GetComponent<QuestItemScrpt>();
@@ -52,7 +52,7 @@ public class PlayerInventoryScript : MonoBehaviour {
                     // Item Count is int 3rd row, we shall check if that is more than 0. If so, add it to the inventory!
                     int zeItemCount;
                     int.TryParse(allZeItemStr[2], out zeItemCount);
-                    if (zeItemCount > 0)
+                    if (zeItemCount >= 0)
                     {
                         // Since the string will be in the 2nd row, we will take that!
                         itemInformation zeNewItem = new itemInformation(ItemGeneratorScript.instance.getItemInform(allZeItemStr[1]));
@@ -64,8 +64,8 @@ public class PlayerInventoryScript : MonoBehaviour {
                         passInInventory(zeNewItem);
                     }
                 }
-                break;
-        }
+        //        break;
+        //}
         //Debug.Log("Total Inventory space: " + itemName_Count_Map.Count);
     }
 
@@ -109,5 +109,4 @@ public class PlayerInventoryScript : MonoBehaviour {
         itemName_Count_Map.TryGetValue(zeItemName, out zeItemInform);
         return zeItemInform;
     }
-
 }
