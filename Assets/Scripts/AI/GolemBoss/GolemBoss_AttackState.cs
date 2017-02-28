@@ -90,8 +90,8 @@ public class GolemBoss_AttackState : State {
             {
                 if (health.m_health / health.max_health > 0.20f)
                 {
-                    golemProjectile.speed = 1000;
-                    golemProjectile.damage = monsterInfo.dps;
+                    golemProjectile.speed = 500;
+                    golemProjectile.damage = monsterInfo.dps / 2;
                 }
                 else
                 {
@@ -107,8 +107,10 @@ public class GolemBoss_AttackState : State {
                 {
                     if (health.m_health / health.max_health > 0.20f)
                     {
-                        golemProjectiles[i].speed = 1000;
-                        golemProjectiles[i].damage = monsterInfo.dps;
+                        golemProjectiles[i].speed = 500;
+                        golemProjectiles[i].damage = monsterInfo.dps / 2;
+                        //golemProjectiles[i].speed = 1000;
+                        //golemProjectiles[i].damage = monsterInfo.dps;
                     }
                     else
                     {
