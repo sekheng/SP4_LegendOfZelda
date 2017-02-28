@@ -70,11 +70,9 @@ public class PlayerDrag : MonoBehaviour {
                 case TouchPhase.Canceled:
                     ReturnOrigin();
                     return;
-                    break;
                 case TouchPhase.Ended:
                     ReturnOrigin();
                     return;
-                    break;
                 default:
                     break;
             }
@@ -274,6 +272,8 @@ public class PlayerDrag : MonoBehaviour {
     }
     public void FingerPressed()
     {
+        if (theOnlyHero == null)
+            return;
         Touch[] allZeTouch = Input.touches;
         foreach (Touch zeTouch in allZeTouch)
         {
