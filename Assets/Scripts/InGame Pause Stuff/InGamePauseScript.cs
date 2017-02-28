@@ -98,7 +98,7 @@ public class InGamePauseScript : MonoBehaviour {
 
             }
         }
-        if (Input.GetKeyDown(KeyBindScript.attackKey))
+        if (Input.GetKeyDown(KeyBindScript.attackKey) || Input.GetKeyDown(KeyCode.Return))
         {
             PauseButtonScript zePauseButton;
             // if can find the pause button, then execute that button
