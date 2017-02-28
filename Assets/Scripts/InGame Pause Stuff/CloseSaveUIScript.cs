@@ -18,7 +18,7 @@ public class CloseSaveUIScript : PauseButtonScript {
 
     public override bool executeButton()
     {
-        Debug.Log("Close save UI");
+        //Debug.Log("Close save UI");
         // Resume the update for In Game Pause menu!
         theInGamePauseUpdate.m_disableUpdate = false;
         // Set the parent to be inactive

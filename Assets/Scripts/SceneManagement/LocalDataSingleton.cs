@@ -215,6 +215,7 @@ public class LocalDataSingleton : MonoBehaviour {
                     // If the player happens to be openning in game pause menu, turn it off!
                     InGamePauseCanvas.SetActive(false);
                     isOpeningInPause = false;
+                    talking = false;
                     break;
                 default:
                     // If the player is not talking, then player can access the in game pause menu

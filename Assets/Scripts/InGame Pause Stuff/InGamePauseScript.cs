@@ -109,6 +109,7 @@ public class InGamePauseScript : MonoBehaviour {
     {
         // We will need to disable the talking and movement!
         LocalDataSingleton.instance.talking = false;
+        m_disableUpdate = false;
     }
 
     /// <summary>
