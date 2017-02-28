@@ -22,6 +22,19 @@ public class HeroesMovement : MonoBehaviour {
         heroPhysics = GetComponent<Rigidbody2D>();
         heroAnimator = GetComponent<HeroAnimateScript>();
 	}
+
+    void Update()
+    {
+        // Unfortunately, Player's movement can't be stopped when it is talking. We will stop it here!
+        switch (LocalDataSingleton.instance.talking)
+        {
+            case true:
+                stopMovement();
+                break;
+            default:
+                break;
+        }
+    }
 	
     // We will use this to move the player
     public void moveDirection(Vector2 zeDir)
