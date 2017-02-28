@@ -6,6 +6,8 @@ public class Wolf_DeadState : State {
     public float timeToSetInactive;
     private float accumTimeToSetInactive;
 
+    public GameObject[] relicArray; // please drag in the prefabs.
+
     void Start()
     {
         accumTimeToSetInactive = 0.0f;
@@ -23,6 +25,11 @@ public class Wolf_DeadState : State {
         {
             if (monsterTransform.parent != null)
             {
+                if(relicArray.Length > 0 && (Random.Range(0, 10) == 0)) //we insert a 10% chance for a relic to spawn.
+                {
+                    int randomIndex = Random.Range(0, relicArray.Length);
+                    Instantiate(relicArray[randomIndex], monsterTransform.position, Quaternion.identity);
+                }
                 Destroy(monsterTransform.parent.gameObject);
             }
             else
