@@ -210,6 +210,7 @@ public class VIDE_Data : MonoBehaviour
                 if (currentNPCStep.outputNPC == null && currentNPCStep.outputSet == null && currentNPCStep.outAction == null && nodeData.npcCommentIndex == nodeData.npcComment.Length - 1)
                 {
                     nodeData.isEnd = true;
+                    isLoaded = false;
                     LocalDataSingleton.instance.talking = false;
                     LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
                     LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
@@ -218,6 +219,7 @@ public class VIDE_Data : MonoBehaviour
                 else if (currentNPCStep.outputNPC == null && currentNPCStep.outputSet == null && currentNPCStep.outAction == null && nodeData.npcComment.Length < 1)
                 {
                     nodeData.isEnd = true;
+                    isLoaded = false;
                     LocalDataSingleton.instance.talking = false;
                     LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
                     LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
@@ -234,6 +236,7 @@ public class VIDE_Data : MonoBehaviour
             if (currentPlayerStep.comment[option].outputAnswer == null && currentPlayerStep.comment[option].outAction == null)
             {
                 nodeData.isEnd = true;
+                isLoaded = false;
                 LocalDataSingleton.instance.talking = false;
                 LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
                 LocalDataSingleton.instance.Inventorycanvas.SetActive(false);
@@ -246,6 +249,7 @@ public class VIDE_Data : MonoBehaviour
             if (lastActionNode.outPlayer == null && lastActionNode.outNPC == null && lastActionNode.outAction == null)
             {
 				nodeData.isEnd = true;
+                isLoaded = false;
                 LocalDataSingleton.instance.talking = false;
                 LocalDataSingleton.instance.MainCanvas.transform.GetChild(1).GetChild(0).gameObject.SetActive(false);
                 LocalDataSingleton.instance.Inventorycanvas.SetActive(false);

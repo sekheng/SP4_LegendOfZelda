@@ -54,10 +54,6 @@ public class LocalDataSingleton : MonoBehaviour {
 
         }
         AudioListener.volume = Volume;
-        //if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
-        //{
-        //    transform.GetChild(3).gameObject.SetActive(!transform.GetChild(3).gameObject.activeSelf);
-        //}
 
         if (MainMenuCanvas == null && SceneManager.GetActiveScene().buildIndex == 1)
         {
@@ -65,6 +61,7 @@ public class LocalDataSingleton : MonoBehaviour {
         }
         else if (SceneManager.GetActiveScene().buildIndex == 1)
         {
+            // for the exit button
 #if UNITY_STANDALONE
             MainMenuCanvas.transform.GetChild(2).gameObject.SetActive(true);
 #else
@@ -79,32 +76,8 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             turnOnInGamePauseMenu();
         }
-#endif
-#if UNITY_ANDROID
-        //if(SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1)
-        if (SceneManager.GetActiveScene().buildIndex > 1)
-        {
-            //MainCanvas.transform.GetChild(2).gameObject.SetActive(true);
-            //MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
-            MainCanvas.SetActive(true);
-        }
-        else
-        {
-            MainCanvas.SetActive(false);
-            //MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
-            //MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
-        }
 #else
-        //// Since hardcoding is ze best way
-        //// Since dialogue UI has ExampleUI, we will use that instead!
-        //if (SceneManager.GetActiveScene().buildIndex <= 1)
-        //{
-        //    MainCanvas.GetComponentInChildren<exampleUI>().gameObject.SetActive(false);
-        //}
-        //else
-        //{
-        //    MainCanvas.GetComponentInChildren<exampleUI>().gameObject.SetActive(true);
-        //}
+        MainCanvas.SetActive(SceneManager.GetActiveScene().buildIndex > 1 ? true : false);
 #endif
         //if you reach the required number of questitems
         QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();
@@ -159,10 +132,6 @@ public class LocalDataSingleton : MonoBehaviour {
     {
         if (!Transiting)
         {
-            if (MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned != null)
-            {
-                MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned = null;
-            }
             StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
         }
     }
@@ -200,11 +169,6 @@ public class LocalDataSingleton : MonoBehaviour {
         yield return new WaitForSeconds(fadeTime);
         if (talking)
             talking = false;
-        if (MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned != null)
-        {
-            MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().isLoaded = false;
-            MainCanvas.transform.GetChild(1).GetComponent<VIDE_Data>().assigned = null;
-        }
         Inventorycanvas.SetActive(false);
         SceneManager.LoadScene(index);
         Transiting = false;
