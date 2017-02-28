@@ -28,6 +28,8 @@ public class LocalDataSingleton : MonoBehaviour {
     //This is used to check if the player can open the ingame pause menu so that he/she wont abuse it!
     private bool isOpeningInPause = false;
 
+    private SoundEffectsManager soundEffects;
+
     // Earlier than start
     void Awake()
     {
@@ -40,11 +42,17 @@ public class LocalDataSingleton : MonoBehaviour {
             Destroy(this.gameObject);
         }
         DontDestroyOnLoad(transform.gameObject);
+        soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         Volume = MySQLiteHandler.instance.getFloat("GlobalSettingTable", "MusicGlobalVolume");
     }
 
     void Update()
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         AudioListener.volume = Volume;
         //if ((SceneManager.GetActiveScene().buildIndex != 0 || SceneManager.GetActiveScene().buildIndex != 1) && !transform.GetChild(3).gameObject.activeSelf)
         //{
@@ -213,6 +221,11 @@ public class LocalDataSingleton : MonoBehaviour {
             {
                 case true:
                     // If the player happens to be openning in game pause menu, turn it off!
+                    if (soundEffects != null)
+                    {
+                        soundEffects.playNegativeSound();
+
+                    }
                     InGamePauseCanvas.SetActive(false);
                     isOpeningInPause = false;
                     talking = false;
@@ -221,6 +234,11 @@ public class LocalDataSingleton : MonoBehaviour {
                     // If the player is not talking, then player can access the in game pause menu
                     if (!talking)
                     {
+                        if (soundEffects != null)
+                        {
+                            soundEffects.playPositiveSound();
+
+                        }
                         InGamePauseCanvas.SetActive(true);
                         isOpeningInPause = true;
                     }
