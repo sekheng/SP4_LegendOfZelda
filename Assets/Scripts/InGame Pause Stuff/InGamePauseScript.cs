@@ -19,13 +19,20 @@ public class InGamePauseScript : MonoBehaviour {
     [HideInInspector]
     public bool m_disableUpdate = false;
 
+    private SoundEffectsManager soundEffects;
+
 #if UNITY_ANDROID
     // To keep track of player's joystick
     private PlayerDrag thePlayerJoystick;
 #endif
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
 #if UNITY_ANDROID
         // Since there will only be 1 joystick!
         thePlayerJoystick = FindObjectOfType<PlayerDrag>();
@@ -46,25 +53,50 @@ public class InGamePauseScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         if (m_disableUpdate)
             return;
 #if UNITY_ANDROID
         if (thePlayerJoystick.movingInYDirection == 1)
         {
+        if (soundEffects != null)
+            {
+                soundEffects.playPositiveSound();
+
+            }
             UpdateUI((short)(whichButtonIsAt - 1));
         }
         else if (thePlayerJoystick.movingInYDirection == -1)
         {
+        if (soundEffects != null)
+            {
+                soundEffects.playPositiveSound();
+
+            }
             UpdateUI((short)(whichButtonIsAt + 1));
         }
 #else
         if (Input.GetKeyDown(KeyBindScript.upKey))
         {
             UpdateUI((short)(whichButtonIsAt - 1));
+            if (soundEffects != null)
+            {
+                soundEffects.playPositiveSound();
+
+            }
         }
         if (Input.GetKeyDown(KeyBindScript.downKey))
         {
             UpdateUI((short)(whichButtonIsAt + 1));
+            if (soundEffects != null)
+            {
+                soundEffects.playPositiveSound();
+
+            }
         }
         if (Input.GetKeyDown(KeyBindScript.attackKey))
         {
@@ -73,6 +105,11 @@ public class InGamePauseScript : MonoBehaviour {
             if (allThePauseButtons.TryGetValue(whichButtonIsAt, out zePauseButton))
             {
                 zePauseButton.executeButton();
+                if (soundEffects != null)
+                {
+                    soundEffects.playPositiveSound();
+
+                }
             }
         }
 #endif

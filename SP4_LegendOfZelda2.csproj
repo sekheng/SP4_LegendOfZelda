@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\AudioManager.cs" />
     <Compile Include="Assets\BgmManager.cs" />
+    <Compile Include="Assets\MovingRock.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_DeadState.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Assets\Scripts\SceneManagement\FindSingleton.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\LocalDataSingleton.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\ToggleActive.cs" />
+    <Compile Include="Assets\Scripts\SceneManagement\WhichOptionToUse.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\enableOBJ.cs" />
     <Compile Include="Assets\Scripts\SceneManagement\enableOBJBasedOnPlatform.cs" />
     <Compile Include="Assets\Scripts\Singleton Stuff\AttackSystemScript.cs" />
