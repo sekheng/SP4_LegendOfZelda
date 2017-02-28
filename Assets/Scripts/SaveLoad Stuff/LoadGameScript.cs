@@ -31,7 +31,10 @@ public class LoadGameScript : MonoBehaviour {
                 break;
             default:
                 // For now, the data should be proceeding to the next scene
-                    LocalDataSingleton.instance.GoNext();
+                    //LocalDataSingleton.instance.GoNext();
+                string []zeConditions = {"PlayerID = " + m_loadNumber};
+                LocalDataSingleton.instance.previousSceneFrom = MySQLiteHandler.instance.getInteger("PlayerStuff", "SceneIndex", zeConditions);
+                LocalDataSingleton.instance.ReturntoPrevious();
             break;
         }
     }
