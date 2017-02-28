@@ -149,7 +149,6 @@
      <Compile Include="Assets\Scripts\Splashpage Scripts\NextSceneIn2s.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\OptionMenuControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\PlayMenuControl.cs" />
-     <Compile Include="Assets\Scripts\Splashpage Scripts\PressEnterToClsoe.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
      <Compile Include="Assets\Scripts\Splashpage Scripts\translateText.cs" />
      <Compile Include="Assets\Scripts\layerChanger.cs" />
