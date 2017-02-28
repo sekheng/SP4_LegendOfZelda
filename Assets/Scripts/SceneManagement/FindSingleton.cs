@@ -7,9 +7,14 @@ public class FindSingleton : MonoBehaviour {
         LocalDataSingleton.instance.ReturntoPrevious();
     }
 
-    public void OpenPlayMenu()
+    public void PlayPosSound()
     {
+        LocalDataSingleton.instance.GetComponentInChildren<SoundEffectsManager>().playPositiveSound();
+    }
 
+    public void PlayNegSound()
+    {
+        LocalDataSingleton.instance.GetComponentInChildren<SoundEffectsManager>().playNegativeSound();
     }
 
     public void GoScene()
