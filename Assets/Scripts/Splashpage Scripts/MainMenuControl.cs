@@ -6,18 +6,29 @@ public class MainMenuControl : MonoBehaviour
     public GameObject[] stuff;
     public GameObject PlayCanvas, OptionCanvas;
     private int lookAt;
+    private SoundEffectsManager soundEffects;
 
 #if UNITY_STANDALONE
     // Use this for initialization
     void Start()
     {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         lookAt = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(OptionCanvas == null)
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
+        if (OptionCanvas == null)
         {
             OptionCanvas = LocalDataSingleton.instance.transform.GetChild(0).gameObject;
         }
@@ -26,17 +37,32 @@ public class MainMenuControl : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && lookAt > 0)
             {
+                if (soundEffects != null)
+                {
+                    soundEffects.playPositiveSound();
+
+                }
                 --lookAt;
                 GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && lookAt < (stuff.Length - 1))
             {
+                if (soundEffects != null)
+                {
+                    soundEffects.playPositiveSound();
+
+                }
                 ++lookAt;
                 GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
             }
 
             if (Input.GetKeyDown(KeyCode.Return))
             {
+                if (soundEffects != null)
+                {
+                    soundEffects.playPositiveSound();
+
+                }
                 switch (lookAt)
                 {
                     case 0:
