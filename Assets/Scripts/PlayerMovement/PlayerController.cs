@@ -161,6 +161,11 @@ public class PlayerController : MonoBehaviour {
         {
             theOnlyHero = GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>();
         }
+        if (diagUI == null)
+        {
+            diagUI = GameObject.Find("LocalDataSingleton").transform.GetComponentInChildren<exampleUI>();
+
+        }
         Vector2 choosenOne = GeneralDir == Vector2.zero ? GameObject.FindGameObjectWithTag("Player").GetComponent<HeroesMovement>().directionOfHero : GeneralDir;
 
         RaycastHit2D rHit = Physics2D.Raycast((Vector2)theOnlyHero.transform.position + choosenOne, choosenOne, 1.0f);
