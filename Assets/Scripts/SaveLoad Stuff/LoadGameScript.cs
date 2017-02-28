@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This will based on what the player decide becuz ain't no time
@@ -9,6 +10,9 @@ using System.Collections.Generic;
 public class LoadGameScript : MonoBehaviour {
     [Tooltip("What save data do you want to load")]
     public int m_loadNumber = 0;
+
+    // We need to know what scene index field to be saved
+    private static string m_SceneIndexField = "SceneIndex";
 
     /// <summary>
     /// Can be used to load the data!
@@ -33,7 +37,7 @@ public class LoadGameScript : MonoBehaviour {
                 // For now, the data should be proceeding to the next scene
                     //LocalDataSingleton.instance.GoNext();
                 string []zeConditions = {"PlayerID = " + m_loadNumber};
-                LocalDataSingleton.instance.previousSceneFrom = MySQLiteHandler.instance.getInteger("PlayerStuff", "SceneIndex", zeConditions);
+                LocalDataSingleton.instance.previousSceneFrom = MySQLiteHandler.instance.getInteger(PersistentHealthScript.playerTableName, m_SceneIndexField, zeConditions);
                 LocalDataSingleton.instance.ReturntoPrevious();
             break;
         }
@@ -73,6 +77,9 @@ public class LoadGameScript : MonoBehaviour {
                 zeCondtions.Add("ItemName = " + MySQLiteHandler.instance.helpToConvertToSQLString(zeItemNameAndInform.Key));
                 MySQLiteHandler.instance.saveSpecificResult(zePlayerStuff.PlayerInventoryTable, "ItemCount", zeItemNameAndInform.Value.item_count.ToString(), zeCondtions);
             }
+            // Finally, we will save the scene index to the SQLite
+            zeCondtions.Add("PlayerID = " + m_loadNumber);
+            MySQLiteHandler.instance.saveSpecificResult(PersistentHealthScript.playerTableName, m_SceneIndexField, SceneManager.GetActiveScene().buildIndex.ToString(), zeCondtions);
         }
     }
 }
