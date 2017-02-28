@@ -90,6 +90,7 @@ public class ControlsControllerPC : MonoBehaviour {
         if (helperText.activeSelf)
         {
             helperText.GetComponent<RectTransform>().anchoredPosition = new Vector2(startingX, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
+            children[pointingAt].transform.GetChild(0).GetComponent<Text>().text = "";
             //handle the input here
             if(temp == KeyCode.None)
             {
