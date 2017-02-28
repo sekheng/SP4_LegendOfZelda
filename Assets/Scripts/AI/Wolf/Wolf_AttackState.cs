@@ -40,7 +40,7 @@ public class Wolf_AttackState : State
             //    manager.changeState("roam");
             //    return;
             //}
-            if (astar.getPath().Count > 0)
+            if (astar.getPath().Count > 2)
             {
                 if (!astar.getGrid().NodeFromWorldPoint(target.transform.position).m_bWalkable)//chek if path is walkable
                 {
