@@ -18,6 +18,7 @@ public class MainMenuControl : MonoBehaviour
 
         }
         lookAt = 0;
+        GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
     }
 
     // Update is called once per frame
