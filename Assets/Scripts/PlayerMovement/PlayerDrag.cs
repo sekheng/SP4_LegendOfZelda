@@ -64,6 +64,21 @@ public class PlayerDrag : MonoBehaviour {
 	    if (fingerHasPressedIt)
         {
             Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
+
+            switch (theFingerTouched.phase)
+            {
+                case TouchPhase.Canceled:
+                    ReturnOrigin();
+                    return;
+                    break;
+                case TouchPhase.Ended:
+                    ReturnOrigin();
+                    return;
+                    break;
+                default:
+                    break;
+            }
+
             Vector3 ze3DTouch = new Vector3(theFingerTouched.position.x, theFingerTouched.position.y, ImgBG.rectTransform.position.z);
             directionOfStick = ze3DTouch - ImgBG.rectTransform.position;
             if (directionOfStick.magnitude > Mathf.Abs(ImgBG.rectTransform.sizeDelta.y * 0.5f))
