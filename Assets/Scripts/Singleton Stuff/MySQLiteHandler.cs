@@ -29,6 +29,7 @@ public class MySQLiteHandler : MonoBehaviour {
             if (cantTouchThiz == null)
             {
                 cantTouchThiz = FindObjectOfType<MySQLiteHandler>();
+                cantTouchThiz.Awake();
             }
             return cantTouchThiz;
         }
@@ -130,6 +131,7 @@ public class MySQLiteHandler : MonoBehaviour {
     /// <returns></returns>
     public float getFloat(string zeTableName, string zeCol, string[] zeCondition = null)
     {
+        //Debug.Log(zeTableName + "," + zeCol);
         float zeVal = 0;
         dbconn.Open();
         dbcmd = dbconn.CreateCommand();

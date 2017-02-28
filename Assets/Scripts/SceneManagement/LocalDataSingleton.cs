@@ -43,6 +43,10 @@ public class LocalDataSingleton : MonoBehaviour {
         }
         DontDestroyOnLoad(transform.gameObject);
         soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+    }
+
+    void Start()
+    {
         Volume = MySQLiteHandler.instance.getFloat("GlobalSettingTable", "MusicGlobalVolume");
     }
 
