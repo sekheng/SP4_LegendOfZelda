@@ -14,8 +14,15 @@ public class ControlsControllerPC : MonoBehaviour {
     private float startingX;
     private Text extraInfo;
 
+    private SoundEffectsManager soundEffects;
+
 	// Use this for initialization
 	void Start () {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         children = new GameObject[holderOfText.transform.childCount];
 	    for (int i = 0; i < holderOfText.transform.childCount; i++)
         {
@@ -28,6 +35,11 @@ public class ControlsControllerPC : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (soundEffects == null)
+        {
+            soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+
+        }
         //we'll just hardcode the fixed text, everytime.
         children[0].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.upKey.ToString();
         children[1].transform.GetChild(0).GetComponent<Text>().text = KeyBindScript.downKey.ToString();
@@ -42,6 +54,11 @@ public class ControlsControllerPC : MonoBehaviour {
         {
             //we need to create a interface to activate some helper text
             helperText.SetActive(!helperText.activeSelf); // invert the activetext state;
+            if (soundEffects != null)
+            {
+                soundEffects.playPositiveSound();
+
+            }
             //allow for modification if the helpertext is active
         }
         else if (Input.GetKeyDown(KeyCode.Escape) && !helperText.activeSelf)
@@ -61,6 +78,11 @@ public class ControlsControllerPC : MonoBehaviour {
             MySQLiteHandler.instance.saveSpecificResult(KeyBindScript.theSQLiteTable, KeyBindScript.attackKeyField, zeAttackKeyValue.ToString());
             MySQLiteHandler.instance.saveSpecificResult(KeyBindScript.theSQLiteTable, KeyBindScript.rangeKeyField, zeRangeKeyValue.ToString());
             MySQLiteHandler.instance.saveSpecificResult(KeyBindScript.theSQLiteTable, KeyBindScript.inventoryKeyField, zeInventoryKeyValue.ToString());
+            if (soundEffects != null)
+            {
+                soundEffects.playNegativeSound();
+
+            }
             //only allow the thing to be closed if not editing a keybind
             transform.parent.gameObject.SetActive(false);
         }
@@ -133,11 +155,21 @@ public class ControlsControllerPC : MonoBehaviour {
         {
             if (Input.GetKeyDown(KeyCode.UpArrow) && pointingAt > 0)
             {
+                if (soundEffects != null)
+                {
+                    soundEffects.playPositiveSound();
+
+                }
                 --pointingAt;
                 GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
             }
             else if (Input.GetKeyDown(KeyCode.DownArrow) && pointingAt < (children.Length - 1))
             {
+                if (soundEffects != null)
+                {
+                    soundEffects.playPositiveSound();
+
+                }
                 ++pointingAt;
                 GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
             }
