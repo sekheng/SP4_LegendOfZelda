@@ -93,8 +93,10 @@ public class Tutorial : MonoBehaviour {
             {
                 GetComponent<Text>().text = "";
                 //current = TUTORIAL_STAGE.talk_toNPC;
+#if UNITY_ANDROID
                 MessageSystem.instance.removeListener("MeleeAttack", PlayerPressedMelee);
                 MessageSystem.instance.removeListener("RangeAttack", PlayerPressedRange);
+#endif
                 // we are done with the tutorial lol
                 Destroy(transform.parent.gameObject);
             }
