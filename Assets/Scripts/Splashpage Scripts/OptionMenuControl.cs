@@ -17,10 +17,6 @@ public class OptionMenuControl : MonoBehaviour {
             soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
 
         }
-        foreach (GameObject t in stuff)
-        {
-            //
-        }
         GetComponent<RectTransform>().anchoredPosition = stuff[lookAt].GetComponent<RectTransform>().anchoredPosition;
 	}
 	
