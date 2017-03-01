@@ -127,6 +127,8 @@ public class LocalDataSingleton : MonoBehaviour {
         {
             OptionsCanvas.gameObject.SetActive(false);
         }
+        // Because player's pause menu can't be paused.
+        InGamePauseCanvas.SetActive(false);
         if (!Transiting)
         {
             StartCoroutine(ChangeLevel(1));
