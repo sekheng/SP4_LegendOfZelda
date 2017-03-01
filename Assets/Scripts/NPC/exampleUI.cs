@@ -62,12 +62,12 @@ public class exampleUI : MonoBehaviour
             if (!data.pausedAction)
             {
 #if UNITY_STANDALONE
-                if (Input.GetKeyDown(KeyBindScript.upKey))
+                if (Input.GetKeyDown(KeyBindScript.downKey))
                 {
                     if (data.selectedOption < currentOptions.Count - 1)
                         data.selectedOption++;
                 }
-                if (Input.GetKeyDown(KeyBindScript.downKey))
+                if (Input.GetKeyDown(KeyBindScript.upKey))
                 {
                     if (data.selectedOption > 0)
                         data.selectedOption--;
