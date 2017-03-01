@@ -5,11 +5,11 @@ public class OptionMenuControl : MonoBehaviour {
 
     public GameObject[] stuff;
     public GameObject WindowsCTRL, SoundCTRL;
+#if UNITY_STANDALONE
     private int lookAt = 0;
 
     private SoundEffectsManager soundEffects;
 
-#if UNITY_STANDALONE
     // Use this for initialization
     void Start () {
         if (soundEffects == null)
