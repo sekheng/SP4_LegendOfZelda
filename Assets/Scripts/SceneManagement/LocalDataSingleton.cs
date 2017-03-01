@@ -88,6 +88,8 @@ public class LocalDataSingleton : MonoBehaviour {
         if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics)
         {
             test.resetQuestItemList();
+            if(talkedToDragon)
+                talkedToDragon = false;
             onWin();
         }
     }

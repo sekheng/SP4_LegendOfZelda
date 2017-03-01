@@ -62,12 +62,12 @@ public class exampleUI : MonoBehaviour
             if (!data.pausedAction)
             {
 #if UNITY_STANDALONE
-                if (Input.GetKeyDown(KeyCode.DownArrow))
+                if (Input.GetKeyDown(KeyBindScript.upKey))
                 {
                     if (data.selectedOption < currentOptions.Count - 1)
                         data.selectedOption++;
                 }
-                if (Input.GetKeyDown(KeyCode.UpArrow))
+                if (Input.GetKeyDown(KeyBindScript.downKey))
                 {
                     if (data.selectedOption > 0)
                         data.selectedOption--;
@@ -119,7 +119,6 @@ public class exampleUI : MonoBehaviour
             {
                 case "Dragon":
                     dialogue.nodeData = dialogue.SetNode(30); //SetNode allows you to jump to whichever node you want
-                    //diagToLoad.overrideStartNode = 30;
                     if (!LocalDataSingleton.instance.talkedToDragon)
                     {
                         LocalDataSingleton.instance.talkedToDragon = true;
