@@ -124,6 +124,7 @@
      <Compile Include="Assets\Scripts\NPC\SpokeToDragon.cs" />
      <Compile Include="Assets\Scripts\NPC\exampleUI.cs" />
      <Compile Include="Assets\Scripts\ParticleFX\ParticleScript.cs" />
+     <Compile Include="Assets\Scripts\ParticleFX\TestingParticleScript.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
