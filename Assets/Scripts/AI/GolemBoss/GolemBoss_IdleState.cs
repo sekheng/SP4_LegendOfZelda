@@ -135,23 +135,24 @@ public class GolemBoss_IdleState : State {
                 for (int i = 0; i < 8; ++i)
                 {
                     manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(0, 0, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-
+                    //manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x, monsterTransform.position.y + 1, monsterTransform.position.z);
+                    //manager.currProjectiles[i].transform.rotation = Quaternion.Euler(0, 0, 45 * i);
                     if (i == 0)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x, monsterTransform.position.y + 1, monsterTransform.position.z);
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x, monsterTransform.position.y + 1, monsterTransform.position.z);
                     if (i == 1)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x, monsterTransform.position.y - 1, monsterTransform.position.z);
-                    if (i == 2)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y, monsterTransform.position.z);
-                    if (i == 3)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y, monsterTransform.position.z);
-                    if (i == 4)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y + 1, monsterTransform.position.z);
-                    if (i == 5)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y - 1, monsterTransform.position.z);
-                    if (i == 6)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y + 1, monsterTransform.position.z);
-                    if (i == 7)
-                        manager.currProjectiles[i].GetComponentInChildren<Transform>().position = new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y - 1, monsterTransform.position.z);
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x, monsterTransform.position.y - 1, monsterTransform.position.z);
+                    if (i == 2)                    
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y, monsterTransform.position.z);
+                    if (i == 3)                    
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y, monsterTransform.position.z);
+                    if (i == 4)                    
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y + 1, monsterTransform.position.z);
+                    if (i == 5)                    
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y - 1, monsterTransform.position.z);
+                    if (i == 6)                   
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y + 1, monsterTransform.position.z);
+                    if (i == 7)                    
+                        manager.currProjectiles[i].transform.GetChild(0).position = new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y - 1, monsterTransform.position.z);
                 }
             }
             else if(manager.attackMode == "random")

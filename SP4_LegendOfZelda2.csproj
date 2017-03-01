@@ -71,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Assets\AudioManager.cs" />
     <Compile Include="Assets\BgmManager.cs" />
+    <Compile Include="Assets\DestroyIfNoChild.cs" />
     <Compile Include="Assets\MovingRock.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AttackState.cs" />
     <Compile Include="Assets\Scripts\AI\GolemBoss\GolemBoss_AwakeState.cs" />
