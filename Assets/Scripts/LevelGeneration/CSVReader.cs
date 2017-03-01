@@ -37,15 +37,22 @@ public class CSVReader : MonoBehaviour {
     private string [] textRow;
     private GameObject lvlHolder;
 
-	// Use this for initialization
-	void Start () {
+    [HideInInspector]
+    public int map_height;
+    [HideInInspector]
+    public int map_width;
+
+    // Use this for initialization
+    void Start () {
         lvlHolder = new GameObject("LevelHolder");
 
 	    LevelLayoutArray = CSVReader.SplitCsvGrid(file.text);
         textRow = new string[LevelLayoutArray.GetUpperBound(0)];  // Instantiate the textRow array with the number of rows in csvData array.
 
         int height = ((LevelLayoutArray.Length / textRow.Length) - 1) + offset;
+        map_height = height;
         int width = textRow.Length - 1;
+        map_width = width;
 
         //Debug.Log(width.ToString() + " " + height.ToString());
 

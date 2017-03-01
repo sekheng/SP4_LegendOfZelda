@@ -36,6 +36,9 @@ public class HeroAnimateScript : MonoBehaviour {
     public void moveAnimation(Vector2 zeDir)
     {
         stopRangeAttackAnimation();
+        // We have to make sure the idling animation stops
+        heroAnimationController.SetBool("Idling", false);
+
         heroAnimationController.SetBool(m_heroAnimationMovement[indexOfPlayerAnimation], false);
         //Debug.Log("Hero movement direction: " + zeDir);
         if (zeDir.x >= 1)
@@ -75,6 +78,7 @@ public class HeroAnimateScript : MonoBehaviour {
         heroAnimationController.SetBool("Attack", true);
         isAttacking = true;
         stopRangeAttackAnimation();
+        heroAnimationController.SetBool("Idling", false);
     }
     public void stopMeleeAttack()
     {
@@ -101,6 +105,7 @@ public class HeroAnimateScript : MonoBehaviour {
         // If there isn't any shooting animation to begin with
         if (!isShooting)
         {
+            heroAnimationController.SetBool("Idling", false);
             heroAnimationController.SetBool("RangeAttack", true);
             isShooting = true;
         }
@@ -112,5 +117,10 @@ public class HeroAnimateScript : MonoBehaviour {
             heroAnimationController.SetBool("RangeAttack", false);
             isShooting = false;
         }
+    }
+
+    public void startIdlingAnimation()
+    {
+        heroAnimationController.SetBool("Idling", true);
     }
 }
