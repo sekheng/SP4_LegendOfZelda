@@ -79,11 +79,17 @@ public class LocalDataSingleton : MonoBehaviour {
             SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
             SceneManager.GetActiveScene().buildIndex != 2 && //CUTSCENE_1
             SceneManager.GetActiveScene().buildIndex != 4 && //CUTSCENE_2
-            SceneManager.GetActiveScene().buildIndex != 10 && //CUTSCENE_3
-            SceneManager.GetActiveScene().buildIndex != 11 && //winscreen
-            SceneManager.GetActiveScene().buildIndex != 12)
+            SceneManager.GetActiveScene().buildIndex != 10 //CUTSCENE_3
+            )
         {
             turnOnInGamePauseMenu();
+        }
+            // Helps to prevent when player died when In-Game Pause menu is open whil transiting to win screen or lose screen
+        else if (SceneManager.GetActiveScene().buildIndex == 12 || SceneManager.GetActiveScene().buildIndex == 11)
+        {
+            InGamePauseCanvas.SetActive(false);
+            talking = false;
+            isOpeningInPause = false;
         }
 #else
         if (SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
@@ -139,7 +145,6 @@ public class LocalDataSingleton : MonoBehaviour {
             OptionsCanvas.gameObject.SetActive(false);
         }
         // Because player's pause menu can't be paused.
-        InGamePauseCanvas.SetActive(false);
         if (!Transiting)
         {
             StartCoroutine(ChangeLevel(1));
