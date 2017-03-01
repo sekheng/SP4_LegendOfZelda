@@ -119,20 +119,38 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.downKey == temp)
                             {
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.downKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.leftKey == temp)
+                            {
+                                KeyBindScript.leftKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rightKey == temp)
+                            {
+                                KeyBindScript.rightKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.attackKey == temp)
+                            {
+                                KeyBindScript.attackKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rangeKey == temp)
+                            {
+                                KeyBindScript.rangeKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.inventoryKey == temp)
+                            {
+                                KeyBindScript.inventoryKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
-
-                    // we refresh the keys
-                    KeyBindScript.downKey = allKeys[1];
-                    KeyBindScript.leftKey = allKeys[2]; 
-                    KeyBindScript.rightKey = allKeys[3];
-                    KeyBindScript.attackKey = allKeys[4];
-                    KeyBindScript.rangeKey = allKeys[5];
-                    KeyBindScript.inventoryKey = allKeys[6];
 
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
@@ -145,21 +163,39 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.upKey == temp)
                             {
-                                Debug.Log("test");
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.upKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.leftKey == temp)
+                            {
+                                KeyBindScript.leftKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rightKey == temp)
+                            {
+                                KeyBindScript.rightKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.attackKey == temp)
+                            {
+                                KeyBindScript.attackKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rangeKey == temp)
+                            {
+                                KeyBindScript.rangeKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.inventoryKey == temp)
+                            {
+                                KeyBindScript.inventoryKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
 
-                    // we refresh the keys
-                    KeyBindScript.upKey = allKeys[0];
-                    KeyBindScript.leftKey = allKeys[2];
-                    KeyBindScript.rightKey = allKeys[3];
-                    KeyBindScript.attackKey = allKeys[4];
-                    KeyBindScript.rangeKey = allKeys[5];
-                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -171,21 +207,39 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.upKey == temp)
                             {
-                                Debug.Log("test");
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.upKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.downKey == temp)
+                            {
+                                KeyBindScript.downKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rightKey == temp)
+                            {
+                                KeyBindScript.rightKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.attackKey == temp)
+                            {
+                                KeyBindScript.attackKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rangeKey == temp)
+                            {
+                                KeyBindScript.rangeKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.inventoryKey == temp)
+                            {
+                                KeyBindScript.inventoryKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
 
-                    // we refresh the keys
-                    KeyBindScript.upKey = allKeys[0];
-                    KeyBindScript.downKey = allKeys[1];
-                    KeyBindScript.rightKey = allKeys[3];
-                    KeyBindScript.attackKey = allKeys[4];
-                    KeyBindScript.rangeKey = allKeys[5];
-                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -197,21 +251,39 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.upKey == temp)
                             {
-                                Debug.Log("test");
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.upKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.downKey == temp)
+                            {
+                                KeyBindScript.downKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.leftKey == temp)
+                            {
+                                KeyBindScript.leftKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.attackKey == temp)
+                            {
+                                KeyBindScript.attackKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rangeKey == temp)
+                            {
+                                KeyBindScript.rangeKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.inventoryKey == temp)
+                            {
+                                KeyBindScript.inventoryKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
 
-                    // we refresh the keys
-                    KeyBindScript.upKey = allKeys[0];
-                    KeyBindScript.downKey = allKeys[1];
-                    KeyBindScript.leftKey = allKeys[2];
-                    KeyBindScript.attackKey = allKeys[4];
-                    KeyBindScript.rangeKey = allKeys[5];
-                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -223,21 +295,39 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.upKey == temp)
                             {
-                                Debug.Log("test");
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.upKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.downKey == temp)
+                            {
+                                KeyBindScript.downKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.leftKey == temp)
+                            {
+                                KeyBindScript.leftKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rightKey == temp)
+                            {
+                                KeyBindScript.rightKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rangeKey == temp)
+                            {
+                                KeyBindScript.rangeKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.inventoryKey == temp)
+                            {
+                                KeyBindScript.inventoryKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
 
-                    // we refresh the keys
-                    KeyBindScript.upKey = allKeys[0];
-                    KeyBindScript.downKey = allKeys[1];
-                    KeyBindScript.leftKey = allKeys[2];
-                    KeyBindScript.rightKey = allKeys[3];
-                    KeyBindScript.rangeKey = allKeys[5];
-                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -249,21 +339,39 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.upKey == temp)
                             {
-                                Debug.Log("test");
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.upKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.downKey == temp)
+                            {
+                                KeyBindScript.downKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.leftKey == temp)
+                            {
+                                KeyBindScript.leftKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rightKey == temp)
+                            {
+                                KeyBindScript.rightKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.attackKey == temp)
+                            {
+                                KeyBindScript.attackKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.inventoryKey == temp)
+                            {
+                                KeyBindScript.inventoryKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
 
-                    // we refresh the keys
-                    KeyBindScript.upKey = allKeys[0];
-                    KeyBindScript.downKey = allKeys[1];
-                    KeyBindScript.leftKey = allKeys[2];
-                    KeyBindScript.rightKey = allKeys[3];
-                    KeyBindScript.attackKey = allKeys[4];
-                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -275,21 +383,39 @@ public class ControlsControllerPC : MonoBehaviour {
                     {
                         if (i != pointingAt)
                         {
-                            if (allKeys[i] == temp)
+                            if (KeyBindScript.upKey == temp)
                             {
-                                Debug.Log("test");
-                                allKeys[i] = KeyCode.None;
+                                KeyBindScript.upKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.downKey == temp)
+                            {
+                                KeyBindScript.downKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.leftKey == temp)
+                            {
+                                KeyBindScript.leftKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rightKey == temp)
+                            {
+                                KeyBindScript.rightKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.attackKey == temp)
+                            {
+                                KeyBindScript.attackKey = KeyCode.None;
+                                break;
+                            }
+                            else if (KeyBindScript.rangeKey == temp)
+                            {
+                                KeyBindScript.rangeKey = KeyCode.None;
+                                break;
                             }
                         }
                     }
 
-                    // we refresh the keys
-                    KeyBindScript.upKey = allKeys[0];
-                    KeyBindScript.downKey = allKeys[1];
-                    KeyBindScript.leftKey = allKeys[2];
-                    KeyBindScript.rightKey = allKeys[3];
-                    KeyBindScript.attackKey = allKeys[4];
-                    KeyBindScript.rangeKey = allKeys[5];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
