@@ -17,7 +17,6 @@ public class NextSceneIn2s : MonoBehaviour {
 #if UNITY_STANDALONE
         Attacked = Input.GetKeyDown(KeyBindScript.attackKey) ? true : Attacked;
 #endif
-
         if(Attacked)
         {
             //skip
@@ -41,5 +40,10 @@ public class NextSceneIn2s : MonoBehaviour {
     void OnDisable()
     {
         MessageSystem.instance.removeListener("MeleeAttack", PlayerPressedMelee);
+    }
+
+    public void Stop()
+    {
+        TimeToWaitFor = 0.0f;
     }
 }

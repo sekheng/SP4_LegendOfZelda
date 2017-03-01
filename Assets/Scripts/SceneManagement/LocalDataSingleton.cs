@@ -43,10 +43,6 @@ public class LocalDataSingleton : MonoBehaviour {
         }
         DontDestroyOnLoad(transform.gameObject);
         soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
-#if UNITY_STANDALONE
-        // we hide cursor in PC ver
-        Cursor.visible = false;
-#endif
     }
 
     void Start()
@@ -76,17 +72,33 @@ public class LocalDataSingleton : MonoBehaviour {
             MainMenuCanvas.transform.GetChild(3).gameObject.SetActive(false);
 #endif
         }
-
 #if UNITY_STANDALONE
         MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
-        MainCanvas.transform.GetChild(2).gameObject.SetActive(false);
-        if(Input.GetKeyDown(KeyCode.Escape))
-        {
-            turnOnInGamePauseMenu();
-        }
 #else
-        MainCanvas.SetActive(SceneManager.GetActiveScene().buildIndex > 1 ? true : false);
+        if (SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
+            SceneManager.GetActiveScene().buildIndex != 1 && //mainmenu
+            SceneManager.GetActiveScene().buildIndex != 2 && //CUTSCENE_1
+            SceneManager.GetActiveScene().buildIndex != 4 && //CUTSCENE_2
+            SceneManager.GetActiveScene().buildIndex != 10 && //CUTSCENE_3
+            SceneManager.GetActiveScene().buildIndex != 11 && //winscreen
+            SceneManager.GetActiveScene().buildIndex != 12) //losescreen
+        {
+            MainCanvas.transform.GetChild(0).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(3).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(4).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(5).gameObject.SetActive(true);
+            MainCanvas.transform.GetChild(6).gameObject.SetActive(true);
+        }
+        else
+        {
+            MainCanvas.transform.GetChild(0).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(3).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(4).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(5).gameObject.SetActive(false);
+            MainCanvas.transform.GetChild(6).gameObject.SetActive(false);
+        }
 #endif
+
         //if you reach the required number of questitems
         QuestItemScrpt test = FindObjectOfType<QuestItemScrpt>();
         if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics)
