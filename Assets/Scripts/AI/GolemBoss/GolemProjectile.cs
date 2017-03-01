@@ -12,9 +12,14 @@ public class GolemProjectile : MonoBehaviour {
     public CircleCollider2D circleCollider;
     public Rigidbody2D rb;
     private RaycastHit2D[] collision;
-    private GameObject projectileParticles;
+    //private GameObject projectileParticles;
     private SoundEffectsManager soundEffects;
-    private string particlesystemname = "ParticleFX_RockDebris";
+    //private string particlesystemname = "ParticleFX_RockDebris";
+    // The tagname of the rock particle system
+    private string particleSystemTagname = "RockParticleEffects";
+    // The whole array of the particle system
+    private GameObject[] rockParticleSystems;
+
     private bool hasSpawned;
     private float aliveTime;
 
@@ -27,7 +32,8 @@ public class GolemProjectile : MonoBehaviour {
         circleCollider = gameObject.GetComponent<CircleCollider2D>();
         circleCollider.enabled = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
-        projectileParticles = GameObject.Find(particlesystemname);
+        //projectileParticles = GameObject.Find(particlesystemname);
+        rockParticleSystems = GameObject.FindGameObjectsWithTag(particleSystemTagname);
         hasSpawned = false;
         aliveTime = 0;
     }
@@ -49,17 +55,28 @@ public class GolemProjectile : MonoBehaviour {
                     return;
                 }
             }
-            if (projectileParticles != null)
+            foreach (GameObject zeGO in rockParticleSystems)
             {
-                projectileParticles.transform.position = transform.position;
-                projectileParticles.GetComponent<ParticleScript>().playEffect();
+                ParticleScript zeParticleEffects = zeGO.GetComponent<ParticleScript>();
+                // Need to make sure that the particle system is not playing
+                if (!zeParticleEffects.isPlaying())
+                {
+                    zeParticleEffects.transform.position = transform.position;
+                    zeParticleEffects.playEffect();
+                    break;
+                }
             }
+            //if (projectileParticles != null)
+            //{
+            //    projectileParticles.transform.position = transform.position;
+            //    projectileParticles.GetComponent<ParticleScript>().playEffect();
+            //}
             Destroy(gameObject);
         }
-        if (projectileParticles != null)
-        {
-            projectileParticles = GameObject.Find(particlesystemname);
-        }
+        //if (projectileParticles != null)
+        //{
+        //    projectileParticles = GameObject.Find(particlesystemname);
+        //}
         if (speed != 0 && direction != Vector3.zero)
         {
             if(!circleCollider.enabled)
@@ -104,10 +121,21 @@ public class GolemProjectile : MonoBehaviour {
             {
                 if (temp.collider.gameObject.tag == "Player" && temp.collider.gameObject.GetComponent<HealthScript>() != null)
                 {
-                    if (projectileParticles != null)
+                    //if (projectileParticles != null)
+                    //{
+                    //    projectileParticles.transform.position = transform.position;
+                    //    projectileParticles.GetComponent<ParticleScript>().playEffect();
+                    //}
+                    foreach (GameObject zeGO in rockParticleSystems)
                     {
-                        projectileParticles.transform.position = transform.position;
-                        projectileParticles.GetComponent<ParticleScript>().playEffect();
+                        ParticleScript zeParticleEffects = zeGO.GetComponent<ParticleScript>();
+                        // Need to make sure that the particle system is not playing
+                        if (!zeParticleEffects.isPlaying())
+                        {
+                            zeParticleEffects.transform.position = transform.position;
+                            zeParticleEffects.playEffect();
+                            break;
+                        }
                     }
                     temp.collider.gameObject.GetComponent<HealthScript>().modifyHealth(-damage);
                     if (soundEffects != null)
@@ -118,10 +146,21 @@ public class GolemProjectile : MonoBehaviour {
                 }
                 else if(temp.collider.gameObject.tag != "GolemBoss" && temp.collider.gameObject.tag != "GolemBoss_Projectile" && temp.collider.gameObject.tag != "Arrows")
                 {
-                    if (projectileParticles != null)
+                    //if (projectileParticles != null)
+                    //{
+                    //    projectileParticles.transform.position = transform.position;
+                    //    projectileParticles.GetComponent<ParticleScript>().playEffect();
+                    //}
+                    foreach (GameObject zeGO in rockParticleSystems)
                     {
-                        projectileParticles.transform.position = transform.position;
-                        projectileParticles.GetComponent<ParticleScript>().playEffect();
+                        ParticleScript zeParticleEffects = zeGO.GetComponent<ParticleScript>();
+                        // Need to make sure that the particle system is not playing
+                        if (!zeParticleEffects.isPlaying())
+                        {
+                            zeParticleEffects.transform.position = transform.position;
+                            zeParticleEffects.playEffect();
+                            break;
+                        }
                     }
                     if (soundEffects != null)
                     {

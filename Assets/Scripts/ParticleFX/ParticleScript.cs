@@ -53,4 +53,12 @@ public class ParticleScript : MonoBehaviour {
         //Debug.Log("Play Position " + gameObject.name + " : " + transform.position);
         toRenderParticleEffects.Play();
     }
+    public void stopEffect()
+    {
+        toRenderParticleEffects.Stop();
+    }
+    public bool isPlaying()
+    {
+        return toRenderParticleEffects.isPlaying;
+    }
 }
