@@ -15,6 +15,8 @@ public class GolemProjectile : MonoBehaviour {
     private GameObject projectileParticles;
     private SoundEffectsManager soundEffects;
     private string particlesystemname = "ParticleFX_RockDebris";
+    private bool hasSpawned;
+    private float aliveTime;
 
     // Use this for initialization
     void Start () {
@@ -26,6 +28,8 @@ public class GolemProjectile : MonoBehaviour {
         circleCollider.enabled = false;
         rb = gameObject.GetComponent<Rigidbody2D>();
         projectileParticles = GameObject.Find(particlesystemname);
+        hasSpawned = false;
+        aliveTime = 0;
     }
 	
 	// Update is called once per frame
@@ -34,6 +38,23 @@ public class GolemProjectile : MonoBehaviour {
         {
             soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
 
+        }
+        if (hasSpawned)
+        {
+            if (circleCollider.enabled)
+            {
+                if (checkForCollision())
+                {
+                    Destroy(gameObject);
+                    return;
+                }
+            }
+            if (projectileParticles != null)
+            {
+                projectileParticles.transform.position = transform.position;
+                projectileParticles.GetComponent<ParticleScript>().playEffect();
+            }
+            Destroy(gameObject);
         }
         if (projectileParticles != null)
         {
@@ -54,11 +75,28 @@ public class GolemProjectile : MonoBehaviour {
                 }
             }
         }
+        else if(speed != 0 && direction == Vector3.zero && rb.velocity == Vector2.zero && spriteR.color.a == 1)
+        {
+            if (!circleCollider.enabled)
+            {
+                circleCollider.enabled = true;
+            }
+            hasSpawned = true;
+            //aliveTime += 
+            if (circleCollider.enabled)
+            {
+                if (checkForCollision())
+                {
+                    Destroy(gameObject);
+                }
+            }
+        }
+       
 	}
 
     public bool checkForCollision()
     {
-        collision = Physics2D.CircleCastAll(transform.position, circleCollider.bounds.size.x, Vector2.zero, 0);
+        collision = Physics2D.CircleCastAll(transform.position, circleCollider.bounds.size.x- 0.5f, Vector2.zero, 0);
 
         foreach (RaycastHit2D temp in collision)
         {

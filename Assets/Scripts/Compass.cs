@@ -16,7 +16,7 @@ public class Compass : MonoBehaviour {
         {
             targetDir = target.transform.position - thePlayer.transform.position;
             angle = Vector3.Angle(targetDir, Vector3.up);
-            Debug.Log(angle.ToString());
+            //Debug.Log(angle.ToString());
             //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, angle + 90, transform.rotation.w);
             if (thePlayer.transform.position.x > target.transform.position.x)
             {
@@ -26,7 +26,7 @@ public class Compass : MonoBehaviour {
             {
                 transform.rotation = Quaternion.Euler(0, 0, -angle + offsetForRotation);
             }
-            Debug.Log((angle + offsetForRotation).ToString());
+            //Debug.Log((angle + offsetForRotation).ToString());
         }
         else
         {
