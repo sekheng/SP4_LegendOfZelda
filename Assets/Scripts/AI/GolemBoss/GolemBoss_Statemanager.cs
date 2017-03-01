@@ -18,6 +18,7 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     public GameObject[] projectiles;
 
     public GameObject TargetLock;
+    public GameObject Arrow;
 
     [HideInInspector]
     public GameObject currProjectile;
@@ -32,13 +33,18 @@ public class GolemBoss_Statemanager : MonoBehaviour {
     [HideInInspector]
     public BgmManager bgm;
 
+    [HideInInspector]
+    public string attackMode;
+
     void Start()
     {
         soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         bgm = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<BgmManager>();
-        currProjectiles = new GameObject[4];
+        currProjectiles = new GameObject[12];
+        Arrow.SetActive(false);
         currState = sleep;
         anim.Play("golemboss_sleep");
+        attackMode = "normal";
     }
 
     void Update()
