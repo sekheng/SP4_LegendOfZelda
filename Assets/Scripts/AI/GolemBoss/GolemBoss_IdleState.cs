@@ -73,7 +73,7 @@ public class GolemBoss_IdleState : State {
             if (health.m_health / health.max_health < 0.25f)
             {
                 randomNumber = Random.Range(0, 10);
-                if (randomNumber < 5)
+                if (randomNumber < 7)
                 {
                     manager.attackMode = "cross";
                 }
@@ -104,18 +104,6 @@ public class GolemBoss_IdleState : State {
                 else
                 {
                     manager.attackMode = "cross";
-                }
-            }
-            else if(health.m_health / health.max_health < 0.5f)
-            {
-                randomNumber = Random.Range(0, 10);
-                if (randomNumber < 1)
-                {
-                    manager.attackMode = "normal";
-                }
-                else
-                {
-                    manager.attackMode = "random";
                 }
             }
             
