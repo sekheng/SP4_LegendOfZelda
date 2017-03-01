@@ -121,6 +121,7 @@
     <Compile Include="Assets\Scripts\InGame Pause Stuff\InGamePauseScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\OptionScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\PauseButtonScript.cs" />
+    <Compile Include="Assets\Scripts\InGame Pause Stuff\PromptSaveScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\ResumeScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\ReturnScript.cs" />
     <Compile Include="Assets\Scripts\InGame Pause Stuff\SaveScript.cs" />
@@ -144,9 +145,12 @@
     <Compile Include="Assets\Scripts\Magic Stuff\MagicAttackScript.cs" />
     <Compile Include="Assets\Scripts\Magic Stuff\MagicDefendScript.cs" />
     <Compile Include="Assets\Scripts\Magic Stuff\MagicTypeScript.cs" />
+    <Compile Include="Assets\Scripts\MessageSystem.cs" />
     <Compile Include="Assets\Scripts\NPC\SpokeToDragon.cs" />
+    <Compile Include="Assets\Scripts\NPC\Tutorial.cs" />
     <Compile Include="Assets\Scripts\NPC\exampleUI.cs" />
     <Compile Include="Assets\Scripts\ParticleFX\ParticleScript.cs" />
+    <Compile Include="Assets\Scripts\ParticleFX\TestingParticleScript.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\HeroesMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement\PlayerDrag.cs" />
@@ -173,6 +177,7 @@
     <Compile Include="Assets\Scripts\Splashpage Scripts\NextSceneIn2s.cs" />
     <Compile Include="Assets\Scripts\Splashpage Scripts\OptionMenuControl.cs" />
     <Compile Include="Assets\Scripts\Splashpage Scripts\PlayMenuControl.cs" />
+    <Compile Include="Assets\Scripts\Splashpage Scripts\ReplaceText.cs" />
     <Compile Include="Assets\Scripts\Splashpage Scripts\SliderControl.cs" />
     <Compile Include="Assets\Scripts\Splashpage Scripts\translateText.cs" />
     <Compile Include="Assets\Scripts\layerChanger.cs" />
