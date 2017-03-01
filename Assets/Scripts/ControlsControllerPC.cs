@@ -11,6 +11,7 @@ public class ControlsControllerPC : MonoBehaviour {
     private GameObject[] children;
     private int pointingAt = 0;
     private KeyCode temp;
+    private KeyCode[] allKeys;
     private float startingX;
     private Text extraInfo;
 
@@ -31,6 +32,16 @@ public class ControlsControllerPC : MonoBehaviour {
         GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
         temp = KeyCode.None;
         startingX = helperText.GetComponent<RectTransform>().anchoredPosition.x;
+
+        allKeys = new KeyCode[7];
+        allKeys[0] = KeyBindScript.upKey;
+        allKeys[1] = KeyBindScript.downKey;
+        allKeys[2] = KeyBindScript.leftKey;
+        allKeys[3] = KeyBindScript.rightKey;
+        allKeys[4] = KeyBindScript.attackKey;
+        allKeys[5] = KeyBindScript.rangeKey;
+        allKeys[6] = KeyBindScript.inventoryKey;
+
 	}
 	
 	// Update is called once per frame
@@ -104,6 +115,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 0:
                 {
                     KeyBindScript.upKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.downKey = allKeys[1];
+                    KeyBindScript.leftKey = allKeys[2]; 
+                    KeyBindScript.rightKey = allKeys[3];
+                    KeyBindScript.attackKey = allKeys[4];
+                    KeyBindScript.rangeKey = allKeys[5];
+                    KeyBindScript.inventoryKey = allKeys[6];
+
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -111,6 +141,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 1:
                 {
                     KeyBindScript.downKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                Debug.Log("test");
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.upKey = allKeys[0];
+                    KeyBindScript.leftKey = allKeys[2];
+                    KeyBindScript.rightKey = allKeys[3];
+                    KeyBindScript.attackKey = allKeys[4];
+                    KeyBindScript.rangeKey = allKeys[5];
+                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -118,6 +167,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 2:
                 {
                     KeyBindScript.leftKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                Debug.Log("test");
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.upKey = allKeys[0];
+                    KeyBindScript.downKey = allKeys[1];
+                    KeyBindScript.rightKey = allKeys[3];
+                    KeyBindScript.attackKey = allKeys[4];
+                    KeyBindScript.rangeKey = allKeys[5];
+                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -125,6 +193,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 3:
                 {
                     KeyBindScript.rightKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                Debug.Log("test");
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.upKey = allKeys[0];
+                    KeyBindScript.downKey = allKeys[1];
+                    KeyBindScript.leftKey = allKeys[2];
+                    KeyBindScript.attackKey = allKeys[4];
+                    KeyBindScript.rangeKey = allKeys[5];
+                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -132,6 +219,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 4:
                 {
                     KeyBindScript.attackKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                Debug.Log("test");
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.upKey = allKeys[0];
+                    KeyBindScript.downKey = allKeys[1];
+                    KeyBindScript.leftKey = allKeys[2];
+                    KeyBindScript.rightKey = allKeys[3];
+                    KeyBindScript.rangeKey = allKeys[5];
+                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -139,6 +245,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 5:
                 {
                     KeyBindScript.rangeKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                Debug.Log("test");
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.upKey = allKeys[0];
+                    KeyBindScript.downKey = allKeys[1];
+                    KeyBindScript.leftKey = allKeys[2];
+                    KeyBindScript.rightKey = allKeys[3];
+                    KeyBindScript.attackKey = allKeys[4];
+                    KeyBindScript.inventoryKey = allKeys[6];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -146,6 +271,25 @@ public class ControlsControllerPC : MonoBehaviour {
                 case 6:
                 {
                     KeyBindScript.inventoryKey = temp;
+                    for (int i = 0; i < allKeys.Length; i++)
+                    {
+                        if (i != pointingAt)
+                        {
+                            if (allKeys[i] == temp)
+                            {
+                                Debug.Log("test");
+                                allKeys[i] = KeyCode.None;
+                            }
+                        }
+                    }
+
+                    // we refresh the keys
+                    KeyBindScript.upKey = allKeys[0];
+                    KeyBindScript.downKey = allKeys[1];
+                    KeyBindScript.leftKey = allKeys[2];
+                    KeyBindScript.rightKey = allKeys[3];
+                    KeyBindScript.attackKey = allKeys[4];
+                    KeyBindScript.rangeKey = allKeys[5];
                     temp = KeyCode.None;
                     helperText.SetActive(!helperText.activeSelf);
                     break;
@@ -175,6 +319,7 @@ public class ControlsControllerPC : MonoBehaviour {
                 GetComponent<RectTransform>().anchoredPosition = new Vector2(0, children[pointingAt].GetComponent<RectTransform>().anchoredPosition.y);
             }
         }
+        
 	}
 
     KeyCode FetchKey()
