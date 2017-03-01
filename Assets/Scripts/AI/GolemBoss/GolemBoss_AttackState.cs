@@ -79,7 +79,7 @@ public class GolemBoss_AttackState : State {
                     //}
                 }
             }
-            if (manager.currProjectile != null)
+            if (manager.currProjectile != null || manager.attackMode == "cross")
             {
                 manager.TargetLock.SetActive(true);
                 manager.Arrow.SetActive(true);
@@ -105,7 +105,7 @@ public class GolemBoss_AttackState : State {
                 }
             }
             
-            if (golemProjectile != null)
+            if (golemProjectile != null || manager.attackMode == "cross")
             {
                 manager.TargetLock.transform.position = thePlayer.transform.position;
                 targetDir = thePlayer.transform.position - monsterTransform.position;
@@ -119,6 +119,25 @@ public class GolemBoss_AttackState : State {
                 else//vector3 angle is < 180 always
                 {
                     arrowParent.transform.rotation = Quaternion.Euler(0, 0, angle);
+                }
+                if(manager.attackMode == "cross")
+                {
+                    for (int i = 0; i < golemProjectiles.Length; ++i)
+                    {
+
+                        if (golemProjectiles[i] != null)
+                        {
+                            if (thePlayer.transform.position.x > monsterTransform.position.x)
+                            {
+                                golemProjectiles[i].transform.parent.rotation = Quaternion.Euler(0, 0, -angle);
+                            }
+                            else//vector3 angle is < 180 always
+                            {
+                                golemProjectiles[i].transform.parent.rotation = Quaternion.Euler(0, 0, angle);
+                            }
+                            
+                        }
+                    }
                 }
             }
         }
@@ -151,8 +170,6 @@ public class GolemBoss_AttackState : State {
                     manager.TargetLock.transform.position = thePlayer.transform.position;
                     targetDir =  thePlayer.transform.position - monsterTransform.position;
                     angle = Vector3.Angle(targetDir, Vector3.up);
-                    //Debug.Log(angle.ToString());
-                    //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, angle + 90, transform.rotation.w);
                     if (thePlayer.transform.position.x > monsterTransform.position.x)
                     {
                         arrowParent.transform.rotation = Quaternion.Euler(0, 0, -angle);
@@ -165,6 +182,8 @@ public class GolemBoss_AttackState : State {
             }
             else if(manager.attackMode == "cross")
             {
+                targetDir = thePlayer.transform.position - monsterTransform.position;
+                angle = Vector3.Angle(targetDir, Vector3.up);
                 for (int i = 0; i < golemProjectiles.Length; ++i)
                 {
                     if (golemProjectiles[i] != null)
@@ -183,24 +202,7 @@ public class GolemBoss_AttackState : State {
                             golemProjectiles[i].speed = 1000;
                             golemProjectiles[i].damage = monsterInfo.dps;
                         }
-                        //golemProjectiles[i].direction = (thePlayer.transform.position - monsterTransform.transform.position).normalized;
-                        /*if (i == 0)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x, monsterTransform.position.y + 1, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-                    if (i == 1)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x, monsterTransform.position.y - 1, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-                    if (i == 2)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-                    if (i == 3)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x - 1, monsterTransform.position.y, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-
-                    if (i == 4)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x-1, monsterTransform.position.y + 1, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-                    if (i == 5)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x-1, monsterTransform.position.y - 1, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-                    if (i == 6)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y + 1, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;
-                    if (i == 7)
-                        manager.currProjectiles[i] = Instantiate(manager.projectiles[i], new Vector3(monsterTransform.position.x + 1, monsterTransform.position.y-1, monsterTransform.position.z), new Quaternion(Quaternion.identity.x, Quaternion.identity.y, Quaternion.identity.z, Quaternion.identity.w)) as GameObject;*/
+   
                         if(i == 0)
                         {
                             golemProjectiles[i].direction = Vector3.up;
@@ -233,9 +235,32 @@ public class GolemBoss_AttackState : State {
                         {
                             golemProjectiles[i].direction = Vector3.down;
                         }
+                        if (thePlayer.transform.position.x > monsterTransform.position.x)
+                        {
+                            golemProjectiles[i].direction = Quaternion.Euler(0, 0, -angle) * golemProjectiles[i].direction;
+                        }
+                        else//vector3 angle is < 180 always
+                        {
+                            golemProjectiles[i].direction = Quaternion.Euler(0, 0, angle) * golemProjectiles[i].direction;
+                        }
+                        
                         golemProjectiles[i] = null;
+                        
                         //golemProjectiles[i] = manager.currProjectiles[i].GetComponent<GolemProjectile>();
                     }
+                }
+                manager.TargetLock.transform.position = thePlayer.transform.position;
+                targetDir = thePlayer.transform.position - monsterTransform.position;
+                angle = Vector3.Angle(targetDir, Vector3.up);
+                //Debug.Log(angle.ToString());
+                //transform.rotation = new Quaternion(transform.rotation.x, transform.rotation.y, angle + 90, transform.rotation.w);
+                if (thePlayer.transform.position.x > monsterTransform.position.x)
+                {
+                    arrowParent.transform.rotation = Quaternion.Euler(0, 0, -angle);
+                }
+                else//vector3 angle is < 180 always
+                {
+                    arrowParent.transform.rotation = Quaternion.Euler(0, 0, angle);
                 }
             }
             else if(manager.attackMode == "random")
@@ -269,7 +294,7 @@ public class GolemBoss_AttackState : State {
         else
         {
             
-            if(golemProjectile != null)
+            if(golemProjectile != null || manager.attackMode == "cross")
             {
                 
                 manager.TargetLock.transform.position = thePlayer.transform.position;
@@ -282,6 +307,25 @@ public class GolemBoss_AttackState : State {
                 else//vector3 angle is < 180 always
                 {
                     arrowParent.transform.rotation = Quaternion.Euler(0, 0, angle);
+                }
+                 if(manager.attackMode == "cross")
+                {
+                    for (int i = 0; i < golemProjectiles.Length; ++i)
+                    {
+
+                        if (golemProjectiles[i] != null)
+                        {
+                            if (thePlayer.transform.position.x > monsterTransform.position.x)
+                            {
+                                golemProjectiles[i].transform.parent.rotation = Quaternion.Euler(0, 0, -angle);
+                            }
+                            else//vector3 angle is < 180 always
+                            {
+                                golemProjectiles[i].transform.parent.rotation = Quaternion.Euler(0, 0, angle);
+                            }
+                            
+                        }
+                    }
                 }
             }
 
