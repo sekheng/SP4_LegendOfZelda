@@ -6,6 +6,9 @@ using System.Collections;
 /// Make sure the player's health will not restart!
 /// </summary>
 public class PersistentHealthScript : MonoBehaviour {
+
+    private static PersistentHealthScript CantTouchThis;
+
     public static PersistentHealthScript instance
     {
         get
@@ -18,7 +21,6 @@ public class PersistentHealthScript : MonoBehaviour {
             return CantTouchThis;
         }
     }
-    private static PersistentHealthScript CantTouchThis;
 
     // Make sure the player's health won't change!
     private float max_health = 100;
