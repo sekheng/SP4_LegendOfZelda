@@ -34,6 +34,11 @@ public class HeroesMovement : MonoBehaviour {
             default:
                 break;
         }
+
+        if (Mathf.Approximately(0, heroPhysics.velocity.sqrMagnitude))
+        {
+            heroAnimator.startIdlingAnimation();
+        }
     }
 	
     // We will use this to move the player
@@ -55,7 +60,8 @@ public class HeroesMovement : MonoBehaviour {
         if (!Mathf.Approximately(0, heroPhysics.velocity.sqrMagnitude))
         {
             heroPhysics.velocity = new Vector2(0, 0);
-            heroAnimator.stopAnimation();
+            //heroAnimator.stopAnimation();
+            heroAnimator.startIdlingAnimation();
         }
     }
 

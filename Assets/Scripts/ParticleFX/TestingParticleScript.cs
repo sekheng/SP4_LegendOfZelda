@@ -23,6 +23,7 @@ public class TestingParticleScript : MonoBehaviour {
         if (m_timeCounter > m_timeInterval)
         {
             m_TheParticleSystem.playEffect();
+            m_timeCounter = 0;
         }
     }
 }
