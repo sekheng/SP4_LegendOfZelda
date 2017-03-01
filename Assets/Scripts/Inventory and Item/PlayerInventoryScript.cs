@@ -34,6 +34,7 @@ public class PlayerInventoryScript : MonoBehaviour {
                 // We shall load it from the SQLite since it is from the load save!
                 //Text zeDebugginText = GameObject.Find("DEBUGGINGTEXTUI").GetComponent<Text>();
                 checkForRelics = GetComponent<QuestItemScrpt>();
+                checkForRelics.resetQuestItemList();
                 List<string> myConditions = new List<string>();
                 myConditions.Add("PlayerID = " + HeroDataScript.m_playerID);
                 List<object> theFieldToTake = new List<object>();

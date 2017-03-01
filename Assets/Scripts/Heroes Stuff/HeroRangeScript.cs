@@ -73,6 +73,7 @@ public class HeroRangeScript : MonoBehaviour {
             zeArrow.BroadcastMessage("setDirection", directionOfHero.directionOfHero);
             heroAnimator.rangeAttackAnimation();
             gameObject.BroadcastMessage("stopMeleeAttack");
+            MessageSystem.instance.triggerEventCall("RangeAttack");
         }
     }
 }

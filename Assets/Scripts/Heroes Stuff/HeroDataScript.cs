@@ -33,7 +33,6 @@ public class HeroDataScript : MonoBehaviour {
         if (herosHealth.m_health <= 0)
         {
             LocalDataSingleton.instance.onLose();
-            herosHealth.resetToMaxHealth(herosHealth.max_health);
         }
     }
 

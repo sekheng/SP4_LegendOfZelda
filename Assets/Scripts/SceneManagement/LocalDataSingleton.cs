@@ -43,6 +43,10 @@ public class LocalDataSingleton : MonoBehaviour {
         }
         DontDestroyOnLoad(transform.gameObject);
         soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
+#if UNITY_STANDALONE
+        // we hide cursor in PC ver
+        Cursor.visible = false;
+#endif
     }
 
     void Start()
@@ -88,6 +92,8 @@ public class LocalDataSingleton : MonoBehaviour {
         if(test.getCurrenNumOfQuestItems() == test.m_numberOfRelics)
         {
             test.resetQuestItemList();
+            if(talkedToDragon)
+                talkedToDragon = false;
             onWin();
         }
     }

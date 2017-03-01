@@ -293,7 +293,7 @@ public class PlayerDrag : MonoBehaviour {
         playerPressedButton = true;
         movedInXDirection = (short)Mathf.Ceil(directionOfStick.normalized.x);
         movedInYDirection = (short)Mathf.Ceil(directionOfStick.normalized.y);
-        Debug.Log("Player Pressed a button: " + movedInXDirection + ", : " + movedInYDirection);
+        //Debug.Log("Player Pressed a button: " + movedInXDirection + ", : " + movedInYDirection);
         //debugginMesh.text = "Player Pressed a button: " + movedInXDirection + ", " + movedInYDirection;
     }
 #else

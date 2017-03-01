@@ -115,6 +115,6 @@ public class HeroMeleeButton : MonoBehaviour {
             LocalDataSingleton.instance.InGamePauseCanvas.GetComponentInChildren<InGamePauseScript>().selectedTheButton();
         }
         GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
-    }
+   }
 #endif
 }

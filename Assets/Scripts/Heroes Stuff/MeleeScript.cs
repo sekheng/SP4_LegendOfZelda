@@ -122,6 +122,7 @@ public class MeleeScript : MonoBehaviour {
             heroMeleeAnim.meleeAttackAnimation();
             timeCounter = 0;
             heroMove.stopMovement();
+            MessageSystem.instance.triggerEventCall("MeleeAttack");
             //Vector3 theBoxPosition = new Vector3(transform.localScale.x * directionOfRay.x, transform.localScale.y * directionOfRay.y);
             ////Debug.Log("Position of Box: " + (transform.position + transform.localScale));
             //RaycastHit2D[] hits = Physics2D.BoxCastAll(transform.position + theBoxPosition

@@ -16,15 +16,19 @@ public class AndroidMeleeScript : MonoBehaviour {
 	   
     public void pressedAttack()
     {
+        //Debug.Log("Trying to attack");
+        MessageSystem.instance.triggerEventCall("MeleeAttack");
         if (!heroInventory.isOpeningInventory)
         {
             if (heroAttack == null)
+            {
                 heroAttack = GameObject.FindObjectOfType<HeroMeleeButton>();
-            if (heroInventory == null)
-                heroInventory = FindObjectOfType<AndroidInventoryScript>();
-            //else
+            }
             heroAttack.doAttack();
+            //Debug.Log("Attacked");
+            //else
         }
+        //Debug.Log("Successful to attack");
     }
 #else
     void Start()

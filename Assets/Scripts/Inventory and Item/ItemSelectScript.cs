@@ -34,6 +34,8 @@ public class ItemSelectScript : MonoBehaviour {
     //    thePlayerDrag = FindObjectOfType<PlayerDrag>();
     //}
 #endif
+    // This will be used to check whether this has getComponent.
+    private static bool hasFoundTheObjects = false;
 
 	// Use this for initialization
 	void Start() {
@@ -43,6 +45,7 @@ public class ItemSelectScript : MonoBehaviour {
         toKnowTheSlots = FindObjectOfType<RecogniseItemUIScript>();
         thePosition = GetComponent<RectTransform>();
         UpdateTheUI();
+        hasFoundTheObjects = true;
 	}
 
     void Update()
@@ -107,5 +110,22 @@ public class ItemSelectScript : MonoBehaviour {
             m_slotAt = (short)(zeNum);
             UpdateTheUI();
         }
+    }
+
+    void OnEnable()
+    {
+        switch (hasFoundTheObjects)
+        {
+            case true:
+            Start();
+            break;
+            default:
+                break;
+        }
+    }
+
+    void OnDisable()
+    {
+        m_slotAt = 0;
     }
 }
