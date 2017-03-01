@@ -43,10 +43,10 @@ public class LocalDataSingleton : MonoBehaviour {
         }
         DontDestroyOnLoad(transform.gameObject);
         soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
-#if UNITY_STANDALONE
-        // we hide cursor in PC ver
-        Cursor.visible = false;
-#endif
+//#if UNITY_STANDALONE
+//        // we hide cursor in PC ver
+//        Cursor.visible = false;
+//#endif
     }
 
     void Start()
