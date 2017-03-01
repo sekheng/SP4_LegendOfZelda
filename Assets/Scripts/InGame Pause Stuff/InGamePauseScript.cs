@@ -18,6 +18,10 @@ public class InGamePauseScript : MonoBehaviour {
     // We will need to disable the enter and other keys
     [HideInInspector]
     public bool m_disableUpdate = false;
+    [Tooltip("The tagname of the canvas that holds these InGamePause Stuff")]
+    public string m_canvasTagname = "SaveCanvas";
+    // We need to know which canvas is holding these in game pause stuff!
+    private GameObject m_InGamePauseCanvas;
 
     private SoundEffectsManager soundEffects;
 
@@ -31,8 +35,8 @@ public class InGamePauseScript : MonoBehaviour {
         if (soundEffects == null)
         {
             soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
-
         }
+        m_InGamePauseCanvas = GameObject.FindGameObjectWithTag(m_canvasTagname);
 #if UNITY_ANDROID
         // Since there will only be 1 joystick!
         thePlayerJoystick = FindObjectOfType<PlayerDrag>();
@@ -60,6 +64,16 @@ public class InGamePauseScript : MonoBehaviour {
         }
         if (m_disableUpdate)
             return;
+        // In the mean time, we need to make sure the player can't even move for sure!
+        switch (LocalDataSingleton.instance.talking)
+        {
+            case false:
+                // If the player can still move, just force it to stop!
+                LocalDataSingleton.instance.talking = true;
+                break;
+            default:
+                break;
+        }
 #if UNITY_ANDROID
         if (thePlayerJoystick.movingInYDirection == 1)
         {
@@ -111,6 +125,10 @@ public class InGamePauseScript : MonoBehaviour {
 
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            m_InGamePauseCanvas.SetActive(false);
         }
 #endif
     }
