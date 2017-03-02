@@ -224,7 +224,7 @@ public class exampleUI : MonoBehaviour
             GameObject newOp = Instantiate(playerText.gameObject, playerText.transform.position, Quaternion.identity) as GameObject;
             newOp.SetActive(true);
             newOp.transform.SetParent(playerText.transform.parent, true);
-            newOp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 20 - (20 * i));
+            newOp.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 11 - (20 * i));
             newOp.transform.localScale = new Vector3(1, 1, 1); //not sure why i need to do this.
             newOp.GetComponent<UnityEngine.UI.Text>().text = opts[i];
             currentOptions.Add(newOp.GetComponent<UnityEngine.UI.Text>());
