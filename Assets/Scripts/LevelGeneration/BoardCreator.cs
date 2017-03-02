@@ -54,21 +54,22 @@ public class BoardCreator : MonoBehaviour
   
         for (int i = 0; i < rooms.Length; i++)
         {
-            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((rows >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
+            Vector3 objPosCentre = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((columns >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
+            Vector3 objPosTopLeftCorner = new Vector3(rooms[i].xPos + (rooms[i].roomWidth) - ((columns) - offset), rooms[i].yPos + (rooms[i].roomHeight) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
             if (i == 0)
             {
-                Instantiate(player, objPos, Quaternion.identity);
+                Instantiate(player, objPosCentre, Quaternion.identity);
             }
             //feel free to instantiate slime here
-            if(i %  5 == 0 && i != 0) //spawns 1 slime every 5 rooms.
+            if(i %  3 == 0 && i != 0) //spawns 1 slime every 3 rooms.
             {
-                 Instantiate(slime, objPos, Quaternion.identity);
+                 Instantiate(slime, objPosCentre, Quaternion.identity);
                  //spawns roughly in the middle of the room
             }
 
-            if (i % 10 == 0 && i != 0) //spawns 1 wolf every 20 rooms.
+            if (i % 7 == 0 && i != 0) //spawns 1 wolf every 7 rooms.
             {
-                Instantiate(wolf, objPos, Quaternion.identity);
+                Instantiate(wolf, objPosCentre, Quaternion.identity);
                 //spawns roughly in the middle of the room
             }
 
@@ -80,7 +81,7 @@ public class BoardCreator : MonoBehaviour
                     if (!helpCheckSpawnedRelics.Contains(randomIndex))
                     {
                         helpCheckSpawnedRelics.Add(randomIndex);
-                        Instantiate(relicArray[randomIndex], objPos, Quaternion.identity);
+                        Instantiate(relicArray[randomIndex], objPosTopLeftCorner, Quaternion.identity);
                         break;
                     }
                 }
@@ -88,7 +89,7 @@ public class BoardCreator : MonoBehaviour
 
             if (nextLevelPrefab != null && i == rooms.Length - 1)
             {
-                Instantiate(nextLevelPrefab, objPos, Quaternion.identity);
+                Instantiate(nextLevelPrefab, objPosCentre, Quaternion.identity);
             }
         }
         Instantiate(gridMaker, Vector3.zero, Quaternion.identity);
