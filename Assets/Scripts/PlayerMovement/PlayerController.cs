@@ -11,7 +11,9 @@ public class PlayerController : MonoBehaviour {
     // There will only be 1 hero throughout the entire game!
     private HeroesMovement theOnlyHero;
     // This is to check if the player is not moving the character, then stop the movement!
+#if UNITY_STANDALONE
     private bool checkPlayerMoved = false;
+#endif
     // We will need this to check which key is pressed!
     private KeyCode currentKeyPressed;
     private Vector2 GeneralDir = Vector2.zero;

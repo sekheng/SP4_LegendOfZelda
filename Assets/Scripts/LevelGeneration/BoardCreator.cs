@@ -273,7 +273,7 @@ public class BoardCreator : MonoBehaviour
         float leftEdgeX = -1f;
         float rightEdgeX = columns + 0f;
         float bottomEdgeY = -1f;
-        float topEdgeY = rows + 0f;
+        //float topEdgeY = rows + 0f;
 
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
 

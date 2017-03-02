@@ -9,14 +9,14 @@ public class HeroMeleeButton : MonoBehaviour {
     // Since this is for hero
     private MeleeScript theHeroMeleeSystem;
     // For hero range attack!
-    private HeroRangeScript theHeroRangeSystem;
+    //private HeroRangeScript theHeroRangeSystem;
 #if UNITY_ANDROID
     // have to interrupt player's movement!
     private PlayerDrag thePlayerJoystick;
 #endif
 
     //[Tooltip("The Melee Button for mobile")]
-    private GameObject theAttackButton;
+    //private GameObject theAttackButton;
 
 #if UNITY_STANDALONE
     //[Tooltip("The Key pressed for Melee Attack!")]
@@ -33,7 +33,7 @@ public class HeroMeleeButton : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         theHeroMeleeSystem = GetComponent<MeleeScript>();
-        theHeroRangeSystem = GetComponent<HeroRangeScript>();
+        //theHeroRangeSystem = GetComponent<HeroRangeScript>();
 	#if UNITY_STANDALONE
         //theAttackButton = GameObject.Find("AttackButton");
         //theAttackButton.SetActive(false);
@@ -42,7 +42,7 @@ public class HeroMeleeButton : MonoBehaviour {
         //ItemUI.gameObject.SetActive(false);
 #else
         thePlayerJoystick = GameObject.FindObjectOfType<PlayerDrag>();
-        theAttackButton = GameObject.Find("AttackButton");
+        //theAttackButton = GameObject.Find("AttackButton");
 #endif
     }
 	

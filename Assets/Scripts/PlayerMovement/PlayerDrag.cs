@@ -26,7 +26,7 @@ public class PlayerDrag : MonoBehaviour {
     [HideInInspector]
     public bool fingerHasPressedIt = false;
     // Screen resolution!
-    private int screenSizeX, screenSizeY;
+    //private int screenSizeX, screenSizeY;
     // When player pressed the button, hero's movement has to stop unless they stop dragging the joystick or move it to other directions
     private bool playerPressedButton = false;
     private short movedInXDirection = 0, movedInYDirection = 0;
@@ -46,8 +46,8 @@ public class PlayerDrag : MonoBehaviour {
         //ImgBG = GetComponentInParent<Image>();
         //Debug.Log("Parent Name: " + ImgBG.gameObject.name);
         
-        screenSizeX = Screen.width;
-        screenSizeY = Screen.height;
+        //screenSizeX = Screen.width;
+        //screenSizeY = Screen.height;
         //Debug.Log("Screen height: " + screenSizeY);
         //Debug.Log("ImgBG sizeDelta Y: " + ImgBG.rectTransform.sizeDelta.y);
     }

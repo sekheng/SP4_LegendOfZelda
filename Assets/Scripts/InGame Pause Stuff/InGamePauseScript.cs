@@ -21,8 +21,9 @@ public class InGamePauseScript : MonoBehaviour {
     [Tooltip("The tagname of the canvas that holds these InGamePause Stuff")]
     public string m_canvasTagname = "SaveCanvas";
     // We need to know which canvas is holding these in game pause stuff!
+#if UNITY_STANDALONE
     private GameObject m_InGamePauseCanvas;
-
+#endif
     private SoundEffectsManager soundEffects;
 
 #if UNITY_ANDROID
@@ -36,7 +37,9 @@ public class InGamePauseScript : MonoBehaviour {
         {
             soundEffects = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<SoundEffectsManager>();
         }
-        m_InGamePauseCanvas = GameObject.FindGameObjectWithTag(m_canvasTagname);
+#if UNITY_STANDALONE
+     m_InGamePauseCanvas = GameObject.FindGameObjectWithTag(m_canvasTagname);
+#endif
 #if UNITY_ANDROID
         // Since there will only be 1 joystick!
         thePlayerJoystick = FindObjectOfType<PlayerDrag>();
