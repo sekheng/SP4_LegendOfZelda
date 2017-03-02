@@ -196,7 +196,7 @@ public class LocalDataSingleton : MonoBehaviour {
         }
     }
 
-    IEnumerator ChangeLevel(int index)
+    public IEnumerator ChangeLevel(int index)
     {
         Transiting = true;
         if (SceneManager.GetActiveScene().buildIndex != 0 && //splashpage
