@@ -8,7 +8,7 @@ public class ChangeScene2 : MonoBehaviour {
     {
         if (other.CompareTag("Player"))
         {
-            LocalDataSingleton.instance.ReturntoPrevious();
+            LocalDataSingleton.instance.StartCoroutine(LocalDataSingleton.instance.ChangeLevel(SceneManager.GetActiveScene().buildIndex - 1));
         }
     }
 }
