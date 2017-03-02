@@ -5,8 +5,9 @@ using System.Collections;
 /// Will prompt the player to go to save
 /// </summary>
 public class PromptSaveScript : PauseButtonScript {
-    [Tooltip("The Save option canvas")]
-    public GameObject m_SaveCanvas;
+    //[Tooltip("The Save option canvas tagname")]
+    //public string m_saveCanvasTagName = ""
+    private GameObject m_SaveCanvas;
     //  We will need to keep track of which save prompt canvas is it
     private GameObject m_SavePromptAlert;
 

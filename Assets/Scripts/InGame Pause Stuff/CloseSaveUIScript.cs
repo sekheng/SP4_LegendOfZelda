@@ -25,12 +25,14 @@ public class CloseSaveUIScript : PauseButtonScript {
         // Set the parent to be inactive
         theSaveCanvas.SetActive(false);
         // The quickest fix to the bug in InGamePauseMenu
-        LocalDataSingleton.instance.talking = true;
         // Need to know is the in Game Pause menu is active or not!
         if (LocalDataSingleton.instance.InGamePauseCanvas.activeSelf)
         {
             LocalDataSingleton.instance.InGamePauseCanvas.GetComponentInChildren<InGamePauseScript>().m_disableUpdate = false;
+            LocalDataSingleton.instance.talking = true;
         }
+        else
+            LocalDataSingleton.instance.talking = false;
         return true;
     }
 }
