@@ -21,7 +21,7 @@ public class GolemProjectile : MonoBehaviour {
     private GameObject[] rockParticleSystems;
 
     private bool hasSpawned;
-    private float aliveTime;
+    //private float aliveTime;
 
     // Use this for initialization
     void Start () {
@@ -35,7 +35,7 @@ public class GolemProjectile : MonoBehaviour {
         //projectileParticles = GameObject.Find(particlesystemname);
         rockParticleSystems = GameObject.FindGameObjectsWithTag(particleSystemTagname);
         hasSpawned = false;
-        aliveTime = 0;
+        //aliveTime = 0;
     }
 	
 	// Update is called once per frame

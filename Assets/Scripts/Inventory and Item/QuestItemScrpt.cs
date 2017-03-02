@@ -15,7 +15,7 @@ public class QuestItemScrpt : MonoBehaviour {
     // This will help check for unique item name and prevent the same copy!
     private HashSet<string> theQuestItemName = new HashSet<string>();
     // The table to player's inventory!
-    private static string tableString = "PlayerInventoryTable";
+    //private static string tableString = "PlayerInventoryTable";
 
     public bool checkQuestItemsCollected()
     {

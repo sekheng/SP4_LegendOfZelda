@@ -8,14 +8,18 @@ using UnityEngine.UI;
 public class AndroidInputAdjustScript : MonoBehaviour {
     [Tooltip("The string to be set in the database")]
     public string m_AndroidInputName = "JoystickPos";
+#if UNITY_ANDROID
     //To know it's own transform
     private RectTransform UI_position;
-    // To know whether has finger pressed it!
-    private bool hasFingerPressed = false;
     // We will need to know what is the canvas like!
     private CanvasScaler theScaleOfCanvas;
+#endif
+    // To know whether has finger pressed it!
+    private bool hasFingerPressed = false;
     // We will need to know what is the finger's ID
+#if UNITY_ANDROID
     private int theFingerTouchedID = 0;
+#endif
 
 	// Use this for initialization
 	void Start () {
@@ -45,6 +49,7 @@ public class AndroidInputAdjustScript : MonoBehaviour {
     public void fingerPressed()
     {
         hasFingerPressed = true;
+#if UNITY_ANDROID
         // Here we shall identify which finger pressed is it!
         Touch[] allZeTouch = Input.touches;
         foreach (Touch zeTouch in allZeTouch)
@@ -56,15 +61,18 @@ public class AndroidInputAdjustScript : MonoBehaviour {
                 break;
             }
         }
+#endif
     }
 
     // When letting go of the finger, then save to the database!
     public void fingerLetGo()
     {
         hasFingerPressed = false;
-        // And then we shall save the position of this input to the database!
+  #if UNITY_ANDROID
+      // And then we shall save the position of this input to the database!
         MySQLiteHandler.instance.saveSpecificResult(AndroidLoadDataScript.m_SQLiteTable, m_AndroidInputName + "X", UI_position.anchoredPosition.x.ToString());
         MySQLiteHandler.instance.saveSpecificResult(AndroidLoadDataScript.m_SQLiteTable, m_AndroidInputName + "Y", UI_position.anchoredPosition.y.ToString());
+#endif
     }
 
     /// <summary>
@@ -76,12 +84,16 @@ public class AndroidInputAdjustScript : MonoBehaviour {
         //UI_position.anchoredPosition = Input.mousePosition;
         //Debug.Log("Mouse position: " + Input.mousePosition);
         //UI_position.anchoredPosition = new Vector2(Input.mousePosition.x * theScaleOfCanvas.referenceResolution.x / Screen.width, Input.mousePosition.y * theScaleOfCanvas.referenceResolution.y / Screen.height);
-        UI_position.anchoredPosition = new Vector2((Input.mousePosition.x * theScaleOfCanvas.referenceResolution.x / Screen.width) - (theScaleOfCanvas.referenceResolution.x * UI_position.anchorMax.x), (Input.mousePosition.y * theScaleOfCanvas.referenceResolution.y / Screen.height) - (theScaleOfCanvas.referenceResolution.y * UI_position.anchorMax.y));
+    #if UNITY_ANDROID
+    UI_position.anchoredPosition = new Vector2((Input.mousePosition.x * theScaleOfCanvas.referenceResolution.x / Screen.width) - (theScaleOfCanvas.referenceResolution.x * UI_position.anchorMax.x), (Input.mousePosition.y * theScaleOfCanvas.referenceResolution.y / Screen.height) - (theScaleOfCanvas.referenceResolution.y * UI_position.anchorMax.y));
+#endif
     }
 
     void detectFingerPosition()
     {
+#if UNITY_ANDROID
         Touch theFingerTouched = Input.GetTouch(theFingerTouchedID);
         UI_position.anchoredPosition = new Vector2((theFingerTouched.position.x * theScaleOfCanvas.referenceResolution.x / Screen.width) - (theScaleOfCanvas.referenceResolution.x * UI_position.anchorMax.x), (theFingerTouched.position.y * theScaleOfCanvas.referenceResolution.y / Screen.height) - (theScaleOfCanvas.referenceResolution.y * UI_position.anchorMax.y));
+#endif
     }
 }

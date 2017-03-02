@@ -7,7 +7,7 @@ using System.Collections;
 public class PromptSaveScript : PauseButtonScript {
     //[Tooltip("The Save option canvas tagname")]
     //public string m_saveCanvasTagName = ""
-    private GameObject m_SaveCanvas;
+    //private GameObject m_SaveCanvas;
     //  We will need to keep track of which save prompt canvas is it
     private GameObject m_SavePromptAlert;
 
@@ -19,7 +19,7 @@ public class PromptSaveScript : PauseButtonScript {
     public override bool executeButton()
     {
         Debug.Log("Trying go save button");
-        m_SaveCanvas.SetActive(true);
+        //m_SaveCanvas.SetActive(true);
         m_SavePromptAlert.SetActive(false);
         return true;
     }

@@ -10,7 +10,7 @@ public class HeroDataScript : MonoBehaviour {
     [Tooltip("The PlayerID in the database")]
     public static int m_playerID = 1;
     // Table name for the player information in the database!
-    private static string playerTableName = "PlayerStuff";
+    //private static string playerTableName = "PlayerStuff";
     // Hero's health component
     private HealthScript herosHealth;
     // Unfortunately, everything has become so hardcoded to the point that it has to come to this!

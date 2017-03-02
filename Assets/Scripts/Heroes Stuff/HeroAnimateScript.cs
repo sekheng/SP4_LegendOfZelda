@@ -20,7 +20,7 @@ public class HeroAnimateScript : MonoBehaviour {
     private bool isAttacking = false, isShooting = false;
 
     // To make slow down so that hero looks idling
-    private bool slowAnimSpeed = false;
+    //private bool slowAnimSpeed = false;
 
 	// Use this for initialization
 	void Start () {

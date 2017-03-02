@@ -28,7 +28,7 @@ public class PersistentHealthScript : MonoBehaviour {
     // The table where player can load their health from in SQLite
     [HideInInspector]
     public static string playerTableName = "PlayerStuff";
-    private bool hasInitialized = false;
+    //private bool hasInitialized = false;
 
 	// Use this for initialization
 	void Start () {
@@ -67,6 +67,6 @@ public class PersistentHealthScript : MonoBehaviour {
         string[] zeCondition = { "PlayerID = " + HeroDataScript.m_playerID };
         max_health = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerMaxHealth", zeCondition);
         currHealth = MySQLiteHandler.instance.getFloat(playerTableName, "PlayerHealth", zeCondition);
-        hasInitialized = true;
+        //hasInitialized = true;
     }
 }

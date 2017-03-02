@@ -6,9 +6,10 @@ using System.Collections;
 /// </summary>
 public class AttackSystemScript : MonoBehaviour {
     // The particle system object
-    private new GameObject particleSystem;
-    [Tooltip("The name of the particle system")]
-    public string m_NameOfParticleSys = "ParticleFX_Blood";
+    [Tooltip("The game object of the blood particle system")]
+    public GameObject m_bloodParticleSystem;
+    //[Tooltip("The name of the particle system")]
+    //public string m_NameOfParticleSys = "ParticleFX_Blood";
 
     // TODO: Remove when finish debugging for Android
     //private TextMesh debugginMesh;
@@ -40,21 +41,21 @@ public class AttackSystemScript : MonoBehaviour {
         //if (particleSystem == null)
         //    particleSystem = GameObject.Find(m_NameOfParticleSys);
         zeVictim.modifyHealth(-zeArrow.m_damage);
-        if (particleSystem != null)
+        if (m_bloodParticleSystem != null)
         {
             //particleSystem.SetActive(true);
-            particleSystem.transform.position = zeVictim.transform.position;
-            particleSystem.GetComponent<ParticleScript>().playEffect();
+            m_bloodParticleSystem.transform.position = zeVictim.transform.position;
+            m_bloodParticleSystem.GetComponent<ParticleScript>().playEffect();
         }
     }
 
     public void ManageMeleeAttack(MeleeScript attacker, HealthScript victim)
     {
-        if (particleSystem == null)
-        {
-            Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
-            particleSystem = GameObject.Find(m_NameOfParticleSys);
-        }
+        //if (particleSystem == null)
+        //{
+        //    Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
+        //    particleSystem = GameObject.Find(m_NameOfParticleSys);
+        //}
         //if (debugginMesh == null)
         //    debugginMesh = GameObject.Find("Remove TODO").GetComponent<TextMesh>();
         float m_damage_ = attacker.m_damage_;
@@ -80,7 +81,7 @@ public class AttackSystemScript : MonoBehaviour {
         victim.modifyHealth(-m_damage_);
         //Debug.Log("Trying to play particle effects in: " + particleSystem.name);
         //debugginMesh.text = "Trying to find particle system: " + particleSystem.name;
-        if (particleSystem != null)
+        if (m_bloodParticleSystem != null)
         {
             Debug.Log("Playing particle effects");
             //debugginMesh.text = "Successful playing particle effects";
@@ -91,8 +92,8 @@ public class AttackSystemScript : MonoBehaviour {
             //Vector3 directionOfParticle = victim.transform.position - attacker.transform.position;
             //directionOfParticle = new Vector3(directionOfParticle.x * victim.transform.localScale.x, directionOfParticle.y * victim.transform.localScale.y);
             //particleSystem.transform.position = directionOfParticle + victim.transform.position;
-            particleSystem.transform.position = victim.transform.position;
-            particleSystem.GetComponent<ParticleScript>().playEffect();
+            m_bloodParticleSystem.transform.position = victim.transform.position;
+            m_bloodParticleSystem.GetComponent<ParticleScript>().playEffect();
         }
     }
 
@@ -100,17 +101,17 @@ public class AttackSystemScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        if (particleSystem == null)
-        {
-            //Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
-            particleSystem = GameObject.Find(m_NameOfParticleSys);
-        }
+        //if (particleSystem == null)
+        //{
+        //    //Debug.Log("Finding blood particle: " + m_NameOfParticleSys);
+        //    particleSystem = GameObject.Find(m_NameOfParticleSys);
+        //}
     }
 	
 	// Update is called once per frame
 	void Update () {
         //Debug.Log("Updating to find: " + m_NameOfParticleSys);
-        if (particleSystem == null)
-            particleSystem = GameObject.Find(m_NameOfParticleSys);
+        //if (particleSystem == null)
+        //    particleSystem = GameObject.Find(m_NameOfParticleSys);
     }
 }

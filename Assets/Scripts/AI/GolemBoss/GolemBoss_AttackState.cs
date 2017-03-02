@@ -7,7 +7,7 @@ public class GolemBoss_AttackState : State {
     private float accumTimeToChangeState;
     private float alphaValue;
     private float alphaPercentage;
-    private bool startAccum;
+    //private bool startAccum;
     private GolemProjectile golemProjectile;
     private GolemProjectile[] golemProjectiles;
 
@@ -33,7 +33,7 @@ public class GolemBoss_AttackState : State {
         }
         manager = transform.parent.GetComponent<GolemBoss_Statemanager>();
         accumTimeToChangeState = 0;
-        startAccum = false;
+        //startAccum = false;
     }
 
     public override void UpdateState()
@@ -54,12 +54,12 @@ public class GolemBoss_AttackState : State {
             manager.anim.SetBool("idleToAttack", false);
             
         }
-        if (manager.anim.GetCurrentAnimatorStateInfo(0).IsName("golemboss_idle"))
-        {
-            //manager.changeState("idle");//change state
-            //manager.anim.SetBool("attackToIdle", true);
-            startAccum = true;
-        }
+        //if (manager.anim.GetCurrentAnimatorStateInfo(0).IsName("golemboss_idle"))
+        //{
+        //    //manager.changeState("idle");//change state
+        //    //manager.anim.SetBool("attackToIdle", true);
+        //    startAccum = true;
+        //}
         if(accumTimeToChangeState == 0)
         {
             if (golemProjectile == null)
@@ -149,7 +149,7 @@ public class GolemBoss_AttackState : State {
             }
             manager.changeState("idle");
             accumTimeToChangeState = 0;
-            startAccum = false;
+            //startAccum = false;
             if(manager.attackMode == "normal")
             {
                 if (manager.currProjectile != null)
