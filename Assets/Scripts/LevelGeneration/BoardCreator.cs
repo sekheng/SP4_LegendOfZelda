@@ -39,48 +39,52 @@ public class BoardCreator : MonoBehaviour
         // Create the board holder.
         boardHolder = new GameObject("BoardHolder");
 
+        InstantiateOuterWallsBottom();
         SetupTilesArray();
 
-        InstantiateOuterWalls();
         CreateRoomsAndCorridors();
 
         SetTilesValuesForRooms();
         SetTilesValuesForCorridors();
 
         InstantiateTiles();
+        InstantiateOuterWalls();
 
         float offset = rows % 2 == 0 ? 0.5f : 0.0f;
         HashSet<int> helpCheckSpawnedRelics = new HashSet<int>();
   
         for (int i = 0; i < rooms.Length; i++)
         {
-            Vector3 objPos = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((rows >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
-            if (i == 0)
+            Vector3 objPosCentre = new Vector3(rooms[i].xPos + (rooms[i].roomWidth >> 1) - ((columns >> 1) - offset), rooms[i].yPos + (rooms[i].roomHeight >> 1) - ((rows >> 1) - offset), 0); //spawns roughly in the middle of the room
+            if (i == 0) // first room, might be in the center of the board but hey lol.
             {
-                Instantiate(player, objPos, Quaternion.identity);
-            }
-            //feel free to instantiate slime here
-            if(i %  5 == 0 && i != 0) //spawns 1 slime every 5 rooms.
-            {
-                 Instantiate(slime, objPos, Quaternion.identity);
-                 //spawns roughly in the middle of the room
+                Instantiate(player, objPosCentre, Quaternion.identity);
             }
 
-            if (i % 10 == 0 && i != 0) //spawns 1 wolf every 20 rooms.
+            // RESTRICTIONS : NOTHING IS ALLOWED TO SPAWN IN ROOM[0] and ROOM[FINAL].
+            if (i % 3 == 0 && i != 0 && i != rooms.Length - 1) //spawns 1 slime every 3 rooms.
+                    //By the current formula, at least 17 slimes, max 19 slimes.
             {
-                Instantiate(wolf, objPos, Quaternion.identity);
-                //spawns roughly in the middle of the room
+                 Instantiate(slime, objPosCentre, Quaternion.identity);
             }
 
-            if(i % 11 == 0 && i != 0)
+            if (i % 7 == 0 && i != 0 && i != rooms.Length - 1) //spawns 1 wolf every 7 rooms.
+                    //By the current formula, at least 7 wolves, max 8.
             {
+                Instantiate(wolf, objPosCentre, Quaternion.identity);
+            }
+
+            if (i % 19 == 0 && i != 0 && i != rooms.Length - 1) //spawns a relic every 19 rooms. 
+                    //By the current formula, at least 2 relics, 20% for 3.
+            {
+                //prevent two of the same kind of relic spawning in the map.
                 for (int num = 0; num < relicArray.Length; ++num)
                 {
                     int randomIndex = Random.Range(0, relicArray.Length);
                     if (!helpCheckSpawnedRelics.Contains(randomIndex))
                     {
                         helpCheckSpawnedRelics.Add(randomIndex);
-                        Instantiate(relicArray[randomIndex], objPos, Quaternion.identity);
+                        Instantiate(relicArray[randomIndex], objPosCentre, Quaternion.identity);
                         break;
                     }
                 }
@@ -88,7 +92,7 @@ public class BoardCreator : MonoBehaviour
 
             if (nextLevelPrefab != null && i == rooms.Length - 1)
             {
-                Instantiate(nextLevelPrefab, objPos, Quaternion.identity);
+                Instantiate(nextLevelPrefab, objPosCentre, Quaternion.identity);
             }
         }
         Instantiate(gridMaker, Vector3.zero, Quaternion.identity);
@@ -260,8 +264,20 @@ public class BoardCreator : MonoBehaviour
         InstantiateVerticalOuterWall(rightEdgeX - ((rows >> 1) - offset), bottomEdgeY - ((rows >> 1) - offset), topEdgeY - ((rows >> 1) - 0.5f));
 
         // Instantiate both horizontal walls, these are one in left and right from the outer walls.
-        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows >> 1) - offset), rightEdgeX - 1f - ((rows >> 1) - offset), bottomEdgeY - ((rows >> 1) - offset));
         InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows >> 1) - offset), rightEdgeX - 1f - ((rows >> 1) - offset), topEdgeY - ((rows >> 1) - offset));
+    }
+
+    void InstantiateOuterWallsBottom()
+    {
+        // The outer walls are one unit left, right, up and down from the board.
+        float leftEdgeX = -1f;
+        float rightEdgeX = columns + 0f;
+        float bottomEdgeY = -1f;
+        float topEdgeY = rows + 0f;
+
+        float offset = rows % 2 == 0 ? 0.5f : 0.0f;
+
+        InstantiateHorizontalOuterWall(leftEdgeX + 1f - ((rows >> 1) - offset), rightEdgeX - 1f - ((rows >> 1) - offset), bottomEdgeY - ((rows >> 1) - offset));
     }
 
 
