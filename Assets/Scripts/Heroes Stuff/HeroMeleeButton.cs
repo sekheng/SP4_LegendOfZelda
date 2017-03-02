@@ -110,11 +110,11 @@ public class HeroMeleeButton : MonoBehaviour {
             thePlayerJoystick.playerHasPressedButton();
             theHeroMeleeSystem.meleeAttack();
         }
-        else if (LocalDataSingleton.instance.InGamePauseCanvas.activeSelf)
-        {
-            // If the in game pause is active and player hit the attack button, then use that button!
-            LocalDataSingleton.instance.InGamePauseCanvas.GetComponentInChildren<InGamePauseScript>().selectedTheButton();
-        }
+        //else if (LocalDataSingleton.instance.InGamePauseCanvas.activeSelf)
+        //{
+        //    // If the in game pause is active and player hit the attack button, then use that button!
+        //    LocalDataSingleton.instance.InGamePauseCanvas.GetComponentInChildren<InGamePauseScript>().selectedTheButton();
+        //}
         GameObject.FindGameObjectWithTag("GameController").GetComponent<PlayerController>().TryInteract();
         MessageSystem.instance.triggerEventCall("PressedAndroidMeleeButton");
    }
