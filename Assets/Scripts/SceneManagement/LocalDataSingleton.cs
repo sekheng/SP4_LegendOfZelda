@@ -105,6 +105,7 @@ public class LocalDataSingleton : MonoBehaviour {
             MainCanvas.transform.GetChild(4).gameObject.SetActive(true);
             MainCanvas.transform.GetChild(5).gameObject.SetActive(true);
             MainCanvas.transform.GetChild(6).gameObject.SetActive(true);
+            MainCanvas.GetComponent<AndroidLoadDataScript>().enabled = true;
         }
         else
         {
@@ -113,6 +114,7 @@ public class LocalDataSingleton : MonoBehaviour {
             MainCanvas.transform.GetChild(4).gameObject.SetActive(false);
             MainCanvas.transform.GetChild(5).gameObject.SetActive(false);
             MainCanvas.transform.GetChild(6).gameObject.SetActive(false);
+            MainCanvas.GetComponent<AndroidLoadDataScript>().enabled = false;
         }
 #endif
 

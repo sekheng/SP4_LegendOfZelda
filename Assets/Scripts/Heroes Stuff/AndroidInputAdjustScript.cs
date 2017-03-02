@@ -33,8 +33,8 @@ public class AndroidInputAdjustScript : MonoBehaviour {
 	    switch (hasFingerPressed)
         {
             case true:
-                //detectMousePosition();
-                detectFingerPosition();
+                detectMousePosition();
+                //detectFingerPosition();
                 break;
             default:
                 break;
