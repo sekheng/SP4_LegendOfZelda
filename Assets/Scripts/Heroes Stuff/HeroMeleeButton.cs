@@ -9,8 +9,9 @@ public class HeroMeleeButton : MonoBehaviour {
     // Since this is for hero
     private MeleeScript theHeroMeleeSystem;
     // For hero range attack!
-    //private HeroRangeScript theHeroRangeSystem;
-#if UNITY_ANDROID
+#if UNITY_STANDALONE
+    private HeroRangeScript theHeroRangeSystem;
+#else
     // have to interrupt player's movement!
     private PlayerDrag thePlayerJoystick;
 #endif
@@ -33,9 +34,9 @@ public class HeroMeleeButton : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         theHeroMeleeSystem = GetComponent<MeleeScript>();
-        //theHeroRangeSystem = GetComponent<HeroRangeScript>();
 	#if UNITY_STANDALONE
-        //theAttackButton = GameObject.Find("AttackButton");
+          theHeroRangeSystem = GetComponent<HeroRangeScript>();
+      //theAttackButton = GameObject.Find("AttackButton");
         //theAttackButton.SetActive(false);
         //ItemUI = GameObject.Find(m_ItemUI_Name);
         //Debug.Log("Item Canvas name: " + ItemUI.name);
