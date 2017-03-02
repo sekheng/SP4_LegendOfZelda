@@ -161,6 +161,10 @@ public class InGamePauseScript : MonoBehaviour {
         LocalDataSingleton.instance.talking = true;
         // Need to restart the position of the arrow to be at the very top!
         UpdateUI(0);
+        // We will need to register it to the message system and is only available to android!
+#if UNITY_ANDROID
+        MessageSystem.instance.setListener("PressedAndroidMeleeButton", selectedTheButton);
+#endif
     }
 
     void OnDisable()
@@ -168,6 +172,9 @@ public class InGamePauseScript : MonoBehaviour {
         // We will need to disable the talking and movement!
         LocalDataSingleton.instance.talking = false;
         m_disableUpdate = false;
+#if UNITY_ANDROID
+        MessageSystem.instance.removeListener("PressedAndroidMeleeButton", selectedTheButton);
+#endif
     }
 
     /// <summary>
