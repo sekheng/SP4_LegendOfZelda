@@ -161,6 +161,10 @@ public class LocalDataSingleton : MonoBehaviour {
             {
                 StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex + 1));
             }
+            else if(previousSceneFrom == SceneManager.GetActiveScene().buildIndex)
+            {
+                StartCoroutine(ChangeLevel(SceneManager.GetActiveScene().buildIndex - 1));
+            }
             else
             {
                 StartCoroutine(ChangeLevel(previousSceneFrom));
